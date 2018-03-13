@@ -4,7 +4,7 @@ import Navigation
 import Time exposing (..)
 
 
-type Route
+type View
     = CreateAvatar
     | NameAvatar
     | Landing
@@ -21,7 +21,7 @@ type Route
 
 
 type alias Model =
-    { route : Route
+    { view : View
     , userId : String
     , avatar : Avatar
     , avatarName : String

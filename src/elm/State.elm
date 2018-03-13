@@ -1,23 +1,25 @@
 module State exposing (..)
 
+import Data.Log exposing (defaultLog)
+import Data.Stim exposing (defaultStim)
+import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Dom.Scroll exposing (..)
-import Router exposing (getRoute, viewFromUrl)
+import Navigation exposing (..)
 import Task
 import Types exposing (..)
-import Navigation exposing (..)
 
 
 initModel : Model
 initModel =
-    { route = Landing
+    { view = Landing
     , userId = ""
     , avatar = Alien
     , avatarName = ""
     , avatarSkinColour = Green
     , stims = []
     , logs = []
-    , newStim = Stim "" Chest "" "" Nothing False ""
-    , newLog = Log 0 "" 0 0 [] [] 0
+    , newStim = defaultStim
+    , newLog = defaultLog
     , counter = 0
     , paused = False
     }
@@ -36,7 +38,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UrlChange location ->
-            { model | route = getRoute location.hash } ! [ Task.attempt (always NoOp) (toTop "container") ]
+            { model | view = getViewFromRoute location.hash } ! [ Task.attempt (always NoOp) (toTop "container") ]
 
         NoOp ->
             model ! []
