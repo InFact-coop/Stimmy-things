@@ -14,4 +14,4 @@ style.min.css
 
 node_modules
 
-.env
+*.env
