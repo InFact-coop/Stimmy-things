@@ -1,0 +1,17 @@
+# elm-package generated files
+elm-stuff
+# elm-repl generated files
+repl-temp-*
+
+# DS-Store
+.DS_Store
+
+elm.js
+
+
+# generated css
+style.min.css
+
+node_modules
+
+.env
