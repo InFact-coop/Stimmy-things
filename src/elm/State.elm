@@ -11,9 +11,9 @@ initModel : Model
 initModel =
     { route = Landing
     , userId = ""
-    , avatar = 
+    , avatar = Alien
     , avatarName = ""
-    , avatarSkinColour = 
+    , avatarSkinColour = Green
     , stims = []
     , logs = []
     , newStim = {}

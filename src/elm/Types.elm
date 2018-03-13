@@ -4,7 +4,19 @@ import Navigation
 
 
 type Route
-    = Home
+    = CreateAvatar
+    | NameAvatar
+    | Landing
+    | StimInfo
+    | StimPreparation
+    | StimTimer
+    | StimRecap
+    | AddStim
+    | AddStimSuccessModal
+    | Moodboard
+    | About
+    | ShareModal
+    | Blog
 
 
 type alias Model =
