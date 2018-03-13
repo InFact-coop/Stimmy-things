@@ -9,8 +9,19 @@ import Navigation exposing (..)
 
 initModel : Model
 initModel =
-    { route = Home
+    { route = Landing
+    , userId = ""
+    , avatar = 
+    , avatarName = ""
+    , avatarSkinColour = 
+    , stims = []
+    , logs = []
+    , newStim = {}
+    , newLog = {}
+    , counter = 0
+    , paused = False
     }
+
 
 
 init : Navigation.Location -> ( Model, Cmd Msg )
