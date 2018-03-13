@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "summary": "App for children ADHD",
-  "repository": "https://github.com/InFact-coop/Stimmy-things",
+  "repository": "https://github.com/inFact-coop/stimmy-things.git",
   "license": "BSD3",
   "source-directories": ["src/elm"],
   "exposed-modules": [],
