@@ -9,7 +9,7 @@ import Navigation exposing (..)
 
 initModel : Model
 initModel =
-    { route = Home
+    { route = Landing
     }
 
 
