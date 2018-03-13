@@ -16,12 +16,11 @@ initModel =
     , avatarSkinColour = Green
     , stims = []
     , logs = []
-    , newStim = {}
-    , newLog = {}
+    , newStim = Stim "" Chest "" "" Nothing False ""
+    , newLog = Log 0 "" 0 0 [] [] 0
     , counter = 0
     , paused = False
     }
-
 
 
 init : Navigation.Location -> ( Model, Cmd Msg )
