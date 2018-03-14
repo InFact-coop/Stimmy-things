@@ -1,4 +1,4 @@
-module State exposing (..)
+port module State exposing (..)
 
 import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
@@ -24,13 +24,16 @@ initModel =
     }
 
 
+port begin : () -> Cmd msg
+
+
 init : Navigation.Location -> ( Model, Cmd Msg )
 init location =
     let
         model =
             viewFromUrl location initModel
     in
-        model ! []
+        model ! [ begin () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -39,5 +42,13 @@ update msg model =
         UrlChange location ->
             { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
 
+        MakeCarousel ->
+            model ! [ begin () ]
+
         NoOp ->
             model ! []
+
+
+subscriptions : Model -> Sub msg
+subscriptions model =
+    Sub.none

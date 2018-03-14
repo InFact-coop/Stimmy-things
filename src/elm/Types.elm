@@ -114,3 +114,4 @@ type Feeling
 type Msg
     = NoOp
     | UrlChange Navigation.Location
+    | MakeCarousel
