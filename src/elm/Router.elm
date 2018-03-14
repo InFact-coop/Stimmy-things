@@ -13,6 +13,6 @@ view model =
         view =
             getCurrentView model
     in
-        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 bg-light-blue m0-auto cover", id "container" ]
+        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
             [ view
             ]
