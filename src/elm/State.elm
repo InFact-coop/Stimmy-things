@@ -13,9 +13,9 @@ initModel : Model
 initModel =
     { view = Landing
     , userId = ""
-    , avatar = Alien
+    , avatar = Avatar1
     , avatarName = ""
-    , avatarSkinColour = Green
+    , avatarSkinColour = Skin1
     , stims = []
     , logs = []
     , newStim = defaultStim
