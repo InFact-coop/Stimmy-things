@@ -1,14 +1,26 @@
 module State exposing (..)
 
-import Helpers exposing (scrollToTop)
+import Data.Log exposing (defaultLog)
+import Data.Stim exposing (defaultStim)
+import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Navigation exposing (..)
-import Router exposing (getRoute, viewFromUrl)
+import Helpers exposing (scrollToTop)
 import Types exposing (..)
 
 
 initModel : Model
 initModel =
-    { route = Home
+    { view = Landing
+    , userId = ""
+    , avatar = Avatar1
+    , avatarName = ""
+    , avatarSkinColour = Skin1
+    , stims = []
+    , logs = []
+    , newStim = defaultStim
+    , newLog = defaultLog
+    , counter = 0
+    , paused = False
     }
 
 
@@ -25,7 +37,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UrlChange location ->
-            { model | route = getRoute location.hash } ! [ scrollToTop ]
+            { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
 
         NoOp ->
             model ! []

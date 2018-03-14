@@ -1,9 +1,9 @@
-module Routes.Home exposing (..)
+module Views.About exposing (..)
 
 import Html exposing (..)
 import Types exposing (..)
 
 
-home : Model -> Html Msg
-home model =
+about : Model -> Html Msg
+about model =
     div [] [ text "Home" ]

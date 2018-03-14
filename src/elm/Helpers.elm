@@ -18,6 +18,11 @@ ifThenElse conditional trueCase falseCase =
         falseCase
 
 
+emptyDiv : Html msg
+emptyDiv =
+    div [ class "dn" ] []
+
+
 unionTypeToString : a -> String
 unionTypeToString a =
     Regex.replace All
