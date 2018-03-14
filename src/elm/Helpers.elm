@@ -1,7 +1,13 @@
 module Helpers exposing (..)
 
+import Regex exposing (..)
+import Task exposing (..)
+import Types exposing (..)
+import Dom.Scroll exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (on, targetChecked, targetValue)
+import Json.Decode as Decode
 
 
 ifThenElse : Bool -> a -> a -> a
@@ -17,9 +23,44 @@ emptyDiv =
     div [ class "dn" ] []
 
 
+unionTypeToString : a -> String
+unionTypeToString a =
+    Regex.replace All
+        (Regex.regex "[A-Z]")
+        (\{ match } -> " " ++ match)
+        (toString a)
+        |> String.trim
+
+
+scrollToTop : Cmd Msg
+scrollToTop =
+    Task.attempt (always NoOp) (toTop "container")
+
+
 viewIf : Bool -> Html msg -> Html msg
 viewIf condition content =
     if condition then
         content
     else
         Html.text ""
+
+
+backgroundImageStyle : String -> Int -> Attribute msg
+backgroundImageStyle url sizePercent =
+    style
+        [ ( "background-image", "url(" ++ url ++ ")" )
+        , ( "background-repeat", "no-repeat" )
+        , ( "background-position", "center center" )
+        , ( "background-size", toString sizePercent ++ "%" )
+        ]
+
+
+isNewListEntry : String -> List String -> Bool
+isNewListEntry string stringList =
+    List.member string stringList
+        |> not
+
+
+onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
+onCheckboxInput tagger =
+    on "change" (Decode.map2 tagger targetValue targetChecked)
