@@ -1,13 +1,13 @@
 module Helpers exposing (..)
 
-import Regex exposing (..)
-import Task exposing (..)
-import Types exposing (..)
 import Dom.Scroll exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetChecked, targetValue)
 import Json.Decode as Decode
+import Regex exposing (..)
+import Task exposing (..)
+import Types exposing (..)
 
 
 ifThenElse : Bool -> a -> a -> a
@@ -55,6 +55,15 @@ backgroundImageStyle url sizePercent =
         ]
 
 
+
+-- hotspotPosition : Int -> Int -> Attribute msg
+-- hotspotPosition horizontal vertical =
+--   style [
+--   ("left", )
+--   ("top", )
+--   ]
+
+
 isNewListEntry : String -> List String -> Bool
 isNewListEntry string stringList =
     List.member string stringList
@@ -64,3 +73,9 @@ isNewListEntry string stringList =
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
 onCheckboxInput tagger =
     on "change" (Decode.map2 tagger targetValue targetChecked)
+
+
+classes : List String -> Html.Attribute Msg
+classes classList =
+    String.join " " classList
+        |> class

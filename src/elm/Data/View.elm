@@ -113,4 +113,4 @@ viewFromUrl location model =
         view =
             getViewFromRoute location.hash
     in
-        { model | view = view }
+    { model | view = view }
