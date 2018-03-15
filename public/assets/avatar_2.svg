@@ -82,15 +82,15 @@
           </g>
         </g>
         <g id="hot_spots" transform="translate(106 1)" fill="#5594CF" fill-opacity=".4" opacity="0">
-          <ellipse id="feet" cx="114.423" cy="487.409" rx="17.423" ry="17.409"/>
-          <ellipse id="legs" cx="78.192" cy="351.667" rx="17.423" ry="17.409"/>
-          <ellipse id="hands" cx="136.423" cy="272.409" rx="17.423" ry="17.409"/>
-          <ellipse id="belly" cx="71.423" cy="231.409" rx="17.423" ry="17.409"/>
-          <ellipse id="arms" cx="143.423" cy="186.409" rx="17.423" ry="17.409"/>
-          <ellipse id="chest" cx="88.423" cy="161.409" rx="17.423" ry="17.409"/>
-          <ellipse id="shoulders" cx="17.423" cy="120.409" rx="17.423" ry="17.409"/>
-          <ellipse id="face" cx="119.423" cy="80.409" rx="17.423" ry="17.409"/>
-          <ellipse id="head" cx="61.423" cy="17.409" rx="17.423" ry="17.409"/>
+          <ellipse id="feet-hotspot" cx="114.423" cy="487.409" rx="17.423" ry="17.409"/>
+          <ellipse id="legs-hotspot" cx="78.192" cy="351.667" rx="17.423" ry="17.409"/>
+          <ellipse id="hands-hotspot" cx="136.423" cy="272.409" rx="17.423" ry="17.409"/>
+          <ellipse id="belly-hotspot" cx="71.423" cy="231.409" rx="17.423" ry="17.409"/>
+          <ellipse id="arms-hotspot" cx="143.423" cy="186.409" rx="17.423" ry="17.409"/>
+          <ellipse id="chest-hotspot" cx="88.423" cy="161.409" rx="17.423" ry="17.409"/>
+          <ellipse id="shoulders-hotspot" cx="17.423" cy="120.409" rx="17.423" ry="17.409"/>
+          <ellipse id="face-hotspot" cx="119.423" cy="80.409" rx="17.423" ry="17.409"/>
+          <ellipse id="head-hotspot" cx="61.423" cy="17.409" rx="17.423" ry="17.409"/>
         </g>
       </g>
     </g>
