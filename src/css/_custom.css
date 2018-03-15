@@ -40,8 +40,7 @@
 }
 
 .makecarousel {
-  width: 95vw;
-  height: 75vh;
+  width: 400px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -49,4 +48,8 @@
   background: var(--green);
   transform: scale(1.1);
   transition: 1s;
+}
+
+.smooth {
+  transform: translate3d(0, 0, 0);
 }

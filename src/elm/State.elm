@@ -43,7 +43,7 @@ update msg model =
             { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
 
         MakeCarousel ->
-            model ! [ begin () ]
+            model ! []
 
         NoOp ->
             model ! []
