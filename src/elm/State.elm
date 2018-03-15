@@ -5,6 +5,7 @@ import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Helpers exposing (scrollToTop)
 import Navigation exposing (..)
+import Ports exposing (..)
 import Types exposing (..)
 
 
@@ -24,16 +25,13 @@ initModel =
     }
 
 
-port begin : () -> Cmd msg
-
-
 init : Navigation.Location -> ( Model, Cmd Msg )
 init location =
     let
         model =
             viewFromUrl location initModel
     in
-    model ! [ begin () ]
+    model ! [ initCarousel () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -47,8 +45,3 @@ update msg model =
 
         NoOp ->
             model ! []
-
-
-subscriptions : Model -> Sub msg
-subscriptions model =
-    Sub.none

@@ -12,26 +12,11 @@ createAvatar model =
         [ div [ class "flex justify-center flex-column items-center" ] [ h1 [ class "f3 green avenir center ma0" ] [ text "My Stimmy friend" ], h2 [ class "ma0 avenir fw2 f4" ] [ text "Choose your avatar" ] ]
         , div
             [ class "db makecarousel mv2" ]
-            [ img
-                [ class "carousel-cell-image"
-                , attribute "data-flickity-lazyload" "./assets/avatar.svg"
-                ]
-                []
-            , img
-                [ class "carousel-cell-image"
-                , attribute "data-flickity-lazyload" "./assets/avatar.svg"
-                ]
-                []
-            , img
-                [ class "carousel-cell-image"
-                , attribute "data-flickity-lazyload" "./assets/avatar.svg"
-                ]
-                []
-            , img
-                [ class "carousel-cell-image"
-                , attribute "data-flickity-lazyload" "./assets/avatar.svg"
-                ]
-                []
+            [ avatarCaroCell "./assets/avatar.svg"
+            , avatarCaroCell "./assets/avatar.svg"
+            , avatarCaroCell "./assets/avatar.svg"
+            , avatarCaroCell "./assets/avatar.svg"
+            , avatarCaroCell "./assets/avatar.svg"
             ]
         ]
 

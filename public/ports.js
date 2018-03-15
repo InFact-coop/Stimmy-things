@@ -1,4 +1,4 @@
-app.ports.begin.subscribe(function() {
+app.ports.initCarousel.subscribe(function() {
   window.requestAnimationFrame(function() {
     var element = document.getElementsByClassName("makecarousel")[0];
     console.log("ELEMENT", element);
