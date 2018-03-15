@@ -6,8 +6,8 @@ repl-temp-*
 # DS-Store
 .DS_Store
 
-elm.js
 bundle.js
+test-bundle.js
 
 
 # generated css

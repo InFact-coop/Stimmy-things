@@ -1,15 +1,15 @@
 // import QUnit from "qunit";
-import idb from "./idb";
-import Dexie from "dexie";
+import idb from '../../src/js/idb';
+import Dexie from 'dexie';
 
-const db = new Dexie("test_db");
+const db = new Dexie('test_db');
 idb.createTables(db);
 
 let tableNames = [];
 let tableKeys = [];
 
 function checkName() {
-  console.log("checkName", db.name);
+  console.log('checkName', db.name);
   return db.name;
 }
 
@@ -39,75 +39,75 @@ function getLogsKeys() {
 function checkUserDetails(callback) {
   idb
     .createOrUpdateUser(db, {
-      name: "Ivan",
-      avatar: "alien",
-      skin_colour: "skin_colour1",
+      name: 'Ivan',
+      avatar: 'alien',
+      skin_colour: 'skin_colour1',
       user_id: 323423
     })
     .then(res1 => db.user.toArray())
     .then(user => {
-      console.log("user", user[0]);
+      console.log('user', user[0]);
       return user[0];
     })
     .then(res2 => {
-      console.log("res", res);
+      console.log('res', res);
       callback(res);
     });
 }
 
-QUnit.test("hello test", function(assert) {
-  assert.ok(1 == "1", "Passed!");
+QUnit.test('hello test', function(assert) {
+  assert.ok(1 == '1', 'Passed!');
 });
 
-QUnit.test("correct database name", function(assert) {
-  assert.ok(checkName() === "test_db", "Passed!");
+QUnit.test('correct database name', function(assert) {
+  assert.ok(checkName() === 'test_db', 'Passed!');
 });
 
-QUnit.test("correct number of tables", function(assert) {
+QUnit.test('correct number of tables', function(assert) {
   returnTableNames();
-  assert.ok(tableNames.length === 3, "Passed!");
+  assert.ok(tableNames.length === 3, 'Passed!');
 });
 
-QUnit.test("tables exist with correct names", function(assert) {
+QUnit.test('tables exist with correct names', function(assert) {
   returnTableNames();
-  assert.deepEqual(tableNames, ["user", "stims", "logs"], "Passed!");
+  assert.deepEqual(tableNames, ['user', 'stims', 'logs'], 'Passed!');
 });
 
-QUnit.test("user table exists with correct indices", function(assert) {
+QUnit.test('user table exists with correct indices', function(assert) {
   getUserKeys();
-  assert.deepEqual(tableKeys, ["avatar", "skin_colour", "name"], "Passed!");
+  assert.deepEqual(tableKeys, ['avatar', 'skin_colour', 'name'], 'Passed!');
 });
 
-QUnit.test("stims table exists with correct indices", function(assert) {
+QUnit.test('stims table exists with correct indices', function(assert) {
   getStimsKeys();
   assert.deepEqual(
     tableKeys,
     [
-      "stim_name",
-      "body_part",
-      "instructions",
-      "video_src",
-      "user_id",
-      "shared"
+      'stim_name',
+      'body_part',
+      'instructions',
+      'video_src',
+      'user_id',
+      'shared'
     ],
-    "Passed!"
+    'Passed!'
   );
 });
 
-QUnit.test("logs table exists with correct indices", function(assert) {
+QUnit.test('logs table exists with correct indices', function(assert) {
   getLogsKeys();
   assert.deepEqual(
     tableKeys,
     [
-      "stim_id",
-      "time_taken",
-      "pre_face",
-      "post_face",
-      "pre_feelings",
-      "post_feelings",
-      "date_time"
+      'stim_id',
+      'time_taken',
+      'pre_face',
+      'post_face',
+      'pre_feelings',
+      'post_feelings',
+      'date_time'
     ],
-    "Passed!"
+    'Passed!'
   );
 });
 
