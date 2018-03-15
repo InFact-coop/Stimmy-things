@@ -32,7 +32,7 @@ type alias Model =
     , newLog : Log
     , counter : Int
     , paused : Bool
-    , head : HotspotCoords
+    , hotspots : Hotspots
     }
 
 
@@ -124,7 +124,20 @@ type alias HotspotCoords =
     }
 
 
+type alias Hotspots =
+    { head : HotspotCoords
+    , face : HotspotCoords
+    , shoulders : HotspotCoords
+    , chest : HotspotCoords
+    , arms : HotspotCoords
+    , belly : HotspotCoords
+    , hands : HotspotCoords
+    , legs : HotspotCoords
+    , feet : HotspotCoords
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
-    | RecieveHotspotCoords (Result String HotspotCoords)
+    | RecieveHotspotCoords (Result String Hotspots)

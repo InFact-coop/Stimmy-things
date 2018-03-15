@@ -5,8 +5,8 @@ import Json.Decode.Pipeline exposing (..)
 import Types exposing (..)
 
 
-hotspotDecoder : Decoder HotspotCoords
-hotspotDecoder =
+hotspotCoordsDecoder : Decoder HotspotCoords
+hotspotCoordsDecoder =
     decode HotspotCoords
         |> required "bottom" float
         |> required "height" float
@@ -18,6 +18,30 @@ hotspotDecoder =
         |> required "y" float
 
 
-decodeHotspotCoords : Value -> Result String HotspotCoords
-decodeHotspotCoords =
-    decodeValue hotspotDecoder
+decodeHotspots : Value -> Result String Hotspots
+decodeHotspots =
+    decodeValue hotspotsDecoder
+
+
+defaultHotspotCoords : HotspotCoords
+defaultHotspotCoords =
+    HotspotCoords 0 0 0 0 0 0 0 0
+
+
+defaultHotspots : Hotspots
+defaultHotspots =
+    Hotspots defaultHotspotCoords defaultHotspotCoords defaultHotspotCoords defaultHotspotCoords defaultHotspotCoords defaultHotspotCoords defaultHotspotCoords defaultHotspotCoords defaultHotspotCoords
+
+
+hotspotsDecoder : Decoder Hotspots
+hotspotsDecoder =
+    decode Hotspots
+        |> required "head" hotspotCoordsDecoder
+        |> required "face" hotspotCoordsDecoder
+        |> required "shoulders" hotspotCoordsDecoder
+        |> required "chest" hotspotCoordsDecoder
+        |> required "arms" hotspotCoordsDecoder
+        |> required "belly" hotspotCoordsDecoder
+        |> required "hands" hotspotCoordsDecoder
+        |> required "legs" hotspotCoordsDecoder
+        |> required "feet" hotspotCoordsDecoder

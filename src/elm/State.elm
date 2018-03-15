@@ -23,7 +23,7 @@ initModel =
     , newLog = defaultLog
     , counter = 0
     , paused = False
-    , head = HotspotCoords 0 0 0 0 0 0 0 0
+    , hotspots = defaultHotspots
     }
 
 
@@ -33,7 +33,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-    model ! []
+        model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -43,7 +43,7 @@ update msg model =
             { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
 
         RecieveHotspotCoords (Ok coords) ->
-            { model | head = coords } ! []
+            { model | hotspots = coords } ! []
 
         RecieveHotspotCoords (Err err) ->
             model ! []
@@ -59,7 +59,7 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ recieveHotspotCoords
-            (decodeHotspotCoords
+            (decodeHotspots
                 >> Debug.log "here i am"
                 >> RecieveHotspotCoords
             )
