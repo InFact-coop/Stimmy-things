@@ -25,3 +25,28 @@
 .lh-f7 {
   line-height: 13px;
 }
+
+/* Carousel */
+
+.carousel-cell {
+  opacity: 0.2;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-cell.is-selected {
+  opacity: 1;
+}
+
+.makecarousel {
+  -webkit-overflow-scrolling: touch;
+}
+
+.dot.is-selected {
+  background: var(--green);
+  transform: scale(1.1);
+  transition: 1s;
+}
+
+.smooth {
+  transform: translate3d(0, 0, 0);
+}

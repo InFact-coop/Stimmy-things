@@ -3,7 +3,6 @@ module Router exposing (..)
 import Data.View exposing (getCurrentView, getViewFromRoute)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Navigation exposing (..)
 import Types exposing (..)
 
 
@@ -13,6 +12,6 @@ view model =
         view =
             getCurrentView model
     in
-        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
+        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover flex justify-center items-center", id "container" ]
             [ view
             ]
