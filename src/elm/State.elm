@@ -3,8 +3,8 @@ port module State exposing (..)
 import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
-import Navigation exposing (..)
 import Helpers exposing (scrollToTop)
+import Navigation exposing (..)
 import Types exposing (..)
 
 
@@ -33,7 +33,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ begin () ]
+    model ! [ begin () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
