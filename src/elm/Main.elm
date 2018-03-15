@@ -1,8 +1,8 @@
 module Main exposing (..)
 
 import Navigation exposing (program)
-import State exposing (..)
 import Router exposing (..)
+import State exposing (..)
 import Types exposing (..)
 
 
@@ -12,5 +12,5 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         }

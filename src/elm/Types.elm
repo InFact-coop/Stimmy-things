@@ -32,6 +32,7 @@ type alias Model =
     , newLog : Log
     , counter : Int
     , paused : Bool
+    , head : HotspotCoords
     }
 
 
@@ -111,6 +112,19 @@ type Feeling
     | Frustrated
 
 
+type alias HotspotCoords =
+    { bottom : Float
+    , height : Float
+    , left : Float
+    , right : Float
+    , top : Float
+    , width : Float
+    , x : Float
+    , y : Float
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
+    | RecieveHotspotCoords (Result String HotspotCoords)

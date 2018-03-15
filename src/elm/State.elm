@@ -1,10 +1,12 @@
-module State exposing (..)
+port module State exposing (..)
 
+import Data.Hotspots exposing (..)
 import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
-import Navigation exposing (..)
 import Helpers exposing (scrollToTop)
+import Json.Decode exposing (..)
+import Navigation exposing (..)
 import Types exposing (..)
 
 
@@ -21,6 +23,7 @@ initModel =
     , newLog = defaultLog
     , counter = 0
     , paused = False
+    , head = HotspotCoords 0 0 0 0 0 0 0 0
     }
 
 
@@ -30,7 +33,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! []
+    model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -39,5 +42,25 @@ update msg model =
         UrlChange location ->
             { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
 
+        RecieveHotspotCoords (Ok coords) ->
+            { model | head = coords } ! []
+
+        RecieveHotspotCoords (Err err) ->
+            model ! []
+
         NoOp ->
             model ! []
+
+
+port recieveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch
+        [ recieveHotspotCoords
+            (decodeHotspotCoords
+                >> Debug.log "here i am"
+                >> RecieveHotspotCoords
+            )
+        ]
