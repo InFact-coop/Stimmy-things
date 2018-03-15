@@ -1,11 +1,23 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./src/js/index.js",
+  entry: './src/js/index.js',
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "public")
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public')
   },
-  devtool: "eval",
-  mode: "development"
+  module: {
+    rules: [
+      {
+        test: /\.elm$/,
+        exclude: [/elm-stuff/, /node_modules/],
+        loader: 'elm-webpack-loader',
+        options: {
+          debug: true,
+          warn: true
+        }
+      }
+    ]
+  },
+  devtool: 'eval'
 };
