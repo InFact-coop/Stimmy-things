@@ -5,8 +5,7 @@ import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Helpers exposing (scrollToTop)
-import Json.Decode exposing (..)
-import Navigation exposing (..)
+import Ports exposing (..)
 import Types exposing (..)
 
 
@@ -33,7 +32,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! []
+        model ! [ initCarousel () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

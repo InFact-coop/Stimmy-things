@@ -55,15 +55,6 @@ backgroundImageStyle url sizePercent =
         ]
 
 
-
--- hotspotPosition : Int -> Int -> Attribute msg
--- hotspotPosition horizontal vertical =
---   style [
---   ("left", )
---   ("top", )
---   ]
-
-
 isNewListEntry : String -> List String -> Bool
 isNewListEntry string stringList =
     List.member string stringList
