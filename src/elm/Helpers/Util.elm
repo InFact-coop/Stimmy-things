@@ -1,4 +1,4 @@
-module Helpers exposing (..)
+module Helpers.Util exposing (..)
 
 import Regex exposing (..)
 import Task exposing (..)
@@ -43,16 +43,6 @@ viewIf condition content =
         content
     else
         Html.text ""
-
-
-backgroundImageStyle : String -> Int -> Attribute msg
-backgroundImageStyle url sizePercent =
-    style
-        [ ( "background-image", "url(" ++ url ++ ")" )
-        , ( "background-repeat", "no-repeat" )
-        , ( "background-position", "center center" )
-        , ( "background-size", toString sizePercent ++ "%" )
-        ]
 
 
 isNewListEntry : String -> List String -> Bool
