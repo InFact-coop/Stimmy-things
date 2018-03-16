@@ -3,10 +3,10 @@ port module State exposing (..)
 import Data.Log exposing (addFeelingToLog, defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
+import Data.Time exposing (adjustTime, trackCounter)
 import Helpers exposing (..)
 import Navigation exposing (..)
 import Ports exposing (..)
-import String exposing (toInt)
 import Types exposing (..)
 
 
@@ -21,8 +21,9 @@ initModel =
     , logs = []
     , newStim = defaultStim
     , newLog = defaultLog
+    , timeSelected = 0
     , counter = 0
-    , paused = False
+    , timerStatus = Stopped
     }
 
 
@@ -51,15 +52,17 @@ update msg model =
             { model | newLog = addFeelingToLog model.newLog feeling } ! []
 
         SetTime time ->
-            { model | counter = stringToFloat time |> (*) 60 } ! []
+            let
+                interval =
+                    stringToFloat time |> (*) 60
+            in
+                { model | timeSelected = interval, counter = interval } ! []
 
         ChangeView view ->
             { model | view = view } ! []
 
         Tick _ ->
-            { model | counter = model.counter - 1 } ! []
+            trackCounter model ! []
 
-
-stringToFloat : String -> Float
-stringToFloat string =
-    String.toFloat string |> Result.withDefault 0
+        AdjustTimer timerControl ->
+            adjustTime timerControl model ! []

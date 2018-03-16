@@ -9,4 +9,17 @@ port initCarousel : () -> Cmd msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Time.every Time.second Tick
+    timeSubscription model
+
+
+timeSubscription : Model -> Sub Msg
+timeSubscription model =
+    case model.timerStatus of
+        Stopped ->
+            Sub.none
+
+        Paused ->
+            Sub.none
+
+        Started ->
+            Time.every Time.second Tick

@@ -30,8 +30,9 @@ type alias Model =
     , logs : List Log
     , newStim : Stim
     , newLog : Log
-    , counter : Float
-    , paused : Bool
+    , counter : Time
+    , timeSelected : Time
+    , timerStatus : TimerStatus
     }
 
 
@@ -119,3 +120,17 @@ type Msg
     | SetTime String
     | ChangeView View
     | Tick Time
+    | AdjustTimer TimerControl
+
+
+type TimerControl
+    = Start
+    | Stop
+    | Pause
+    | Restart
+
+
+type TimerStatus
+    = Started
+    | Stopped
+    | Paused

@@ -23,6 +23,11 @@ emptyDiv =
     div [ class "dn" ] []
 
 
+stringToFloat : String -> Float
+stringToFloat string =
+    String.toFloat string |> Result.withDefault 0
+
+
 unionTypeToString : a -> String
 unionTypeToString a =
     Regex.replace All
