@@ -9,7 +9,6 @@ let tableNames = [];
 let tableKeys = [];
 
 function checkName() {
-  console.log('checkName', db.name);
   return db.name;
 }
 
@@ -46,11 +45,9 @@ function checkUserDetails(callback) {
     })
     .then(res1 => db.user.toArray())
     .then(user => {
-      console.log('user', user[0]);
       return user[0];
     })
     .then(res2 => {
-      console.log('res', res);
       callback(res);
     });
 }
