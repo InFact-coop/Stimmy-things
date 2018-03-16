@@ -7,21 +7,15 @@
     "start": "node ./server/start",
     "test": "NODE_ENV=test mocha ./tests/*  ",
     "test:watch": "NODE_ENV=test mocha ./tests/* --watch",
-    "elm-watch-debug":
-      "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js --debug'",
-    "elm-watch":
-      "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js'",
-    "css-watch":
-      "postcss ./src/css/index.css --output ./public/style.min.css --watch --config ./postcss.config.js",
+    "elm-watch-debug": "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js --debug'",
+    "elm-watch": "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js'",
+    "css-watch": "postcss ./src/css/index.css --output ./public/style.min.css --watch --config ./postcss.config.js",
     "js-watch": "webpack --watch",
-    "just-frontend":
-      "elm-live src/elm/Main.elm --debug --output=public/elm.js --dir=public --open --pushstate & npm run css-watch",
+    "just-frontend": "elm-live src/elm/Main.elm --debug --output=public/elm.js --dir=public --open --pushstate & npm run css-watch",
     "dev-frontend": "npm run js-watch & npm run css-watch",
     "dev-backend": "NODE_ENV=development nodemon ./server/start",
-    "css-build":
-      "postcss ./src/css/index.css --output ./public/style.min.css --config ./postcss.config.js",
-    "heroku-postbuild":
-      "npm run css-build; elm-make src/elm/Main.elm --output=public/elm.js --yes"
+    "css-build": "postcss ./src/css/index.css --output ./public/style.min.css --config ./postcss.config.js",
+    "heroku-postbuild": "npm run css-build; elm-make src/elm/Main.elm --output=public/elm.js --yes"
   },
   "repository": {
     "type": "git",
@@ -58,6 +52,7 @@
     "postcss-custom-media": "^6.0.0",
     "postcss-custom-properties": "^6.2.0",
     "postcss-import": "^11.0.0",
+    "request": "^2.85.0",
     "tachyons-custom": "^4.9.0"
   }
 }

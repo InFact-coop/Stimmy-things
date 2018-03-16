@@ -6,6 +6,7 @@ import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Helpers exposing (scrollToTop)
 import Navigation exposing (..)
 import Ports exposing (..)
+import Requests.GetVideos exposing (getVideos)
 import Types exposing (..)
 
 
@@ -22,6 +23,9 @@ initModel =
     , newLog = defaultLog
     , counter = 0
     , paused = False
+    , vidSearchString = ""
+    , videos = []
+    , videoStatus = NotAsked
     }
 
 
@@ -42,6 +46,18 @@ update msg model =
 
         MakeCarousel ->
             model ! []
+
+        UpdateVideoSearch string ->
+            { model | vidSearchString = string } ! []
+
+        CallVideoRequest ->
+            { model | videoStatus = Loading } ! [ getVideos model ]
+
+        ReceiveVideos (Ok list) ->
+            { model | videoStatus = ResponseSuccess, videos = list } ! []
+
+        ReceiveVideos (Err string) ->
+            { model | videoStatus = ResponseFailure } ! []
 
         NoOp ->
             model ! []

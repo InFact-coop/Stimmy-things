@@ -1,5 +1,6 @@
 module Types exposing (..)
 
+import Http exposing (..)
 import Navigation
 import Time exposing (..)
 
@@ -32,6 +33,9 @@ type alias Model =
     , newLog : Log
     , counter : Int
     , paused : Bool
+    , vidSearchString : String
+    , videos : List Video
+    , videoStatus : RemoteData
     }
 
 
@@ -111,7 +115,25 @@ type Feeling
     | Frustrated
 
 
+type RemoteData
+    = NotAsked
+    | Loading
+    | ResponseFailure
+    | ResponseSuccess
+
+
+type alias Video =
+    { id : String
+    , title : String
+    , description : String
+    , thumbnail : String
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
     | MakeCarousel
+    | UpdateVideoSearch String
+    | CallVideoRequest
+    | ReceiveVideos (Result Http.Error (List Video))
