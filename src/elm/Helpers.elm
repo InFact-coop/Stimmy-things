@@ -32,6 +32,11 @@ unionTypeToString a =
         |> String.trim
 
 
+createListOfStrings : List a -> List String
+createListOfStrings list =
+    List.map unionTypeToString list
+
+
 scrollToTop : Cmd Msg
 scrollToTop =
     Task.attempt (always NoOp) (toTop "container")
@@ -55,9 +60,9 @@ backgroundImageStyle url sizePercent =
         ]
 
 
-isNewListEntry : String -> List String -> Bool
-isNewListEntry string stringList =
-    List.member string stringList
+isNewListEntry : a -> List a -> Bool
+isNewListEntry a list =
+    List.member a list
         |> not
 
 

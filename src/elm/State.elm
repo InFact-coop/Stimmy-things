@@ -3,7 +3,8 @@ port module State exposing (..)
 import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
-import Helpers exposing (scrollToTop)
+import Helpers exposing (..)
+import Data.Feelings exposing (..)
 import Navigation exposing (..)
 import Ports exposing (..)
 import Types exposing (..)
@@ -31,7 +32,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-    model ! [ initCarousel () ]
+        model ! [ initCarousel () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -45,3 +46,14 @@ update msg model =
 
         NoOp ->
             model ! []
+
+        ToggleFeeling feeling ->
+            { model | newLog = updateNewLog model.newLog feeling } ! []
+
+
+updateNewLog : Log -> Feeling -> Log
+updateNewLog log feeling =
+    if isNewListEntry feeling log.preFeelings then
+        { log | preFeelings = log.preFeelings ++ [ feeling ] }
+    else
+        { log | preFeelings = List.filter (\x -> x /= feeling) log.preFeelings }
