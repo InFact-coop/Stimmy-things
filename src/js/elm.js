@@ -16,39 +16,43 @@ app.ports.initCarousel.subscribe(() => {
       prevNextButtons: false,
       pageDots: true
     });
-
-    app.ports.initHotspots.subscribe(() => {
-    window.onload = function() {
-      const avatar = document.getElementById('avatar');
-      const svgDoc = avatar.contentDocument;
-      const hotspotBodyParts = [
-        'head',
-        'face',
-        'shoulders',
-        'chest',
-        'arms',
-        'belly',
-        'hands',
-        'legs',
-        'feet'
-      ];
-
-      const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
-        const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
-        const bounding = hotspot.getBoundingClientRect();
-        const coords = {
-          bottom: bounding.bottom,
-          height: bounding.height,
-          left: bounding.left + window.scrollX,
-          right: bounding.right,
-          top: bounding.top + window.scrollY,
-          width: bounding.width,
-          x: bounding.x,
-          y: bounding.y
-        };
-        acc[bodypart] = coords;
-        return acc;
-      }, {});
-      app.ports.recieveHotspotCoords.send(hotspotCoords);
-    };
   });
+});
+
+app.ports.initHotspots.subscribe(() => {
+  console.log('YO');
+  window.onload = function() {
+    console.log('YO');
+    const avatar = document.getElementById('avatar');
+    const svgDoc = avatar.contentDocument;
+    const hotspotBodyParts = [
+      'head',
+      'face',
+      'shoulders',
+      'chest',
+      'arms',
+      'belly',
+      'hands',
+      'legs',
+      'feet'
+    ];
+
+    const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
+      const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
+      const bounding = hotspot.getBoundingClientRect();
+      const coords = {
+        bottom: bounding.bottom,
+        height: bounding.height,
+        left: bounding.left + window.scrollX,
+        right: bounding.right,
+        top: bounding.top + window.scrollY,
+        width: bounding.width,
+        x: bounding.x,
+        y: bounding.y
+      };
+      acc[bodypart] = coords;
+      return acc;
+    }, {});
+    app.ports.recieveHotspotCoords.send(hotspotCoords);
+  };
+});

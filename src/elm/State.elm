@@ -3,9 +3,10 @@ port module State exposing (..)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
-import Data.View exposing (getViewFromRoute, viewFromUrl)
+import Data.View exposing (getViewFromRoute, viewFromUrl, viewToCmds)
 import Helpers exposing (scrollToTop)
 import Ports exposing (..)
+import Navigation exposing (..)
 import Types exposing (..)
 
 
@@ -32,14 +33,15 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ initCarousel () ]
+        model ! [ initHotspots () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UrlChange location ->
-            { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
+            { model | view = getViewFromRoute location.hash }
+                ! (scrollToTop :: viewToCmds model.view)
 
         RecieveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -49,17 +51,3 @@ update msg model =
 
         NoOp ->
             model ! []
-
-
-port recieveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.batch
-        [ recieveHotspotCoords
-            (decodeHotspots
-                >> Debug.log "here i am"
-                >> RecieveHotspotCoords
-            )
-        ]

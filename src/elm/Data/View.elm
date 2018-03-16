@@ -16,6 +16,7 @@ import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
+import Ports exposing (..)
 
 
 getCurrentView : Model -> Html Msg
@@ -113,4 +114,17 @@ viewFromUrl location model =
         view =
             getViewFromRoute location.hash
     in
-    { model | view = view }
+        { model | view = view }
+
+
+viewToCmds : View -> List (Cmd msg)
+viewToCmds view =
+    case view of
+        Landing ->
+            [ initCarousel () ]
+
+        CreateAvatar ->
+            [ initHotspots () ]
+
+        _ ->
+            []
