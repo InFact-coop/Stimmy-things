@@ -1,11 +1,12 @@
 port module Ports exposing (..)
 
+import Time
 import Types exposing (..)
 
 
 port initCarousel : () -> Cmd msg
 
 
-subscriptions : Model -> Sub msg
+subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Time.every Time.second Tick

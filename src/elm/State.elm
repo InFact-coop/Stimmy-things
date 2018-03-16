@@ -1,12 +1,12 @@
 port module State exposing (..)
 
-import Data.Log exposing (defaultLog)
+import Data.Log exposing (addFeelingToLog, defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Helpers exposing (..)
-import Data.Feelings exposing (..)
 import Navigation exposing (..)
 import Ports exposing (..)
+import String exposing (toInt)
 import Types exposing (..)
 
 
@@ -48,12 +48,18 @@ update msg model =
             model ! []
 
         ToggleFeeling feeling ->
-            { model | newLog = updateNewLog model.newLog feeling } ! []
+            { model | newLog = addFeelingToLog model.newLog feeling } ! []
+
+        SetTime time ->
+            { model | counter = stringToFloat time |> (*) 60 } ! []
+
+        ChangeView view ->
+            { model | view = view } ! []
+
+        Tick _ ->
+            { model | counter = model.counter - 1 } ! []
 
 
-updateNewLog : Log -> Feeling -> Log
-updateNewLog log feeling =
-    if isNewListEntry feeling log.preFeelings then
-        { log | preFeelings = log.preFeelings ++ [ feeling ] }
-    else
-        { log | preFeelings = List.filter (\x -> x /= feeling) log.preFeelings }
+stringToFloat : String -> Float
+stringToFloat string =
+    String.toFloat string |> Result.withDefault 0

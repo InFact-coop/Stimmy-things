@@ -1,12 +1,12 @@
 module Views.StimPreparation exposing (..)
 
+import Components.FeelingButtons exposing (..)
+import Components.Button exposing (..)
+import Data.Feelings exposing (feelings)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onInput)
 import Types exposing (..)
-import Components.SubmitButton exposing (..)
-import Components.FeelingButtons exposing (..)
-import Data.Feelings exposing (feelings)
-import Helpers exposing (..)
 
 
 stimPreparation : Model -> Html Msg
@@ -22,12 +22,13 @@ stimPreparation model =
                     , p [] [ text "Before we start:" ]
                     ]
                 , p [] [ text "How long do you want to do the exercise for?" ]
+                , input [ onInput SetTime, type_ "number" ] []
                 , p [] [ text "How are you?" ]
                 , div []
                     [ p [] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
                     ]
-                , submitButton "Next"
+                , rectButton "Next" (ChangeView StimTimer)
                 ]
             ]
         ]

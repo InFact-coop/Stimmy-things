@@ -30,7 +30,7 @@ type alias Model =
     , logs : List Log
     , newStim : Stim
     , newLog : Log
-    , counter : Int
+    , counter : Float
     , paused : Bool
     }
 
@@ -116,3 +116,6 @@ type Msg
     | UrlChange Navigation.Location
     | MakeCarousel
     | ToggleFeeling Feeling
+    | SetTime String
+    | ChangeView View
+    | Tick Time
