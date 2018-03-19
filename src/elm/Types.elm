@@ -141,3 +141,4 @@ type Msg
     | ToggleFeeling LogStage Feeling
     | ToggleFace LogStage Face
     | StopTimer
+    | RepeatStim

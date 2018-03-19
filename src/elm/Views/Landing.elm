@@ -6,4 +6,4 @@ import Types exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [] [ text "Home" ]
+    div [] [ text "Landing" ]

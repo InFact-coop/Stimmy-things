@@ -28,7 +28,8 @@ stimRecap model =
                     [ p [] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
                     ]
-                , rectButton "Next" (ChangeView StimTimer)
+                , div [ onClick RepeatStim ] [ text "Do it again?" ]
+                , rectButton "Done" (ChangeView Landing)
                 ]
             ]
         ]

@@ -76,3 +76,8 @@ update msg model =
                 ! []
                 :> update (AdjustTimer Stop)
                 :> update (ChangeView StimRecap)
+
+        RepeatStim ->
+            { model | newLog = defaultLog }
+                ! []
+                :> update (ChangeView StimPreparation)
