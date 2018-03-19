@@ -15,7 +15,8 @@
     "dev-frontend": "npm run js-watch & npm run css-watch",
     "dev-backend": "NODE_ENV=development nodemon ./server/start",
     "css-build": "postcss ./src/css/index.css --output ./public/style.min.css --config ./postcss.config.js",
-    "heroku-postbuild": "npm run css-build; elm-make src/elm/Main.elm --output=public/elm.js --yes"
+    "heroku-postbuild": "npm run css-build; elm-make src/elm/Main.elm --output=public/elm.js --yes",
+    "hot-webpack": "webpack-dev-server --mode development"
   },
   "repository": {
     "type": "git",
@@ -35,14 +36,15 @@
     "elm-live": "^2.7.5",
     "mocha": "^4.1.0",
     "nodemon": "^1.14.11",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
     "autoprefixer": "^7.1.6",
     "body-parser": "^1.18.2",
     "dexie": "^2.0.2",
     "elm": "^0.18.0",
-    "elm-webpack-loader": "^4.4.0",
+    "elm-webpack-loader": "^4.5.0",
     "env2": "^2.2.0",
     "express": "^4.16.2",
     "flickity": "^2.0.11",
@@ -52,6 +54,8 @@
     "postcss-custom-media": "^6.0.0",
     "postcss-custom-properties": "^6.2.0",
     "postcss-import": "^11.0.0",
-    "tachyons-custom": "^4.9.0"
+    "tachyons-custom": "^4.9.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   }
 }

@@ -20,7 +20,10 @@ module.exports = [
         }
       ]
     },
-    devtool: 'eval'
+    devtool: 'eval',
+    devServer: {
+      overlay: true
+    }
   },
   {
     entry: './tests/front-end/qunit.js',
