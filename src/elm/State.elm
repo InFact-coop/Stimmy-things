@@ -3,7 +3,7 @@ port module State exposing (..)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
-import Data.View exposing (getViewFromRoute, viewFromUrl, viewToCmds)
+import Data.View exposing (..)
 import Helpers exposing (scrollToTop)
 import Ports exposing (..)
 import Navigation exposing (..)
@@ -23,7 +23,7 @@ initModel =
     , newLog = defaultLog
     , counter = 0
     , paused = False
-    , showNav = False
+    , showNav = Neutral
     , hotspots = defaultHotspots
     }
 
@@ -51,7 +51,7 @@ update msg model =
             model ! []
 
         ToggleNav ->
-            { model | showNav = not model.showNav } ! []
+            { model | showNav = updateNav model.showNav } ! []
 
         NoOp ->
             model ! []

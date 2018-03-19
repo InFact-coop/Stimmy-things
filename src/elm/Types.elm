@@ -20,6 +20,12 @@ type View
     | Blog
 
 
+type Trilean
+    = Yes
+    | No
+    | Neutral
+
+
 type alias Model =
     { view : View
     , userId : String
@@ -32,7 +38,7 @@ type alias Model =
     , newLog : Log
     , counter : Int
     , paused : Bool
-    , showNav : Bool
+    , showNav : Trilean
     , hotspots : Hotspots
     }
 

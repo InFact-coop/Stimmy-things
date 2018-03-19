@@ -14,7 +14,7 @@ landing model =
             [ button
                 [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
                 , backgroundImageStyle
-                    (ifThenElse model.showNav "./assets/Landing/arrow-left-not-animated.svg" "./assets/Landing/menu-not-animated.svg")
+                    (ifThenElse (model.showNav == Yes) "./assets/Landing/arrow-left-not-animated.svg" "./assets/Landing/menu-not-animated.svg")
                     100
                 , onClick ToggleNav
                 ]

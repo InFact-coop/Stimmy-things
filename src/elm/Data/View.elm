@@ -128,3 +128,16 @@ viewToCmds view =
 
         _ ->
             []
+
+
+updateNav : Trilean -> Trilean
+updateNav trilean =
+    case trilean of
+        Yes ->
+            No
+
+        No ->
+            Yes
+
+        Neutral ->
+            Yes
