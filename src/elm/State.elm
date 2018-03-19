@@ -52,7 +52,7 @@ update msg model =
         SetTime time ->
             let
                 interval =
-                    stringToFloat time |> (*) 60
+                    stringToFloat time
             in
                 { model | timeSelected = interval, counter = interval } ! []
 
@@ -78,6 +78,6 @@ update msg model =
                 :> update (ChangeView StimRecap)
 
         RepeatStim ->
-            { model | newLog = defaultLog }
+            { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
                 ! []
                 :> update (ChangeView StimPreparation)
