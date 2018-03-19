@@ -19,5 +19,5 @@ stimTimer model =
         , button [ onClick <| AdjustTimer Restart ] [ text "Restart" ]
         , button [ onClick <| AdjustTimer Start ] [ text "Start" ]
         , button [ onClick <| AdjustTimer Pause ] [ text "Pause" ]
-        , button [ onClick <| AdjustTimer Stop ] [ text "Stop" ]
+        , button [ onClick <| StopTimer ] [ text "Done" ]
         ]

@@ -1,6 +1,6 @@
 module State exposing (..)
 
-import Data.Log exposing (addFeeling, addFace, defaultLog)
+import Data.Log exposing (addFeeling, addFace, defaultLog, addTimeTaken)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
@@ -8,6 +8,7 @@ import Helpers.Utils exposing (..)
 import Navigation exposing (..)
 import Ports exposing (..)
 import Types exposing (..)
+import Update.Extra.Infix exposing ((:>))
 
 
 initModel : Model
@@ -69,3 +70,9 @@ update msg model =
 
         ToggleFace logStage face ->
             { model | newLog = addFace logStage face model.newLog } ! []
+
+        StopTimer ->
+            addTimeTaken model
+                ! []
+                :> update (AdjustTimer Stop)
+                :> update (ChangeView StimRecap)

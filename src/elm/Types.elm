@@ -87,7 +87,7 @@ type BodyPart
 
 
 type alias Log =
-    { timeTaken : Int
+    { timeTaken : Time
     , stimId : String
     , preFace : Int
     , postFace : Int
@@ -140,3 +140,4 @@ type Msg
     | AdjustTimer TimerControl
     | ToggleFeeling LogStage Feeling
     | ToggleFace LogStage Face
+    | StopTimer

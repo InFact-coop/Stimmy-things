@@ -3,6 +3,7 @@ module Data.Log exposing (..)
 import Data.Face exposing (faceToInt)
 import Helpers.Utils exposing (isNewListEntry)
 import Types exposing (..)
+import Time exposing (Time)
 
 
 defaultLog : Log
@@ -74,3 +75,13 @@ updatePreFace faceInt log =
 updatePostFace : Int -> Log -> Log
 updatePostFace faceInt log =
     { log | postFace = faceInt }
+
+
+addTimeTaken : Model -> Model
+addTimeTaken model =
+    { model | newLog = updateTime (model.timeSelected - model.counter) model.newLog }
+
+
+updateTime : Time -> Log -> Log
+updateTime time log =
+    { log | timeTaken = time }
