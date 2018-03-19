@@ -1,5 +1,30 @@
 body {
   margin: 0;
+/* fonts */
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./fonts/WorkSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./fonts/WorkSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Wellcome';
+  src: url('./fonts/wellcome-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+.work-sans {
+  font-family: 'Work Sans';
+}
+
+.wellcome {
+  font-family: 'Wellcome';
 }
 
 .lh-f1 {
@@ -185,6 +210,12 @@ body {
 .background-avatar {
   width: 95vw;
 }
+.timer-font {
+  font-family: 'Wellcome';
+  font-size: 72px;
+  line-height: 96px;
+}
+
 /* Carousel */
 
 .carousel-cell {
