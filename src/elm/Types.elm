@@ -129,9 +129,11 @@ type Msg
     = NoOp
     | UrlChange Navigation.Location
     | MakeCarousel
-    | ToggleFeeling Feeling
+    | TogglePreFeeling Feeling
     | SetTime String
     | ChangeView View
     | Tick Time
     | AdjustTimer TimerControl
     | TogglePreFace Face
+    | TogglePostFeeling Feeling
+    | TogglePostFace Face

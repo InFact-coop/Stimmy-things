@@ -10,8 +10,8 @@ defaultLog =
     Log 0 "" 0 0 [] [] 0
 
 
-addFeelingToLog : Log -> Feeling -> Log
-addFeelingToLog log feeling =
+addPreFeelingToLog : Log -> Feeling -> Log
+addPreFeelingToLog log feeling =
     if isNewListEntry feeling log.preFeelings then
         { log | preFeelings = log.preFeelings ++ [ feeling ] }
     else
@@ -21,3 +21,16 @@ addFeelingToLog log feeling =
 addPreFaceToLog : Face -> Log -> Log
 addPreFaceToLog face oldLog =
     { oldLog | preFace = (faceToInt face) }
+
+
+addPostFeelingToLog : Log -> Feeling -> Log
+addPostFeelingToLog log feeling =
+    if isNewListEntry feeling log.postFeelings then
+        { log | postFeelings = log.postFeelings ++ [ feeling ] }
+    else
+        { log | postFeelings = List.filter (\x -> x /= feeling) log.postFeelings }
+
+
+addPostFaceToLog : Face -> Log -> Log
+addPostFaceToLog face oldLog =
+    { oldLog | postFace = (faceToInt face) }

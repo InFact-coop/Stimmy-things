@@ -2,7 +2,7 @@ module Views.StimPreparation exposing (..)
 
 import Components.Button exposing (..)
 import Components.FeelingButtons exposing (..)
-import Data.Face exposing (faces)
+import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -38,7 +38,7 @@ stimPreparation model =
 
 renderFeelings : List Feeling -> List (Html Msg)
 renderFeelings list =
-    List.map feelingButton list
+    List.map preFeelingButton list
 
 
 face : Face -> Html Msg
@@ -46,22 +46,3 @@ face face =
     div [ onClick <| TogglePreFace face ]
         [ img [ src (urlFromFace face) ] []
         ]
-
-
-urlFromFace : Face -> String
-urlFromFace face =
-    case face of
-        Face1 ->
-            "./assets/StimPreparation/face_1.svg"
-
-        Face2 ->
-            "./assets/StimPreparation/face_2.svg"
-
-        Face3 ->
-            "./assets/StimPreparation/face_3.svg"
-
-        Face4 ->
-            "./assets/StimPreparation/face_4.svg"
-
-        Face5 ->
-            "./assets/StimPreparation/face_5.svg"

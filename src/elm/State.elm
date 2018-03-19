@@ -1,6 +1,6 @@
 module State exposing (..)
 
-import Data.Log exposing (addFeelingToLog, addPreFaceToLog, defaultLog)
+import Data.Log exposing (addPreFeelingToLog, addPostFeelingToLog, addPreFaceToLog, addPostFaceToLog, defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
@@ -48,8 +48,8 @@ update msg model =
         NoOp ->
             model ! []
 
-        ToggleFeeling feeling ->
-            { model | newLog = addFeelingToLog model.newLog feeling } ! []
+        TogglePreFeeling feeling ->
+            { model | newLog = addPreFeelingToLog model.newLog feeling } ! []
 
         SetTime time ->
             let
@@ -69,3 +69,9 @@ update msg model =
 
         TogglePreFace face ->
             { model | newLog = addPreFaceToLog face model.newLog } ! []
+
+        TogglePostFeeling feeling ->
+            { model | newLog = addPostFeelingToLog model.newLog feeling } ! []
+
+        TogglePostFace face ->
+            { model | newLog = addPostFaceToLog face model.newLog } ! []

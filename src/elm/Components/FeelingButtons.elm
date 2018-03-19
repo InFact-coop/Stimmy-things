@@ -7,6 +7,11 @@ import Html.Events exposing (onClick)
 import Types exposing (..)
 
 
-feelingButton : Feeling -> Html Msg
-feelingButton feeling =
-    div [ class "w-40 flex justify-center bg-green br4 pa1 pointer", onClick (ToggleFeeling feeling) ] [ text (unionTypeToString feeling) ]
+preFeelingButton : Feeling -> Html Msg
+preFeelingButton feeling =
+    div [ class "w-40 flex justify-center bg-green br4 pa1 pointer", onClick (TogglePreFeeling feeling) ] [ text (unionTypeToString feeling) ]
+
+
+postFeelingButton : Feeling -> Html Msg
+postFeelingButton feeling =
+    div [ class "w-40 flex justify-center bg-green br4 pa1 pointer", onClick (TogglePostFeeling feeling) ] [ text (unionTypeToString feeling) ]
