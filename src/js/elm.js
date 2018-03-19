@@ -20,9 +20,7 @@ app.ports.initCarousel.subscribe(() => {
 });
 
 app.ports.initHotspots.subscribe(() => {
-  console.log('YO');
   window.onload = function() {
-    console.log('YO');
     const avatar = document.getElementById('avatar');
     const svgDoc = avatar.contentDocument;
     const hotspotBodyParts = [
