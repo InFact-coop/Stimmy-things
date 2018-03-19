@@ -1,7 +1,7 @@
 module Components.NavDrawer exposing (..)
 
 import Html exposing (..)
-import Helpers exposing (..)
+import Helpers.Style exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
 

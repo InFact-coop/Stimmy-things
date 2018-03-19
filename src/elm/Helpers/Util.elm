@@ -54,9 +54,3 @@ isNewListEntry string stringList =
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
 onCheckboxInput tagger =
     on "change" (Decode.map2 tagger targetValue targetChecked)
-
-
-classes : List String -> Html.Attribute Msg
-classes classList =
-    String.join " " classList
-        |> class

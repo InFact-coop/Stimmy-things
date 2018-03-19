@@ -3,7 +3,7 @@ module Router exposing (..)
 import Data.View exposing (getCurrentView, getViewFromRoute)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Helpers exposing (..)
+import Helpers.Style exposing (..)
 import Components.NavDrawer exposing (..)
 import Types exposing (..)
 
