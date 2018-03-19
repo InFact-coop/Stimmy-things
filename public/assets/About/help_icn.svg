@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>help_icn</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-22.000000, -19.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="help_icn" transform="translate(23.000000, 20.000000)">
+                <circle id="Oval" stroke-linecap="square" cx="21" cy="21" r="9.33333333"></circle>
+                <circle id="Oval" stroke-linecap="square" cx="21" cy="21" r="18.6666667"></circle>
+                <path d="M17.2666667,2.70666667 L17.2666667,12.4432" id="Shape"></path>
+                <path d="M24.7333333,2.70666667 L24.7333333,12.4432" id="Shape"></path>
+                <path d="M39.2933333,17.2666667 L29.5568,17.2666667" id="Shape"></path>
+                <path d="M39.2933333,24.7333333 L29.5568,24.7333333" id="Shape"></path>
+                <path d="M24.7333333,39.2933333 L24.7333333,29.5568" id="Shape"></path>
+                <path d="M17.2666667,39.2933333 L17.2666667,29.5568" id="Shape"></path>
+                <path d="M2.70666667,24.7333333 L12.4432,24.7333333" id="Shape"></path>
+                <path d="M2.70666667,17.2666667 L12.4432,17.2666667" id="Shape"></path>
+                <path d="M0.466666667,10.7333333 C0.466666667,5.06333333 5.06333333,0.466666667 10.7333333,0.466666667" id="Shape" stroke-linecap="square"></path>
+                <path d="M31.2666667,0.466666667 C36.9366667,0.466666667 41.5333333,5.06333333 41.5333333,10.7333333" id="Shape" stroke-linecap="square"></path>
+                <path d="M41.5333333,31.2666667 C41.5333333,36.9366667 36.9366667,41.5333333 31.2666667,41.5333333" id="Shape" stroke-linecap="square"></path>
+                <path d="M10.7333333,41.5333333 C5.06333333,41.5333333 0.466666667,36.9366667 0.466666667,31.2666667" id="Shape" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="103px" height="107px" viewBox="0 0 103 107" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>add_stim_btn</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-16.1%" y="-11.0%" width="132.2%" height="130.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.0470588235   0 0 0 0 0   0 0 0 0 0.2  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-16.000000, -14.000000)">
+            <g id="add_stim_btn" filter="url(#filter-1)" transform="translate(24.000000, 18.000000)">
+                <path d="M2.59091095,29.1107983 C-11.044159,68.9007524 31.7701457,99.5869663 69.4876678,88.8288644 C81.4574293,85.4147506 88.1330472,60.5264244 86.8415238,50.4923858 C80.3579163,0.120269738 28.0195107,-20.682624 3.49554346,26.3271167 C4.71186228,22.873498 4.41031811,23.8013919 2.59091095,29.1107983 Z" id="Path-4" fill="#449694"></path>
+                <g id="simple-add" transform="translate(22.000000, 24.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M43,20 L24,20 L24,1 C24,0.448 23.552,0 23,0 L21,0 C20.448,0 20,0.448 20,1 L20,20 L1,20 C0.448,20 0,20.448 0,21 L0,23 C0,23.552 0.448,24 1,24 L20,24 L20,43 C20,43.552 20.448,44 21,44 L23,44 C23.552,44 24,43.552 24,43 L24,24 L43,24 C43.552,24 44,23.552 44,23 L44,21 C44,20.448 43.552,20 43,20 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

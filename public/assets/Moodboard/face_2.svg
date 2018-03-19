@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="46px" viewBox="0 0 48 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>face_2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-12.000000, -10.000000)">
+            <g id="face_2" transform="translate(12.000000, 10.000000)">
+                <path d="M5.15630302,6.66809622 C28.2768922,-10.2769786 56.0789063,7.41459703 45.7997378,33.4786179 C40.4045417,47.1587619 14.5618284,50.1293057 5.87177339,38.6454608 C-0.701537131,29.9588785 -0.451428868,28.0897147 0.505036229,19.0616173 C1.14267963,13.0428857 2.69310189,8.91171203 5.15630302,6.66809622 Z" id="Path-6" fill="#BDF0E6"></path>
+                <path d="M18.024,35.5885714 C20.6269197,36.7077374 22.339736,37.3056936 23.162449,37.3824401 C23.985162,37.4591866 25.6586314,37.4591866 28.1828571,37.3824401" id="Path-27" stroke="#CC5C61" stroke-width="2" transform="translate(23.103429, 36.514286) scale(1, -1) translate(-23.103429, -36.514286) "></path>
+                <circle id="Oval-6" fill="#27221B" cx="34.1828571" cy="17.5885714" r="1.71428571"></circle>
+                <circle id="Oval-6" fill="#27221B" cx="15.3257143" cy="17.5885714" r="1.71428571"></circle>
+                <path d="M24.1471429,20.2195238 L24.1471429,28.6928379" id="Line" stroke="#27221B" stroke-width="2" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>
