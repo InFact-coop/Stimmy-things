@@ -32,6 +32,7 @@ type alias Model =
     , newLog : Log
     , counter : Int
     , paused : Bool
+    , showNav : Bool
     , hotspots : Hotspots
     }
 
@@ -140,4 +141,5 @@ type alias Hotspots =
 type Msg
     = NoOp
     | UrlChange Navigation.Location
+    | ToggleNav
     | RecieveHotspotCoords (Result String Hotspots)

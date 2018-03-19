@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="77px" viewBox="0 0 70 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>help_btn</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-25.9%" y="-16.4%" width="151.9%" height="145.9%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.0470588235   0 0 0 0 0   0 0 0 0 0.2  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-33.000000, -30.000000)">
+            <g id="help_btn" filter="url(#filter-1)" transform="translate(41.000000, 34.000000)">
+                <path d="M2.40557782,20.2999093 C-5.8289602,44.3143534 7.9279734,66.3416106 30.7064681,59.8487699 C33.3873039,59.0846176 47.1263494,51.1391965 48.9576694,47.2168801 C52.0644667,40.5627499 54.4259919,32.9028767 53.9352698,29.0928644 C50.3511236,1.26522187 25.0970942,-9.94268602 9.13686662,10.4196361 C7.66088957,12.302712 4.20562568,16.218196 2.95190657,18.619873 C3.68646999,16.5355095 3.50436041,17.0955216 2.40557782,20.2999093 Z" id="Path-4" fill="#FFFFFF" transform="translate(27.000000, 30.500000) scale(-1, 1) translate(-27.000000, -30.500000) "></path>
+                <g id="support-16" transform="translate(10.000000, 13.000000)" stroke="#449694">
+                    <circle id="Oval" stroke-linecap="square" cx="18" cy="18" r="8"></circle>
+                    <circle id="Oval" stroke-linecap="square" cx="17.5" cy="17.5" r="15.5"></circle>
+                    <path d="M14,2 L14,10" id="Shape"></path>
+                    <path d="M21,2 L21,10" id="Shape"></path>
+                    <path d="M33,14 L25,14" id="Shape"></path>
+                    <path d="M33,21 L25,21" id="Shape"></path>
+                    <path d="M21,33 L21,25" id="Shape"></path>
+                    <path d="M14,33 L14,25" id="Shape"></path>
+                    <path d="M2,21 L10,21" id="Shape"></path>
+                    <path d="M2,14 L10,14" id="Shape"></path>
+                    <path d="M0,9 C0,4.02954545 4.02954545,0 9,0" id="Shape" stroke-linecap="square"></path>
+                    <path d="M26,0 C30.9704545,0 35,4.02954545 35,9" id="Shape" stroke-linecap="square"></path>
+                    <path d="M35,26 C35,30.9704545 30.9704545,35 26,35" id="Shape" stroke-linecap="square"></path>
+                    <path d="M9,35 C4.02954545,35 0,30.9704545 0,26" id="Shape" stroke-linecap="square"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

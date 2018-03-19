@@ -3,13 +3,25 @@ module Views.Landing exposing (..)
 import Helpers exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Types exposing (..)
 
 
 landing : Model -> Html Msg
 landing model =
     div [ class "" ]
-        [ object
+        [ header [ classes [] ]
+            [ button
+                [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
+                , backgroundImageStyle
+                    (ifThenElse model.showNav "./assets/Landing/arrow-left-not-animated.svg" "./assets/Landing/menu-not-animated.svg")
+                    100
+                , onClick ToggleNav
+                ]
+                []
+            , h1 [] [ text model.avatarName ]
+            ]
+        , object
             [ id "avatar", attribute "data" "assets/avatar_2.svg", type_ "image/svg+xml", classes [ "background-avatar" ] ]
             []
         , hotspotDiv model.hotspots.head

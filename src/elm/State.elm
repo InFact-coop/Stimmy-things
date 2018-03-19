@@ -23,6 +23,7 @@ initModel =
     , newLog = defaultLog
     , counter = 0
     , paused = False
+    , showNav = False
     , hotspots = defaultHotspots
     }
 
@@ -48,6 +49,9 @@ update msg model =
 
         RecieveHotspotCoords (Err err) ->
             model ! []
+
+        ToggleNav ->
+            { model | showNav = not model.showNav } ! []
 
         NoOp ->
             model ! []

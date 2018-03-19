@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .lh-f1 {
   line-height: 56px;
 }
@@ -34,6 +38,9 @@
   background-color: rgba(85, 148, 207, 0.4);
 }
 
+.top-4 {
+  top: 4rem;
+}
 /* Animations */
 
 @keyframes breatheAnimation {
@@ -78,6 +85,44 @@
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+}
+
+@keyframes exitNavAnimation {
+  0% {
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-7rem);
+    opacity: 0;
+  }
+}
+@keyframes enterNavAnimation {
+  0% {
+    transform: translateX(-7rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+}
+
+.exitNav {
+  animation-name: exitNavAnimation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform: translateX(-7rem);
+  opacity: 0;
+}
+.enterNav {
+  animation-name: enterNavAnimation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform: translateX(0rem);
+  opacity: 1;
 }
 
 /* Carousel */
