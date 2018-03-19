@@ -9,8 +9,8 @@ import Types exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [ class "" ]
-        [ header [ classes [] ]
+    div [ class "flex flex-column justify-center items-center" ]
+        [ header [ classes [ "flex", "justify-between", "items-center", "ph2", "vw-100" ] ]
             [ button
                 [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
                 , backgroundImageStyle
@@ -20,6 +20,7 @@ landing model =
                 ]
                 []
             , h1 [] [ text model.avatarName ]
+            , div [] []
             ]
         , object
             [ id "avatar", attribute "data" "assets/avatar_2.svg", type_ "image/svg+xml", classes [ "background-avatar" ] ]
@@ -38,9 +39,5 @@ landing model =
 
 hotspotDiv : HotspotCoords -> Html Msg
 hotspotDiv hotspot =
-    let
-        debugit =
-            Debug.log "hotspot" hotspot
-    in
-        div [ classes [ "br-100", "bg-light-blue-tp", "pointer", "absolute", "flex", "items-center", "justify-center" ], style [ ( "left", toString hotspot.left ++ "px" ), ( "top", toString hotspot.top ++ "px" ), ( "width", toString hotspot.width ++ "px" ), ( "height", toString hotspot.height ++ "px" ) ] ]
-            [ div [ classes [ "h1", "w1", "br-100", "breathe", "bg-light-blue" ] ] [] ]
+    div [ classes [ "br-100", "bg-light-blue-tp", "pointer", "absolute", "flex", "items-center", "justify-center" ], style [ ( "left", toString hotspot.left ++ "px" ), ( "top", toString hotspot.top ++ "px" ), ( "width", toString hotspot.width ++ "px" ), ( "height", toString hotspot.height ++ "px" ) ] ]
+        [ div [ classes [ "h1", "w1", "br-100", "breathe", "bg-light-blue" ] ] [] ]

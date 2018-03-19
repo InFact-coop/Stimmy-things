@@ -22,6 +22,7 @@ app.ports.initCarousel.subscribe(() => {
 app.ports.initHotspots.subscribe(() => {
   window.onload = function() {
     const avatar = document.getElementById('avatar');
+    const svgCoords = avatar.getBoundingClientRect();
     const svgDoc = avatar.contentDocument;
     const hotspotBodyParts = [
       'head',
@@ -41,9 +42,9 @@ app.ports.initHotspots.subscribe(() => {
       const coords = {
         bottom: bounding.bottom,
         height: bounding.height,
-        left: bounding.left + window.scrollX,
+        left: bounding.left + window.scrollX + svgCoords.left,
         right: bounding.right,
-        top: bounding.top + window.scrollY,
+        top: bounding.top + window.scrollY + svgCoords.top,
         width: bounding.width,
         x: bounding.x,
         y: bounding.y
@@ -51,6 +52,7 @@ app.ports.initHotspots.subscribe(() => {
       acc[bodypart] = coords;
       return acc;
     }, {});
+
     app.ports.recieveHotspotCoords.send(hotspotCoords);
   };
 });
