@@ -8,7 +8,7 @@ import Types exposing (..)
 
 navDrawer : Model -> Html Msg
 navDrawer model =
-    nav [ classes [ "pa2", "fixed", "z-1", "bg-green", "top-4", showNavClass model.showNav ] ]
+    nav [ classes [ "pa2", "fixed", "z-1", "bg-green-translucent", "top-4", showNavClass model.showNav ] ]
         [ drawerItem "./assets/Landing/menu-drawer/about_btn.svg" "#about"
         , drawerItem "./assets/Landing/menu-drawer/moodboard_btn.svg" "#moodboard"
         , drawerItem "./assets/Landing/menu-drawer/blog_btn.svg" "#blog"
