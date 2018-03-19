@@ -12,6 +12,6 @@ view model =
         view =
             getCurrentView model
     in
-        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover flex justify-center items-center", id "container" ]
-            [ view
-            ]
+    div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover flex justify-center", id "container" ]
+        [ view
+        ]
