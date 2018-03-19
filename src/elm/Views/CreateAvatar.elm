@@ -1,6 +1,6 @@
 module Views.CreateAvatar exposing (..)
 
-import Helpers exposing (..)
+import Helpers.Util exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)

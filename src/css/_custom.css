@@ -1,6 +1,8 @@
-body {
+* {
   margin: 0;
+  font-family: "Work Sans";
 }
+
 /* fonts */
 
 @font-face {
