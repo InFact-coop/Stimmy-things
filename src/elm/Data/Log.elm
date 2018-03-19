@@ -7,30 +7,70 @@ import Types exposing (..)
 
 defaultLog : Log
 defaultLog =
-    Log 0 "" 0 0 [] [] 0
+    { timeTaken = 0
+    , stimId = ""
+    , preFace = 0
+    , postFace = 0
+    , preFeelings = []
+    , postFeelings = []
+    , dateTime = 0
+    }
 
 
-addPreFeelingToLog : Log -> Feeling -> Log
-addPreFeelingToLog log feeling =
-    if isNewListEntry feeling log.preFeelings then
-        { log | preFeelings = log.preFeelings ++ [ feeling ] }
-    else
-        { log | preFeelings = List.filter (\x -> x /= feeling) log.preFeelings }
+addFeeling : LogStage -> Feeling -> Log -> Log
+addFeeling logStage feeling log =
+    let
+        updateFeeling =
+            case logStage of
+                Pre ->
+                    updatePreFeelings
+
+                Post ->
+                    updatePostFeelings
+
+        accessFeeling =
+            case logStage of
+                Pre ->
+                    .preFeelings
+
+                Post ->
+                    .postFeelings
+    in
+        if isNewListEntry feeling <| accessFeeling log then
+            updateFeeling (accessFeeling log ++ [ feeling ]) log
+        else
+            updateFeeling (List.filter (\x -> x /= feeling) (accessFeeling log)) log
 
 
-addPreFaceToLog : Face -> Log -> Log
-addPreFaceToLog face oldLog =
-    { oldLog | preFace = (faceToInt face) }
+addFace : LogStage -> Face -> Log -> Log
+addFace logStage face log =
+    let
+        updateFace =
+            case logStage of
+                Pre ->
+                    updatePreFace
+
+                Post ->
+                    updatePostFace
+    in
+        updateFace (faceToInt face) log
 
 
-addPostFeelingToLog : Log -> Feeling -> Log
-addPostFeelingToLog log feeling =
-    if isNewListEntry feeling log.postFeelings then
-        { log | postFeelings = log.postFeelings ++ [ feeling ] }
-    else
-        { log | postFeelings = List.filter (\x -> x /= feeling) log.postFeelings }
+updatePreFeelings : List Feeling -> Log -> Log
+updatePreFeelings feelings log =
+    { log | preFeelings = feelings }
 
 
-addPostFaceToLog : Face -> Log -> Log
-addPostFaceToLog face oldLog =
-    { oldLog | postFace = (faceToInt face) }
+updatePostFeelings : List Feeling -> Log -> Log
+updatePostFeelings feelings log =
+    { log | postFeelings = feelings }
+
+
+updatePreFace : Int -> Log -> Log
+updatePreFace faceInt log =
+    { log | preFace = faceInt }
+
+
+updatePostFace : Int -> Log -> Log
+updatePostFace faceInt log =
+    { log | postFace = faceInt }

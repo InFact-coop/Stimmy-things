@@ -125,15 +125,18 @@ type TimerStatus
     | Paused
 
 
+type LogStage
+    = Pre
+    | Post
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
     | MakeCarousel
-    | TogglePreFeeling Feeling
     | SetTime String
     | ChangeView View
     | Tick Time
     | AdjustTimer TimerControl
-    | TogglePreFace Face
-    | TogglePostFeeling Feeling
-    | TogglePostFace Face
+    | ToggleFeeling LogStage Feeling
+    | ToggleFace LogStage Face

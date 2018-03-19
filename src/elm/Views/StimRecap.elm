@@ -36,11 +36,11 @@ stimRecap model =
 
 renderFeelings : List Feeling -> List (Html Msg)
 renderFeelings list =
-    List.map postFeelingButton list
+    List.map (feelingButton Post) list
 
 
 face : Face -> Html Msg
 face face =
-    div [ onClick <| TogglePostFace face ]
+    div [ onClick <| ToggleFace Post face ]
         [ img [ src (urlFromFace face) ] []
         ]

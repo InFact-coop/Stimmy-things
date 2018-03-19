@@ -38,11 +38,11 @@ stimPreparation model =
 
 renderFeelings : List Feeling -> List (Html Msg)
 renderFeelings list =
-    List.map preFeelingButton list
+    List.map (feelingButton Pre) list
 
 
 face : Face -> Html Msg
 face face =
-    div [ onClick <| TogglePreFace face ]
+    div [ onClick <| ToggleFace Pre face ]
         [ img [ src (urlFromFace face) ] []
         ]
