@@ -15,7 +15,7 @@ initModel =
     { view = Landing
     , userId = ""
     , avatar = Avatar1
-    , avatarName = "Hello"
+    , avatarName = "Sion"
     , avatarSkinColour = Skin1
     , stims = []
     , logs = []
@@ -24,6 +24,7 @@ initModel =
     , counter = 0
     , paused = False
     , showNav = Neutral
+    , stimMenuShowing = Nothing
     , hotspots = defaultHotspots
     }
 
@@ -52,6 +53,9 @@ update msg model =
 
         ToggleNav ->
             { model | showNav = updateNav model.showNav } ! []
+
+        ToggleStimMenu bodyPart ->
+            { model | stimMenuShowing = updateStimMenu model bodyPart } ! []
 
         NoOp ->
             model ! []

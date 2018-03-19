@@ -39,6 +39,7 @@ type alias Model =
     , counter : Int
     , paused : Bool
     , showNav : Trilean
+    , stimMenuShowing : Maybe BodyPart
     , hotspots : Hotspots
     }
 
@@ -91,6 +92,7 @@ type BodyPart
     | Hands
     | Legs
     | Feet
+    | NoBodyPart
 
 
 type alias Log =
@@ -120,7 +122,8 @@ type Feeling
 
 
 type alias HotspotCoords =
-    { bottom : Float
+    { name : BodyPart
+    , bottom : Float
     , height : Float
     , left : Float
     , right : Float
@@ -148,4 +151,5 @@ type Msg
     = NoOp
     | UrlChange Navigation.Location
     | ToggleNav
+    | ToggleStimMenu BodyPart
     | RecieveHotspotCoords (Result String Hotspots)

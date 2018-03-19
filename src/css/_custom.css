@@ -1,16 +1,17 @@
 body {
   margin: 0;
+  font-family: 'Wellcome';
 }
 /* fonts */
 
 @font-face {
-  font-family: 'Work Sans';
+  font-family: 'Work Sans Regular';
   src: url('./fonts/WorkSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'Work Sans';
+  font-family: 'Work Sans Bold';
   src: url('./fonts/WorkSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
   font-weight: bold;
 }
@@ -20,8 +21,11 @@ body {
   src: url('./fonts/wellcome-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
-.work-sans {
-  font-family: 'Work Sans';
+.work-sans-regular {
+  font-family: 'Work Sans Regular';
+}
+.work-sans-bold {
+  font-family: 'Work Sans Bold';
 }
 
 .wellcome {
@@ -244,4 +248,19 @@ body {
 
 .bg-green-translucent {
   background-color: rgba(68, 150, 148, 0.9);
+}
+.translucent {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.br--right {
+  border-radius: 0 5rem 5rem 0;
+}
+
+.vis-hidden {
+  visibility: hidden;
+}
+
+.show-child {
+  visibility: visible;
 }
