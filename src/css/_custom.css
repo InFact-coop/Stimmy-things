@@ -2,19 +2,19 @@
 
 @font-face {
   font-family: 'Work Sans';
-  src: url('./fonts/WorkSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+  src: url('../fonts/WorkSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Work Sans';
-  src: url('./fonts/WorkSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+  src: url('../fonts/WorkSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'Wellcome';
-  src: url('./fonts/wellcome-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+  src: url('../fonts/wellcome-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
 .work-sans {
