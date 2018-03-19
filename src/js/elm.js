@@ -20,22 +20,34 @@ app.ports.initCarousel.subscribe(() => {
 });
 
 app.ports.initHotspots.subscribe(() => {
-  window.onload = function() {
-    const avatar = document.getElementById('avatar');
-    const svgCoords = avatar.getBoundingClientRect();
-    const svgDoc = avatar.contentDocument;
-    const hotspotBodyParts = [
-      'head',
-      'face',
-      'shoulders',
-      'chest',
-      'arms',
-      'belly',
-      'hands',
-      'legs',
-      'feet'
-    ];
+  const avatar = document.getElementById('avatar');
+  const svgCoords = avatar.getBoundingClientRect();
 
+  const getSvgDoc = cb => {
+    let svg = avatar.getSVGDocument();
+    if (svg === null) {
+      setTimeout(() => {
+        getSvgDoc(cb);
+      }, 300);
+    } else {
+      cb();
+    }
+  };
+
+  const hotspotBodyParts = [
+    'head',
+    'face',
+    'shoulders',
+    'chest',
+    'arms',
+    'belly',
+    'hands',
+    'legs',
+    'feet'
+  ];
+
+  const createHotspotCoords = () => {
+    const svgDoc = avatar.contentDocument;
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
       const bounding = hotspot.getBoundingClientRect();
@@ -55,4 +67,6 @@ app.ports.initHotspots.subscribe(() => {
 
     app.ports.recieveHotspotCoords.send(hotspotCoords);
   };
+
+  getSvgDoc(createHotspotCoords);
 });
