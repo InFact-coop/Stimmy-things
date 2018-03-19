@@ -142,3 +142,4 @@ type Msg
     | ToggleFace LogStage Face
     | StopTimer
     | RepeatStim
+    | SaveLog

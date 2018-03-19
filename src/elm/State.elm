@@ -1,6 +1,6 @@
 module State exposing (..)
 
-import Data.Log exposing (addFeeling, addFace, defaultLog, addTimeTaken)
+import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseLog)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
@@ -81,3 +81,8 @@ update msg model =
             { model | newLog = defaultLog }
                 ! []
                 :> update (ChangeView StimPreparation)
+
+        SaveLog ->
+            model
+                ! [ saveLog (normaliseLog model.newLog) ]
+                :> update (ChangeView Landing)

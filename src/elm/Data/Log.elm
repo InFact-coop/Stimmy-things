@@ -1,9 +1,10 @@
 module Data.Log exposing (..)
 
 import Data.Face exposing (faceToInt)
-import Helpers.Utils exposing (isNewListEntry)
-import Types exposing (..)
+import Helpers.Utils exposing (isNewListEntry, unionTypeToString)
+import Ports exposing (DBLog)
 import Time exposing (Time)
+import Types exposing (..)
 
 
 defaultLog : Log
@@ -85,3 +86,11 @@ addTimeTaken model =
 updateTime : Time -> Log -> Log
 updateTime time log =
     { log | timeTaken = time }
+
+
+normaliseLog : Log -> DBLog
+normaliseLog log =
+    { log
+        | preFeelings = List.map unionTypeToString log.preFeelings
+        , postFeelings = List.map unionTypeToString log.postFeelings
+    }

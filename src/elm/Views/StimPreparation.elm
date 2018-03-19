@@ -1,8 +1,9 @@
 module Views.StimPreparation exposing (..)
 
 import Components.Button exposing (..)
+import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
-import Data.Face exposing (faces, urlFromFace)
+import Data.Face exposing (faces)
 import Data.Feelings exposing (feelings)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -25,7 +26,7 @@ stimPreparation model =
                 , p [] [ text "How long do you want to do the exercise for?" ]
                 , input [ onInput SetTime, type_ "number" ] []
                 , p [] [ text "How are you?" ]
-                , div [ class "flex flew-row" ] (List.map face faces)
+                , div [ class "flex flew-row" ] (List.map (face Pre) faces)
                 , div []
                     [ p [] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
@@ -39,10 +40,3 @@ stimPreparation model =
 renderFeelings : List Feeling -> List (Html Msg)
 renderFeelings list =
     List.map (feelingButton Pre) list
-
-
-face : Face -> Html Msg
-face face =
-    div [ onClick <| ToggleFace Pre face ]
-        [ img [ src (urlFromFace face) ] []
-        ]

@@ -18,3 +18,7 @@ app.ports.initCarousel.subscribe(function() {
     });
   });
 });
+
+app.ports.saveLog.subscribe(log => {
+  console.log(log);
+});

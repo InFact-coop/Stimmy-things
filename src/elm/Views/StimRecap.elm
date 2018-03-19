@@ -1,6 +1,7 @@
 module Views.StimRecap exposing (..)
 
 import Components.Button exposing (..)
+import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
@@ -23,13 +24,13 @@ stimRecap model =
                     , p [] [ text "Time's up!" ]
                     ]
                 , p [] [ text "How do you feel now?" ]
-                , div [ class "flex flew-row" ] (List.map face faces)
+                , div [ class "flex flew-row" ] (List.map (face Post) faces)
                 , div []
                     [ p [] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
                     ]
                 , div [ onClick RepeatStim ] [ text "Do it again?" ]
-                , rectButton "Done" (ChangeView Landing)
+                , rectButton "Done" SaveLog
                 ]
             ]
         ]
@@ -38,10 +39,3 @@ stimRecap model =
 renderFeelings : List Feeling -> List (Html Msg)
 renderFeelings list =
     List.map (feelingButton Post) list
-
-
-face : Face -> Html Msg
-face face =
-    div [ onClick <| ToggleFace Post face ]
-        [ img [ src (urlFromFace face) ] []
-        ]
