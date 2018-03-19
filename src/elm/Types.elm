@@ -55,7 +55,7 @@ type AvatarSkinColour
     | Skin7
 
 
-type FacialExpression
+type Face
     = Face1
     | Face2
     | Face3
@@ -112,17 +112,6 @@ type Feeling
     | Frustrated
 
 
-type Msg
-    = NoOp
-    | UrlChange Navigation.Location
-    | MakeCarousel
-    | ToggleFeeling Feeling
-    | SetTime String
-    | ChangeView View
-    | Tick Time
-    | AdjustTimer TimerControl
-
-
 type TimerControl
     = Start
     | Stop
@@ -134,3 +123,15 @@ type TimerStatus
     = Started
     | Stopped
     | Paused
+
+
+type Msg
+    = NoOp
+    | UrlChange Navigation.Location
+    | MakeCarousel
+    | ToggleFeeling Feeling
+    | SetTime String
+    | ChangeView View
+    | Tick Time
+    | AdjustTimer TimerControl
+    | TogglePreFace Face

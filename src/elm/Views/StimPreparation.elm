@@ -1,11 +1,12 @@
 module Views.StimPreparation exposing (..)
 
-import Components.FeelingButtons exposing (..)
 import Components.Button exposing (..)
+import Components.FeelingButtons exposing (..)
+import Data.Face exposing (faces)
 import Data.Feelings exposing (feelings)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
+import Html.Events exposing (onClick, onInput)
 import Types exposing (..)
 
 
@@ -24,6 +25,7 @@ stimPreparation model =
                 , p [] [ text "How long do you want to do the exercise for?" ]
                 , input [ onInput SetTime, type_ "number" ] []
                 , p [] [ text "How are you?" ]
+                , div [ class "flex flew-row" ] (List.map face faces)
                 , div []
                     [ p [] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
@@ -37,3 +39,29 @@ stimPreparation model =
 renderFeelings : List Feeling -> List (Html Msg)
 renderFeelings list =
     List.map feelingButton list
+
+
+face : Face -> Html Msg
+face face =
+    div [ onClick <| TogglePreFace face ]
+        [ img [ src (urlFromFace face) ] []
+        ]
+
+
+urlFromFace : Face -> String
+urlFromFace face =
+    case face of
+        Face1 ->
+            "./assets/StimPreparation/face_1.svg"
+
+        Face2 ->
+            "./assets/StimPreparation/face_2.svg"
+
+        Face3 ->
+            "./assets/StimPreparation/face_3.svg"
+
+        Face4 ->
+            "./assets/StimPreparation/face_4.svg"
+
+        Face5 ->
+            "./assets/StimPreparation/face_5.svg"

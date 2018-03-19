@@ -1,5 +1,6 @@
 module Data.Log exposing (..)
 
+import Data.Face exposing (faceToInt)
 import Helpers.Utils exposing (isNewListEntry)
 import Types exposing (..)
 
@@ -15,3 +16,8 @@ addFeelingToLog log feeling =
         { log | preFeelings = log.preFeelings ++ [ feeling ] }
     else
         { log | preFeelings = List.filter (\x -> x /= feeling) log.preFeelings }
+
+
+addPreFaceToLog : Face -> Log -> Log
+addPreFaceToLog face oldLog =
+    { oldLog | preFace = (faceToInt face) }

@@ -1,9 +1,9 @@
 module State exposing (..)
 
-import Data.Log exposing (addFeelingToLog, defaultLog)
+import Data.Log exposing (addFeelingToLog, addPreFaceToLog, defaultLog)
 import Data.Stim exposing (defaultStim)
-import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Data.Time exposing (adjustTime, trackCounter)
+import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Helpers.Utils exposing (..)
 import Navigation exposing (..)
 import Ports exposing (..)
@@ -66,3 +66,6 @@ update msg model =
 
         AdjustTimer timerControl ->
             adjustTime timerControl model ! []
+
+        TogglePreFace face ->
+            { model | newLog = addPreFaceToLog face model.newLog } ! []
