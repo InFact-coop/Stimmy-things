@@ -1,10 +1,10 @@
-port module State exposing (..)
+module State exposing (..)
 
 import Data.Log exposing (addFeelingToLog, defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (getViewFromRoute, viewFromUrl)
 import Data.Time exposing (adjustTime, trackCounter)
-import Helpers exposing (..)
+import Helpers.Utils exposing (..)
 import Navigation exposing (..)
 import Ports exposing (..)
 import Types exposing (..)

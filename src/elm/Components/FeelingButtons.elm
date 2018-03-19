@@ -1,7 +1,7 @@
 module Components.FeelingButtons exposing (..)
 
 import Html exposing (..)
-import Helpers exposing (unionTypeToString)
+import Helpers.Utils exposing (unionTypeToString)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Types exposing (..)

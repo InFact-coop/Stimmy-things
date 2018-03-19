@@ -1,6 +1,6 @@
 module Data.Log exposing (..)
 
-import Helpers exposing (isNewListEntry)
+import Helpers.Utils exposing (isNewListEntry)
 import Types exposing (..)
 
 

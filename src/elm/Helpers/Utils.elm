@@ -1,4 +1,4 @@
-module Helpers exposing (..)
+module Helpers.Utils exposing (..)
 
 import Regex exposing (..)
 import Task exposing (..)
