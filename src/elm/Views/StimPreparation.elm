@@ -10,16 +10,19 @@ import Html.Attributes as H exposing (..)
 import Html.Events exposing (onClick, onInput, targetValue, on)
 import Json.Decode as Json
 import Types exposing (..)
-import Time exposing (Time)
 
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
     div [ class "border-box bg-green w-100 h-100 flex-column justify-center align-center content-center items-stretch tc" ]
         [ div [ class "w-90 bg-white center h-100 flex-column content-around" ]
-            [ img [] []
+            [ div []
+                [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []
+                ]
             , p [ class "bg-green h-20" ] [ text "STIM TITLE" ]
-            , img [] []
+            , div []
+                [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] []
+                ]
             , div []
                 [ div []
                     [ img [] []
