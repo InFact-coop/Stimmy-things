@@ -1,6 +1,5 @@
 module Data.View exposing (..)
 
-import Data.Stim exposing (defaultDBStim)
 import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Navigation

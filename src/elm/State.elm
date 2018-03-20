@@ -1,14 +1,14 @@
 module State exposing (..)
 
+import Data.Database exposing (dbDataToModel)
+import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
-import Navigation exposing (..)
-import Data.Hotspots exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
-import Ports exposing (..)
 import Navigation exposing (..)
+import Ports exposing (..)
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
 
@@ -111,15 +111,3 @@ update msg model =
 
         ReceiveInitialData (Err err) ->
             model ! []
-
-
-dbDataToModel : DBData -> Model -> Model
-dbDataToModel { stims, logs, user } model =
-    { model
-        | stims = stims
-        , logs = logs
-        , avatarName = user.name
-        , avatar = user.avatar
-        , skinColour = user.skinColour
-        , userId = user.userId
-    }
