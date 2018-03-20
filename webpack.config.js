@@ -44,7 +44,7 @@ module.exports = {
       }
     ]
   },
-  devtool: 'eval',
+  // devtool: 'eval',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'

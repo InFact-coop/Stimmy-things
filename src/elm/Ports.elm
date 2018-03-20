@@ -2,6 +2,8 @@ port module Ports exposing (..)
 
 import Time exposing (Time)
 import Types exposing (..)
+import Json.Decode exposing (..)
+import Data.Hotspots exposing (decodeHotspots)
 
 
 type alias DBLog =
@@ -21,9 +23,10 @@ port initCarousel : () -> Cmd msg
 port saveLog : DBLog -> Cmd msg
 
 
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    timeSubscription model
+port initHotspots : () -> Cmd msg
+
+
+port recieveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
 
 
 timeSubscription : Model -> Sub Msg
@@ -37,3 +40,11 @@ timeSubscription model =
 
         Started ->
             Time.every Time.second Tick
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch
+        [ recieveHotspotCoords (decodeHotspots >> RecieveHotspotCoords)
+        , timeSubscription model
+        ]
