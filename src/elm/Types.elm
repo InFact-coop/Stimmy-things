@@ -20,6 +20,12 @@ type View
     | Blog
 
 
+type Trilean
+    = Yes
+    | No
+    | Neutral
+
+
 type alias Model =
     { view : View
     , userId : String
@@ -33,6 +39,9 @@ type alias Model =
     , counter : Time
     , timeSelected : Time
     , timerStatus : TimerStatus
+    , paused : Bool
+    , showNav : Trilean
+    , hotspots : Hotspots
     }
 
 
@@ -130,10 +139,34 @@ type LogStage
     | Post
 
 
+type alias HotspotCoords =
+    { bottom : Float
+    , height : Float
+    , left : Float
+    , right : Float
+    , top : Float
+    , width : Float
+    , x : Float
+    , y : Float
+    }
+
+
+type alias Hotspots =
+    { head : HotspotCoords
+    , face : HotspotCoords
+    , shoulders : HotspotCoords
+    , chest : HotspotCoords
+    , arms : HotspotCoords
+    , belly : HotspotCoords
+    , hands : HotspotCoords
+    , legs : HotspotCoords
+    , feet : HotspotCoords
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
-    | MakeCarousel
     | SetTime String
     | ChangeView View
     | Tick Time
@@ -142,3 +175,5 @@ type Msg
     | ToggleFace LogStage Face
     | StopTimer
     | RepeatStim
+    | ToggleNav
+    | RecieveHotspotCoords (Result String Hotspots)

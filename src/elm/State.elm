@@ -3,10 +3,12 @@ module State exposing (..)
 import Data.Log exposing (addFeeling, addFace, defaultLog, addTimeTaken)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
-import Data.View exposing (getViewFromRoute, viewFromUrl)
-import Helpers.Utils exposing (..)
+import Data.View exposing (getViewFromRoute, viewFromUrl, viewToCmds, updateNav)
 import Navigation exposing (..)
+import Data.Hotspots exposing (..)
+import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
+import Navigation exposing (..)
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
 
@@ -16,7 +18,7 @@ initModel =
     { view = Landing
     , userId = ""
     , avatar = Avatar1
-    , avatarName = ""
+    , avatarName = "Hello"
     , avatarSkinColour = Skin1
     , stims = []
     , logs = []
@@ -25,6 +27,9 @@ initModel =
     , timeSelected = 0
     , counter = 0
     , timerStatus = Stopped
+    , paused = False
+    , showNav = Neutral
+    , hotspots = defaultHotspots
     }
 
 
@@ -34,17 +39,27 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ initCarousel () ]
+        model ! [ initHotspots () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UrlChange location ->
-            { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
+            { model | view = getViewFromRoute location.hash }
+                ! (scrollToTop :: viewToCmds model.view)
 
-        MakeCarousel ->
+        ChangeView view ->
+            { model | view = view } ! []
+
+        RecieveHotspotCoords (Ok coords) ->
+            { model | hotspots = coords } ! []
+
+        RecieveHotspotCoords (Err err) ->
             model ! []
+
+        ToggleNav ->
+            { model | showNav = updateNav model.showNav } ! []
 
         NoOp ->
             model ! []
@@ -55,9 +70,6 @@ update msg model =
                     stringToFloat time
             in
                 { model | timeSelected = interval, counter = interval } ! []
-
-        ChangeView view ->
-            { model | view = view } ! []
 
         Tick _ ->
             trackCounter model ! []
