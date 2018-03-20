@@ -1,7 +1,7 @@
 module Views.Landing exposing (..)
 
-import Helpers.Utils exposing (..)
 import Helpers.Style exposing (..)
+import Helpers.Utils exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -48,10 +48,38 @@ hotspotDiv hotspot =
 stimMenu : Model -> HotspotCoords -> Html Msg
 stimMenu model hotspot =
     div [ classes [ "absolute", ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-4" "vis-hidden z-1" ], style [ ( "right", toString (hotspot.right) ++ "px" ), ( "top", toString (hotspot.top) ++ "px" ) ] ]
-        [ div [ classes [ "mb1", "br--right", "bg-white", "pa3", "flex", "justify-end", "items-center", "translucent" ], style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ] ]
-            [ div [ classes [ "mh6" ] ] [ h2 [ classes [] ] [ text "Hey" ] ], hotspotDiv hotspot ]
-        , a
-            [ classes [ "translucent", "mb1", "w-80", "flex", "items-center", "justify-center", "link", "work-sans-regular", "black", "pointer" ], style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ], href "#add-stim" ]
-            [ text "+ Add a stim!"
-            ]
+        (stimMenuItems model hotspot ++ [ addStimButton (hotspot.height + 32) ])
+
+
+stimMenuItems : Model -> HotspotCoords -> List (Html Msg)
+stimMenuItems model hotspot =
+    extractStims hotspot.name model.stims
+        |> List.map (stimToButton (hotspot.height + 32))
+        |> (::) (stimTitle hotspot)
+
+
+stimTitle : HotspotCoords -> Html Msg
+stimTitle hotspot =
+    div [ classes [ "mb1px", "br--right", "bg-white", "pa3", "flex", "justify-end", "items-center", "translucent" ], style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ] ]
+        [ div [ classes [ "mh6" ] ] [ h2 [ classes [] ] [ text <| unionTypeToString hotspot.name ] ], hotspotDiv hotspot ]
+
+
+addStimButton : Float -> Html Msg
+addStimButton height =
+    button
+        [ classes [ "translucent", "mb1px", "w-80", "flex", "items-center", "justify-center", "link", "work-sans-regular", "black", "pointer", "bn" ], style [ ( "height", toString height ++ "px" ) ], onClick (ChangeView AddStim) ]
+        [ text "+ Add a stim!"
         ]
+
+
+stimToButton : Float -> Stim -> Html Msg
+stimToButton height stim =
+    button
+        [ classes [ "translucent", "mb1px", "w-80", "flex", "items-center", "justify-center", "link", "work-sans-regular", "black", "pointer", "bn" ], style [ ( "height", toString height ++ "px" ) ], onClick (ChangeView StimPreparation) ]
+        [ text stim.stimName
+        ]
+
+
+extractStims : BodyPart -> List Stim -> List Stim
+extractStims bodyPart stimList =
+    List.filter (\n -> n.bodyPart == bodyPart) stimList
