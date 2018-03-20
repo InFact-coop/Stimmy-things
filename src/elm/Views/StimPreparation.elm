@@ -3,11 +3,12 @@ module Views.StimPreparation exposing (..)
 import Components.Button exposing (..)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
+import Components.Face exposing (face)
 import Data.Feelings exposing (feelings)
-import Helpers.Utils exposing (unionTypeToString, stringToFloat)
+import Helpers.Utils exposing (stringToFloat, unionTypeToString)
 import Html exposing (..)
-import Html.Attributes as H exposing (..)
-import Html.Events exposing (onClick, onInput, targetValue, on)
+import Html.Attributes as Attr exposing (..)
+import Html.Events exposing (on, onClick, onInput, targetValue)
 import Json.Decode as Json
 import Types exposing (..)
 
@@ -30,7 +31,7 @@ stimPreparation model =
                     ]
                 , p [] [ text "How long do you want to do the exercise for?" ]
                 , div [ class "w-80 items-center justify-between tc inline-flex center" ]
-                    [ input [ id "myRange", type_ "range", H.min "0", H.max "1800", step "60", class "w-75 bg-light-gray input-reset h-custom slider", onInputValue SetTime ]
+                    [ input [ id "myRange", type_ "range", Attr.min "0", Attr.max "1800", step "60", class "w-75 bg-light-gray input-reset h-custom slider", onInputValue SetTime ]
                         []
                     , div
                         [ class "bg-center"
@@ -41,7 +42,7 @@ stimPreparation model =
                         [ text (unionTypeToString (model.timeSelected / 60)) ]
                     ]
                 , p [] [ text "How are you?" ]
-                , div [ class "flex flew-row" ] (List.map face faces)
+                , div [ class "flex flew-row" ] (List.map (face Pre) faces)
                 , div []
                     [ p [] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
@@ -55,13 +56,6 @@ stimPreparation model =
 renderFeelings : List Feeling -> List (Html Msg)
 renderFeelings list =
     List.map (feelingButton Pre) list
-
-
-face : Face -> Html Msg
-face face =
-    div [ onClick <| ToggleFace Pre face ]
-        [ img [ src (urlFromFace face) ] []
-        ]
 
 
 onInputValue : (String -> msg) -> Attribute msg

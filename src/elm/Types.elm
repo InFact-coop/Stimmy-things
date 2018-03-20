@@ -167,6 +167,17 @@ type alias Hotspots =
     }
 
 
+type alias DBLog =
+    { timeTaken : Time
+    , stimId : String
+    , preFace : Int
+    , postFace : Int
+    , preFeelings : List String
+    , postFeelings : List String
+    , dateTime : Time
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
@@ -178,6 +189,8 @@ type Msg
     | ToggleFace LogStage Face
     | StopTimer
     | RepeatStim
+    | SaveLog
     | ToggleNav
-    | ToggleStimMenu BodyPart
     | RecieveHotspotCoords (Result String Hotspots)
+    | ReceiveUpdatedLogs (List DBLog)
+    | ToggleStimMenu BodyPart

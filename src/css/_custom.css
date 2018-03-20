@@ -1,5 +1,3 @@
-/* Resets and Default Styling */
-
 body {
   margin: 0;
   font-family: 'Work Sans';
@@ -9,19 +7,19 @@ body {
 
 @font-face {
   font-family: 'Work Sans';
-  src: url('./fonts/WorkSans-Regular.ttf') format('truetype');
+  src: url('../fonts/WorkSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Work Sans';
-  src: url('./fonts/WorkSans-Bold.ttf') format('truetype');
+  src: url('../fonts/WorkSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'Wellcome';
-  src: url('./fonts/wellcome-bold-webfont.ttf') format('truetype');
+  src: url('../fonts/wellcome-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
 .work-sans {
@@ -83,6 +81,9 @@ body {
   background-color: rgba(85, 148, 207, 0.4);
 }
 
+.top-4 {
+  top: 4rem;
+}
 .bg-green-translucent {
   background-color: rgba(68, 150, 148, 0.9);
 }
@@ -280,6 +281,10 @@ body {
 
 .h-custom {
   height: 8px;
+}
+
+.bg-green-translucent {
+  background-color: rgba(68, 150, 148, 0.9);
 }
 
 .br--right {
