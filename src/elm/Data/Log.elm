@@ -1,8 +1,8 @@
 module Data.Log exposing (..)
 
 import Data.Face exposing (faceToInt)
+import Data.Feelings exposing (stringToFeeling)
 import Helpers.Utils exposing (isNewListEntry, unionTypeToString)
-import Ports exposing (DBLog)
 import Time exposing (Time)
 import Types exposing (..)
 
@@ -88,9 +88,17 @@ updateTime time log =
     { log | timeTaken = time }
 
 
-normaliseLog : Log -> DBLog
-normaliseLog log =
+normaliseDBLog : Log -> DBLog
+normaliseDBLog log =
     { log
         | preFeelings = List.map unionTypeToString log.preFeelings
         , postFeelings = List.map unionTypeToString log.postFeelings
+    }
+
+
+normaliseLog : DBLog -> Log
+normaliseLog log =
+    { log
+        | preFeelings = List.map stringToFeeling log.preFeelings
+        , postFeelings = List.map stringToFeeling log.postFeelings
     }

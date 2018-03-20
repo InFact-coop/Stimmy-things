@@ -1,6 +1,6 @@
 module State exposing (..)
 
-import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseLog)
+import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (getViewFromRoute, viewFromUrl, viewToCmds, updateNav)
@@ -96,5 +96,8 @@ update msg model =
 
         SaveLog ->
             model
-                ! [ saveLog (normaliseLog model.newLog) ]
+                ! [ saveLog (normaliseDBLog model.newLog) ]
                 :> update (ChangeView Landing)
+
+        ReceiveUpdatedLogs dbLogs ->
+            { model | logs = List.map normaliseLog dbLogs } ! []
