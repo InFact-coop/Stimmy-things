@@ -19,7 +19,7 @@ initModel =
     , userId = ""
     , avatar = Avatar1
     , avatarName = "Sion"
-    , avatarSkinColour = Skin1
+    , skinColour = SkinColour1
     , stims = []
     , logs = []
     , newStim = defaultStim
@@ -53,10 +53,10 @@ update msg model =
         ChangeView view ->
             { model | view = view } ! (scrollToTop :: viewToCmds model.view)
 
-        RecieveHotspotCoords (Ok coords) ->
+        ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
 
-        RecieveHotspotCoords (Err err) ->
+        ReceiveHotspotCoords (Err err) ->
             model ! []
 
         ToggleNav ->
@@ -105,3 +105,21 @@ update msg model =
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
+
+        ReceiveInitialData (Ok dbData) ->
+            dbDataToModel dbData model ! []
+
+        ReceiveInitialData (Err err) ->
+            model ! []
+
+
+dbDataToModel : DBData -> Model -> Model
+dbDataToModel { stims, logs, user } model =
+    { model
+        | stims = stims
+        , logs = logs
+        , avatarName = user.name
+        , avatar = user.avatar
+        , skinColour = user.skinColour
+        , userId = user.userId
+    }

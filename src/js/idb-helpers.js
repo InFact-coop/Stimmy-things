@@ -67,9 +67,9 @@ const deleteStim = stimId => {
 
 const getAllTheData = db => {
   return db.transaction('r', [db.user, db.stims, db.logs], async () => {
-    const user = await getUser();
-    const stims = await getAllStims();
-    const logs = await getAllLogs();
+    const user = await getUser(db);
+    const stims = await getAllStims(db);
+    const logs = await getAllLogs(db);
 
     return { user, stims, logs };
   });

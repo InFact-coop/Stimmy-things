@@ -1,9 +1,10 @@
 port module Ports exposing (..)
 
+import Data.Database exposing (decodeInitialData)
+import Data.Hotspots exposing (decodeHotspots)
+import Json.Decode exposing (..)
 import Time exposing (Time)
 import Types exposing (..)
-import Json.Decode exposing (..)
-import Data.Hotspots exposing (decodeHotspots)
 
 
 port initCarousel : () -> Cmd msg
@@ -12,16 +13,19 @@ port initCarousel : () -> Cmd msg
 port saveLog : DBLog -> Cmd msg
 
 
-port initDB : List DBStim -> Cmd msg
+port initDB : () -> Cmd msg
 
 
 port initHotspots : () -> Cmd msg
 
 
-port recieveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
+port receiveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
 
 
 port receiveUpdatedLogs : (List DBLog -> msg) -> Sub msg
+
+
+port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
 
 
 timeSubscription : Model -> Sub Msg
@@ -40,7 +44,8 @@ timeSubscription model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ recieveHotspotCoords (decodeHotspots >> RecieveHotspotCoords)
+        [ receiveHotspotCoords (decodeHotspots >> ReceiveHotspotCoords)
         , timeSubscription model
         , receiveUpdatedLogs ReceiveUpdatedLogs
+        , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         ]

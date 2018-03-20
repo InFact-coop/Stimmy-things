@@ -123,7 +123,7 @@ viewToCmds : View -> List (Cmd msg)
 viewToCmds view =
     case view of
         Landing ->
-            [ initHotspots (), initDB [ defaultDBStim ] ]
+            [ initHotspots (), initDB () ]
 
         CreateAvatar ->
             [ initCarousel () ]
