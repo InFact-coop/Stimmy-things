@@ -15,8 +15,7 @@ import Types exposing (..)
 stimPreparation : Model -> Html Msg
 stimPreparation model =
     div [ class "border-box bg-green w-100 h-100 flex-column tc" ]
-        [ div [] []
-        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ) ], class "ma3 mb4 flex-column" ]
+        [ div []
             [ div []
                 [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []
                 ]
@@ -24,7 +23,9 @@ stimPreparation model =
             , div []
                 [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] []
                 ]
-            , div []
+            ]
+        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ) ], class "ma3 mb4 flex-column" ]
+            [ div []
                 [ div []
                     [ img [] []
                     , p [] [ text "Before we start:" ]

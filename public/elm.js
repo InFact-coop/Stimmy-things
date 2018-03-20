@@ -5757,6 +5757,110 @@ var _elm_lang$core$Platform$Task = {ctor: 'Task'};
 var _elm_lang$core$Platform$ProcessId = {ctor: 'ProcessId'};
 var _elm_lang$core$Platform$Router = {ctor: 'Router'};
 
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode = _elm_lang$core$Json_Decode$succeed;
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$resolve = _elm_lang$core$Json_Decode$andThen(_elm_lang$core$Basics$identity);
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$custom = _elm_lang$core$Json_Decode$map2(
+	F2(
+		function (x, y) {
+			return y(x);
+		}));
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$hardcoded = function (_p0) {
+	return _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$custom(
+		_elm_lang$core$Json_Decode$succeed(_p0));
+};
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optionalDecoder = F3(
+	function (pathDecoder, valDecoder, fallback) {
+		var nullOr = function (decoder) {
+			return _elm_lang$core$Json_Decode$oneOf(
+				{
+					ctor: '::',
+					_0: decoder,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Json_Decode$null(fallback),
+						_1: {ctor: '[]'}
+					}
+				});
+		};
+		var handleResult = function (input) {
+			var _p1 = A2(_elm_lang$core$Json_Decode$decodeValue, pathDecoder, input);
+			if (_p1.ctor === 'Ok') {
+				var _p2 = A2(
+					_elm_lang$core$Json_Decode$decodeValue,
+					nullOr(valDecoder),
+					_p1._0);
+				if (_p2.ctor === 'Ok') {
+					return _elm_lang$core$Json_Decode$succeed(_p2._0);
+				} else {
+					return _elm_lang$core$Json_Decode$fail(_p2._0);
+				}
+			} else {
+				return _elm_lang$core$Json_Decode$succeed(fallback);
+			}
+		};
+		return A2(_elm_lang$core$Json_Decode$andThen, handleResult, _elm_lang$core$Json_Decode$value);
+	});
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optionalAt = F4(
+	function (path, valDecoder, fallback, decoder) {
+		return A2(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$custom,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optionalDecoder,
+				A2(_elm_lang$core$Json_Decode$at, path, _elm_lang$core$Json_Decode$value),
+				valDecoder,
+				fallback),
+			decoder);
+	});
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional = F4(
+	function (key, valDecoder, fallback, decoder) {
+		return A2(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$custom,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optionalDecoder,
+				A2(_elm_lang$core$Json_Decode$field, key, _elm_lang$core$Json_Decode$value),
+				valDecoder,
+				fallback),
+			decoder);
+	});
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$requiredAt = F3(
+	function (path, valDecoder, decoder) {
+		return A2(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$custom,
+			A2(_elm_lang$core$Json_Decode$at, path, valDecoder),
+			decoder);
+	});
+var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required = F3(
+	function (key, valDecoder, decoder) {
+		return A2(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$custom,
+			A2(_elm_lang$core$Json_Decode$field, key, valDecoder),
+			decoder);
+	});
+
+var _ccapndave$elm_update_extra$Update_Extra_Infix$pipeUpdate = F2(
+	function (_p0, update) {
+		var _p1 = _p0;
+		var _p2 = update(_p1._0);
+		var model_ = _p2._0;
+		var cmd_ = _p2._1;
+		return {
+			ctor: '_Tuple2',
+			_0: model_,
+			_1: _elm_lang$core$Platform_Cmd$batch(
+				{
+					ctor: '::',
+					_0: _p1._1,
+					_1: {
+						ctor: '::',
+						_0: cmd_,
+						_1: {ctor: '[]'}
+					}
+				})
+		};
+	});
+var _ccapndave$elm_update_extra$Update_Extra_Infix_ops = _ccapndave$elm_update_extra$Update_Extra_Infix_ops || {};
+_ccapndave$elm_update_extra$Update_Extra_Infix_ops[':>'] = _ccapndave$elm_update_extra$Update_Extra_Infix$pipeUpdate;
+
 var _elm_lang$core$Task$onError = _elm_lang$core$Native_Scheduler.onError;
 var _elm_lang$core$Task$andThen = _elm_lang$core$Native_Scheduler.andThen;
 var _elm_lang$core$Task$spawnCmd = F2(
@@ -13398,7 +13502,13 @@ var _inFact_coop$stimmy_things$Types$Model = function (a) {
 									return function (j) {
 										return function (k) {
 											return function (l) {
-												return {view: a, userId: b, avatar: c, avatarName: d, avatarSkinColour: e, stims: f, logs: g, newStim: h, newLog: i, counter: j, timeSelected: k, timerStatus: l};
+												return function (m) {
+													return function (n) {
+														return function (o) {
+															return {view: a, userId: b, avatar: c, avatarName: d, avatarSkinColour: e, stims: f, logs: g, newStim: h, newLog: i, counter: j, timeSelected: k, timerStatus: l, paused: m, showNav: n, hotspots: o};
+														};
+													};
+												};
 											};
 										};
 									};
@@ -13419,6 +13529,14 @@ var _inFact_coop$stimmy_things$Types$Log = F7(
 	function (a, b, c, d, e, f, g) {
 		return {timeTaken: a, stimId: b, preFace: c, postFace: d, preFeelings: e, postFeelings: f, dateTime: g};
 	});
+var _inFact_coop$stimmy_things$Types$HotspotCoords = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {bottom: a, height: b, left: c, right: d, top: e, width: f, x: g, y: h};
+	});
+var _inFact_coop$stimmy_things$Types$Hotspots = F9(
+	function (a, b, c, d, e, f, g, h, i) {
+		return {head: a, face: b, shoulders: c, chest: d, arms: e, belly: f, hands: g, legs: h, feet: i};
+	});
 var _inFact_coop$stimmy_things$Types$Blog = {ctor: 'Blog'};
 var _inFact_coop$stimmy_things$Types$ShareModal = {ctor: 'ShareModal'};
 var _inFact_coop$stimmy_things$Types$About = {ctor: 'About'};
@@ -13432,6 +13550,9 @@ var _inFact_coop$stimmy_things$Types$StimInfo = {ctor: 'StimInfo'};
 var _inFact_coop$stimmy_things$Types$Landing = {ctor: 'Landing'};
 var _inFact_coop$stimmy_things$Types$NameAvatar = {ctor: 'NameAvatar'};
 var _inFact_coop$stimmy_things$Types$CreateAvatar = {ctor: 'CreateAvatar'};
+var _inFact_coop$stimmy_things$Types$Neutral = {ctor: 'Neutral'};
+var _inFact_coop$stimmy_things$Types$No = {ctor: 'No'};
+var _inFact_coop$stimmy_things$Types$Yes = {ctor: 'Yes'};
 var _inFact_coop$stimmy_things$Types$Avatar6 = {ctor: 'Avatar6'};
 var _inFact_coop$stimmy_things$Types$Avatar5 = {ctor: 'Avatar5'};
 var _inFact_coop$stimmy_things$Types$Avatar4 = {ctor: 'Avatar4'};
@@ -13471,6 +13592,32 @@ var _inFact_coop$stimmy_things$Types$Anxious = {ctor: 'Anxious'};
 var _inFact_coop$stimmy_things$Types$Motivated = {ctor: 'Motivated'};
 var _inFact_coop$stimmy_things$Types$Hyper = {ctor: 'Hyper'};
 var _inFact_coop$stimmy_things$Types$Happy = {ctor: 'Happy'};
+var _inFact_coop$stimmy_things$Types$Restart = {ctor: 'Restart'};
+var _inFact_coop$stimmy_things$Types$Pause = {ctor: 'Pause'};
+var _inFact_coop$stimmy_things$Types$Stop = {ctor: 'Stop'};
+var _inFact_coop$stimmy_things$Types$Start = {ctor: 'Start'};
+var _inFact_coop$stimmy_things$Types$Paused = {ctor: 'Paused'};
+var _inFact_coop$stimmy_things$Types$Stopped = {ctor: 'Stopped'};
+var _inFact_coop$stimmy_things$Types$Started = {ctor: 'Started'};
+var _inFact_coop$stimmy_things$Types$Post = {ctor: 'Post'};
+var _inFact_coop$stimmy_things$Types$Pre = {ctor: 'Pre'};
+var _inFact_coop$stimmy_things$Types$RecieveHotspotCoords = function (a) {
+	return {ctor: 'RecieveHotspotCoords', _0: a};
+};
+var _inFact_coop$stimmy_things$Types$ToggleNav = {ctor: 'ToggleNav'};
+var _inFact_coop$stimmy_things$Types$RepeatStim = {ctor: 'RepeatStim'};
+var _inFact_coop$stimmy_things$Types$StopTimer = {ctor: 'StopTimer'};
+var _inFact_coop$stimmy_things$Types$ToggleFace = F2(
+	function (a, b) {
+		return {ctor: 'ToggleFace', _0: a, _1: b};
+	});
+var _inFact_coop$stimmy_things$Types$ToggleFeeling = F2(
+	function (a, b) {
+		return {ctor: 'ToggleFeeling', _0: a, _1: b};
+	});
+var _inFact_coop$stimmy_things$Types$AdjustTimer = function (a) {
+	return {ctor: 'AdjustTimer', _0: a};
+};
 var _inFact_coop$stimmy_things$Types$Tick = function (a) {
 	return {ctor: 'Tick', _0: a};
 };
@@ -13480,21 +13627,10 @@ var _inFact_coop$stimmy_things$Types$ChangeView = function (a) {
 var _inFact_coop$stimmy_things$Types$SetTime = function (a) {
 	return {ctor: 'SetTime', _0: a};
 };
-var _inFact_coop$stimmy_things$Types$ToggleFeeling = function (a) {
-	return {ctor: 'ToggleFeeling', _0: a};
-};
-var _inFact_coop$stimmy_things$Types$MakeCarousel = {ctor: 'MakeCarousel'};
 var _inFact_coop$stimmy_things$Types$UrlChange = function (a) {
 	return {ctor: 'UrlChange', _0: a};
 };
 var _inFact_coop$stimmy_things$Types$NoOp = {ctor: 'NoOp'};
-var _inFact_coop$stimmy_things$Types$Restart = {ctor: 'Restart'};
-var _inFact_coop$stimmy_things$Types$Pause = {ctor: 'Pause'};
-var _inFact_coop$stimmy_things$Types$Stop = {ctor: 'Stop'};
-var _inFact_coop$stimmy_things$Types$Start = {ctor: 'Start'};
-var _inFact_coop$stimmy_things$Types$Paused = {ctor: 'Paused'};
-var _inFact_coop$stimmy_things$Types$Stopped = {ctor: 'Stopped'};
-var _inFact_coop$stimmy_things$Types$Started = {ctor: 'Started'};
 
 var _inFact_coop$stimmy_things$Components_Button$rectButton = F2(
 	function (buttonText, msg) {
@@ -13516,17 +13652,86 @@ var _inFact_coop$stimmy_things$Components_Button$rectButton = F2(
 			});
 	});
 
-var _inFact_coop$stimmy_things$Helpers$onCheckboxInput = function (tagger) {
+var _inFact_coop$stimmy_things$Helpers_Utils$onCheckboxInput = function (tagger) {
 	return A2(
 		_elm_lang$html$Html_Events$on,
 		'change',
 		A3(_elm_lang$core$Json_Decode$map2, tagger, _elm_lang$html$Html_Events$targetValue, _elm_lang$html$Html_Events$targetChecked));
 };
-var _inFact_coop$stimmy_things$Helpers$isNewListEntry = F2(
+var _inFact_coop$stimmy_things$Helpers_Utils$isNewListEntry = F2(
 	function (a, list) {
 		return !A2(_elm_lang$core$List$member, a, list);
 	});
-var _inFact_coop$stimmy_things$Helpers$backgroundImageStyle = F2(
+var _inFact_coop$stimmy_things$Helpers_Utils$viewIf = F2(
+	function (condition, content) {
+		return condition ? content : _elm_lang$html$Html$text('');
+	});
+var _inFact_coop$stimmy_things$Helpers_Utils$scrollToTop = A2(
+	_elm_lang$core$Task$attempt,
+	_elm_lang$core$Basics$always(_inFact_coop$stimmy_things$Types$NoOp),
+	_elm_lang$dom$Dom_Scroll$toTop('container'));
+var _inFact_coop$stimmy_things$Helpers_Utils$unionTypeToString = function (a) {
+	return _elm_lang$core$String$trim(
+		A4(
+			_elm_lang$core$Regex$replace,
+			_elm_lang$core$Regex$All,
+			_elm_lang$core$Regex$regex('[A-Z]'),
+			function (_p0) {
+				var _p1 = _p0;
+				return A2(_elm_lang$core$Basics_ops['++'], ' ', _p1.match);
+			},
+			_elm_lang$core$Basics$toString(a)));
+};
+var _inFact_coop$stimmy_things$Helpers_Utils$createListOfStrings = function (list) {
+	return A2(_elm_lang$core$List$map, _inFact_coop$stimmy_things$Helpers_Utils$unionTypeToString, list);
+};
+var _inFact_coop$stimmy_things$Helpers_Utils$stringToFloat = function (string) {
+	return A2(
+		_elm_lang$core$Result$withDefault,
+		0,
+		_elm_lang$core$String$toFloat(string));
+};
+var _inFact_coop$stimmy_things$Helpers_Utils$emptyDiv = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('dn'),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
+var _inFact_coop$stimmy_things$Helpers_Utils$ifThenElse = F3(
+	function (conditional, trueCase, falseCase) {
+		return conditional ? trueCase : falseCase;
+	});
+
+var _inFact_coop$stimmy_things$Components_FeelingButtons$feelingButton = F2(
+	function (logStage, feeling) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('w-40 flex justify-center bg-green br4 pa1 pointer'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onClick(
+						A2(_inFact_coop$stimmy_things$Types$ToggleFeeling, logStage, feeling)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text(
+					_inFact_coop$stimmy_things$Helpers_Utils$unionTypeToString(feeling)),
+				_1: {ctor: '[]'}
+			});
+	});
+
+var _inFact_coop$stimmy_things$Helpers_Style$extraSmallFont = 'f7 lh-f7 work-sans';
+var _inFact_coop$stimmy_things$Helpers_Style$smallFontWellcome = 'f6 lh-f6 wellcome';
+var _inFact_coop$stimmy_things$Helpers_Style$smallFont = 'f6 lh-f6 work-sans';
+var _inFact_coop$stimmy_things$Helpers_Style$bodyFont = 'f5 lh-f5 work-sans';
+var _inFact_coop$stimmy_things$Helpers_Style$headerFont = 'f4 lh-f4 wellcome';
+var _inFact_coop$stimmy_things$Helpers_Style$backgroundImageStyle = F2(
 	function (url, sizePercent) {
 		return _elm_lang$html$Html_Attributes$style(
 			{
@@ -13561,61 +13766,177 @@ var _inFact_coop$stimmy_things$Helpers$backgroundImageStyle = F2(
 				}
 			});
 	});
-var _inFact_coop$stimmy_things$Helpers$viewIf = F2(
-	function (condition, content) {
-		return condition ? content : _elm_lang$html$Html$text('');
-	});
-var _inFact_coop$stimmy_things$Helpers$scrollToTop = A2(
-	_elm_lang$core$Task$attempt,
-	_elm_lang$core$Basics$always(_inFact_coop$stimmy_things$Types$NoOp),
-	_elm_lang$dom$Dom_Scroll$toTop('container'));
-var _inFact_coop$stimmy_things$Helpers$unionTypeToString = function (a) {
-	return _elm_lang$core$String$trim(
-		A4(
-			_elm_lang$core$Regex$replace,
-			_elm_lang$core$Regex$All,
-			_elm_lang$core$Regex$regex('[A-Z]'),
-			function (_p0) {
-				var _p1 = _p0;
-				return A2(_elm_lang$core$Basics_ops['++'], ' ', _p1.match);
-			},
-			_elm_lang$core$Basics$toString(a)));
+var _inFact_coop$stimmy_things$Helpers_Style$classes = function (classList) {
+	return _elm_lang$html$Html_Attributes$class(
+		A2(_elm_lang$core$String$join, ' ', classList));
 };
-var _inFact_coop$stimmy_things$Helpers$createListOfStrings = function (list) {
-	return A2(_elm_lang$core$List$map, _inFact_coop$stimmy_things$Helpers$unionTypeToString, list);
-};
-var _inFact_coop$stimmy_things$Helpers$emptyDiv = A2(
-	_elm_lang$html$Html$div,
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('dn'),
-		_1: {ctor: '[]'}
-	},
-	{ctor: '[]'});
-var _inFact_coop$stimmy_things$Helpers$ifThenElse = F3(
-	function (conditional, trueCase, falseCase) {
-		return conditional ? trueCase : falseCase;
-	});
 
-var _inFact_coop$stimmy_things$Components_FeelingButtons$feelingButton = function (feeling) {
+var _inFact_coop$stimmy_things$Components_NavDrawer$showNavClass = function (trilean) {
+	var _p0 = trilean;
+	switch (_p0.ctor) {
+		case 'Yes':
+			return 'enterNav';
+		case 'No':
+			return 'exitNav';
+		default:
+			return 'dn';
+	}
+};
+var _inFact_coop$stimmy_things$Components_NavDrawer$drawerItem = F2(
+	function (imgSrc, view) {
+		return A2(
+			_elm_lang$html$Html$button,
+			{
+				ctor: '::',
+				_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+					{
+						ctor: '::',
+						_0: 'db',
+						_1: {
+							ctor: '::',
+							_0: 'pointer',
+							_1: {
+								ctor: '::',
+								_0: 'h4',
+								_1: {
+									ctor: '::',
+									_0: 'w4',
+									_1: {
+										ctor: '::',
+										_0: 'mb1',
+										_1: {
+											ctor: '::',
+											_0: 'bn',
+											_1: {
+												ctor: '::',
+												_0: 'bg-transparent',
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onClick(
+						_inFact_coop$stimmy_things$Types$ChangeView(view)),
+					_1: {
+						ctor: '::',
+						_0: A2(_inFact_coop$stimmy_things$Helpers_Style$backgroundImageStyle, imgSrc, 100),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _inFact_coop$stimmy_things$Components_NavDrawer$navDrawer = function (model) {
 	return A2(
-		_elm_lang$html$Html$div,
+		_elm_lang$html$Html$nav,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('w-40 flex justify-center bg-green br4 pa1 pointer'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Events$onClick(
-					_inFact_coop$stimmy_things$Types$ToggleFeeling(feeling)),
-				_1: {ctor: '[]'}
-			}
+			_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+				{
+					ctor: '::',
+					_0: 'pa2',
+					_1: {
+						ctor: '::',
+						_0: 'fixed',
+						_1: {
+							ctor: '::',
+							_0: 'z-1',
+							_1: {
+								ctor: '::',
+								_0: 'bg-green-translucent',
+								_1: {
+									ctor: '::',
+									_0: 'top-4',
+									_1: {
+										ctor: '::',
+										_0: _inFact_coop$stimmy_things$Components_NavDrawer$showNavClass(model.showNav),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
 		},
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				_inFact_coop$stimmy_things$Helpers$unionTypeToString(feeling)),
-			_1: {ctor: '[]'}
+			_0: A2(_inFact_coop$stimmy_things$Components_NavDrawer$drawerItem, './assets/Landing/menu-drawer/about_btn.svg', _inFact_coop$stimmy_things$Types$About),
+			_1: {
+				ctor: '::',
+				_0: A2(_inFact_coop$stimmy_things$Components_NavDrawer$drawerItem, './assets/Landing/menu-drawer/moodboard_btn.svg', _inFact_coop$stimmy_things$Types$Moodboard),
+				_1: {
+					ctor: '::',
+					_0: A2(_inFact_coop$stimmy_things$Components_NavDrawer$drawerItem, './assets/Landing/menu-drawer/blog_btn.svg', _inFact_coop$stimmy_things$Types$Blog),
+					_1: {
+						ctor: '::',
+						_0: A2(_inFact_coop$stimmy_things$Components_NavDrawer$drawerItem, './assets/Landing/menu-drawer/user_btn.svg', _inFact_coop$stimmy_things$Types$Landing),
+						_1: {
+							ctor: '::',
+							_0: A2(_inFact_coop$stimmy_things$Components_NavDrawer$drawerItem, './assets/Landing/menu-drawer/emergency_btn.svg', _inFact_coop$stimmy_things$Types$Landing),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
 		});
+};
+
+var _inFact_coop$stimmy_things$Data_Face$urlFromFace = function (face) {
+	var _p0 = face;
+	switch (_p0.ctor) {
+		case 'Face1':
+			return './assets/StimPreparation/face_1.svg';
+		case 'Face2':
+			return './assets/StimPreparation/face_2.svg';
+		case 'Face3':
+			return './assets/StimPreparation/face_3.svg';
+		case 'Face4':
+			return './assets/StimPreparation/face_4.svg';
+		default:
+			return './assets/StimPreparation/face_5.svg';
+	}
+};
+var _inFact_coop$stimmy_things$Data_Face$faceToInt = function (face) {
+	var _p1 = face;
+	switch (_p1.ctor) {
+		case 'Face1':
+			return 1;
+		case 'Face2':
+			return 2;
+		case 'Face3':
+			return 3;
+		case 'Face4':
+			return 4;
+		default:
+			return 5;
+	}
+};
+var _inFact_coop$stimmy_things$Data_Face$faces = {
+	ctor: '::',
+	_0: _inFact_coop$stimmy_things$Types$Face1,
+	_1: {
+		ctor: '::',
+		_0: _inFact_coop$stimmy_things$Types$Face2,
+		_1: {
+			ctor: '::',
+			_0: _inFact_coop$stimmy_things$Types$Face3,
+			_1: {
+				ctor: '::',
+				_0: _inFact_coop$stimmy_things$Types$Face4,
+				_1: {
+					ctor: '::',
+					_0: _inFact_coop$stimmy_things$Types$Face5,
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	}
 };
 
 var _inFact_coop$stimmy_things$Data_Feelings$stringToFeeling = function (string) {
@@ -13699,41 +14020,216 @@ var _inFact_coop$stimmy_things$Data_Feelings$feelings = {
 	}
 };
 
-var _inFact_coop$stimmy_things$Data_Log$addFeelingToLog = F2(
-	function (log, feeling) {
-		return A2(_inFact_coop$stimmy_things$Helpers$isNewListEntry, feeling, log.preFeelings) ? _elm_lang$core$Native_Utils.update(
+var _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords = A8(_inFact_coop$stimmy_things$Types$HotspotCoords, 0, 0, 0, 0, 0, 0, 0, 0);
+var _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspots = A9(_inFact_coop$stimmy_things$Types$Hotspots, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords, _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspotCoords);
+var _inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'y',
+	_elm_lang$core$Json_Decode$float,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'x',
+		_elm_lang$core$Json_Decode$float,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'width',
+			_elm_lang$core$Json_Decode$float,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+				'top',
+				_elm_lang$core$Json_Decode$float,
+				A3(
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+					'right',
+					_elm_lang$core$Json_Decode$float,
+					A3(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+						'left',
+						_elm_lang$core$Json_Decode$float,
+						A3(
+							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+							'height',
+							_elm_lang$core$Json_Decode$float,
+							A3(
+								_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+								'bottom',
+								_elm_lang$core$Json_Decode$float,
+								_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_inFact_coop$stimmy_things$Types$HotspotCoords)))))))));
+var _inFact_coop$stimmy_things$Data_Hotspots$hotspotsDecoder = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'feet',
+	_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'legs',
+		_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'hands',
+			_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+				'belly',
+				_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+				A3(
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+					'arms',
+					_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+					A3(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+						'chest',
+						_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+						A3(
+							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+							'shoulders',
+							_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+							A3(
+								_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+								'face',
+								_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+								A3(
+									_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+									'head',
+									_inFact_coop$stimmy_things$Data_Hotspots$hotspotCoordsDecoder,
+									_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_inFact_coop$stimmy_things$Types$Hotspots))))))))));
+var _inFact_coop$stimmy_things$Data_Hotspots$decodeHotspots = _elm_lang$core$Json_Decode$decodeValue(_inFact_coop$stimmy_things$Data_Hotspots$hotspotsDecoder);
+
+var _inFact_coop$stimmy_things$Data_Log$updateTime = F2(
+	function (time, log) {
+		return _elm_lang$core$Native_Utils.update(
 			log,
-			{
-				preFeelings: A2(
-					_elm_lang$core$Basics_ops['++'],
-					log.preFeelings,
-					{
-						ctor: '::',
-						_0: feeling,
-						_1: {ctor: '[]'}
-					})
-			}) : _elm_lang$core$Native_Utils.update(
-			log,
-			{
-				preFeelings: A2(
-					_elm_lang$core$List$filter,
-					function (x) {
-						return !_elm_lang$core$Native_Utils.eq(x, feeling);
-					},
-					log.preFeelings)
-			});
+			{timeTaken: time});
 	});
-var _inFact_coop$stimmy_things$Data_Log$defaultLog = A7(
-	_inFact_coop$stimmy_things$Types$Log,
-	0,
-	'',
-	0,
-	0,
-	{ctor: '[]'},
-	{ctor: '[]'},
-	0);
+var _inFact_coop$stimmy_things$Data_Log$addTimeTaken = function (model) {
+	return _elm_lang$core$Native_Utils.update(
+		model,
+		{
+			newLog: A2(_inFact_coop$stimmy_things$Data_Log$updateTime, model.timeSelected - model.counter, model.newLog)
+		});
+};
+var _inFact_coop$stimmy_things$Data_Log$updatePostFace = F2(
+	function (faceInt, log) {
+		return _elm_lang$core$Native_Utils.update(
+			log,
+			{postFace: faceInt});
+	});
+var _inFact_coop$stimmy_things$Data_Log$updatePreFace = F2(
+	function (faceInt, log) {
+		return _elm_lang$core$Native_Utils.update(
+			log,
+			{preFace: faceInt});
+	});
+var _inFact_coop$stimmy_things$Data_Log$updatePostFeelings = F2(
+	function (feelings, log) {
+		return _elm_lang$core$Native_Utils.update(
+			log,
+			{postFeelings: feelings});
+	});
+var _inFact_coop$stimmy_things$Data_Log$updatePreFeelings = F2(
+	function (feelings, log) {
+		return _elm_lang$core$Native_Utils.update(
+			log,
+			{preFeelings: feelings});
+	});
+var _inFact_coop$stimmy_things$Data_Log$addFace = F3(
+	function (logStage, face, log) {
+		var updateFace = function () {
+			var _p0 = logStage;
+			if (_p0.ctor === 'Pre') {
+				return _inFact_coop$stimmy_things$Data_Log$updatePreFace;
+			} else {
+				return _inFact_coop$stimmy_things$Data_Log$updatePostFace;
+			}
+		}();
+		return A2(
+			updateFace,
+			_inFact_coop$stimmy_things$Data_Face$faceToInt(face),
+			log);
+	});
+var _inFact_coop$stimmy_things$Data_Log$addFeeling = F3(
+	function (logStage, feeling, log) {
+		var accessFeeling = function () {
+			var _p1 = logStage;
+			if (_p1.ctor === 'Pre') {
+				return function (_) {
+					return _.preFeelings;
+				};
+			} else {
+				return function (_) {
+					return _.postFeelings;
+				};
+			}
+		}();
+		var updateFeeling = function () {
+			var _p2 = logStage;
+			if (_p2.ctor === 'Pre') {
+				return _inFact_coop$stimmy_things$Data_Log$updatePreFeelings;
+			} else {
+				return _inFact_coop$stimmy_things$Data_Log$updatePostFeelings;
+			}
+		}();
+		return A2(
+			_inFact_coop$stimmy_things$Helpers_Utils$isNewListEntry,
+			feeling,
+			accessFeeling(log)) ? A2(
+			updateFeeling,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				accessFeeling(log),
+				{
+					ctor: '::',
+					_0: feeling,
+					_1: {ctor: '[]'}
+				}),
+			log) : A2(
+			updateFeeling,
+			A2(
+				_elm_lang$core$List$filter,
+				function (x) {
+					return !_elm_lang$core$Native_Utils.eq(x, feeling);
+				},
+				accessFeeling(log)),
+			log);
+	});
+var _inFact_coop$stimmy_things$Data_Log$defaultLog = {
+	timeTaken: 0,
+	stimId: '',
+	preFace: 0,
+	postFace: 0,
+	preFeelings: {ctor: '[]'},
+	postFeelings: {ctor: '[]'},
+	dateTime: 0
+};
 
 var _inFact_coop$stimmy_things$Data_Stim$defaultStim = A7(_inFact_coop$stimmy_things$Types$Stim, '', _inFact_coop$stimmy_things$Types$Chest, '', '', _elm_lang$core$Maybe$Nothing, false, '');
+
+var _inFact_coop$stimmy_things$Data_Time$trackCounter = function (model) {
+	return (_elm_lang$core$Native_Utils.cmp(model.counter, 0) > 0) ? _elm_lang$core$Native_Utils.update(
+		model,
+		{counter: model.counter - 1}) : model;
+};
+var _inFact_coop$stimmy_things$Data_Time$adjustTime = F2(
+	function (control, model) {
+		var _p0 = control;
+		switch (_p0.ctor) {
+			case 'Stop':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{timerStatus: _inFact_coop$stimmy_things$Types$Stopped});
+			case 'Pause':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{timerStatus: _inFact_coop$stimmy_things$Types$Paused});
+			case 'Start':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{timerStatus: _inFact_coop$stimmy_things$Types$Started});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{counter: model.timeSelected, timerStatus: _inFact_coop$stimmy_things$Types$Stopped});
+		}
+	});
 
 var _inFact_coop$stimmy_things$Views_About$about = function (model) {
 	return A2(
@@ -13876,14 +14372,295 @@ var _inFact_coop$stimmy_things$Views_CreateAvatar$createAvatar = function (model
 		});
 };
 
+var _inFact_coop$stimmy_things$Views_Landing$hotspotDiv = function (hotspot) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+				{
+					ctor: '::',
+					_0: 'br-100',
+					_1: {
+						ctor: '::',
+						_0: 'bg-light-blue-tp',
+						_1: {
+							ctor: '::',
+							_0: 'pointer',
+							_1: {
+								ctor: '::',
+								_0: 'absolute',
+								_1: {
+									ctor: '::',
+									_0: 'flex',
+									_1: {
+										ctor: '::',
+										_0: 'items-center',
+										_1: {
+											ctor: '::',
+											_0: 'justify-center',
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 'left',
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(hotspot.left),
+								'px')
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'top',
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_elm_lang$core$Basics$toString(hotspot.top),
+									'px')
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'width',
+									_1: A2(
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(hotspot.width),
+										'px')
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 'height',
+										_1: A2(
+											_elm_lang$core$Basics_ops['++'],
+											_elm_lang$core$Basics$toString(hotspot.height),
+											'px')
+									},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+						{
+							ctor: '::',
+							_0: 'h1',
+							_1: {
+								ctor: '::',
+								_0: 'w1',
+								_1: {
+									ctor: '::',
+									_0: 'br-100',
+									_1: {
+										ctor: '::',
+										_0: 'breathe',
+										_1: {
+											ctor: '::',
+											_0: 'bg-light-blue',
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
 var _inFact_coop$stimmy_things$Views_Landing$landing = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html$text('Home'),
+			_0: _elm_lang$html$Html_Attributes$class('flex flex-column justify-center items-center'),
 			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$header,
+				{
+					ctor: '::',
+					_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+						{
+							ctor: '::',
+							_0: 'flex',
+							_1: {
+								ctor: '::',
+								_0: 'justify-between',
+								_1: {
+									ctor: '::',
+									_0: 'items-center',
+									_1: {
+										ctor: '::',
+										_0: 'ph2',
+										_1: {
+											ctor: '::',
+											_0: 'vw-100',
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{
+							ctor: '::',
+							_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+								{
+									ctor: '::',
+									_0: 'button',
+									_1: {
+										ctor: '::',
+										_0: 'bn',
+										_1: {
+											ctor: '::',
+											_0: 'h2',
+											_1: {
+												ctor: '::',
+												_0: 'w2',
+												_1: {
+													ctor: '::',
+													_0: 'bg-inherit',
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_inFact_coop$stimmy_things$Helpers_Style$backgroundImageStyle,
+									A3(
+										_inFact_coop$stimmy_things$Helpers_Utils$ifThenElse,
+										_elm_lang$core$Native_Utils.eq(model.showNav, _inFact_coop$stimmy_things$Types$Yes),
+										'./assets/Landing/arrow-left-not-animated.svg',
+										'./assets/Landing/menu-not-animated.svg'),
+									100),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onClick(_inFact_coop$stimmy_things$Types$ToggleNav),
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						{ctor: '[]'}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$h1,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(model.avatarName),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$object,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$id('avatar'),
+						_1: {
+							ctor: '::',
+							_0: A2(_elm_lang$html$Html_Attributes$attribute, 'data', 'assets/avatar_2.svg'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$type_('image/svg+xml'),
+								_1: {
+									ctor: '::',
+									_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+										{
+											ctor: '::',
+											_0: 'background-avatar',
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.head),
+					_1: {
+						ctor: '::',
+						_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.face),
+						_1: {
+							ctor: '::',
+							_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.shoulders),
+							_1: {
+								ctor: '::',
+								_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.chest),
+								_1: {
+									ctor: '::',
+									_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.arms),
+									_1: {
+										ctor: '::',
+										_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.belly),
+										_1: {
+											ctor: '::',
+											_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.hands),
+											_1: {
+												ctor: '::',
+												_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.legs),
+												_1: {
+													ctor: '::',
+													_0: _inFact_coop$stimmy_things$Views_Landing$hotspotDiv(model.hotspots.feet),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		});
 };
 
@@ -13931,10 +14708,332 @@ var _inFact_coop$stimmy_things$Views_StimInfo$stimInfo = function (model) {
 		});
 };
 
+var _inFact_coop$stimmy_things$Views_StimPreparation$onInputValue = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _inFact_coop$stimmy_things$Views_StimPreparation$face = function (face) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				A2(_inFact_coop$stimmy_things$Types$ToggleFace, _inFact_coop$stimmy_things$Types$Pre, face)),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$img,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$src(
+						_inFact_coop$stimmy_things$Data_Face$urlFromFace(face)),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
 var _inFact_coop$stimmy_things$Views_StimPreparation$renderFeelings = function (list) {
-	return A2(_elm_lang$core$List$map, _inFact_coop$stimmy_things$Components_FeelingButtons$feelingButton, list);
+	return A2(
+		_elm_lang$core$List$map,
+		_inFact_coop$stimmy_things$Components_FeelingButtons$feelingButton(_inFact_coop$stimmy_things$Types$Pre),
+		list);
 };
 var _inFact_coop$stimmy_things$Views_StimPreparation$stimPreparation = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('border-box bg-green w-100 h-100 flex-column tc'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$img,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$src('./assets/StimPreparation/back_btn_white.svg'),
+									_1: {ctor: '[]'}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('bg-green h-20'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('TESTING UPDATE'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$img,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$src('./assets/Landing/menu-drawer/about_btn.svg'),
+											_1: {ctor: '[]'}
+										},
+										{ctor: '[]'}),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'backgroundImage', _1: 'url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('ma3 mb4 flex-column'),
+							_1: {ctor: '[]'}
+						}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$img,
+											{ctor: '[]'},
+											{ctor: '[]'}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$p,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Before we start:'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$p,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('How long do you want to do the exercise for?'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('w-80 items-center justify-between tc inline-flex center'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$input,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$id('myRange'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$type_('range'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$min('0'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$max('1800'),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$step('60'),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$class('w-75 bg-light-gray input-reset h-custom slider'),
+																			_1: {
+																				ctor: '::',
+																				_0: _inFact_coop$stimmy_things$Views_StimPreparation$onInputValue(_inFact_coop$stimmy_things$Types$SetTime),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													},
+													{ctor: '[]'}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('bg-center'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$style(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'backgroundImage', _1: 'url(./assets/StimPreparation/slider_counter_tag.svg)'},
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text(
+																_inFact_coop$stimmy_things$Helpers_Utils$unionTypeToString(model.timeSelected / 60)),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$p,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('How are you?'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('flex flew-row'),
+														_1: {ctor: '[]'}
+													},
+													A2(_elm_lang$core$List$map, _inFact_coop$stimmy_things$Views_StimPreparation$face, _inFact_coop$stimmy_things$Data_Face$faces)),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$p,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Any specific feelings?'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$div,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$class('flex flex-wrap items-center justify-around'),
+																		_1: {ctor: '[]'}
+																	},
+																	_inFact_coop$stimmy_things$Views_StimPreparation$renderFeelings(_inFact_coop$stimmy_things$Data_Feelings$feelings)),
+																_1: {ctor: '[]'}
+															}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_inFact_coop$stimmy_things$Components_Button$rectButton,
+															'Next',
+															_inFact_coop$stimmy_things$Types$ChangeView(_inFact_coop$stimmy_things$Types$StimTimer)),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+
+var _inFact_coop$stimmy_things$Views_StimRecap$face = function (face) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				A2(_inFact_coop$stimmy_things$Types$ToggleFace, _inFact_coop$stimmy_things$Types$Post, face)),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$img,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$src(
+						_inFact_coop$stimmy_things$Data_Face$urlFromFace(face)),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _inFact_coop$stimmy_things$Views_StimRecap$renderFeelings = function (list) {
+	return A2(
+		_elm_lang$core$List$map,
+		_inFact_coop$stimmy_things$Components_FeelingButtons$feelingButton(_inFact_coop$stimmy_things$Types$Post),
+		list);
+};
+var _inFact_coop$stimmy_things$Views_StimRecap$stimRecap = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -14000,7 +15099,7 @@ var _inFact_coop$stimmy_things$Views_StimPreparation$stimPreparation = function 
 														{ctor: '[]'},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('Before we start:'),
+															_0: _elm_lang$html$Html$text('Time\'s up!'),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
@@ -14013,67 +15112,67 @@ var _inFact_coop$stimmy_things$Views_StimPreparation$stimPreparation = function 
 												{ctor: '[]'},
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html$text('How long do you want to do the exercise for?'),
+													_0: _elm_lang$html$Html$text('How do you feel now?'),
 													_1: {ctor: '[]'}
 												}),
 											_1: {
 												ctor: '::',
 												_0: A2(
-													_elm_lang$html$Html$input,
+													_elm_lang$html$Html$div,
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html_Events$onInput(_inFact_coop$stimmy_things$Types$SetTime),
-														_1: {
-															ctor: '::',
-															_0: _elm_lang$html$Html_Attributes$type_('number'),
-															_1: {ctor: '[]'}
-														}
+														_0: _elm_lang$html$Html_Attributes$class('flex flew-row'),
+														_1: {ctor: '[]'}
 													},
-													{ctor: '[]'}),
+													A2(_elm_lang$core$List$map, _inFact_coop$stimmy_things$Views_StimRecap$face, _inFact_coop$stimmy_things$Data_Face$faces)),
 												_1: {
 													ctor: '::',
 													_0: A2(
-														_elm_lang$html$Html$p,
+														_elm_lang$html$Html$div,
 														{ctor: '[]'},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('How are you?'),
-															_1: {ctor: '[]'}
+															_0: A2(
+																_elm_lang$html$Html$p,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Any specific feelings?'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$div,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$class('flex flex-wrap items-center justify-around'),
+																		_1: {ctor: '[]'}
+																	},
+																	_inFact_coop$stimmy_things$Views_StimRecap$renderFeelings(_inFact_coop$stimmy_things$Data_Feelings$feelings)),
+																_1: {ctor: '[]'}
+															}
 														}),
 													_1: {
 														ctor: '::',
 														_0: A2(
 															_elm_lang$html$Html$div,
-															{ctor: '[]'},
 															{
 																ctor: '::',
-																_0: A2(
-																	_elm_lang$html$Html$p,
-																	{ctor: '[]'},
-																	{
-																		ctor: '::',
-																		_0: _elm_lang$html$Html$text('Any specific feelings?'),
-																		_1: {ctor: '[]'}
-																	}),
-																_1: {
-																	ctor: '::',
-																	_0: A2(
-																		_elm_lang$html$Html$div,
-																		{
-																			ctor: '::',
-																			_0: _elm_lang$html$Html_Attributes$class('flex flex-wrap items-center justify-around'),
-																			_1: {ctor: '[]'}
-																		},
-																		_inFact_coop$stimmy_things$Views_StimPreparation$renderFeelings(_inFact_coop$stimmy_things$Data_Feelings$feelings)),
-																	_1: {ctor: '[]'}
-																}
+																_0: _elm_lang$html$Html_Events$onClick(_inFact_coop$stimmy_things$Types$RepeatStim),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Do it again?'),
+																_1: {ctor: '[]'}
 															}),
 														_1: {
 															ctor: '::',
 															_0: A2(
 																_inFact_coop$stimmy_things$Components_Button$rectButton,
-																'Next',
-																_inFact_coop$stimmy_things$Types$ChangeView(_inFact_coop$stimmy_things$Types$StimTimer)),
+																'Done',
+																_inFact_coop$stimmy_things$Types$ChangeView(_inFact_coop$stimmy_things$Types$Landing)),
 															_1: {ctor: '[]'}
 														}
 													}
@@ -14090,17 +15189,6 @@ var _inFact_coop$stimmy_things$Views_StimPreparation$stimPreparation = function 
 		});
 };
 
-var _inFact_coop$stimmy_things$Views_StimRecap$stimRecap = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text('Home'),
-			_1: {ctor: '[]'}
-		});
-};
-
 var _inFact_coop$stimmy_things$Views_StimTimer$stimTimer = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -14108,52 +15196,248 @@ var _inFact_coop$stimmy_things$Views_StimTimer$stimTimer = function (model) {
 		{
 			ctor: '::',
 			_0: A2(
-				_inFact_coop$stimmy_things$Components_Button$rectButton,
-				'<',
-				_inFact_coop$stimmy_things$Types$ChangeView(_inFact_coop$stimmy_things$Types$StimPreparation)),
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$img,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$src('./assets/Landing/menu-drawer/about_btn.svg'),
+							_1: {ctor: '[]'}
+						},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
+				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$div,
-					{ctor: '[]'},
-					{
+					_inFact_coop$stimmy_things$Components_Button$rectButton,
+					'<',
+					_inFact_coop$stimmy_things$Types$ChangeView(_inFact_coop$stimmy_things$Types$StimPreparation)),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('bg-green tc'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$img,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$src('./assets/StimTimer/white_divider_zigzag_thin.svg'),
+									_1: {ctor: '[]'}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$img,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src('./assets/StimTimer/timer_icn.svg'),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$p,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text(
+												_elm_lang$core$Basics$toString(
+													_elm_lang$core$Basics$floor(model.counter / 60))),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$p,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(
+													_elm_lang$core$Basics$toString(
+														A2(
+															_elm_lang$core$Basics$rem,
+															_elm_lang$core$Basics$round(model.counter),
+															60))),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$img,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(
+														_inFact_coop$stimmy_things$Types$AdjustTimer(_inFact_coop$stimmy_things$Types$Restart)),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$src('./assets/StimTimer/timer_replay_btn.svg'),
+														_1: {ctor: '[]'}
+													}
+												},
+												{ctor: '[]'}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$img,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(
+															_inFact_coop$stimmy_things$Types$AdjustTimer(_inFact_coop$stimmy_things$Types$Start)),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$src('./assets/StimTimer/timer_play_btn.svg'),
+															_1: {ctor: '[]'}
+														}
+													},
+													{ctor: '[]'}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$img,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(
+																_inFact_coop$stimmy_things$Types$AdjustTimer(_inFact_coop$stimmy_things$Types$Pause)),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$src('./assets/StimTimer/timer_pause_btn.svg'),
+																_1: {ctor: '[]'}
+															}
+														},
+														{ctor: '[]'}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$img,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$src('./assets/StimTimer/white_divider_zigzag_thin.svg'),
+																_1: {ctor: '[]'}
+															},
+															{ctor: '[]'}),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}),
+					_1: {
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$p,
+							_elm_lang$html$Html$div,
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									_elm_lang$core$Basics$toString(
-										_elm_lang$core$Basics$floor(model.counter / 60))),
+								_0: A2(
+									_elm_lang$html$Html$img,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_inFact_coop$stimmy_things$Types$StopTimer),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$src('./assets/StimTimer/timer_done_btn.svg'),
+											_1: {ctor: '[]'}
+										}
+									},
+									{ctor: '[]'}),
 								_1: {ctor: '[]'}
 							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$p,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text(
-										_elm_lang$core$Basics$toString(
-											A2(
-												_elm_lang$core$Basics$rem,
-												_elm_lang$core$Basics$round(model.counter),
-												60))),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}
-					}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+
+var _inFact_coop$stimmy_things$Ports$timeSubscription = function (model) {
+	var _p0 = model.timerStatus;
+	switch (_p0.ctor) {
+		case 'Stopped':
+			return _elm_lang$core$Platform_Sub$none;
+		case 'Paused':
+			return _elm_lang$core$Platform_Sub$none;
+		default:
+			return A2(_elm_lang$core$Time$every, _elm_lang$core$Time$second, _inFact_coop$stimmy_things$Types$Tick);
+	}
+};
+var _inFact_coop$stimmy_things$Ports$initCarousel = _elm_lang$core$Native_Platform.outgoingPort(
+	'initCarousel',
+	function (v) {
+		return null;
+	});
+var _inFact_coop$stimmy_things$Ports$initHotspots = _elm_lang$core$Native_Platform.outgoingPort(
+	'initHotspots',
+	function (v) {
+		return null;
+	});
+var _inFact_coop$stimmy_things$Ports$recieveHotspotCoords = _elm_lang$core$Native_Platform.incomingPort('recieveHotspotCoords', _elm_lang$core$Json_Decode$value);
+var _inFact_coop$stimmy_things$Ports$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _inFact_coop$stimmy_things$Ports$recieveHotspotCoords(
+				function (_p1) {
+					return _inFact_coop$stimmy_things$Types$RecieveHotspotCoords(
+						_inFact_coop$stimmy_things$Data_Hotspots$decodeHotspots(_p1));
+				}),
+			_1: {
+				ctor: '::',
+				_0: _inFact_coop$stimmy_things$Ports$timeSubscription(model),
 				_1: {ctor: '[]'}
 			}
 		});
 };
 
+var _inFact_coop$stimmy_things$Data_View$updateNav = function (trilean) {
+	var _p0 = trilean;
+	switch (_p0.ctor) {
+		case 'Yes':
+			return _inFact_coop$stimmy_things$Types$No;
+		case 'No':
+			return _inFact_coop$stimmy_things$Types$Yes;
+		default:
+			return _inFact_coop$stimmy_things$Types$Yes;
+	}
+};
+var _inFact_coop$stimmy_things$Data_View$viewToCmds = function (view) {
+	var _p1 = view;
+	switch (_p1.ctor) {
+		case 'Landing':
+			return {
+				ctor: '::',
+				_0: _inFact_coop$stimmy_things$Ports$initCarousel(
+					{ctor: '_Tuple0'}),
+				_1: {ctor: '[]'}
+			};
+		case 'CreateAvatar':
+			return {
+				ctor: '::',
+				_0: _inFact_coop$stimmy_things$Ports$initHotspots(
+					{ctor: '_Tuple0'}),
+				_1: {ctor: '[]'}
+			};
+		default:
+			return {ctor: '[]'};
+	}
+};
 var _inFact_coop$stimmy_things$Data_View$getViewFromRoute = function (hash) {
-	var _p0 = hash;
-	switch (_p0) {
+	var _p2 = hash;
+	switch (_p2) {
 		case '#create-avatar':
 			return _inFact_coop$stimmy_things$Types$CreateAvatar;
 		case '#name-avatar':
@@ -14192,8 +15476,8 @@ var _inFact_coop$stimmy_things$Data_View$viewFromUrl = F2(
 			{view: view});
 	});
 var _inFact_coop$stimmy_things$Data_View$getCurrentView = function (model) {
-	var _p1 = model.view;
-	switch (_p1.ctor) {
+	var _p3 = model.view;
+	switch (_p3.ctor) {
 		case 'CreateAvatar':
 			return _inFact_coop$stimmy_things$Views_CreateAvatar$createAvatar(model);
 		case 'NameAvatar':
@@ -14223,22 +15507,22 @@ var _inFact_coop$stimmy_things$Data_View$getCurrentView = function (model) {
 	}
 };
 
-var _inFact_coop$stimmy_things$Ports$subscriptions = function (model) {
-	return A2(_elm_lang$core$Time$every, _elm_lang$core$Time$second, _inFact_coop$stimmy_things$Types$Tick);
-};
-var _inFact_coop$stimmy_things$Ports$initCarousel = _elm_lang$core$Native_Platform.outgoingPort(
-	'initCarousel',
-	function (v) {
-		return null;
-	});
-
 var _inFact_coop$stimmy_things$Router$view = function (model) {
 	var view = _inFact_coop$stimmy_things$Data_View$getCurrentView(model);
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover flex justify-center items-center'),
+			_0: _inFact_coop$stimmy_things$Helpers_Style$classes(
+				{
+					ctor: '::',
+					_0: 'w-100 mh-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover',
+					_1: {
+						ctor: '::',
+						_0: 'bg-washed-yellow',
+						_1: {ctor: '[]'}
+					}
+				}),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$html$Html_Attributes$id('container'),
@@ -14247,17 +15531,15 @@ var _inFact_coop$stimmy_things$Router$view = function (model) {
 		},
 		{
 			ctor: '::',
-			_0: view,
-			_1: {ctor: '[]'}
+			_0: _inFact_coop$stimmy_things$Components_NavDrawer$navDrawer(model),
+			_1: {
+				ctor: '::',
+				_0: view,
+				_1: {ctor: '[]'}
+			}
 		});
 };
 
-var _inFact_coop$stimmy_things$State$stringToFloat = function (string) {
-	return A2(
-		_elm_lang$core$Result$withDefault,
-		0,
-		_elm_lang$core$String$toFloat(string));
-};
 var _inFact_coop$stimmy_things$State$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -14272,42 +15554,9 @@ var _inFact_coop$stimmy_things$State$update = F2(
 						}),
 					{
 						ctor: '::',
-						_0: _inFact_coop$stimmy_things$Helpers$scrollToTop,
-						_1: {ctor: '[]'}
+						_0: _inFact_coop$stimmy_things$Helpers_Utils$scrollToTop,
+						_1: _inFact_coop$stimmy_things$Data_View$viewToCmds(model.view)
 					});
-			case 'MakeCarousel':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					model,
-					{ctor: '[]'});
-			case 'NoOp':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					model,
-					{ctor: '[]'});
-			case 'ToggleFeeling':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.update(
-						model,
-						{
-							newLog: A2(_inFact_coop$stimmy_things$Data_Log$addFeelingToLog, model.newLog, _p0._0)
-						}),
-					{ctor: '[]'});
-			case 'SetTime':
-				var interval = A2(
-					F2(
-						function (x, y) {
-							return x * y;
-						}),
-					60,
-					_inFact_coop$stimmy_things$State$stringToFloat(_p0._0));
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.update(
-						model,
-						{timeSelected: interval, counter: interval}),
-					{ctor: '[]'});
 			case 'ChangeView':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
@@ -14315,20 +15564,101 @@ var _inFact_coop$stimmy_things$State$update = F2(
 						model,
 						{view: _p0._0}),
 					{ctor: '[]'});
-			default:
+			case 'RecieveHotspotCoords':
+				if (_p0._0.ctor === 'Ok') {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						_elm_lang$core$Native_Utils.update(
+							model,
+							{hotspots: _p0._0._0}),
+						{ctor: '[]'});
+				} else {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						model,
+						{ctor: '[]'});
+				}
+			case 'ToggleNav':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{counter: model.counter - 1}),
+						{
+							showNav: _inFact_coop$stimmy_things$Data_View$updateNav(model.showNav)
+						}),
 					{ctor: '[]'});
+			case 'NoOp':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
+			case 'SetTime':
+				var interval = _inFact_coop$stimmy_things$Helpers_Utils$stringToFloat(_p0._0);
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{timeSelected: interval, counter: interval}),
+					{ctor: '[]'});
+			case 'Tick':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_inFact_coop$stimmy_things$Data_Time$trackCounter(model),
+					{ctor: '[]'});
+			case 'AdjustTimer':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					A2(_inFact_coop$stimmy_things$Data_Time$adjustTime, _p0._0, model),
+					{ctor: '[]'});
+			case 'ToggleFeeling':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							newLog: A3(_inFact_coop$stimmy_things$Data_Log$addFeeling, _p0._0, _p0._1, model.newLog)
+						}),
+					{ctor: '[]'});
+			case 'ToggleFace':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							newLog: A3(_inFact_coop$stimmy_things$Data_Log$addFace, _p0._0, _p0._1, model.newLog)
+						}),
+					{ctor: '[]'});
+			case 'StopTimer':
+				return A2(
+					_ccapndave$elm_update_extra$Update_Extra_Infix_ops[':>'],
+					A2(
+						_ccapndave$elm_update_extra$Update_Extra_Infix_ops[':>'],
+						A2(
+							_elm_lang$core$Platform_Cmd_ops['!'],
+							_inFact_coop$stimmy_things$Data_Log$addTimeTaken(model),
+							{ctor: '[]'}),
+						_inFact_coop$stimmy_things$State$update(
+							_inFact_coop$stimmy_things$Types$AdjustTimer(_inFact_coop$stimmy_things$Types$Stop))),
+					_inFact_coop$stimmy_things$State$update(
+						_inFact_coop$stimmy_things$Types$ChangeView(_inFact_coop$stimmy_things$Types$StimRecap)));
+			default:
+				return A2(
+					_ccapndave$elm_update_extra$Update_Extra_Infix_ops[':>'],
+					A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						_elm_lang$core$Native_Utils.update(
+							model,
+							{newLog: _inFact_coop$stimmy_things$Data_Log$defaultLog, timeSelected: 0, counter: 0}),
+						{ctor: '[]'}),
+					_inFact_coop$stimmy_things$State$update(
+						_inFact_coop$stimmy_things$Types$ChangeView(_inFact_coop$stimmy_things$Types$StimPreparation)));
 		}
 	});
 var _inFact_coop$stimmy_things$State$initModel = {
 	view: _inFact_coop$stimmy_things$Types$Landing,
 	userId: '',
 	avatar: _inFact_coop$stimmy_things$Types$Avatar1,
-	avatarName: '',
+	avatarName: 'Hello',
 	avatarSkinColour: _inFact_coop$stimmy_things$Types$Skin1,
 	stims: {ctor: '[]'},
 	logs: {ctor: '[]'},
@@ -14336,7 +15666,10 @@ var _inFact_coop$stimmy_things$State$initModel = {
 	newLog: _inFact_coop$stimmy_things$Data_Log$defaultLog,
 	timeSelected: 0,
 	counter: 0,
-	timerStatus: _inFact_coop$stimmy_things$Types$Stopped
+	timerStatus: _inFact_coop$stimmy_things$Types$Stopped,
+	paused: false,
+	showNav: _inFact_coop$stimmy_things$Types$Neutral,
+	hotspots: _inFact_coop$stimmy_things$Data_Hotspots$defaultHotspots
 };
 var _inFact_coop$stimmy_things$State$init = function (location) {
 	var model = A2(_inFact_coop$stimmy_things$Data_View$viewFromUrl, location, _inFact_coop$stimmy_things$State$initModel);
@@ -14345,7 +15678,7 @@ var _inFact_coop$stimmy_things$State$init = function (location) {
 		model,
 		{
 			ctor: '::',
-			_0: _inFact_coop$stimmy_things$Ports$initCarousel(
+			_0: _inFact_coop$stimmy_things$Ports$initHotspots(
 				{ctor: '_Tuple0'}),
 			_1: {ctor: '[]'}
 		});
@@ -14359,7 +15692,7 @@ var _inFact_coop$stimmy_things$Main$main = A2(
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _inFact_coop$stimmy_things$Main$main !== 'undefined') {
-    _inFact_coop$stimmy_things$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"Types.Feeling":{"args":[],"tags":{"Anxious":[],"Motivated":[],"Optimistic":[],"Relaxed":[],"Cheerful":[],"Bored":[],"Excited":[],"Happy":[],"Frustrated":[],"Angry":[],"Hyper":[],"Annoyed":[]}},"Types.Msg":{"args":[],"tags":{"SetTime":["String"],"MakeCarousel":[],"Tick":["Time.Time"],"ChangeView":["Types.View"],"UrlChange":["Navigation.Location"],"ToggleFeeling":["Types.Feeling"],"NoOp":[]}},"Types.View":{"args":[],"tags":{"StimTimer":[],"StimPreparation":[],"AddStimSuccessModal":[],"CreateAvatar":[],"ShareModal":[],"StimRecap":[],"Blog":[],"Landing":[],"AddStim":[],"About":[],"StimInfo":[],"Moodboard":[],"NameAvatar":[]}}},"aliases":{"Time.Time":{"args":[],"type":"Float"},"Navigation.Location":{"args":[],"type":"{ href : String , host : String , hostname : String , protocol : String , origin : String , port_ : String , pathname : String , search : String , hash : String , username : String , password : String }"}},"message":"Types.Msg"},"versions":{"elm":"0.18.0"}});
+    _inFact_coop$stimmy_things$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"Types.Feeling":{"args":[],"tags":{"Anxious":[],"Motivated":[],"Optimistic":[],"Relaxed":[],"Cheerful":[],"Bored":[],"Excited":[],"Happy":[],"Frustrated":[],"Angry":[],"Hyper":[],"Annoyed":[]}},"Types.LogStage":{"args":[],"tags":{"Pre":[],"Post":[]}},"Types.Face":{"args":[],"tags":{"Face1":[],"Face5":[],"Face3":[],"Face4":[],"Face2":[]}},"Types.Msg":{"args":[],"tags":{"RepeatStim":[],"SetTime":["String"],"Tick":["Time.Time"],"ToggleNav":[],"ChangeView":["Types.View"],"StopTimer":[],"AdjustTimer":["Types.TimerControl"],"UrlChange":["Navigation.Location"],"ToggleFeeling":["Types.LogStage","Types.Feeling"],"ToggleFace":["Types.LogStage","Types.Face"],"RecieveHotspotCoords":["Result.Result String Types.Hotspots"],"NoOp":[]}},"Types.TimerControl":{"args":[],"tags":{"Start":[],"Restart":[],"Pause":[],"Stop":[]}},"Types.View":{"args":[],"tags":{"StimTimer":[],"StimPreparation":[],"AddStimSuccessModal":[],"CreateAvatar":[],"ShareModal":[],"StimRecap":[],"Blog":[],"Landing":[],"AddStim":[],"About":[],"StimInfo":[],"Moodboard":[],"NameAvatar":[]}},"Result.Result":{"args":["error","value"],"tags":{"Ok":["value"],"Err":["error"]}}},"aliases":{"Types.HotspotCoords":{"args":[],"type":"{ bottom : Float , height : Float , left : Float , right : Float , top : Float , width : Float , x : Float , y : Float }"},"Types.Hotspots":{"args":[],"type":"{ head : Types.HotspotCoords , face : Types.HotspotCoords , shoulders : Types.HotspotCoords , chest : Types.HotspotCoords , arms : Types.HotspotCoords , belly : Types.HotspotCoords , hands : Types.HotspotCoords , legs : Types.HotspotCoords , feet : Types.HotspotCoords }"},"Time.Time":{"args":[],"type":"Float"},"Navigation.Location":{"args":[],"type":"{ href : String , host : String , hostname : String , protocol : String , origin : String , port_ : String , pathname : String , search : String , hash : String , username : String , password : String }"}},"message":"Types.Msg"},"versions":{"elm":"0.18.0"}});
 }
 
 if (typeof define === "function" && define['amd'])
