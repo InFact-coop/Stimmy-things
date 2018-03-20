@@ -150,6 +150,7 @@ type alias Hotspots =
 type Msg
     = NoOp
     | UrlChange Navigation.Location
+    | ChangeView View
     | ToggleNav
     | ToggleStimMenu BodyPart
     | RecieveHotspotCoords (Result String Hotspots)

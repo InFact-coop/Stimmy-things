@@ -45,6 +45,9 @@ update msg model =
             { model | view = getViewFromRoute location.hash }
                 ! (scrollToTop :: viewToCmds model.view)
 
+        ChangeView view ->
+            { model | view = view } ! []
+
         RecieveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
 

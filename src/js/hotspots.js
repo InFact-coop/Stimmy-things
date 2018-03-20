@@ -1,25 +1,18 @@
-import Flickity from 'flickity';
-import Dexie from 'dexie';
-import idb from './idb';
+import app from './elm-init';
 
-const Elm = require('../elm/Main.elm');
-const app = Elm.Main.fullscreen();
-const db = new Dexie('stimmy_things');
+const hotspotBodyParts = [
+  'head',
+  'face',
+  'shoulders',
+  'chest',
+  'arms',
+  'belly',
+  'hands',
+  'legs',
+  'feet'
+];
 
-app.ports.initCarousel.subscribe(() => {
-  window.requestAnimationFrame(() => {
-    const carouselElement = document.querySelector('.makecarousel');
-    const flkty = new Flickity(carouselElement, {
-      lazyLoad: true,
-      adaptiveHeight: true,
-      wrapAround: true,
-      prevNextButtons: false,
-      pageDots: true
-    });
-  });
-});
-
-app.ports.initHotspots.subscribe(() => {
+const initHotspots = () => {
   const avatar = document.getElementById('avatar');
   const svgCoords = avatar.getBoundingClientRect();
 
@@ -34,21 +27,9 @@ app.ports.initHotspots.subscribe(() => {
     }
   };
 
-  const hotspotBodyParts = [
-    'head',
-    'face',
-    'shoulders',
-    'chest',
-    'arms',
-    'belly',
-    'hands',
-    'legs',
-    'feet'
-  ];
-
   const createHotspotCoords = () => {
-    const svgDoc = avatar.contentDocument;
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
+      const svgDoc = avatar.contentDocument;
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
       const bounding = hotspot.getBoundingClientRect();
       const coords = {
@@ -70,4 +51,6 @@ app.ports.initHotspots.subscribe(() => {
   };
 
   getSvgDoc(createHotspotCoords);
-});
+};
+
+export default { initHotspots };
