@@ -1,14 +1,14 @@
 module State exposing (..)
 
+import Data.Database exposing (dbDataToModel)
+import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
-import Navigation exposing (..)
-import Data.Hotspots exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
-import Ports exposing (..)
 import Navigation exposing (..)
+import Ports exposing (..)
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
 
@@ -19,7 +19,7 @@ initModel =
     , userId = ""
     , avatar = Avatar1
     , avatarName = "Sion"
-    , avatarSkinColour = Skin1
+    , skinColour = SkinColour1
     , stims = []
     , logs = []
     , newStim = defaultStim
@@ -53,10 +53,10 @@ update msg model =
         ChangeView view ->
             { model | view = view } ! (scrollToTop :: viewToCmds model.view)
 
-        RecieveHotspotCoords (Ok coords) ->
+        ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
 
-        RecieveHotspotCoords (Err err) ->
+        ReceiveHotspotCoords (Err err) ->
             model ! []
 
         ToggleNav ->
@@ -105,3 +105,9 @@ update msg model =
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
+
+        ReceiveInitialData (Ok dbData) ->
+            dbDataToModel dbData model ! []
+
+        ReceiveInitialData (Err err) ->
+            model ! []

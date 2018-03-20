@@ -1,6 +1,8 @@
 module Data.Feelings exposing (..)
 
 import Types exposing (..)
+import Json.Decode exposing (..)
+import Json.Decode.Pipeline exposing (..)
 
 
 feelings : List Feeling
@@ -18,6 +20,11 @@ feelings =
     , Relaxed
     , Frustrated
     ]
+
+
+decodeFeeling : Decoder Feeling
+decodeFeeling =
+    Json.Decode.map (stringToFeeling) string
 
 
 stringToFeeling : String -> Feeling

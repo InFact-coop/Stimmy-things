@@ -1,8 +1,10 @@
 module Data.Log exposing (..)
 
 import Data.Face exposing (faceToInt)
-import Data.Feelings exposing (stringToFeeling)
+import Data.Feelings exposing (decodeFeeling, stringToFeeling)
 import Helpers.Utils exposing (isNewListEntry, unionTypeToString)
+import Json.Decode exposing (..)
+import Json.Decode.Pipeline exposing (..)
 import Time exposing (Time)
 import Types exposing (..)
 
@@ -17,6 +19,18 @@ defaultLog =
     , postFeelings = []
     , dateTime = 0
     }
+
+
+decodeLog : Decoder Log
+decodeLog =
+    decode Log
+        |> required "timeTaken" float
+        |> required "stimId" string
+        |> required "preFace" int
+        |> required "postFace" int
+        |> required "preFeelings" (list decodeFeeling)
+        |> required "postFeelings" (list decodeFeeling)
+        |> required "dateTime" float
 
 
 addFeeling : LogStage -> Feeling -> Log -> Log
