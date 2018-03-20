@@ -7,7 +7,7 @@ import Components.Face exposing (face)
 import Data.Feelings exposing (feelings)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString)
 import Html exposing (..)
-import Html.Attributes as H exposing (..)
+import Html.Attributes as Attr exposing (..)
 import Html.Events exposing (on, onClick, onInput, targetValue)
 import Json.Decode as Json
 import Types exposing (..)
@@ -31,7 +31,7 @@ stimPreparation model =
                     ]
                 , p [] [ text "How long do you want to do the exercise for?" ]
                 , div [ class "w-80 items-center justify-between tc inline-flex center" ]
-                    [ input [ id "myRange", type_ "range", H.min "0", H.max "1800", step "60", class "w-75 bg-light-gray input-reset h-custom slider", onInputValue SetTime ]
+                    [ input [ id "myRange", type_ "range", Attr.min "0", Attr.max "1800", step "60", class "w-75 bg-light-gray input-reset h-custom slider", onInputValue SetTime ]
                         []
                     , div
                         [ class "bg-center"

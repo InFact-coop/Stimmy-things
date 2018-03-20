@@ -41,6 +41,7 @@ type alias Model =
     , timerStatus : TimerStatus
     , paused : Bool
     , showNav : Trilean
+    , stimMenuShowing : Maybe BodyPart
     , hotspots : Hotspots
     }
 
@@ -93,6 +94,7 @@ type BodyPart
     | Hands
     | Legs
     | Feet
+    | NoBodyPart
 
 
 type alias Log =
@@ -140,7 +142,8 @@ type LogStage
 
 
 type alias HotspotCoords =
-    { bottom : Float
+    { name : BodyPart
+    , bottom : Float
     , height : Float
     , left : Float
     , right : Float
@@ -190,3 +193,4 @@ type Msg
     | ToggleNav
     | RecieveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
+    | ToggleStimMenu BodyPart
