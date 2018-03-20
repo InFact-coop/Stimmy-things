@@ -33,11 +33,12 @@ const initHotspots = () => {
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
       const bounding = hotspot.getBoundingClientRect();
       const coords = {
+        name: bodypart,
         bottom: bounding.bottom,
         height: bounding.height,
         left: bounding.left + window.scrollX + svgCoords.left,
-        right: bounding.right,
-        top: bounding.top + window.scrollY + svgCoords.top,
+        right: svgCoords.right - bounding.right - 16,
+        top: bounding.top + window.scrollY + svgCoords.top - 16,
         width: bounding.width,
         x: bounding.x,
         y: bounding.y
