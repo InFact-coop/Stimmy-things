@@ -12,6 +12,9 @@ port initCarousel : () -> Cmd msg
 port saveLog : DBLog -> Cmd msg
 
 
+port initDB : List DBStim -> Cmd msg
+
+
 port initHotspots : () -> Cmd msg
 
 
