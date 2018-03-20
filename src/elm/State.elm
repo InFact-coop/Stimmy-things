@@ -1,13 +1,16 @@
-port module State exposing (..)
+module State exposing (..)
 
-import Data.Hotspots exposing (..)
-import Data.Log exposing (defaultLog)
+import Data.Log exposing (addFeeling, addFace, defaultLog, addTimeTaken)
 import Data.Stim exposing (defaultStim)
-import Data.View exposing (..)
-import Helpers.Util exposing (scrollToTop)
+import Data.Time exposing (adjustTime, trackCounter)
+import Data.View exposing (getViewFromRoute, viewFromUrl, viewToCmds, updateNav)
+import Navigation exposing (..)
+import Data.Hotspots exposing (..)
+import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Navigation exposing (..)
 import Types exposing (..)
+import Update.Extra.Infix exposing ((:>))
 
 
 initModel : Model
@@ -21,7 +24,9 @@ initModel =
     , logs = []
     , newStim = defaultStim
     , newLog = defaultLog
+    , timeSelected = 0
     , counter = 0
+    , timerStatus = Stopped
     , paused = False
     , showNav = Neutral
     , hotspots = defaultHotspots
@@ -58,3 +63,33 @@ update msg model =
 
         NoOp ->
             model ! []
+
+        SetTime time ->
+            let
+                interval =
+                    stringToFloat time
+            in
+                { model | timeSelected = interval, counter = interval } ! []
+
+        Tick _ ->
+            trackCounter model ! []
+
+        AdjustTimer timerControl ->
+            adjustTime timerControl model ! []
+
+        ToggleFeeling logStage feeling ->
+            { model | newLog = addFeeling logStage feeling model.newLog } ! []
+
+        ToggleFace logStage face ->
+            { model | newLog = addFace logStage face model.newLog } ! []
+
+        StopTimer ->
+            addTimeTaken model
+                ! []
+                :> update (AdjustTimer Stop)
+                :> update (ChangeView StimRecap)
+
+        RepeatStim ->
+            { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
+                ! []
+                :> update (ChangeView StimPreparation)

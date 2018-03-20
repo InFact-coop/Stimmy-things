@@ -4,28 +4,28 @@ body {
 /* fonts */
 
 @font-face {
-  font-family: 'Work Sans';
-  src: url('./fonts/WorkSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-family: "Work Sans";
+  src: url("./fonts/WorkSans-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'Work Sans';
-  src: url('./fonts/WorkSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-family: "Work Sans";
+  src: url("./fonts/WorkSans-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'Wellcome';
-  src: url('./fonts/wellcome-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-family: "Wellcome";
+  src: url("./fonts/wellcome-bold-webfont.ttf") format("truetype"); /* Safari, Android, iOS */
 }
 
 .work-sans {
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
 }
 
 .wellcome {
-  font-family: 'Wellcome';
+  font-family: "Wellcome";
 }
 
 .lh-f1 {
@@ -212,7 +212,7 @@ body {
   width: 95vw;
 }
 .timer-font {
-  font-family: 'Wellcome';
+  font-family: "Wellcome";
   font-size: 72px;
   line-height: 96px;
 }
@@ -240,6 +240,23 @@ body {
 
 .smooth {
   transform: translate3d(0, 0, 0);
+}
+
+.slider {
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: var(--green);
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.h-custom {
+  height: 8px;
 }
 
 .bg-green-translucent {
