@@ -2,7 +2,7 @@
   {
     "stimId": "12345",
     "stimName": "Jaguar breathing",
-    "bodyPart": "Chest",
+    "bodyPart": "chest",
     "instructions": "1. then 2. then 3. then 4.",
     "videoSrc": "./website.js",
     "userId": "12345678765432",
@@ -11,7 +11,7 @@
   {
     "stimId": "678910",
     "stimName": "Foot Stomp",
-    "bodyPart": "Feet",
+    "bodyPart": "feet",
     "instructions": "5. then 6 then 7 then 8",
     "videoSrc": "./stuff.js",
     "userId": "1356889538475",
