@@ -14,12 +14,13 @@ import Types exposing (..)
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
-    div [ class "border-box bg-green w-100 h-100 flex-column justify-center align-center content-center items-stretch tc" ]
-        [ div [ class "w-90 bg-white center h-100 flex-column content-around" ]
+    div [ class "border-box bg-green w-100 h-100 flex-column tc" ]
+        [ div [] []
+        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ) ], class "ma3 mb4 flex-column" ]
             [ div []
                 [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []
                 ]
-            , p [ class "bg-green h-20" ] [ text "STIM TITLE" ]
+            , p [ class "bg-green h-20" ] [ text "TESTING UPDATE" ]
             , div []
                 [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] []
                 ]
