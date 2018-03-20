@@ -1,2 +1,2 @@
-require('./elm.js');
-require('../css/index.css');
+import './elm.js';
+import '../css/index.css';
