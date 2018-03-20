@@ -122,10 +122,10 @@ viewToCmds : View -> List (Cmd msg)
 viewToCmds view =
     case view of
         Landing ->
-            [ initCarousel () ]
+            [ initHotspots () ]
 
         CreateAvatar ->
-            [ initHotspots () ]
+            [ initCarousel () ]
 
         _ ->
             []

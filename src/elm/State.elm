@@ -5,7 +5,6 @@ import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
 import Data.View exposing (..)
 import Helpers.Util exposing (scrollToTop)
-import Ports exposing (..)
 import Navigation exposing (..)
 import Types exposing (..)
 
@@ -35,7 +34,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ initHotspots () ]
+        model ! (scrollToTop :: viewToCmds model.view)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -46,7 +45,7 @@ update msg model =
                 ! (scrollToTop :: viewToCmds model.view)
 
         ChangeView view ->
-            { model | view = view } ! []
+            { model | view = view } ! (scrollToTop :: viewToCmds model.view)
 
         RecieveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
