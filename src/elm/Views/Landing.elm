@@ -1,6 +1,6 @@
 module Views.Landing exposing (..)
 
-import Helpers.Util exposing (..)
+import Helpers.Utils exposing (..)
 import Helpers.Style exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)

@@ -2,7 +2,7 @@ module Data.View exposing (..)
 
 import Html exposing (..)
 import Navigation
-import Helpers.Util exposing (ifThenElse)
+import Helpers.Utils exposing (ifThenElse)
 import Types exposing (..)
 import Views.About exposing (..)
 import Views.AddStim exposing (..)

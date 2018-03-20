@@ -36,7 +36,9 @@ type alias Model =
     , logs : List Log
     , newStim : Stim
     , newLog : Log
-    , counter : Int
+    , counter : Time
+    , timeSelected : Time
+    , timerStatus : TimerStatus
     , paused : Bool
     , showNav : Trilean
     , stimMenuShowing : Maybe BodyPart
@@ -63,7 +65,7 @@ type AvatarSkinColour
     | Skin7
 
 
-type FacialExpression
+type Face
     = Face1
     | Face2
     | Face3
@@ -96,7 +98,7 @@ type BodyPart
 
 
 type alias Log =
-    { timeTaken : Int
+    { timeTaken : Time
     , stimId : String
     , preFace : Int
     , postFace : Int
@@ -119,6 +121,24 @@ type Feeling
     | Annoyed
     | Relaxed
     | Frustrated
+
+
+type TimerControl
+    = Start
+    | Stop
+    | Pause
+    | Restart
+
+
+type TimerStatus
+    = Started
+    | Stopped
+    | Paused
+
+
+type LogStage
+    = Pre
+    | Post
 
 
 type alias HotspotCoords =
@@ -150,7 +170,14 @@ type alias Hotspots =
 type Msg
     = NoOp
     | UrlChange Navigation.Location
+    | SetTime String
     | ChangeView View
+    | Tick Time
+    | AdjustTimer TimerControl
+    | ToggleFeeling LogStage Feeling
+    | ToggleFace LogStage Face
+    | StopTimer
+    | RepeatStim
     | ToggleNav
     | ToggleStimMenu BodyPart
     | RecieveHotspotCoords (Result String Hotspots)
