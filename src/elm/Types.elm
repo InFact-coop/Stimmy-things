@@ -21,6 +21,12 @@ type View
     | Blog
 
 
+type Trilean
+    = Yes
+    | No
+    | Neutral
+
+
 type alias Model =
     { view : View
     , userId : String
@@ -31,11 +37,16 @@ type alias Model =
     , logs : List Log
     , newStim : Stim
     , newLog : Log
-    , counter : Int
+    , counter : Time
+    , timeSelected : Time
+    , timerStatus : TimerStatus
     , paused : Bool
     , vidSearchString : String
     , videos : List Video
     , videoStatus : RemoteData
+    , showNav : Trilean
+    , stimMenuShowing : Maybe BodyPart
+    , hotspots : Hotspots
     }
 
 
@@ -58,7 +69,7 @@ type AvatarSkinColour
     | Skin7
 
 
-type FacialExpression
+type Face
     = Face1
     | Face2
     | Face3
@@ -87,10 +98,11 @@ type BodyPart
     | Hands
     | Legs
     | Feet
+    | NoBodyPart
 
 
 type alias Log =
-    { timeTaken : Int
+    { timeTaken : Time
     , stimId : String
     , preFace : Int
     , postFace : Int
@@ -130,10 +142,77 @@ type alias Video =
     }
 
 
+type TimerControl
+    = Start
+    | Stop
+    | Pause
+    | Restart
+
+
+type TimerStatus
+    = Started
+    | Stopped
+    | Paused
+
+
+type LogStage
+    = Pre
+    | Post
+
+
+type alias HotspotCoords =
+    { name : BodyPart
+    , bottom : Float
+    , height : Float
+    , left : Float
+    , right : Float
+    , top : Float
+    , width : Float
+    , x : Float
+    , y : Float
+    }
+
+
+type alias Hotspots =
+    { head : HotspotCoords
+    , face : HotspotCoords
+    , shoulders : HotspotCoords
+    , chest : HotspotCoords
+    , arms : HotspotCoords
+    , belly : HotspotCoords
+    , hands : HotspotCoords
+    , legs : HotspotCoords
+    , feet : HotspotCoords
+    }
+
+
+type alias DBLog =
+    { timeTaken : Time
+    , stimId : String
+    , preFace : Int
+    , postFace : Int
+    , preFeelings : List String
+    , postFeelings : List String
+    , dateTime : Time
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
-    | MakeCarousel
     | UpdateVideoSearch String
     | CallVideoRequest
     | ReceiveVideos (Result Http.Error (List Video))
+    | SetTime String
+    | ChangeView View
+    | Tick Time
+    | AdjustTimer TimerControl
+    | ToggleFeeling LogStage Feeling
+    | ToggleFace LogStage Face
+    | StopTimer
+    | RepeatStim
+    | SaveLog
+    | ToggleNav
+    | RecieveHotspotCoords (Result String Hotspots)
+    | ReceiveUpdatedLogs (List DBLog)
+    | ToggleStimMenu BodyPart

@@ -2,6 +2,7 @@ module Data.View exposing (..)
 
 import Html exposing (..)
 import Navigation
+import Helpers.Utils exposing (ifThenElse)
 import Types exposing (..)
 import Views.About exposing (..)
 import Views.AddStim exposing (..)
@@ -16,6 +17,7 @@ import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
+import Ports exposing (..)
 
 
 getCurrentView : Model -> Html Msg
@@ -114,3 +116,37 @@ viewFromUrl location model =
             getViewFromRoute location.hash
     in
         { model | view = view }
+
+
+viewToCmds : View -> List (Cmd msg)
+viewToCmds view =
+    case view of
+        Landing ->
+            [ initHotspots () ]
+
+        CreateAvatar ->
+            [ initCarousel () ]
+
+        _ ->
+            []
+
+
+updateNav : Trilean -> Trilean
+updateNav trilean =
+    case trilean of
+        Yes ->
+            No
+
+        No ->
+            Yes
+
+        Neutral ->
+            Yes
+
+
+updateStimMenu : Model -> BodyPart -> Maybe BodyPart
+updateStimMenu model bodyPart =
+    ifThenElse
+        (model.stimMenuShowing == Just bodyPart)
+        (Nothing)
+        (Just bodyPart)

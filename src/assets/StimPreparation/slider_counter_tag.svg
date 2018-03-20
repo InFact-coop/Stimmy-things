@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="21px" viewBox="0 0 42 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>slider_counter_tag</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-5.000000, -14.000000)" fill="#BDF0E6">
+            <path d="M10.087886,29.591906 L5,24.5095074 L10.087886,19.4095073 L10.087886,16 C10.087886,14.8954305 10.9811896,14 12.0831354,14 L45.0047506,14 C46.1066964,14 47,14.8954305 47,16 L47,33 C47,34.1045695 46.1066964,35 45.0047506,35 L12.0831354,35 C10.9811896,35 10.087886,34.1045695 10.087886,33 L10.087886,29.591906 Z" id="slider_counter_tag"></path>
+        </g>
+    </g>
+</svg>

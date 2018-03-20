@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="345px" height="15px" viewBox="0 0 345 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>white_divider_zigzag_thin</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-31.000000, -16.000000)" stroke="#FFFFFF">
+            <polyline id="divider" points="31 29.9896098 44.0484115 17.6510873 56.5748865 29.2103369 68.0574887 17.6510873 79.5400908 29.2103369 91.0374614 17.5109299 103.027231 29.2103369 114.921352 17.6510873 125.992436 29.2373892 137.475038 17.6510873 148.95764 29.2103369 159.396369 17.6510873 171.400908 29.2373892 182.88351 17.6510873 194.366112 29.2373892 207.414523 17.6510873 219.618363 29.7999315 232.471856 17.0043617 245.526324 30 258.574739 17.0103868 271.612712 29.9896056 284.66112 17 297.709531 29.9896098 310.757943 17 323.806354 29.9896098 336.854766 17 349.903177 29.9896098 362.951589 17 376 29.9896098"></polyline>
+        </g>
+    </g>
+</svg>

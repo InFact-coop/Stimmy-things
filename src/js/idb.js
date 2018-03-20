@@ -1,15 +1,14 @@
 const createTables = db => {
   return db.version(1).stores({
-    user: 'user_id, avatar, skin_colour, name',
-    stims:
-      'stim_id, stim_name, body_part, instructions, video_src, user_id, shared',
+    user: 'userId, avatar, skinColour, name',
+    stims: 'stimId, stimName, bodyPart, instructions, videoSrc, userId, shared',
     logs:
-      '++id, stim_id, time_taken, pre_face, post_face, pre_feelings, post_feelings, date_time'
+      '++id, stimId, timeTaken, preFace, postFace, preFeelings, postFeelings, dateTime'
   });
 };
 
-const createOrUpdateUser = (db, { user_id, avatar, skin_colour, name }) => {
-  return db.user.put({ user_id, name, avatar, skin_colour });
+const createOrUpdateUser = (db, { userId, avatar, skinColour, name }) => {
+  return db.user.put({ userId, name, avatar, skinColour });
 };
 
 const getUser = db => {
@@ -18,39 +17,31 @@ const getUser = db => {
 
 const addStim = (
   db,
-  { stim_id, stim_name, body_part, instructions, video_src, user_id, shared }
+  { stimId, stimName, bodyPart, instructions, videoSrc, userId, shared }
 ) => {
   return db.stims.put({
-    stim_id,
-    stim_name,
-    body_part,
+    stimId,
+    stimName,
+    bodyPart,
     instructions,
-    video_src,
-    user_id,
+    videoSrc,
+    userId,
     shared
   });
 };
 
 const addLog = (
   db,
-  {
-    stim_id,
-    time_taken,
-    pre_face,
-    post_face,
-    pre_feelings,
-    post_feelings,
-    date_time
-  }
+  { stimId, timeTaken, preFace, postFace, preFeelings, postFeelings, dateTime }
 ) => {
   return db.logs.put({
-    stim_id,
-    time_taken,
-    pre_face,
-    post_face,
-    pre_feelings,
-    post_feelings,
-    date_time
+    stimId,
+    timeTaken,
+    preFace,
+    postFace,
+    preFeelings,
+    postFeelings,
+    dateTime
   });
 };
 
@@ -62,8 +53,8 @@ const getAllLogs = db => {
   return db.logs.toArray();
 };
 
-const deleteStim = stim_id => {
-  return db.stims.delete(stim_id);
+const deleteStim = stimId => {
+  return db.stims.delete(stimId);
 };
 
 const getAllTheData = db => {
@@ -80,5 +71,8 @@ export default {
   createTables,
   createOrUpdateUser,
   getUser,
+  addStim,
+  addLog,
+  getAllLogs,
   getAllTheData
 };

@@ -1,1 +1,3 @@
-require('./elm.js');
+import './elm-init';
+import './elm-ports';
+import '../css/index.css';

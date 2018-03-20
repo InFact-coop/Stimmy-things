@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="45px" viewBox="0 0 48 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>face_4</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-12.000000, -11.000000)">
+            <g id="face_4" transform="translate(12.000000, 11.000000)">
+                <path d="M5.05777957,6.54068637 C27.7365949,-10.0806124 55.0073853,7.27292351 44.9246248,32.8389293 C39.6325168,46.2576815 14.28359,49.1714659 5.75957919,37.9070473 C-0.688132594,29.3864428 -0.442803245,27.5529938 0.495386309,18.6973997 C1.12084601,12.7936704 2.64164377,8.74143256 5.05777957,6.54068637 Z" id="Path-6" fill="#BDF0E6"></path>
+                <path d="M18.1975199,32.957992 C20.858325,34.072109 22.5812106,34.6796296 23.3661765,34.7805538 C24.1511425,34.881478 25.7478313,34.881478 28.1562427,34.7805538" id="Path-27" stroke="#CC5C61" stroke-width="2"></path>
+                <ellipse id="Oval-6" fill="#27221B" cx="34.3482795" cy="16.671767" rx="1.63563236" ry="1.75246324"></ellipse>
+                <ellipse id="Oval-6" fill="#27221B" cx="15.7721692" cy="16.671767" rx="1.63563236" ry="1.75246324"></ellipse>
+                <path d="M24.9069981,19.3004618 L24.9069981,27.6159979" id="Line" stroke="#27221B" stroke-width="2" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>
