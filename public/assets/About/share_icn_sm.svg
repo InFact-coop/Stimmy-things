@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="42px" viewBox="0 0 40 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>share_icn_sm</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-16.000000, -12.000000)">
+            <g id="share_icn" transform="translate(16.000000, 12.000000)">
+                <path d="M1.19122342,13.4357531 C-5.07777427,31.8003473 14.6069635,45.9632152 31.948353,40.9979374 C37.4516916,39.4221926 40.5209413,27.9352728 39.9271374,23.3041781 C36.9461684,0.0555091098 12.8825337,-9.54582647 1.60714642,12.1509769 C2.16637346,10.5569991 2.02773246,10.9852578 1.19122342,13.4357531 Z" id="Path-4" fill="#FFFFFF"></path>
+                <g id="share-bold" transform="translate(10.000000, 11.000000)">
+                    <path d="M7,8.4 L13.5333333,5.13333333" id="Shape" stroke="#449694" stroke-width="2"></path>
+                    <path d="M7,11.6666667 L13.5333333,14.9333333" id="Shape" stroke="#449694" stroke-width="2"></path>
+                    <circle id="Oval" fill="#449694" cx="3.96666667" cy="10.5" r="3.96666667"></circle>
+                    <circle id="Oval" fill="#449694" cx="17.0333333" cy="3.96666667" r="3.96666667"></circle>
+                    <circle id="Oval" fill="#449694" cx="17.0333333" cy="17.0333333" r="3.96666667"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

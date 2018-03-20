@@ -1,3 +1,6 @@
+body {
+  margin: 0;
+}
 /* fonts */
 
 @font-face {
@@ -53,6 +56,161 @@
   line-height: 13px;
 }
 
+.vw-100 {
+  width: 100vw;
+}
+.h-100vw {
+  height: 100vw;
+}
+
+.bg-light-blue-tp {
+  background-color: rgba(85, 148, 207, 0.4);
+}
+
+.top-4 {
+  top: 4rem;
+}
+/* Animations */
+
+@keyframes breatheAnimation {
+  0% {
+    transform: scale(1);
+  }
+  2% {
+    transform: scale(1.1);
+  }
+  4% {
+    transform: scale(1.2);
+  }
+  6% {
+    transform: scale(1.3);
+  }
+  8% {
+    transform: scale(1.4);
+  }
+  10% {
+    transform: scale(1.5);
+  }
+  12% {
+    transform: scale(1.4);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  16% {
+    transform: scale(1.2);
+  }
+  18% {
+    transform: scale(1.1);
+  }
+  20% {
+    transform: scale(1);
+  }
+  22% {
+    transform: scale(1.1);
+  }
+  24% {
+    transform: scale(1.2);
+  }
+  26% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1.4);
+  }
+  30% {
+    transform: scale(1.5);
+  }
+  32% {
+    transform: scale(1.4);
+  }
+  34% {
+    transform: scale(1.3);
+  }
+  36% {
+    transform: scale(1.2);
+  }
+  38% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.breathe {
+  display: block;
+  animation-name: breatheAnimation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes exitNavAnimation {
+  0% {
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-7rem);
+    opacity: 0;
+  }
+}
+@keyframes enterNavAnimation {
+  0% {
+    transform: translateX(-7rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+}
+
+.exitNav {
+  animation-name: exitNavAnimation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform: translateX(-7rem);
+  opacity: 0;
+}
+.enterNav {
+  animation-name: enterNavAnimation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform: translateX(0rem);
+  opacity: 1;
+}
+
+@keyframes blink {
+  0% {
+    transform: scaleX(1) scaleY(1);
+  }
+  1% {
+    transform: scaleX(1) scaleY(0);
+  }
+  10% {
+    transform: scaleX(1) scaleY(1);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+.eye {
+  animation-name: blink;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+.background-avatar {
+  width: 95vw;
+}
 .timer-font {
   font-family: 'Wellcome';
   font-size: 72px;
@@ -82,4 +240,8 @@
 
 .smooth {
   transform: translate3d(0, 0, 0);
+}
+
+.bg-green-translucent {
+  background-color: rgba(68, 150, 148, 0.9);
 }

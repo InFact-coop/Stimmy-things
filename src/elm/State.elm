@@ -1,11 +1,12 @@
 port module State exposing (..)
 
+import Data.Hotspots exposing (..)
 import Data.Log exposing (defaultLog)
 import Data.Stim exposing (defaultStim)
-import Data.View exposing (getViewFromRoute, viewFromUrl)
-import Helpers exposing (scrollToTop)
-import Navigation exposing (..)
+import Data.View exposing (..)
+import Helpers.Util exposing (scrollToTop)
 import Ports exposing (..)
+import Navigation exposing (..)
 import Types exposing (..)
 
 
@@ -14,7 +15,7 @@ initModel =
     { view = Landing
     , userId = ""
     , avatar = Avatar1
-    , avatarName = ""
+    , avatarName = "Hello"
     , avatarSkinColour = Skin1
     , stims = []
     , logs = []
@@ -22,6 +23,8 @@ initModel =
     , newLog = defaultLog
     , counter = 0
     , paused = False
+    , showNav = Neutral
+    , hotspots = defaultHotspots
     }
 
 
@@ -31,17 +34,27 @@ init location =
         model =
             viewFromUrl location initModel
     in
-    model ! [ initCarousel () ]
+        model ! [ initHotspots () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UrlChange location ->
-            { model | view = getViewFromRoute location.hash } ! [ scrollToTop ]
+            { model | view = getViewFromRoute location.hash }
+                ! (scrollToTop :: viewToCmds model.view)
 
-        MakeCarousel ->
+        ChangeView view ->
+            { model | view = view } ! []
+
+        RecieveHotspotCoords (Ok coords) ->
+            { model | hotspots = coords } ! []
+
+        RecieveHotspotCoords (Err err) ->
             model ! []
+
+        ToggleNav ->
+            { model | showNav = updateNav model.showNav } ! []
 
         NoOp ->
             model ! []

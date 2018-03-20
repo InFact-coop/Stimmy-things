@@ -1,13 +1,13 @@
 module Helpers.Util exposing (..)
 
-import Regex exposing (..)
-import Task exposing (..)
-import Types exposing (..)
 import Dom.Scroll exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetChecked, targetValue)
 import Json.Decode as Decode
+import Regex exposing (..)
+import Task exposing (..)
+import Types exposing (..)
 
 
 ifThenElse : Bool -> a -> a -> a

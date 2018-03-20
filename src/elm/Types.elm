@@ -20,6 +20,12 @@ type View
     | Blog
 
 
+type Trilean
+    = Yes
+    | No
+    | Neutral
+
+
 type alias Model =
     { view : View
     , userId : String
@@ -32,6 +38,8 @@ type alias Model =
     , newLog : Log
     , counter : Int
     , paused : Bool
+    , showNav : Trilean
+    , hotspots : Hotspots
     }
 
 
@@ -111,7 +119,34 @@ type Feeling
     | Frustrated
 
 
+type alias HotspotCoords =
+    { bottom : Float
+    , height : Float
+    , left : Float
+    , right : Float
+    , top : Float
+    , width : Float
+    , x : Float
+    , y : Float
+    }
+
+
+type alias Hotspots =
+    { head : HotspotCoords
+    , face : HotspotCoords
+    , shoulders : HotspotCoords
+    , chest : HotspotCoords
+    , arms : HotspotCoords
+    , belly : HotspotCoords
+    , hands : HotspotCoords
+    , legs : HotspotCoords
+    , feet : HotspotCoords
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
-    | MakeCarousel
+    | ChangeView View
+    | ToggleNav
+    | RecieveHotspotCoords (Result String Hotspots)
