@@ -20,6 +20,15 @@ backgroundImageStyle url sizePercent =
         ]
 
 
+backgroundImageNoPosition : String -> Int -> Attribute msg
+backgroundImageNoPosition url sizePercent =
+    style
+        [ ( "background-image", "url(" ++ url ++ ")" )
+        , ( "background-repeat", "no-repeat" )
+        , ( "background-size", toString sizePercent ++ "%" )
+        ]
+
+
 headerFont : String
 headerFont =
     "f4 lh-f4 wellcome"

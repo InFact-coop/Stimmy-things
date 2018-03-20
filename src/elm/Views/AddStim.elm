@@ -1,6 +1,8 @@
 module Views.AddStim exposing (..)
 
+import Components.PillButton exposing (..)
 import Components.Video exposing (videoYT)
+import Data.Bodyparts exposing (bodyparts)
 import Helpers.Style exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -20,22 +22,19 @@ addStim model =
             ]
         , div
             [ class "ma0" ]
-            [ Html.form [ class "flex flex-column f6" ]
+            [ Html.form [ class "flex flex-column lh-f6 f6" ]
                 [ div
-                    [ backgroundImageStyle "./assets/zigzag_choose_part_tags_bg.svg" 100
+                    [ backgroundImageNoPosition "./assets/zigzag_choose_part_tags_bg.svg" 100
                     , class "flex flex-column mb3 "
                     ]
-                    [ img [ class "ma3", src "./assets/zigzag_big_grey_down.svg" ]
-                        []
+                    [ img [ class "ma3", src "./assets/zigzag_big_grey_down.svg" ] []
                     , label
                         [ for "choose-exercise" ]
                         []
-                    , p [ class "f6 b ml3 mr3" ]
-                        [ text "Choose a part of the body" ]
-                    , p [ class "ml3 mr3" ] [ text "I want to calm my ..." ]
-                    , p [ class "mb3 ml3 mr3" ] [ text " I am feeling anxious around my ..." ]
-                    , textarea [ class "mb5 bg-transparent bn h6", id "choose-exercise" ] [ text "" ]
-                    , p [ class "mb3 ml3 mr3" ] [ text "exercises go here" ]
+                    , p [ class "ma0" ] [ text "Choose a part of the body" ]
+                    , p [ class "ma0" ] [ text "I want to calm my ..." ]
+                    , p [ class "ma0" ] [ text " I am feeling anxious around my ..." ]
+                    , div [ class " flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyparts)
                     ]
                 , label [ for "exercise-name", class "b h6 ml3 mr3" ] [ text "what would you call this exercise?" ]
                 , textarea [ class "mb6 bg-transparent bn", id "exercise-name" ]
@@ -70,3 +69,8 @@ addStim model =
                 ]
             ]
         ]
+
+
+renderBodyparts : List BodyPart -> List (Html Msg)
+renderBodyparts bodypartList =
+    List.map bodyButton bodypartList

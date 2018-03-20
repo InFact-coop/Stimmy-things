@@ -120,3 +120,6 @@ update msg model =
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
+
+        ToggleBodypart bodypart ->
+            model ! []

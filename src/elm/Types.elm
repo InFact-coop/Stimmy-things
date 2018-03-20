@@ -216,3 +216,4 @@ type Msg
     | RecieveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ToggleStimMenu BodyPart
+    | ToggleBodypart BodyPart
