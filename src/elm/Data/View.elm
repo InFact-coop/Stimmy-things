@@ -2,6 +2,7 @@ module Data.View exposing (..)
 
 import Html exposing (..)
 import Navigation
+import Helpers.Utils exposing (ifThenElse)
 import Types exposing (..)
 import Views.About exposing (..)
 import Views.AddStim exposing (..)
@@ -121,10 +122,10 @@ viewToCmds : View -> List (Cmd msg)
 viewToCmds view =
     case view of
         Landing ->
-            [ initCarousel () ]
+            [ initHotspots () ]
 
         CreateAvatar ->
-            [ initHotspots () ]
+            [ initCarousel () ]
 
         _ ->
             []
@@ -141,3 +142,11 @@ updateNav trilean =
 
         Neutral ->
             Yes
+
+
+updateStimMenu : Model -> BodyPart -> Maybe BodyPart
+updateStimMenu model bodyPart =
+    ifThenElse
+        (model.stimMenuShowing == Just bodyPart)
+        (Nothing)
+        (Just bodyPart)

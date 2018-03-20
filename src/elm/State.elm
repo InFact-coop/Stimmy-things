@@ -1,9 +1,9 @@
 module State exposing (..)
 
-import Data.Log exposing (addFeeling, addFace, defaultLog, addTimeTaken)
+import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
-import Data.View exposing (getViewFromRoute, viewFromUrl, viewToCmds, updateNav)
+import Data.View exposing (..)
 import Navigation exposing (..)
 import Data.Hotspots exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
@@ -18,7 +18,7 @@ initModel =
     { view = Landing
     , userId = ""
     , avatar = Avatar1
-    , avatarName = "Hello"
+    , avatarName = "Sion"
     , avatarSkinColour = Skin1
     , stims = []
     , logs = []
@@ -29,6 +29,7 @@ initModel =
     , timerStatus = Stopped
     , paused = False
     , showNav = Neutral
+    , stimMenuShowing = Nothing
     , hotspots = defaultHotspots
     }
 
@@ -39,7 +40,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ initHotspots () ]
+        model ! (scrollToTop :: viewToCmds model.view)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -50,7 +51,7 @@ update msg model =
                 ! (scrollToTop :: viewToCmds model.view)
 
         ChangeView view ->
-            { model | view = view } ! []
+            { model | view = view } ! (scrollToTop :: viewToCmds model.view)
 
         RecieveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -60,6 +61,9 @@ update msg model =
 
         ToggleNav ->
             { model | showNav = updateNav model.showNav } ! []
+
+        ToggleStimMenu bodyPart ->
+            { model | stimMenuShowing = updateStimMenu model bodyPart } ! []
 
         NoOp ->
             model ! []
@@ -93,3 +97,11 @@ update msg model =
             { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
                 ! []
                 :> update (ChangeView StimPreparation)
+
+        SaveLog ->
+            model
+                ! [ saveLog (normaliseDBLog model.newLog) ]
+                :> update (ChangeView Landing)
+
+        ReceiveUpdatedLogs dbLogs ->
+            { model | logs = List.map normaliseLog dbLogs } ! []

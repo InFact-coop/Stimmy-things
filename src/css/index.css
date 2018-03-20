@@ -54,7 +54,7 @@
 
 /* import flickity for carousel styling */
 
-@import './flickity';
+@import './_flickity';
 
 /* customisable tachyons variables (and any others that you declare) */
 
