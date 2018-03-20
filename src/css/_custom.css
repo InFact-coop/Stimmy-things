@@ -8,13 +8,13 @@ body {
 /* Fonts */
 
 @font-face {
-  font-family: 'Work Sans Regular';
+  font-family: 'Work Sans';
   src: url('./fonts/WorkSans-Regular.ttf') format('truetype');
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'Work Sans Bold';
+  font-family: 'Work Sans';
   src: url('./fonts/WorkSans-Bold.ttf') format('truetype');
   font-weight: bold;
 }
@@ -24,14 +24,8 @@ body {
   src: url('./fonts/wellcome-bold-webfont.ttf') format('truetype');
 }
 
-.work-sans-regular {
-  font-family: 'Work Sans Regular';
-}
-.work-sans-bold {
-  font-family: 'Work Sans Bold';
-}
 .work-sans {
-  font-family: 'Work Sans Regular';
+  font-family: 'Work Sans';
 }
 
 .wellcome {
