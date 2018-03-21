@@ -4,6 +4,7 @@ import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
+import Data.Avatar exposing (avatarHeadSelection)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -19,7 +20,7 @@ stimRecap model =
             ]
         , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
             [ div []
-                [ img [ class "mt6 mb0 mh7", src "./assets/avatar_1_head.svg" ] []
+                [ img [ class "mt6 mb0 mh7", src <| avatarHeadSelection model.avatar ] []
                 , p [ class "b lh-f5 f5" ] [ text "Time's up!" ]
                 , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                 ]

@@ -32,3 +32,25 @@ stringToAvatar avatarStr =
 
         _ ->
             Avatar1
+
+
+avatarHeadSelection : Avatar -> String
+avatarHeadSelection avatar =
+    case avatar of
+        Avatar1 ->
+            "./assets/avatar_1_head.svg"
+
+        Avatar2 ->
+            "./assets/avatar_2_head.svg"
+
+        Avatar3 ->
+            "./assets/avatar_3_head.svg"
+
+        Avatar4 ->
+            "./assets/avatar_4_head.svg"
+
+        Avatar5 ->
+            "./assets/avatar_5_head.svg"
+
+        Avatar6 ->
+            "./assets/avatar_6_head.svg"

@@ -17,7 +17,7 @@ initModel : Model
 initModel =
     { view = Landing
     , userId = ""
-    , avatar = Avatar1
+    , avatar = Avatar2
     , avatarName = "Sion"
     , skinColour = SkinColour1
     , stims = []
