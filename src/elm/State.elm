@@ -7,11 +7,11 @@ import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
-import Navigation exposing (..)
 import Ports exposing (..)
 import Requests.GetVideos exposing (getVideos)
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
+import Transit
 
 
 initModel : Model
@@ -35,25 +35,20 @@ initModel =
     , showNav = Neutral
     , stimMenuShowing = Nothing
     , hotspots = defaultHotspots
+    , transition = Transit.empty
     }
 
 
-init : Navigation.Location -> ( Model, Cmd Msg )
-init location =
-    let
-        model =
-            viewFromUrl location initModel
-    in
-    model ! (scrollToTop :: viewToCmds model.view)
+
+init : ( Model, Cmd Msg )
+init =
+    initModel ! (scrollToTop :: viewToCmds initModel.view)
+
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        UrlChange location ->
-            { model | view = getViewFromRoute location.hash }
-                ! (scrollToTop :: viewToCmds model.view)
-
         ChangeView view ->
             { model | view = view } ! (scrollToTop :: viewToCmds model.view)
 
@@ -102,6 +97,12 @@ update msg model =
 
         ToggleFace logStage face ->
             { model | newLog = addFace logStage face model.newLog } ! []
+
+        TransitMsg a ->
+            Transit.tick TransitMsg a model
+
+        NavigateTo view ->
+            Transit.start TransitMsg (ChangeView view) ( 200, 200 ) model
 
         StopTimer ->
             addTimeTaken model

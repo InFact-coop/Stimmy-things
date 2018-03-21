@@ -1,22 +1,27 @@
 module Types exposing (..)
 
+
 import Http exposing (..)
-import Navigation
+
 import Time exposing (..)
+import Transit
 
 
 type View
     = CreateAvatar
     | NameAvatar
     | Landing
+    | Emergency
+    | OnboardingFirst
+    | OnboardingSecond
     | StimInfo
     | StimPreparation
     | StimTimer
     | StimRecap
     | AddStim
-    | AddStimSuccessModal
     | Moodboard
     | About
+    | Splash
     | ShareModal
     | Blog
 
@@ -28,6 +33,7 @@ type Trilean
 
 
 type alias Model =
+  Transit.WithTransition
     { view : View
     , userId : String
     , avatar : Avatar
@@ -225,7 +231,6 @@ type alias DBData =
 
 type Msg
     = NoOp
-    | UrlChange Navigation.Location
     | UpdateVideoSearch String
     | CallVideoRequest
     | ReceiveVideos (Result Http.Error (List Video))
@@ -239,6 +244,8 @@ type Msg
     | RepeatStim
     | SaveLog
     | ToggleNav
+    | TransitMsg (Transit.Msg Msg)
+    | NavigateTo View
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ToggleStimMenu BodyPart

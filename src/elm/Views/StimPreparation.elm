@@ -2,9 +2,12 @@ module Views.StimPreparation exposing (..)
 
 import Components.Button exposing (..)
 import Components.PillButton exposing (..)
-import Data.Face exposing (faces, urlFromFace)
 import Components.Face exposing (face)
+import Components.FeelingButtons exposing (..)
+
+import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
+import Helpers.Style exposing (horizontalTransition)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
@@ -15,7 +18,7 @@ import Types exposing (..)
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
-    div [ class "border-box bg-green w-100 h-100 flex-column justify-center align-center content-center items-stretch tc" ]
+    div [ class "border-box bg-green w-100 h-100 flex-column justify-center align-center content-center items-stretch tc", horizontalTransition model ]
         [ div [ class "w-90 bg-white center h-100 flex-column content-around" ]
             [ div []
                 [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []

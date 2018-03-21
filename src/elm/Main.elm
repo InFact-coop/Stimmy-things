@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Navigation exposing (program)
+import Html exposing (..)
 import Ports exposing (..)
 import Router exposing (..)
 import State exposing (..)
@@ -9,7 +9,7 @@ import Types exposing (..)
 
 main : Program Never Model Msg
 main =
-    program UrlChange
+    program
         { init = init
         , view = view
         , update = update

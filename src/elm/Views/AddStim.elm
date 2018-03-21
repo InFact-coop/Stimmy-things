@@ -1,5 +1,6 @@
 module Views.AddStim exposing (..)
 
+
 import Components.PillButton exposing (..)
 import Components.Video exposing (videoYT)
 import Data.Bodyparts exposing (bodyparts)
@@ -13,7 +14,7 @@ import Types exposing (..)
 
 addStim : Model -> Html Msg
 addStim model =
-    div [ class "bg-washed-yellow" ]
+    div [ class "bg-washed-yellow", verticalTransition model ]
         [ div
             [ class "bg-green flex flex-column items-center" ]
             [ img [ class "absolute left-0 ma3 ", src "./assets/AddStim/back_btn_white.svg" ] []
