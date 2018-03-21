@@ -14,11 +14,7 @@ view model =
         view =
             getCurrentView model
     in
-        div [ classes [ "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", "bg-washed-yellow" ], id "container" ]
+        div [ classes [ "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover bg-washed-yellow" ], id "container" ]
             [ navDrawer model
             , view
             ]
-
-
-
--- w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover

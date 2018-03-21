@@ -10,13 +10,14 @@ import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
+import Transit
 
 
 initModel : Model
 initModel =
     { view = Landing
     , userId = ""
-    , avatar = Avatar1
+    , avatar = Avatar2
     , avatarName = "Sion"
     , skinColour = SkinColour1
     , stims = []
@@ -31,6 +32,7 @@ initModel =
     , stimMenuShowing = Nothing
     , hotspots = defaultHotspots
     , selectedStim = defaultStim
+    , transition = Transit.empty
     }
 
 
@@ -78,6 +80,12 @@ update msg model =
 
         ToggleFace logStage face ->
             { model | newLog = addFace logStage face model.newLog } ! []
+
+        TransitMsg a ->
+            Transit.tick TransitMsg a model
+
+        NavigateTo view ->
+            Transit.start TransitMsg (ChangeView view) ( 200, 200 ) model
 
         StopTimer ->
             addTimeTaken model

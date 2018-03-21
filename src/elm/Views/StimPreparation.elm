@@ -5,6 +5,8 @@ import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
+import Data.Avatar exposing (avatarHeadSelection)
+import Helpers.Style exposing (horizontalTransition)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
@@ -16,7 +18,7 @@ import Types exposing (..)
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
-    div [ class "border-box bg-green flex-column tc dark-gray" ]
+    div [ class "border-box bg-green flex-column tc dark-gray", horizontalTransition model ]
         [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between h" ]
             [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
             , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text <| model.selectedStim.stimName ]
@@ -31,8 +33,8 @@ stimPreparation model =
             ]
             [ div []
                 [ div []
-                    [ img [ class "mv6", src "./assets/StimPreparation/face_1.svg" ] []
-                    , p [ class "b lh-f5 f5" ] [ text "Before we start:" ]
+                    [ img [ class "mt6 mb0 mh7", src <| avatarHeadSelection model.avatar ] []
+                    , p [ class "b lh-f5 f5 mt0" ] [ text "Before we start:" ]
                     , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                     ]
                 , p [ class "ma7 mb7 mv3 f6 lh-f6" ] [ text "How long do you want to do the exercise for?" ]
@@ -51,7 +53,7 @@ stimPreparation model =
                         ]
                     ]
                 , p [ class "lh-f5 f5" ] [ text "How are you?" ]
-                , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Pre) faces)
+                , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Pre model) faces)
                 , div []
                     [ p [ class "lh-f5 f5" ] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-between mh4" ] (renderFeelings feelings model)

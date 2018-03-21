@@ -10,7 +10,7 @@ import Types exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [ class "flex flex-column justify-center items-center" ]
+    div [ class "flex flex-column justify-center items-center", horizontalTransition model ]
         [ header [ classes [ "flex", "justify-between", "items-center", "ph3", "vw-100" ] ]
             [ button
                 [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
@@ -36,9 +36,9 @@ landing model =
         , stimMenu model model.hotspots.legs
         , stimMenu model model.hotspots.feet
         , button
-            [ classes [ "db h4 w4 fixed bottom-0 bg-transparent bn outline-0" ]
+            [ classes [ "bn", "bg-transparent", "db", "h4", "w4", "fixed", "bottom-0", "outline-0" ]
             , backgroundImageStyle "./assets/Landing/add_stim_btn.svg" 100
-            , onClick (ChangeView AddStim)
+            , onClick <| NavigateTo AddStim
             ]
             []
         ]

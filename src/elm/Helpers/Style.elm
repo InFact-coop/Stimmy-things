@@ -2,6 +2,8 @@ module Helpers.Style exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Helpers.Animation exposing (..)
+import Types exposing (..)
 
 
 classes : List String -> Html.Attribute msg
@@ -43,3 +45,13 @@ smallFontWellcome =
 extraSmallFont : String
 extraSmallFont =
     "f7 lh-f7 work-sans"
+
+
+horizontalTransition : Model -> Attribute msg
+horizontalTransition model =
+    style (fadeSliderX 300 model.transition)
+
+
+verticalTransition : Model -> Attribute msg
+verticalTransition model =
+    style (fadeSliderY 300 model.transition)

@@ -1,10 +1,10 @@
 module Main exposing (..)
 
+import Html exposing (..)
 import Ports exposing (..)
 import Router exposing (..)
 import State exposing (..)
 import Types exposing (..)
-import Html exposing (..)
 
 
 main : Program Never Model Msg
