@@ -3,11 +3,12 @@ module State exposing (..)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
-import Data.Stim exposing (defaultStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
+import Requests.GetVideos exposing (getVideos)
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
 import Transit
@@ -28,6 +29,9 @@ initModel =
     , counter = 0
     , timerStatus = Stopped
     , paused = False
+    , vidSearchString = ""
+    , videos = []
+    , videoStatus = NotAsked
     , showNav = Neutral
     , stimMenuShowing = Nothing
     , hotspots = defaultHotspots
@@ -35,9 +39,11 @@ initModel =
     }
 
 
+
 init : ( Model, Cmd Msg )
 init =
     initModel ! (scrollToTop :: viewToCmds initModel.view)
+
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -51,6 +57,18 @@ update msg model =
 
         ReceiveHotspotCoords (Err err) ->
             model ! []
+
+        UpdateVideoSearch string ->
+            { model | vidSearchString = string } ! []
+
+        CallVideoRequest ->
+            { model | videoStatus = Loading, videos = [] } ! [ getVideos model, videoCarousel () ]
+
+        ReceiveVideos (Ok list) ->
+            { model | videoStatus = ResponseSuccess, videos = list } ! [ videoCarousel () ]
+
+        ReceiveVideos (Err string) ->
+            { model | videoStatus = ResponseFailure } ! []
 
         ToggleNav ->
             { model | showNav = updateNav model.showNav } ! []
@@ -66,7 +84,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-                { model | timeSelected = interval, counter = interval } ! []
+            { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -104,6 +122,15 @@ update msg model =
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
+
+        ToggleBodypart bodypart ->
+            { model | newStim = addBodypart bodypart model.newStim } ! []
+
+        AddExerciseName string ->
+            { model | newStim = addExerciseName string model.newStim } ! []
+
+        AddHowTo string ->
+            { model | newStim = addHowTo string model.newStim } ! []
 
         ReceiveInitialData (Ok dbData) ->
             dbDataToModel dbData model ! []

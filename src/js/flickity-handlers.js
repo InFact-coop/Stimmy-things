@@ -14,4 +14,17 @@ const initCarousel = () => {
   });
 };
 
-export default { initCarousel };
+const videoCarousel = () => {
+  window.requestAnimationFrame(() => {
+    const carouselElement = document.querySelector('.youtubeCarousel');
+    const flkty = new Flickity(carouselElement, {
+      lazyLoad: true,
+      adaptiveHeight: false,
+      wrapAround: true,
+      prevNextButtons: false,
+      pageDots: false
+    });
+  });
+};
+
+export default { initCarousel, videoCarousel };

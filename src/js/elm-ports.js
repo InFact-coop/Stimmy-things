@@ -6,6 +6,8 @@ import hotspots from './hotspots-handlers';
 import defaultStims from '../json/defaultStims.json';
 
 app.ports.initCarousel.subscribe(flickity.initCarousel);
+app.ports.videoCarousel.subscribe(flickity.videoCarousel);
+
 app.ports.initHotspots.subscribe(hotspots.initHotspots);
 app.ports.initDB.subscribe(() => idb.initDB(defaultStims));
 

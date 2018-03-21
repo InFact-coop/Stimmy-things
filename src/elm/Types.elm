@@ -1,5 +1,8 @@
 module Types exposing (..)
 
+
+import Http exposing (..)
+
 import Time exposing (..)
 import Transit
 
@@ -30,24 +33,27 @@ type Trilean
 
 
 type alias Model =
-    Transit.WithTransition
-        { view : View
-        , userId : String
-        , avatar : Avatar
-        , avatarName : String
-        , skinColour : SkinColour
-        , stims : List Stim
-        , logs : List Log
-        , newStim : Stim
-        , newLog : Log
-        , counter : Time
-        , timeSelected : Time
-        , timerStatus : TimerStatus
-        , paused : Bool
-        , showNav : Trilean
-        , stimMenuShowing : Maybe BodyPart
-        , hotspots : Hotspots
-        }
+  Transit.WithTransition
+    { view : View
+    , userId : String
+    , avatar : Avatar
+    , avatarName : String
+    , skinColour : SkinColour
+    , stims : List Stim
+    , logs : List Log
+    , newStim : Stim
+    , newLog : Log
+    , counter : Time
+    , timeSelected : Time
+    , timerStatus : TimerStatus
+    , paused : Bool
+    , vidSearchString : String
+    , videos : List Video
+    , videoStatus : RemoteData
+    , showNav : Trilean
+    , stimMenuShowing : Maybe BodyPart
+    , hotspots : Hotspots
+    }
 
 
 type Avatar
@@ -138,6 +144,21 @@ type Feeling
     | Frustrated
 
 
+type RemoteData
+    = NotAsked
+    | Loading
+    | ResponseFailure
+    | ResponseSuccess
+
+
+type alias Video =
+    { id : String
+    , title : String
+    , description : String
+    , thumbnail : String
+    }
+
+
 type TimerControl
     = Start
     | Stop
@@ -210,6 +231,9 @@ type alias DBData =
 
 type Msg
     = NoOp
+    | UpdateVideoSearch String
+    | CallVideoRequest
+    | ReceiveVideos (Result Http.Error (List Video))
     | SetTime String
     | ChangeView View
     | Tick Time
@@ -225,4 +249,7 @@ type Msg
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ToggleStimMenu BodyPart
+    | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
+    | AddExerciseName String
+    | AddHowTo String
