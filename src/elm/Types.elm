@@ -1,21 +1,24 @@
 module Types exposing (..)
 
-import Transit
 import Time exposing (..)
+import Transit
 
 
 type View
     = CreateAvatar
     | NameAvatar
     | Landing
+    | Emergency
+    | OnboardingFirst
+    | OnboardingSecond
     | StimInfo
     | StimPreparation
     | StimTimer
     | StimRecap
     | AddStim
-    | AddStimSuccessModal
     | Moodboard
     | About
+    | Splash
     | ShareModal
     | Blog
 

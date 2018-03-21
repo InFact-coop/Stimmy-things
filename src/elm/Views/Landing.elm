@@ -10,7 +10,7 @@ import Types exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [ class "flex flex-column justify-center items-center" ]
+    div [ class "flex flex-column justify-center items-center", horizontalTransition model ]
         [ header [ classes [ "flex", "justify-between", "items-center", "ph3", "vw-100" ] ]
             [ button
                 [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
