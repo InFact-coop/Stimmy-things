@@ -98,6 +98,12 @@ update msg model =
                 ! []
                 :> update (ChangeView StimPreparation)
 
+        ChangeViewFromTimer view ->
+            model
+                ! []
+                :> update (AdjustTimer Stop)
+                :> update (ChangeView view)
+
         SaveLog ->
             model
                 ! [ saveLog (normaliseDBLog model.newLog) ]

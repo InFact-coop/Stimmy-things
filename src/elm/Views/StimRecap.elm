@@ -13,25 +13,25 @@ import Types exposing (..)
 
 stimRecap : Model -> Html Msg
 stimRecap model =
-    div [ class "border-box bg-green w-100 h-100 flex-column justify-center align-center content-center items-stretch tc" ]
-        [ div [ class "w-90 bg-white center h-100 flex-column content-around" ]
-            [ img [] []
-            , p [ class "bg-green h-20" ] [ text "STIM TITLE" ]
-            , img [] []
-            , div []
-                [ div []
-                    [ img [] []
-                    , p [] [ text "Time's up!" ]
-                    ]
-                , p [] [ text "How do you feel now?" ]
-                , div [ class "flex flew-row" ] (List.map (face Post) faces)
-                , div []
-                    [ p [] [ text "Any specific feelings?" ]
-                    , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
-                    ]
-                , div [ onClick RepeatStim ] [ text "Do it again?" ]
-                , rectButton "Done" SaveLog
+    div [ class "border-box bg-green flex-column tc dark-gray" ]
+        [ div [ class "flex flex-row mh3 mb3 pt3 items-center justify-between h" ]
+            [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
+            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
+            ]
+        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
+            [ div []
+                [ img [ class "mv6", src "./assets/StimPreparation/face_1.svg" ] []
+                , p [ class "b lh-f5 f5" ] [ text "Time's up!" ]
+                , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                 ]
+            , p [ class "lh-f5 f5" ] [ text "How do you feel now?" ]
+            , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Post) faces)
+            , div []
+                [ p [ class "lh-f5 f5" ] [ text "I also feel.." ]
+                , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
+                ]
+            , p [ onClick <| SaveLog, class "pa2 mb3 br2 mh4 bg-green white" ] [ text "Done" ]
+            , div [ class "green underline pb3 ", onClick RepeatStim ] [ text "Or do it again?" ]
             ]
         ]
 

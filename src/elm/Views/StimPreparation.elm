@@ -1,6 +1,5 @@
 module Views.StimPreparation exposing (..)
 
-import Components.Button exposing (..)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Components.Face exposing (face)
@@ -11,15 +10,16 @@ import Html.Attributes as Attr exposing (..)
 import Html.Events exposing (on, onClick, onInput, targetValue)
 import Json.Decode as Json
 import Types exposing (..)
+import Time exposing (Time)
 
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
     div [ class "border-box bg-green flex-column tc dark-gray" ]
-        [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between" ]
-            [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []
+        [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between h" ]
+            [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
             , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
-            , img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] []
+            , img [ onClick <| ChangeView StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] []
             ]
         , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
             [ div []
@@ -32,13 +32,16 @@ stimPreparation model =
                 , div [ class "w-80 items-center justify-between tc inline-flex center" ]
                     [ input [ id "myRange", type_ "range", Attr.min "0", Attr.max "1800", step "60", class "w-75 bg-light-gray input-reset h-custom slider", onInputValue SetTime ]
                         []
-                    , div
-                        [ class "bg-center"
-                        , style
-                            [ ( "backgroundImage", "url(./assets/StimPreparation/slider_counter_tag.svg)" )
+                    , div []
+                        [ div
+                            [ class "bg-center w3 tc pl1 mt3"
+                            , style
+                                [ ( "backgroundImage", "url(./assets/StimPreparation/slider_counter_tag.svg)" )
+                                ]
                             ]
+                            [ text (unionTypeToString (model.timeSelected / 60)) ]
+                        , p [ class "ma0 pl1" ] [ text <| minOrMins model.timeSelected ]
                         ]
-                        [ text (unionTypeToString (model.timeSelected / 60)) ]
                     ]
                 , p [ class "lh-f5 f5" ] [ text "How are you?" ]
                 , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Pre) faces)
@@ -48,7 +51,7 @@ stimPreparation model =
                     ]
 
                 -- , rectButton "Next" (ChangeView StimTimer)
-                , p [ onClick <| ChangeView StimTimer, class "absolute--fill mh4 bg-green white" ] [ text "Done" ]
+                , p [ onClick <| ChangeView StimTimer, class "mh4 bg-green white" ] [ text "Next" ]
                 ]
             ]
         ]
@@ -62,3 +65,13 @@ renderFeelings list =
 onInputValue : (String -> msg) -> Attribute msg
 onInputValue tagger =
     on "input" (Json.map tagger targetValue)
+
+
+minOrMins : Time -> String
+minOrMins time =
+    case time == 60 of
+        True ->
+            "min"
+
+        False ->
+            "mins"
