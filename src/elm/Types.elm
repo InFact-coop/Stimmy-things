@@ -214,6 +214,7 @@ type Msg
     | ToggleFace LogStage Face
     | StopTimer
     | RepeatStim
+    | ChangeViewFromTimer View
     | SaveLog
     | ToggleNav
     | ReceiveHotspotCoords (Result String Hotspots)

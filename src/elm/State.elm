@@ -14,7 +14,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = Landing
+    { view = StimPreparation
     , userId = ""
     , avatar = Avatar1
     , avatarName = "Sion"
@@ -89,6 +89,12 @@ update msg model =
             { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
                 ! []
                 :> update (ChangeView StimPreparation)
+
+        ChangeViewFromTimer view ->
+            model
+                ! []
+                :> update (AdjustTimer Stop)
+                :> update (ChangeView view)
 
         SaveLog ->
             model

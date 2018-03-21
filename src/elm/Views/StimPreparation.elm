@@ -1,63 +1,76 @@
 module Views.StimPreparation exposing (..)
 
-import Components.Button exposing (..)
+import Components.Button exposing (rectButton)
+import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
-import Components.Face exposing (face)
 import Data.Feelings exposing (feelings)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
 import Html.Events exposing (on, onClick, onInput, targetValue)
 import Json.Decode as Json
+import Time exposing (Time)
 import Types exposing (..)
 
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
-    div [ class "border-box bg-green w-100 h-100 flex-column justify-center align-center content-center items-stretch tc" ]
-        [ div [ class "w-90 bg-white center h-100 flex-column content-around" ]
+    div [ class "border-box bg-green flex-column tc dark-gray" ]
+        [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between h" ]
+            [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
+            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
+            , img [ onClick <| ChangeView StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] []
+            ]
+        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
             [ div []
-                [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []
-                ]
-            , p [ class "bg-green h-20" ] [ text <| model.selectedStim.stimName ]
-            , div []
-                [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] []
-                ]
-            , div []
                 [ div []
-                    [ img [] []
-                    , p [] [ text "Before we start:" ]
+                    [ img [ class "mv6", src "./assets/StimPreparation/face_1.svg" ] []
+                    , p [ class "b lh-f5 f5" ] [ text "Before we start:" ]
+                    , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                     ]
-                , p [] [ text "How long do you want to do the exercise for?" ]
+                , p [ class "ma7 mb7 mv3 f6 lh-f6" ] [ text "How long do you want to do the exercise for?" ]
                 , div [ class "w-80 items-center justify-between tc inline-flex center" ]
                     [ input [ id "myRange", type_ "range", Attr.min "0", Attr.max "1800", step "60", class "w-75 bg-light-gray input-reset h-custom slider", onInputValue SetTime ]
                         []
-                    , div
-                        [ class "bg-center"
-                        , style
-                            [ ( "backgroundImage", "url(./assets/StimPreparation/slider_counter_tag.svg)" )
+                    , div []
+                        [ div
+                            [ class "bg-center w3 tc pl1 mt3"
+                            , style
+                                [ ( "backgroundImage", "url(./assets/StimPreparation/slider_counter_tag.svg)" )
+                                ]
                             ]
+                            [ text (unionTypeToString (model.timeSelected / 60)) ]
+                        , p [ class "ma0 pl1" ] [ text <| minOrMins model.timeSelected ]
                         ]
-                        [ text (unionTypeToString (model.timeSelected / 60)) ]
                     ]
-                , p [] [ text "How are you?" ]
-                , div [ class "flex flew-row" ] (List.map (face Pre) faces)
+                , p [ class "lh-f5 f5" ] [ text "How are you?" ]
+                , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Pre) faces)
                 , div []
-                    [ p [] [ text "Any specific feelings?" ]
-                    , div [ class "flex flex-wrap items-center justify-around h5" ] (renderFeelings feelings)
+                    [ p [ class "lh-f5 f5" ] [ text "Any specific feelings?" ]
+                    , div [ class "flex flex-wrap items-center justify-between mh4" ] (renderFeelings feelings model)
                     ]
-                , rectButton "Next" (ChangeView StimRecap)
+                , rectButton "Next" (ChangeView StimTimer)
                 ]
             ]
         ]
 
 
-renderFeelings : List Feeling -> List (Html Msg)
-renderFeelings list =
-    List.map (feelingButton Pre) list
+renderFeelings : List Feeling -> Model -> List (Html Msg)
+renderFeelings feelings model =
+    List.map (feelingButton Pre model) feelings
 
 
 onInputValue : (String -> msg) -> Attribute msg
 onInputValue tagger =
     on "input" (Json.map tagger targetValue)
+
+
+minOrMins : Time -> String
+minOrMins time =
+    case time == 60 of
+        True ->
+            "min"
+
+        False ->
+            "mins"

@@ -1,7 +1,7 @@
 module Components.Button exposing (..)
 
+import Helpers.Style exposing (bodyFont, classes)
 import Html exposing (..)
-import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Types exposing (..)
 
@@ -9,7 +9,10 @@ import Types exposing (..)
 rectButton : String -> Msg -> Html Msg
 rectButton buttonText msg =
     button
-        [ class "flex items-center justify-center bg-green br2 w-100 white pa2 ma2"
+        [ classes
+            [ "bg-green br2 white pv3 bn w-90"
+            , bodyFont
+            ]
         , onClick msg
         ]
         [ text buttonText ]
