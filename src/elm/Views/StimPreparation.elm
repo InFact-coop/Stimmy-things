@@ -19,10 +19,16 @@ stimPreparation model =
     div [ class "border-box bg-green flex-column tc dark-gray" ]
         [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between h" ]
             [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
-            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
+            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text <| model.selectedStim.stimName ]
             , img [ onClick <| ChangeView StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] []
             ]
-        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
+        , div
+            [ style
+                [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" )
+                , ( "backgroundRepeat", "no-repeat" )
+                ]
+            , class "ma3 mb4 mt0 flex-column work-sans"
+            ]
             [ div []
                 [ div []
                     [ img [ class "mv6", src "./assets/StimPreparation/face_1.svg" ] []

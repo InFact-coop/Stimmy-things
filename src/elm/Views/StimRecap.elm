@@ -1,9 +1,11 @@
 module Views.StimRecap exposing (..)
 
+import Components.Button exposing (rectButton)
 import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
+import Helpers.Style exposing (classes, headerFont)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -13,10 +15,8 @@ import Types exposing (..)
 stimRecap : Model -> Html Msg
 stimRecap model =
     div [ class "border-box bg-green flex-column tc dark-gray" ]
-        [ div [ class "flex flex-row mh3 mb3 pt3 items-center justify-between h" ]
-            [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
-            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
-            ]
+        [ div [ class "flex flex-row mh3 mb3 pt3 items-center justify-between tc" ]
+            [ h1 [ classes [ "white", headerFont ] ] [ text <| model.selectedStim.stimName ] ]
         , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
             [ div []
                 [ img [ class "mv6", src "./assets/StimPreparation/face_1.svg" ] []
@@ -29,7 +29,7 @@ stimRecap model =
                 [ p [ class "lh-f5 f5" ] [ text "I also feel.." ]
                 , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings model)
                 ]
-            , p [ onClick <| SaveLog, class "pa2 mb3 br2 mh4 bg-green white" ] [ text "Done" ]
+            , rectButton "Done" SaveLog
             , div [ class "green underline pb3 ", onClick RepeatStim ] [ text "Or do it again?" ]
             ]
         ]
