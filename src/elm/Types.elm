@@ -244,3 +244,5 @@ type Msg
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
+    | AddExerciseName String
+    | AddHowTo String

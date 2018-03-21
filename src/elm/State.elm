@@ -3,7 +3,7 @@ module State exposing (..)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
-import Data.Stim exposing (defaultStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
@@ -123,7 +123,13 @@ update msg model =
             { model | logs = List.map normaliseLog dbLogs } ! []
 
         ToggleBodypart bodypart ->
-            model ! []
+            { model | newStim = addBodypart bodypart model.newStim } ! []
+
+        AddExerciseName string ->
+            { model | newStim = addExerciseName string model.newStim } ! []
+
+        AddHowTo string ->
+            { model | newStim = addHowTo string model.newStim } ! []
 
         ReceiveInitialData (Ok dbData) ->
             dbDataToModel dbData model ! []
