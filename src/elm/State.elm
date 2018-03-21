@@ -97,7 +97,12 @@ update msg model =
                 :> update (ChangeView view)
 
         SaveLog ->
-            model
+            { model
+                | newLog = defaultLog
+                , timeSelected = 0
+                , counter = 0
+                , selectedStim = defaultStim
+            }
                 ! [ saveLog (normaliseDBLog model.newLog) ]
                 :> update (ChangeView Landing)
 

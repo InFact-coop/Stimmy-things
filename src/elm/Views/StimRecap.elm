@@ -15,7 +15,7 @@ import Types exposing (..)
 stimRecap : Model -> Html Msg
 stimRecap model =
     div [ class "border-box bg-green flex-column tc dark-gray" ]
-        [ div [ class "flex flex-row mh3 mb3 pt3 items-center justify-between tc" ]
+        [ div [ class "mh3 mb3 pt3 center" ]
             [ h1 [ classes [ "white", headerFont ] ] [ text <| model.selectedStim.stimName ] ]
         , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
             [ div []
