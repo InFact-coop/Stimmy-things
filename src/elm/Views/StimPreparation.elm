@@ -1,10 +1,12 @@
 module Views.StimPreparation exposing (..)
 
+import Components.Button exposing (..)
+import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
-import Components.Face exposing (face)
 import Data.Feelings exposing (feelings)
 import Data.Avatar exposing (avatarHeadSelection)
+import Helpers.Style exposing (horizontalTransition)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
@@ -16,7 +18,7 @@ import Time exposing (Time)
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
-    div [ class "border-box bg-green flex-column tc dark-gray" ]
+    div [ class "border-box bg-green flex-column tc dark-gray", horizontalTransition model ]
         [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between h" ]
             [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
             , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]

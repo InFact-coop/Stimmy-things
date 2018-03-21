@@ -5,6 +5,7 @@ import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
 import Data.Avatar exposing (avatarHeadSelection)
+import Helpers.Style exposing (horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -13,7 +14,7 @@ import Types exposing (..)
 
 stimRecap : Model -> Html Msg
 stimRecap model =
-    div [ class "border-box bg-green flex-column tc dark-gray" ]
+    div [ class "border-box bg-green flex-column tc dark-gray", horizontalTransition model ]
         [ div [ class "flex flex-row mh3 mb3 pt3 items-center justify-between h" ]
             [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
             , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]

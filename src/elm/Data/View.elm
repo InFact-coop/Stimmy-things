@@ -2,18 +2,20 @@ module Data.View exposing (..)
 
 import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
-import Navigation
 import Ports exposing (..)
 import Types exposing (..)
 import Views.About exposing (..)
 import Views.AddStim exposing (..)
-import Views.AddStimSuccessModal exposing (..)
 import Views.Blog exposing (..)
 import Views.CreateAvatar exposing (..)
+import Views.Emergency exposing (..)
 import Views.Landing exposing (..)
 import Views.Moodboard exposing (..)
 import Views.NameAvatar exposing (..)
+import Views.Onboarding1 exposing (..)
+import Views.Onboarding2 exposing (..)
 import Views.ShareModal exposing (..)
+import Views.Splash exposing (..)
 import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
@@ -23,6 +25,9 @@ import Views.StimTimer exposing (..)
 getCurrentView : Model -> Html Msg
 getCurrentView model =
     case model.view of
+        AddStim ->
+            addStim model
+
         CreateAvatar ->
             createAvatar model
 
@@ -44,12 +49,6 @@ getCurrentView model =
         StimRecap ->
             stimRecap model
 
-        AddStim ->
-            addStim model
-
-        AddStimSuccessModal ->
-            addStimSuccessModal model
-
         Moodboard ->
             moodboard model
 
@@ -62,60 +61,17 @@ getCurrentView model =
         Blog ->
             blog model
 
+        OnboardingFirst ->
+            onboarding1 model
 
-getViewFromRoute : String -> View
-getViewFromRoute hash =
-    case hash of
-        "#create-avatar" ->
-            CreateAvatar
+        OnboardingSecond ->
+            onboarding2 model
 
-        "#name-avatar" ->
-            NameAvatar
+        Emergency ->
+            emergency model
 
-        "#landing" ->
-            Landing
-
-        "#stim-info" ->
-            StimInfo
-
-        "#stim-preparation" ->
-            StimPreparation
-
-        "#stim-timer" ->
-            StimTimer
-
-        "#stim-recap" ->
-            StimRecap
-
-        "#add-stim" ->
-            AddStim
-
-        "#add-stim-success-modal" ->
-            AddStimSuccessModal
-
-        "#moodboard" ->
-            Moodboard
-
-        "#about" ->
-            About
-
-        "#share-modal" ->
-            ShareModal
-
-        "#blog" ->
-            Blog
-
-        _ ->
-            Landing
-
-
-viewFromUrl : Navigation.Location -> Model -> Model
-viewFromUrl location model =
-    let
-        view =
-            getViewFromRoute location.hash
-    in
-        { model | view = view }
+        Splash ->
+            splash model
 
 
 viewToCmds : View -> List (Cmd msg)

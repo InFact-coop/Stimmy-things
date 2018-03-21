@@ -4,6 +4,7 @@ import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
 import Json.Decode exposing (..)
 import Time exposing (Time)
+import Transit
 import Types exposing (..)
 
 
@@ -48,4 +49,5 @@ subscriptions model =
         , timeSubscription model
         , receiveUpdatedLogs ReceiveUpdatedLogs
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
+        , Transit.subscriptions TransitMsg model
         ]
