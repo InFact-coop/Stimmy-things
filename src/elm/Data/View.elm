@@ -2,7 +2,6 @@ module Data.View exposing (..)
 
 import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
-import Navigation
 import Ports exposing (..)
 import Types exposing (..)
 import Views.About exposing (..)
@@ -61,61 +60,6 @@ getCurrentView model =
 
         Blog ->
             blog model
-
-
-getViewFromRoute : String -> View
-getViewFromRoute hash =
-    case hash of
-        "#create-avatar" ->
-            CreateAvatar
-
-        "#name-avatar" ->
-            NameAvatar
-
-        "#landing" ->
-            Landing
-
-        "#stim-info" ->
-            StimInfo
-
-        "#stim-preparation" ->
-            StimPreparation
-
-        "#stim-timer" ->
-            StimTimer
-
-        "#stim-recap" ->
-            StimRecap
-
-        "#add-stim" ->
-            AddStim
-
-        "#add-stim-success-modal" ->
-            AddStimSuccessModal
-
-        "#moodboard" ->
-            Moodboard
-
-        "#about" ->
-            About
-
-        "#share-modal" ->
-            ShareModal
-
-        "#blog" ->
-            Blog
-
-        _ ->
-            Landing
-
-
-viewFromUrl : Navigation.Location -> Model -> Model
-viewFromUrl location model =
-    let
-        view =
-            getViewFromRoute location.hash
-    in
-        { model | view = view }
 
 
 viewToCmds : View -> List (Cmd msg)

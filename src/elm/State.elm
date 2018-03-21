@@ -7,7 +7,6 @@ import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
-import Navigation exposing (..)
 import Ports exposing (..)
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
@@ -34,24 +33,16 @@ initModel =
     }
 
 
-init : Navigation.Location -> ( Model, Cmd Msg )
-init location =
-    let
-        model =
-            viewFromUrl location initModel
-    in
-        model ! (scrollToTop :: viewToCmds model.view)
+init : ( Model, Cmd Msg )
+init =
+    initModel ! viewToCmds initModel.view
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        UrlChange location ->
-            { model | view = getViewFromRoute location.hash }
-                ! (scrollToTop :: viewToCmds model.view)
-
         ChangeView view ->
-            { model | view = view } ! (scrollToTop :: viewToCmds model.view)
+            { model | view = view } ! viewToCmds model.view
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []

@@ -206,7 +206,6 @@ type alias DBData =
 
 type Msg
     = NoOp
-    | UrlChange Navigation.Location
     | SetTime String
     | ChangeView View
     | Tick Time

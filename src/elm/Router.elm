@@ -1,6 +1,6 @@
 module Router exposing (..)
 
-import Data.View exposing (getCurrentView, getViewFromRoute)
+import Data.View exposing (getCurrentView)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Helpers.Style exposing (..)
