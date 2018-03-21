@@ -47,7 +47,7 @@ stimPreparation model =
                 , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Pre) faces)
                 , div []
                     [ p [ class "lh-f5 f5" ] [ text "Any specific feelings?" ]
-                    , div [ class "flex flex-wrap items-center justify-between mh4" ] (renderFeelings feelings)
+                    , div [ class "flex flex-wrap items-center justify-between mh4" ] (renderFeelings feelings model)
                     ]
 
                 -- , rectButton "Next" (ChangeView StimTimer)
@@ -57,9 +57,9 @@ stimPreparation model =
         ]
 
 
-renderFeelings : List Feeling -> List (Html Msg)
-renderFeelings list =
-    List.map (feelingButton Pre) list
+renderFeelings : List Feeling -> Model -> List (Html Msg)
+renderFeelings feelings model =
+    List.map (feelingButton Pre model) feelings
 
 
 onInputValue : (String -> msg) -> Attribute msg

@@ -1,6 +1,5 @@
 module Views.StimRecap exposing (..)
 
-import Components.Button exposing (..)
 import Components.Face exposing (face)
 import Components.FeelingButtons exposing (..)
 import Data.Face exposing (faces, urlFromFace)
@@ -28,7 +27,7 @@ stimRecap model =
             , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Post) faces)
             , div []
                 [ p [ class "lh-f5 f5" ] [ text "I also feel.." ]
-                , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
+                , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings model)
                 ]
             , p [ onClick <| SaveLog, class "pa2 mb3 br2 mh4 bg-green white" ] [ text "Done" ]
             , div [ class "green underline pb3 ", onClick RepeatStim ] [ text "Or do it again?" ]
@@ -36,6 +35,6 @@ stimRecap model =
         ]
 
 
-renderFeelings : List Feeling -> List (Html Msg)
-renderFeelings list =
-    List.map (feelingButton Post) list
+renderFeelings : List Feeling -> Model -> List (Html Msg)
+renderFeelings feelings model =
+    List.map (feelingButton Post model) feelings
