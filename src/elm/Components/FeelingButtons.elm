@@ -11,8 +11,8 @@ feelingButton : LogStage -> Model -> Feeling -> Html Msg
 feelingButton logStage model feeling =
     div
         [ classes
-            [ "flex white f5 lh-f5 justify-center br-pill pa1 pointer w5 h2 mb4"
-            , ifThenElse (highlightSelectedFeeling logStage model feeling) "bg-light-green" "bg-green"
+            [ "flex f5 lh-f5 justify-center br-pill pa1 pointer w5 h2 mb4"
+            , ifThenElse (highlightSelectedFeeling logStage model feeling) "bg-light-green green" "bg-green white"
             ]
         , onClick (ToggleFeeling logStage feeling)
         ]

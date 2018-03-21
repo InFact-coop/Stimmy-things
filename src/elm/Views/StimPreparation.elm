@@ -44,7 +44,7 @@ stimPreparation model =
                         ]
                     ]
                 , p [ class "lh-f5 f5" ] [ text "How are you?" ]
-                , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Pre) faces)
+                , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Pre model) faces)
                 , div []
                     [ p [ class "lh-f5 f5" ] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-between mh4" ] (renderFeelings feelings model)

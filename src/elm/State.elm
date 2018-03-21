@@ -15,7 +15,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = Landing
+    { view = StimPreparation
     , userId = ""
     , avatar = Avatar1
     , avatarName = "Sion"

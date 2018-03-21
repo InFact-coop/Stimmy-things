@@ -9,7 +9,7 @@ import Html.Events exposing (onClick)
 stimTimer : Model -> Html Msg
 stimTimer model =
     div [ class "border-box bg-green flex-column tc white m-h-100" ]
-        [ div [ class "flex flex-row ma3 mt0 mb4 items-center justify-between h" ]
+        [ div [ class "relative flex flex-row ma3 mt0 mb4 items-center justify-between h" ]
             [ img [ onClick <| ChangeViewFromTimer StimPreparation, src "./assets/StimPreparation/back_btn_white.svg" ] []
             , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
             , img [ onClick <| ChangeViewFromTimer StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] []
