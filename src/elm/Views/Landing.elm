@@ -35,7 +35,7 @@ landing model =
         , stimMenu model model.hotspots.hands
         , stimMenu model model.hotspots.legs
         , stimMenu model model.hotspots.feet
-        , a [ classes [ "db", "h4", "w4", "fixed", "bottom-0" ], backgroundImageStyle "./assets/Landing/add_stim_btn.svg" 100, href "#add-stim" ] []
+        , button [ classes [ "bn", "bg-transparent", "db", "h4", "w4", "fixed", "bottom-0" ], backgroundImageStyle "./assets/Landing/add_stim_btn.svg" 100, onClick <| NavigateTo AddStim ] []
         ]
 
 
