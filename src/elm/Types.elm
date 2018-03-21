@@ -1,6 +1,5 @@
 module Types exposing (..)
 
-import Navigation
 import Time exposing (..)
 
 
@@ -43,6 +42,7 @@ type alias Model =
     , showNav : Trilean
     , stimMenuShowing : Maybe BodyPart
     , hotspots : Hotspots
+    , selectedStim : Stim
     }
 
 
@@ -220,3 +220,4 @@ type Msg
     | ReceiveUpdatedLogs (List DBLog)
     | ToggleStimMenu BodyPart
     | ReceiveInitialData (Result String DBData)
+    | GoToStim Stim

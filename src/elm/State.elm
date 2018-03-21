@@ -2,7 +2,7 @@ module State exposing (..)
 
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
-import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
+import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
@@ -30,6 +30,7 @@ initModel =
     , showNav = Neutral
     , stimMenuShowing = Nothing
     , hotspots = defaultHotspots
+    , selectedStim = defaultStim
     }
 
 
@@ -42,7 +43,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeView view ->
-            { model | view = view } ! viewToCmds model.view
+            { model | view = view } ! (scrollToTop :: viewToCmds model.view)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -102,3 +103,11 @@ update msg model =
 
         ReceiveInitialData (Err err) ->
             model ! []
+
+        GoToStim stim ->
+            { model
+                | selectedStim = stim
+                , newLog = updateStimId stim.stimId model.newLog
+            }
+                ! []
+                :> update (ChangeView StimPreparation)

@@ -20,7 +20,7 @@ stimPreparation model =
             [ div []
                 [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []
                 ]
-            , p [ class "bg-green h-20" ] [ text "STIM TITLE" ]
+            , p [ class "bg-green h-20" ] [ text <| model.selectedStim.stimName ]
             , div []
                 [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] []
                 ]
@@ -45,9 +45,9 @@ stimPreparation model =
                 , div [ class "flex flew-row" ] (List.map (face Pre) faces)
                 , div []
                     [ p [] [ text "Any specific feelings?" ]
-                    , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
+                    , div [ class "flex flex-wrap items-center justify-around h5" ] (renderFeelings feelings)
                     ]
-                , rectButton "Next" (ChangeView StimTimer)
+                , rectButton "Next" (ChangeView StimRecap)
                 ]
             ]
         ]

@@ -27,7 +27,7 @@ stimRecap model =
                 , div [ class "flex flew-row" ] (List.map (face Post) faces)
                 , div []
                     [ p [] [ text "Any specific feelings?" ]
-                    , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
+                    , div [ class "flex flex-wrap items-center justify-around h5" ] (renderFeelings feelings)
                     ]
                 , div [ onClick RepeatStim ] [ text "Do it again?" ]
                 , rectButton "Done" SaveLog

@@ -102,6 +102,11 @@ updateTime time log =
     { log | timeTaken = time }
 
 
+updateStimId : String -> Log -> Log
+updateStimId stimId log =
+    { log | stimId = stimId }
+
+
 normaliseDBLog : Log -> DBLog
 normaliseDBLog log =
     { log
