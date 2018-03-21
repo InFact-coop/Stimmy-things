@@ -1,21 +1,24 @@
 module Types exposing (..)
 
-import Navigation
 import Time exposing (..)
+import Transit
 
 
 type View
     = CreateAvatar
     | NameAvatar
     | Landing
+    | Emergency
+    | OnboardingFirst
+    | OnboardingSecond
     | StimInfo
     | StimPreparation
     | StimTimer
     | StimRecap
     | AddStim
-    | AddStimSuccessModal
     | Moodboard
     | About
+    | Splash
     | ShareModal
     | Blog
 
@@ -27,23 +30,24 @@ type Trilean
 
 
 type alias Model =
-    { view : View
-    , userId : String
-    , avatar : Avatar
-    , avatarName : String
-    , skinColour : SkinColour
-    , stims : List Stim
-    , logs : List Log
-    , newStim : Stim
-    , newLog : Log
-    , counter : Time
-    , timeSelected : Time
-    , timerStatus : TimerStatus
-    , paused : Bool
-    , showNav : Trilean
-    , stimMenuShowing : Maybe BodyPart
-    , hotspots : Hotspots
-    }
+    Transit.WithTransition
+        { view : View
+        , userId : String
+        , avatar : Avatar
+        , avatarName : String
+        , skinColour : SkinColour
+        , stims : List Stim
+        , logs : List Log
+        , newStim : Stim
+        , newLog : Log
+        , counter : Time
+        , timeSelected : Time
+        , timerStatus : TimerStatus
+        , paused : Bool
+        , showNav : Trilean
+        , stimMenuShowing : Maybe BodyPart
+        , hotspots : Hotspots
+        }
 
 
 type Avatar
@@ -206,7 +210,6 @@ type alias DBData =
 
 type Msg
     = NoOp
-    | UrlChange Navigation.Location
     | SetTime String
     | ChangeView View
     | Tick Time
@@ -217,6 +220,8 @@ type Msg
     | RepeatStim
     | SaveLog
     | ToggleNav
+    | TransitMsg (Transit.Msg Msg)
+    | NavigateTo View
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ToggleStimMenu BodyPart

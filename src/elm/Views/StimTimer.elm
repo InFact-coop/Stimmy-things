@@ -1,15 +1,16 @@
 module Views.StimTimer exposing (..)
 
 import Components.Button exposing (rectButton)
+import Helpers.Style exposing (horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Types exposing (..)
 import Html.Events exposing (onClick)
+import Types exposing (..)
 
 
 stimTimer : Model -> Html Msg
 stimTimer model =
-    div []
+    div [ horizontalTransition model ]
         [ div []
             [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] []
             ]
@@ -26,12 +27,7 @@ stimTimer model =
             , img [ onClick <| AdjustTimer Pause, src "./assets/StimTimer/timer_pause_btn.svg" ] []
             , img [ src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []
             ]
-        , div [ ]
+        , div []
             [ img [ onClick <| StopTimer, src "./assets/StimTimer/timer_done_btn.svg" ] []
             ]
-
-        -- , button [ onClick <| AdjustTimer Restart ] [ text "Restart" ]
-        -- , button [ onClick <| AdjustTimer Start ] [ text "Start" ]
-        -- , button [ onClick <| AdjustTimer Pause ] [ text "Pause" ]
-        -- , button [ onClick <| StopTimer ] [ text "Done" ]
         ]
