@@ -21,4 +21,3 @@ view model =
 
 
 
--- w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover
