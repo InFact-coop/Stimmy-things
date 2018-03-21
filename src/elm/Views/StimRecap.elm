@@ -19,7 +19,7 @@ stimRecap model =
             ]
         , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
             [ div []
-                [ img [ class "mv6", src "./assets/StimPreparation/face_1.svg" ] []
+                [ img [ class "mt6 mb0 mh7", src "./assets/avatar_1_head.svg" ] []
                 , p [ class "b lh-f5 f5" ] [ text "Time's up!" ]
                 , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                 ]
