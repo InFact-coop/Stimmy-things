@@ -72,7 +72,7 @@ addStim model =
                         [ ( "backgroundImage", "url(./assets/AddStim/zigzag_add_stim_save.svg)" )
                         ]
                     ]
-                    [ img [ class "ma5", src "./assets/AddStim/done_green_medium.svg" ] []
+                    [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
                     , p [ class "flex worksans justify-center black " ] [ text "SAVE" ]
                     ]
                 ]
