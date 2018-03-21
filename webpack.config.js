@@ -28,7 +28,8 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
           { loader: 'css-loader', options: { importLoaders: 1 } },
           'postcss-loader'
         ]
@@ -44,12 +45,12 @@ module.exports = {
       }
     ]
   },
-  // devtool: 'eval',
+  devtool: 'eval',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new MiniCssExtractPlugin(),
+    // new MiniCssExtractPlugin(),
     new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }])
   ]
 };
