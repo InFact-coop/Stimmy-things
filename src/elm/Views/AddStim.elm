@@ -37,7 +37,7 @@ addStim model =
                     , div [ class " flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyparts)
                     ]
                 , label [ for "exercise-name", class "b mh3 " ] [ text "what would you call this exercise?" ]
-                , textarea [ class "mb6 bg-transparent bn h-textarea-small", id "exercise-name" ]
+                , textarea [ class "mb6 bg-transparent bn h-textarea-small", id "exercise-name", onInput AddExerciseName ]
                     []
                 , div [ backgroundImageNoPosition "./assets/AddStim/zigzag_stim_how_to_bg.svg" 100, class "flex flex-column mb3 pt3" ]
                     [ label [ for "exercise-intstructions", class "b h6 ma3" ]
@@ -45,7 +45,7 @@ addStim model =
                     , p [ class "mh3" ]
                         [ text "Be as specific as you can so that next time you want to do this exercise, you know exactly what to do." ]
                     , textarea
-                        [ class "bg-transparent bn ml3 mr3 h-textarea", id "exercise-intstructions" ]
+                        [ class "bg-transparent bn ml3 mr3 h-textarea", id "exercise-intstructions", onInput AddHowTo ]
                         []
                     ]
                 , div [ class "flex flex-column ml3 mr3" ]
