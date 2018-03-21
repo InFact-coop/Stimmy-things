@@ -66,10 +66,10 @@ update msg model =
             { model | vidSearchString = string } ! []
 
         CallVideoRequest ->
-            { model | videoStatus = Loading } ! [ getVideos model ]
+            { model | videoStatus = Loading, videos = [] } ! [ getVideos model, videoCarousel () ]
 
         ReceiveVideos (Ok list) ->
-            { model | videoStatus = ResponseSuccess, videos = list } ! []
+            { model | videoStatus = ResponseSuccess, videos = list } ! [ videoCarousel () ]
 
         ReceiveVideos (Err string) ->
             { model | videoStatus = ResponseFailure } ! []

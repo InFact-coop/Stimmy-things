@@ -7,4 +7,6 @@ import hotspots from './hotspots';
 const db = new Dexie('stimmy_things');
 
 app.ports.initCarousel.subscribe(flickity.initCarousel);
+app.ports.videoCarousel.subscribe(flickity.videoCarousel);
+
 app.ports.initHotspots.subscribe(hotspots.initHotspots);

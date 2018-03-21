@@ -1,12 +1,15 @@
 port module Ports exposing (..)
 
+import Data.Hotspots exposing (decodeHotspots)
+import Json.Decode exposing (..)
 import Time exposing (Time)
 import Types exposing (..)
-import Json.Decode exposing (..)
-import Data.Hotspots exposing (decodeHotspots)
 
 
 port initCarousel : () -> Cmd msg
+
+
+port videoCarousel : () -> Cmd msg
 
 
 port saveLog : DBLog -> Cmd msg

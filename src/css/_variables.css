@@ -9,7 +9,7 @@
 @custom-media --breakpoint-large screen and (min-width: 60em);
 
 :root {
-  --sans-serif: "Open Sans", "Raleway" "helvetica neue", helvetica, arial,
+  --sans-serif: 'Open Sans', 'Raleway' 'helvetica neue', helvetica, arial,
     sans-serif;
   --serif: georgia, serif;
   --handwriting: Caveat;
@@ -98,6 +98,8 @@
   --white: #fff;
   --washed-yellow: #f4f2ec;
   --light-blue: #78beff;
+  --silver: #979797;
+  --navy: #0c0033;
 
   /* ~ ~ ~ E N D ~ ~ ~ */
 
@@ -158,14 +160,14 @@
   --pink: #ff80cc;
   --light-pink: #ffa3d7;
   --dark-green: #007459;
-  --navy: #001b44;
+
   --dark-blue: #2d6b8e;
   --blue: #357edd;
   --lightest-blue: #cdecff;
   --washed-blue: #f6fffe;
   --washed-green: #e1f8ea;
   --washed-red: #ffdfdf;
-  --silver: #bcbcbc;
+
   --purple: #70277d;
   --light-purple: #a469ae;
 }

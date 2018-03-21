@@ -5,15 +5,15 @@ import Html.Attributes exposing (..)
 import Types exposing (..)
 
 
-backgroundImageStyle : String -> Int -> Attribute Msg
-backgroundImageStyle url sizePercent =
-    style [ ( "background-image", "url(" ++ url ++ ")" ), ( "background-repeat", "no-repeat" ), ( "background-position", "center center" ), ( "background-size", toString sizePercent ++ "%" ) ]
+videoThumbnailStyle : String -> Int -> Attribute Msg
+videoThumbnailStyle url sizePercent =
+    style [ ( "background-image", "url(" ++ url ++ ")" ), ( "background-repeat", "no-repeat" ), ( "background-position", "center center" ), ( "background-size", "cover" ) ]
 
 
 videoYT : Video -> Html Msg
 videoYT v =
-    a [ class "link white dib h-45 w5 pointer", href <| vidIdToUrl v.id, backgroundImageStyle v.thumbnail 100 ]
-        [ h2 [ class "white center" ] [ text v.title ]
+    div [ class "link white dib pointer h5 w-90", href <| vidIdToUrl v.id, videoThumbnailStyle v.thumbnail 100 ]
+        [ h2 [ class "white center f6 fw2 overflow-hidden" ] [ text v.title ]
         ]
 
 

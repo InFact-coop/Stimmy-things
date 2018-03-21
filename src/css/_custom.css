@@ -283,6 +283,14 @@ body {
   height: 8px;
 }
 
+.h-textarea {
+  height: 270px;
+}
+
+.h-textarea-small {
+  height: 120px;
+}
+
 .bg-green-translucent {
   background-color: rgba(68, 150, 148, 0.9);
 }
