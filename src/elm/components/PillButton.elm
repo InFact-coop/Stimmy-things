@@ -1,8 +1,9 @@
-module Components.FeelingButtons exposing (..)
+module Components.PillButton exposing (..)
 
 import Helpers.Style exposing (bodyFont, classes)
 import Helpers.Utils exposing (ifThenElse, unionTypeToString)
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Types exposing (..)
 
@@ -31,3 +32,8 @@ highlightSelectedFeeling logstage model feeling =
             )
     in
         List.member feeling feelings
+
+
+bodyButton : BodyPart -> Html Msg
+bodyButton bodypart =
+    div [ class "w-25 flex justify-center bg-green br4 pa1 pointer mh2 mv2", onClick (ToggleBodypart bodypart) ] [ text (unionTypeToString bodypart) ]

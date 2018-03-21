@@ -61,6 +61,7 @@
     "postcss-custom-media": "^6.0.0",
     "postcss-custom-properties": "^6.2.0",
     "postcss-import": "^11.0.0",
+    "request": "^2.85.0",
     "tachyons-custom": "^4.9.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12"

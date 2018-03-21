@@ -1,5 +1,6 @@
 module Types exposing (..)
 
+import Http exposing (..)
 import Time exposing (..)
 import Transit
 
@@ -44,6 +45,9 @@ type alias Model =
         , timeSelected : Time
         , timerStatus : TimerStatus
         , paused : Bool
+        , vidSearchString : String
+        , videos : List Video
+        , videoStatus : RemoteData
         , showNav : Trilean
         , stimMenuShowing : Maybe BodyPart
         , hotspots : Hotspots
@@ -139,6 +143,21 @@ type Feeling
     | Frustrated
 
 
+type RemoteData
+    = NotAsked
+    | Loading
+    | ResponseFailure
+    | ResponseSuccess
+
+
+type alias Video =
+    { id : String
+    , title : String
+    , description : String
+    , thumbnail : String
+    }
+
+
 type TimerControl
     = Start
     | Stop
@@ -211,6 +230,9 @@ type alias DBData =
 
 type Msg
     = NoOp
+    | UpdateVideoSearch String
+    | CallVideoRequest
+    | ReceiveVideos (Result Http.Error (List Video))
     | SetTime String
     | ChangeView View
     | Tick Time
@@ -227,5 +249,8 @@ type Msg
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ToggleStimMenu BodyPart
+    | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
     | GoToStim Stim
+    | AddExerciseName String
+    | AddHowTo String

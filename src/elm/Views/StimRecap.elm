@@ -2,7 +2,7 @@ module Views.StimRecap exposing (..)
 
 import Components.Button exposing (rectButton)
 import Components.Face exposing (face)
-import Components.FeelingButtons exposing (..)
+import Components.PillButton exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
 import Data.Avatar exposing (avatarHeadSelection)

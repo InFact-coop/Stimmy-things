@@ -1,6 +1,5 @@
 module Views.StimTimer exposing (..)
 
-import Components.Button exposing (rectButton)
 import Helpers.Style exposing (horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)

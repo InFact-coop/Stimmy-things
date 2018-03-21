@@ -11,6 +11,9 @@ import Types exposing (..)
 port initCarousel : () -> Cmd msg
 
 
+port videoCarousel : () -> Cmd msg
+
+
 port saveLog : DBLog -> Cmd msg
 
 
