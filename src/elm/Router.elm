@@ -16,7 +16,7 @@ view model =
             getCurrentView model
     in
         div [ classes [ "w-100 mh-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", "bg-washed-yellow" ], id "container" ]
-            [ div [ style (fadeSlider 400 model.transition) ]
+            [ div [ style (fadeSliderY 300 model.transition) ]
                 [ navDrawer model
                 , view
                 ]

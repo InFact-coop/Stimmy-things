@@ -5,37 +5,80 @@ import Transit exposing (..)
 import Ease exposing (..)
 
 
-fadeSlider : Float -> Transition -> Style
-fadeSlider offset t =
-    (slideInSlideOut offset t) ++ (fade t)
+-- Views
 
 
-slideInSlideOut : Float -> Transition -> Style
-slideInSlideOut offset =
-    compose (newSlideOut offset) (newSlideIn offset)
+fadeSliderX : Float -> Transition -> Style
+fadeSliderX offset t =
+    (slideInSlideOutX offset t) ++ (fade t)
 
 
-newSlideIn : Float -> Float -> Style
-newSlideIn offset v =
+slideInSlideOutX : Float -> Transition -> Style
+slideInSlideOutX offset =
+    compose (slideOutX offset) (slideInX offset)
+
+
+slideInX : Float -> Float -> Style
+slideInX offset v =
     (Ease.inCubic (1 - v))
         * offset
-        |> translateX
+        |> translateXLeft
 
 
-newSlideOut : Float -> Float -> Style
-newSlideOut offset v =
+slideOutX : Float -> Float -> Style
+slideOutX offset v =
     (Ease.outCubic (1 - v))
         * offset
-        |> newTranslateX
+        |> translateXRight
 
 
-newTranslateX : Float -> Style
-newTranslateX v =
+translateXRight : Float -> Style
+translateXRight v =
     [ ( "transform", "translateX(-" ++ toString v ++ "px)" )
     ]
 
 
-translateX : Float -> Style
-translateX v =
+translateXLeft : Float -> Style
+translateXLeft v =
     [ ( "transform", "translateX(" ++ toString v ++ "px)" )
+    ]
+
+
+
+-- Modals
+
+
+fadeSliderY : Float -> Transition -> Style
+fadeSliderY offset t =
+    (slideInSlideOutY offset t) ++ (fade t)
+
+
+slideInSlideOutY : Float -> Transition -> Style
+slideInSlideOutY offset =
+    compose (slideOutY offset) (slideInY offset)
+
+
+slideInY : Float -> Float -> Style
+slideInY offset v =
+    (Ease.inCubic (1 - v))
+        * offset
+        |> translateYLeft
+
+
+slideOutY : Float -> Float -> Style
+slideOutY offset v =
+    (Ease.outCubic (1 - v))
+        * offset
+        |> translateYRight
+
+
+translateYRight : Float -> Style
+translateYRight v =
+    [ ( "transform", "translateY(-" ++ toString v ++ "px)" )
+    ]
+
+
+translateYLeft : Float -> Style
+translateYLeft v =
+    [ ( "transform", "translateY(" ++ toString v ++ "px)" )
     ]
