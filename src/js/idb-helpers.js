@@ -1,3 +1,5 @@
+import Dexie from 'dexie';
+
 const createTables = db => {
   return db.version(1).stores({
     user: 'userId, avatar, skinColour, name',
@@ -5,6 +7,12 @@ const createTables = db => {
     logs:
       '++id, stimId, timeTaken, preFace, postFace, preFeelings, postFeelings, dateTime'
   });
+};
+
+const createDB = () => {
+  const db = new Dexie('stimmy_things');
+  createTables(db);
+  return db;
 };
 
 const createOrUpdateUser = (db, { userId, avatar, skinColour, name }) => {
@@ -59,18 +67,19 @@ const deleteStim = stimId => {
 
 const getAllTheData = db => {
   return db.transaction('r', [db.user, db.stims, db.logs], async () => {
-    const user = await getUser();
-    const stims = await getAllStims();
-    const logs = await getAllLogs();
+    const user = await getUser(db);
+    const stims = await getAllStims(db);
+    const logs = await getAllLogs(db);
 
     return { user, stims, logs };
   });
 };
 
 export default {
-  createTables,
   createOrUpdateUser,
   getUser,
+  createDB,
+  getAllStims,
   addStim,
   addLog,
   getAllLogs,
