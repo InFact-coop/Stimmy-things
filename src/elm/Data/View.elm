@@ -1,8 +1,9 @@
 module Data.View exposing (..)
 
+import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Navigation
-import Helpers.Utils exposing (ifThenElse)
+import Ports exposing (..)
 import Types exposing (..)
 import Views.About exposing (..)
 import Views.AddStim exposing (..)
@@ -17,7 +18,6 @@ import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
-import Ports exposing (..)
 
 
 getCurrentView : Model -> Html Msg
@@ -122,7 +122,7 @@ viewToCmds : View -> List (Cmd msg)
 viewToCmds view =
     case view of
         Landing ->
-            [ initHotspots () ]
+            [ initHotspots (), initDB () ]
 
         CreateAvatar ->
             [ initCarousel () ]

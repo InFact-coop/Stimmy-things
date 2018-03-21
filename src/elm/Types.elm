@@ -31,7 +31,7 @@ type alias Model =
     , userId : String
     , avatar : Avatar
     , avatarName : String
-    , avatarSkinColour : AvatarSkinColour
+    , skinColour : SkinColour
     , stims : List Stim
     , logs : List Log
     , newStim : Stim
@@ -55,14 +55,14 @@ type Avatar
     | Avatar6
 
 
-type AvatarSkinColour
-    = Skin1
-    | Skin2
-    | Skin3
-    | Skin4
-    | Skin5
-    | Skin6
-    | Skin7
+type SkinColour
+    = SkinColour1
+    | SkinColour2
+    | SkinColour3
+    | SkinColour4
+    | SkinColour5
+    | SkinColour6
+    | SkinColour7
 
 
 type Face
@@ -78,7 +78,18 @@ type alias Stim =
     , bodyPart : BodyPart
     , stimName : String
     , instructions : String
-    , videoUrl : Maybe String
+    , videoSrc : Maybe String
+    , shared : Bool
+    , userId : String
+    }
+
+
+type alias DBStim =
+    { stimId : String
+    , bodyPart : String
+    , stimName : String
+    , instructions : String
+    , videoSrc : String
     , shared : Bool
     , userId : String
     }
@@ -178,6 +189,21 @@ type alias DBLog =
     }
 
 
+type alias User =
+    { userId : String
+    , avatar : Avatar
+    , skinColour : SkinColour
+    , name : String
+    }
+
+
+type alias DBData =
+    { user : User
+    , stims : List Stim
+    , logs : List Log
+    }
+
+
 type Msg
     = NoOp
     | UrlChange Navigation.Location
@@ -192,6 +218,7 @@ type Msg
     | ChangeViewFromTimer View
     | SaveLog
     | ToggleNav
-    | RecieveHotspotCoords (Result String Hotspots)
+    | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ToggleStimMenu BodyPart
+    | ReceiveInitialData (Result String DBData)

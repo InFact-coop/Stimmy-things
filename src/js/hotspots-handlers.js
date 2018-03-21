@@ -47,7 +47,7 @@ const initHotspots = () => {
       return acc;
     }, {});
 
-    app.ports.recieveHotspotCoords.send(hotspotCoords);
+    app.ports.receiveHotspotCoords.send(hotspotCoords);
   };
 
   getSvgDoc(createHotspotCoords);
