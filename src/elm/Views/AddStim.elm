@@ -16,7 +16,7 @@ addStim model =
     div [ class "bg-washed-yellow" ]
         [ div
             [ class "bg-green flex flex-column items-center" ]
-            [ img [ class "absolute left-0 ma3 ", src "./assets/back_btn_white.svg" ] []
+            [ img [ class "absolute left-0 ma3 ", src "./assets/AddStim/back_btn_white.svg" ] []
             , p [ class "white b f3 mb4 wellcome" ]
                 [ text "Add new" ]
             ]
@@ -24,10 +24,10 @@ addStim model =
             [ class "ma0" ]
             [ Html.form [ class "flex flex-column lh-f6 f6" ]
                 [ div
-                    [ backgroundImageNoPosition "./assets/zigzag_choose_part_tags_bg.svg" 100
+                    [ backgroundImageNoPosition "./assets/AddStim/zigzag_choose_part_tags_bg.svg" 100
                     , class "flex flex-column mb3 pb3"
                     ]
-                    [ img [ class "ma3", src "./assets/zigzag_big_grey_down.svg" ] []
+                    [ img [ class "ma3", src "./assets/AddStim/zigzag_big_grey_down.svg" ] []
                     , label
                         [ for "choose-exercise", class "mh3" ]
                         []
@@ -39,7 +39,7 @@ addStim model =
                 , label [ for "exercise-name", class "b mh3 " ] [ text "what would you call this exercise?" ]
                 , textarea [ class "mb6 bg-transparent bn h-textarea-small", id "exercise-name" ]
                     []
-                , div [ backgroundImageNoPosition "./assets/zigzag_stim_how_to_bg.svg" 100, class "flex flex-column mb3 pt3" ]
+                , div [ backgroundImageNoPosition "./assets/AddStim/zigzag_stim_how_to_bg.svg" 100, class "flex flex-column mb3 pt3" ]
                     [ label [ for "exercise-intstructions", class "b h6 ma3" ]
                         [ text "how do you do this exercise?" ]
                     , p [ class "mh3" ]
@@ -49,7 +49,7 @@ addStim model =
                         []
                     ]
                 , div [ class "flex flex-column ml3 mr3" ]
-                    [ img [ src "./assets/add_video_icn.svg", class " flex justify-center mb4" ] []
+                    [ img [ src "./assets/AddStim/add_video_icn.svg", class " flex justify-center mb4" ] []
                     , div [ class "flex flex-column items-center justify-center ba bw1 b--silver br3 pa3 mb3" ]
                         [ label [ class "b", for "add-a-video" ]
                             [ text "Add a video"
@@ -72,7 +72,7 @@ addStim model =
                         [ ( "backgroundImage", "url(./assets/AddStim/zigzag_add_stim_save.svg)" )
                         ]
                     ]
-                    [ img [ class "ma5", src "./assets/done_green_medium.svg" ] []
+                    [ img [ class "ma5", src "./assets/AddStim/done_green_medium.svg" ] []
                     , p [ class "flex worksans justify-center black " ] [ text "SAVE" ]
                     ]
                 ]
