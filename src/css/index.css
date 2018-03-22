@@ -2,6 +2,10 @@
    It outputs one file `style.min.css` which you can include in your html
 */
 
+/* CSS reset */
+
+@import './_reset';
+
 /* imports all tachyons modules
    (postcss looks for them from node_modules)
 */
