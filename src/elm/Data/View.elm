@@ -20,6 +20,7 @@ import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
+import Views.Splash exposing (..)
 
 
 getCurrentView : Model -> Html Msg
@@ -74,9 +75,12 @@ getCurrentView model =
             splash model
 
 
-viewToCmds : View -> List (Cmd msg)
+viewToCmds : View -> List (Cmd Msg)
 viewToCmds view =
     case view of
+        Splash ->
+            [ initTimeout ]
+
         Landing ->
             [ initHotspots (), initDB () ]
 

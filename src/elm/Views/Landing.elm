@@ -11,9 +11,9 @@ import Types exposing (..)
 landing : Model -> Html Msg
 landing model =
     div [ class "flex flex-column justify-center items-center", horizontalTransition model ]
-        [ header [ classes [ "flex", "justify-between", "items-center", "pa3", "vw-100" ] ]
+        [ header [ classes [ "flex relative justify-center items-center pa3 vw-100" ] ]
             [ button
-                [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
+                [ classes [ "button absolute left-0 ml3 bn h2 w2 bg-inherit" ]
                 , backgroundImageStyle
                     (ifThenElse (model.showNav == Yes) "./assets/Landing/arrow-left-not-animated.svg" "./assets/Landing/menu-not-animated.svg")
                     100
