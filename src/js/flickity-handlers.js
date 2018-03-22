@@ -7,7 +7,7 @@ const initCarousel = () => {
     const flkty = new Flickity(carouselElement, {
       lazyLoad: true,
       adaptiveHeight: true,
-      wrapAround: true,
+      wrapAround: false,
       prevNextButtons: false,
       pageDots: true
     });
