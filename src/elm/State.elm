@@ -16,7 +16,7 @@ import Transit
 
 initModel : Model
 initModel =
-    { view = StimPreparation
+    { view = NameAvatar
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -155,3 +155,6 @@ update msg model =
             }
                 ! []
                 :> update (ChangeView StimPreparation)
+
+        AddAvatarName name ->
+            { model | avatarName = name } ! []
