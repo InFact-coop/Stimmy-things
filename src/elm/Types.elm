@@ -254,3 +254,4 @@ type Msg
     | GoToStim Stim
     | AddExerciseName String
     | AddHowTo String
+    | AddAvatarName String

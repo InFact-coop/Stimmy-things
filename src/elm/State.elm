@@ -16,7 +16,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = AddStim
+    { view = Landing
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -49,7 +49,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeView view ->
-            { model | view = view } ! (scrollToTop :: viewToCmds view)
+            { model | view = view, stimMenuShowing = Nothing, showNav = No } ! (scrollToTop :: viewToCmds view)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -155,3 +155,6 @@ update msg model =
             }
                 ! []
                 :> update (ChangeView StimPreparation)
+
+        AddAvatarName name ->
+            { model | avatarName = name } ! []
