@@ -64,3 +64,17 @@ isNewListEntry a list =
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
 onCheckboxInput tagger =
     on "change" (Decode.map2 tagger targetValue targetChecked)
+
+
+fileNameFromURL : String -> String
+fileNameFromURL url =
+    let
+        splitURL =
+            String.split "/" url
+
+        splitLength =
+            List.length splitURL
+    in
+        List.drop (splitLength - 1) splitURL
+            |> List.head
+            |> Maybe.withDefault ""

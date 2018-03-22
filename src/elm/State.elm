@@ -2,6 +2,7 @@ module State exposing (..)
 
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
+import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
@@ -120,6 +121,9 @@ update msg model =
                 :> update (AdjustTimer Stop)
                 :> update (ChangeView view)
 
+        SelectAvatar ->
+            model ! [ retrieveChosenAvatar () ]
+
         SaveLog ->
             { model
                 | newLog = defaultLog
@@ -147,6 +151,11 @@ update msg model =
 
         ReceiveInitialData (Err err) ->
             model ! []
+
+        ReceiveChosenAvatar src ->
+            { model | avatar = avatarSrcToAvatar src }
+                ! []
+                :> update (ChangeView NameAvatar)
 
         GoToStim stim ->
             { model
