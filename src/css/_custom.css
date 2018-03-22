@@ -73,6 +73,10 @@ body {
   margin-bottom: 1px;
 }
 
+.vh-75 {
+  height: 75vh;
+}
+
 /* Custom Positions */
 
 .top-4 {
