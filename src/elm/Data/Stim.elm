@@ -1,7 +1,7 @@
 module Data.Stim exposing (..)
 
 import Data.Hotspots exposing (decodeBodyPart)
-import Helpers.Utils exposing (unionTypeToString)
+import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode
@@ -20,9 +20,14 @@ decodeStim =
         |> required "bodyPart" decodeBodyPart
         |> required "stimName" string
         |> required "instructions" string
-        |> required "videoSrc" (maybe string)
+        |> required "videoSrc" (Json.Decode.map stringToMaybe string)
         |> required "shared" bool
         |> required "userId" string
+
+
+decodeStimList : Value -> Result String (List Stim)
+decodeStimList =
+    decodeValue (list decodeStim)
 
 
 addBodypart : BodyPart -> Stim -> Stim

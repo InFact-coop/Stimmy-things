@@ -64,3 +64,13 @@ isNewListEntry a list =
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
 onCheckboxInput tagger =
     on "change" (Decode.map2 tagger targetValue targetChecked)
+
+
+stringToMaybe : String -> Maybe String
+stringToMaybe str =
+    case str of
+        "" ->
+            Nothing
+
+        string ->
+            Just string

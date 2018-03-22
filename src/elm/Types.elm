@@ -249,6 +249,7 @@ type Msg
     | NavigateTo View
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
+    | ReceiveStimList (Result String (List Stim))
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)

@@ -151,6 +151,12 @@ update msg model =
         ReceiveInitialData (Err err) ->
             model ! []
 
+        ReceiveStimList (Ok listStims) ->
+            { model | stims = listStims } ! []
+
+        ReceiveStimList (Err err) ->
+            model ! []
+
         GoToStim stim ->
             { model
                 | selectedStim = stim
