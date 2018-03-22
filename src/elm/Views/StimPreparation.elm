@@ -20,9 +20,9 @@ stimPreparation : Model -> Html Msg
 stimPreparation model =
     div [ class "border-box bg-green flex-column tc dark-gray", horizontalTransition model ]
         [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between h" ]
-            [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] []
-            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
-            , img [ onClick <| ChangeView StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] []
+            [ div [class "h-100"] [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
+            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "The Mindful Jar" ]
+            , div [] [ img [ onClick <| ChangeView StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
             ]
         , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
             [ div []
