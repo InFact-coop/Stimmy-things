@@ -12,13 +12,18 @@ feelingButton : LogStage -> Model -> Feeling -> Html Msg
 feelingButton logStage model feeling =
     div
         [ classes
-            [ "flex white justify-center br-pill pa1 pointer w5 h2 mb4"
+            [ "flex white justify-center br-pill pa1 pointer feeling-button h2 mb4"
             , bodyFont
             , ifThenElse (highlightSelectedFeeling logStage model feeling) "bg-light-green" "bg-green"
             ]
         , onClick (ToggleFeeling logStage feeling)
         ]
         [ text (unionTypeToString feeling) ]
+
+
+bodyButton : BodyPart -> Html Msg
+bodyButton bodypart =
+    div [ class "w-25 flex justify-center bg-green br4 pa1 pointer mh2 mv2", onClick (ToggleBodypart bodypart) ] [ text (unionTypeToString bodypart) ]
 
 
 highlightSelectedFeeling : LogStage -> Model -> Feeling -> Bool
@@ -32,8 +37,3 @@ highlightSelectedFeeling logstage model feeling =
             )
     in
         List.member feeling feelings
-
-
-bodyButton : BodyPart -> Html Msg
-bodyButton bodypart =
-    div [ class "w-25 flex justify-center bg-green br4 pa1 pointer mh2 mv2", onClick (ToggleBodypart bodypart) ] [ text (unionTypeToString bodypart) ]

@@ -16,7 +16,7 @@ import Transit
 
 initModel : Model
 initModel =
-    { view = Landing
+    { view = StimPreparation
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
