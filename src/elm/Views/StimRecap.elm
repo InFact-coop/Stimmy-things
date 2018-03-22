@@ -19,7 +19,7 @@ stimRecap model =
         [ div [ classes [ headerFont, "flex flex-row white ma3 mt0 mb0 items-center justify-center h h4 " ] ]
             [ p
                 []
-                [ text "The Mindful Jar" ]
+                [ text <| model.selectedStim.stimName ]
             ]
         , div
             [ style

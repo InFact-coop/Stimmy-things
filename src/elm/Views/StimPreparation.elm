@@ -21,7 +21,7 @@ stimPreparation model =
     div [ class "border-box bg-green flex-column tc dark-gray h-fit-content", horizontalTransition model ]
         [ div [ classes [ headerFont, "flex flex-row ma3 mt0 mb0 items-center justify-between h" ] ]
             [ div [ onClick <| ChangeView Landing, class "h4 w3 flex items-centre justify-left" ] [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
-            , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ] [ text "The Mindful Jar" ]
+            , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ] [ text <| model.selectedStim.stimName ]
             , div [ onClick <| ChangeView StimInfo, class "h4 w3 flex items-centre justify-right" ] [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
             ]
         , div
