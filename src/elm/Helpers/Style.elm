@@ -3,6 +3,8 @@ module Helpers.Style exposing (..)
 import Helpers.Animation exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Helpers.Utils exposing (..)
+import Helpers.Animation exposing (..)
 import Types exposing (..)
 
 
@@ -73,3 +75,13 @@ horizontalTransition model =
 verticalTransition : Model -> Attribute msg
 verticalTransition model =
     style (fadeSliderY 300 model.transition)
+
+
+selectHotspotIndex : Model -> HotspotCoords -> String
+selectHotspotIndex model hotspot =
+    case model.stimMenuShowing of
+        Just a ->
+            ifThenElse (a == hotspot.name) "z-4" "z-1"
+
+        Nothing ->
+            "z-1"
