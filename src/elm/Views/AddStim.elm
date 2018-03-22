@@ -16,7 +16,7 @@ addStim model =
     div [ class "bg-washed-yellow", verticalTransition model ]
         [ div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative" ]
-                [ div [ class "absolute left-0 ml3 pointer", onClick (ChangeView Landing) ] [ img [ src "./assets/AddStim/close_btn_white.svg" ] [] ]
+                [ div [ class "absolute left-0 ml3 pointer", onClick (NavigateTo Landing) ] [ img [ src "./assets/AddStim/close_btn_white.svg" ] [] ]
                 , h1 [ classes [ headerFont, "white pt3 mb3" ] ]
                     [ text "Add new stim" ]
                 ]
