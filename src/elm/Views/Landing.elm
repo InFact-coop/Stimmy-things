@@ -11,7 +11,7 @@ import Types exposing (..)
 landing : Model -> Html Msg
 landing model =
     div [ class "flex flex-column justify-center items-center", horizontalTransition model ]
-        [ header [ classes [ "flex", "justify-between", "items-center", "ph3", "vw-100" ] ]
+        [ header [ classes [ "flex", "justify-between", "items-center", "pa3", "vw-100" ] ]
             [ button
                 [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
                 , backgroundImageStyle
@@ -20,7 +20,7 @@ landing model =
                 , onClick ToggleNav
                 ]
                 []
-            , h1 [ class "f3" ] [ text model.avatarName ]
+            , h1 [ class "f3 b" ] [ text model.avatarName ]
             , div [] []
             ]
         , object
