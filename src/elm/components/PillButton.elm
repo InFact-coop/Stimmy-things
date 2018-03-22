@@ -3,7 +3,6 @@ module Components.PillButton exposing (..)
 import Helpers.Style exposing (bodyFont, classes)
 import Helpers.Utils exposing (ifThenElse, unionTypeToString)
 import Html exposing (..)
-import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Types exposing (..)
 

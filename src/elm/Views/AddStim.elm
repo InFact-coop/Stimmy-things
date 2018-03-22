@@ -14,18 +14,19 @@ import Types exposing (..)
 addStim : Model -> Html Msg
 addStim model =
     div [ class "bg-washed-yellow", verticalTransition model ]
-        [ div
-            [ class "bg-green flex flex-column items-center" ]
-            [ img [ class "absolute left-0 ma3 ", src "./assets/AddStim/close_btn_white.svg", onClick (ChangeView Landing) ] []
-            , p [ class "white b f3 mb4 wellcome" ]
-                [ text "Add new" ]
+        [ div [ class "bg-green center tc" ]
+            [ div [ class "flex flex-row items-center justify-center relative" ]
+                [ div [ class "absolute left-0 ml3 pointer", onClick (ChangeView Landing) ] [ img [ src "./assets/AddStim/close_btn_white.svg" ] [] ]
+                , h1 [ classes [ headerFont, "white pt3 mb3" ] ]
+                    [ text "Add new stim" ]
+                ]
             ]
         , div
             [ class "ma0" ]
             [ Html.form [ class "flex flex-column lh-f6 f6" ]
                 [ div
-                    [ backgroundImageNoPosition "./assets/AddStim/zigzag_choose_part_tags_bg.svg" 100
-                    , class "flex flex-column mb3 pb3"
+                    [ backgroundImageCover "./assets/AddStim/zigzag_choose_part_tags_bg.svg"
+                    , class "flex flex-column mb3 pb3 h-fit-content"
                     ]
                     [ img [ class "ma3", src "./assets/AddStim/zigzag_big_grey_down.svg" ] []
                     , label
@@ -39,7 +40,7 @@ addStim model =
                 , label [ for "exercise-name", class "b mh3 " ] [ text "what would you call this exercise?" ]
                 , textarea [ class "mb6 bg-transparent bn h-textarea-small", id "exercise-name", onInput AddExerciseName ]
                     []
-                , div [ backgroundImageNoPosition "./assets/AddStim/zigzag_stim_how_to_bg.svg" 100, class "flex flex-column mb3 pt3" ]
+                , div [ backgroundImageCover "./assets/AddStim/zigzag_stim_how_to_bg.svg", class "h-fit-content flex flex-column mb3 pt3" ]
                     [ label [ for "exercise-intstructions", class "b h6 ma3" ]
                         [ text "how do you do this exercise?" ]
                     , p [ class "mh3" ]
@@ -67,13 +68,11 @@ addStim model =
                         ]
                     ]
                 , div
-                    [ class "flex flex-column justify-center no-repeat"
-                    , style
-                        [ ( "backgroundImage", "url(./assets/AddStim/zigzag_add_stim_save.svg)" )
-                        ]
+                    [ backgroundImageCover "./assets/AddStim/zigzag_add_stim_save.svg"
+                    , class "flex flex-column h-fit-content"
                     ]
                     [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
-                    , p [ class "flex worksans justify-center black " ] [ text "SAVE" ]
+                    , p [ class "ma4 flex worksans justify-center black " ] [ text "SAVE" ]
                     ]
                 ]
             ]
