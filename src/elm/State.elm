@@ -9,14 +9,14 @@ import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Requests.GetVideos exposing (getVideos)
+import Transit
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
-import Transit
 
 
 initModel : Model
 initModel =
-    { view = StimPreparation
+    { view = AddStim
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -83,7 +83,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-                { model | timeSelected = interval, counter = interval } ! []
+            { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
