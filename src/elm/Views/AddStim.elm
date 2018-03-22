@@ -16,7 +16,7 @@ addStim model =
     div [ class "bg-washed-yellow", verticalTransition model ]
         [ div
             [ class "bg-green flex flex-column items-center" ]
-            [ img [ class "absolute left-0 ma3 ", src "./assets/AddStim/back_btn_white.svg" ] []
+            [ img [ class "absolute left-0 ma3 ", src "./assets/AddStim/close_btn_white.svg", onClick (ChangeView Landing) ] []
             , p [ class "white b f3 mb4 wellcome" ]
                 [ text "Add new" ]
             ]
