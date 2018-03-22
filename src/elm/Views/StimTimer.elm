@@ -1,6 +1,6 @@
 module Views.StimTimer exposing (..)
 
-import Helpers.Style exposing (horizontalTransition)
+import Helpers.Style exposing (horizontalTransition, headerFont, classes)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
@@ -9,11 +9,11 @@ import Types exposing (..)
 
 stimTimer : Model -> Html Msg
 stimTimer model =
-    div [ class "border-box bg-green flex-column tc white m-h-100", horizontalTransition model ]
-        [ div [ class "relative flex flex-row ma3 mt0 mb4 items-center justify-between h" ]
-            [ img [ onClick <| ChangeViewFromTimer StimPreparation, src "./assets/StimPreparation/back_btn_white.svg" ] []
-            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text <| model.selectedStim.stimName ]
-            , img [ onClick <| ChangeViewFromTimer StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] []
+    div [ class "border-box bg-green flex flex-column tc white fill-screen", horizontalTransition model ]
+        [ div [ classes [ headerFont, "flex flex-row ma3 mt0 mb0 items-center justify-between h" ] ]
+            [ div [ onClick <| ChangeViewFromTimer StimPreparation, class "h4 w3 flex items-centre justify-left" ] [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
+            , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ] [ text "The Mindful Jar" ]
+            , div [ onClick <| ChangeViewFromTimer StimInfo, class "h4 w3 flex items-centre justify-right" ] [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
             ]
         , img [ class "mb5", src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []
         , img [ class "mb4", src "./assets/StimTimer/timer_icn.svg" ] []
@@ -29,7 +29,7 @@ stimTimer model =
         , img [ class "mb4", src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []
         , div []
             [ img [ onClick <| StopTimer, src "./assets/StimTimer/timer_done_btn.svg" ] []
-            , p [ class "mt0 mb3 b" ] [ text "I'm feeling better!" ]
+            , p [ class "mt0 mb4 b" ] [ text "I'm feeling better!" ]
             ]
         ]
 

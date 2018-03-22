@@ -10,7 +10,7 @@ rectButton : String -> Msg -> Html Msg
 rectButton buttonText msg =
     button
         [ classes
-            [ "bg-green br2 white pv3 bn w-90"
+            [ "bg-green br2 white pv3 bn w-100"
             , bodyFont
             ]
         , onClick msg
