@@ -1,11 +1,12 @@
 module Views.StimRecap exposing (..)
 
-import Components.Button exposing (..)
+import Components.Button exposing (rectButton)
 import Components.Face exposing (face)
 import Components.PillButton exposing (..)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
-import Helpers.Style exposing (horizontalTransition)
+import Data.Avatar exposing (avatarHeadSelection)
+import Helpers.Style exposing (classes, headerFont, horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -14,29 +15,27 @@ import Types exposing (..)
 
 stimRecap : Model -> Html Msg
 stimRecap model =
-    div [ class "border-box bg-green w-100 h-100 flex-column justify-center align-center content-center items-stretch tc", horizontalTransition model ]
-        [ div [ class "w-90 bg-white center h-100 flex-column content-around" ]
-            [ img [] []
-            , p [ class "bg-green h-20" ] [ text "STIM TITLE" ]
-            , img [] []
-            , div []
-                [ div []
-                    [ img [] []
-                    , p [] [ text "Time's up!" ]
-                    ]
-                , p [] [ text "How do you feel now?" ]
-                , div [ class "flex flew-row" ] (List.map (face Post) faces)
-                , div []
-                    [ p [] [ text "Any specific feelings?" ]
-                    , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings)
-                    ]
-                , div [ onClick RepeatStim ] [ text "Do it again?" ]
-                , rectButton "Done" SaveLog
+    div [ class "border-box bg-green flex-column tc dark-gray", horizontalTransition model ]
+        [ div [ class "mh3 mb3 pt3 center" ]
+            [ h1 [ classes [ "white", headerFont ] ] [ text <| model.selectedStim.stimName ] ]
+        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
+            [ div []
+                [ img [ class "mt6 mb0 mh7", src <| avatarHeadSelection model.avatar ] []
+                , p [ class "b lh-f5 f5" ] [ text "Time's up!" ]
+                , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                 ]
+            , p [ class "lh-f5 f5" ] [ text "How do you feel now?" ]
+            , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Post model) faces)
+            , div []
+                [ p [ class "lh-f5 f5" ] [ text "I also feel.." ]
+                , div [ class "flex flex-wrap items-center justify-around" ] (renderFeelings feelings model)
+                ]
+            , rectButton "Done" SaveLog
+            , div [ class "green underline pb3 ", onClick RepeatStim ] [ text "Or do it again?" ]
             ]
         ]
 
 
-renderFeelings : List Feeling -> List (Html Msg)
-renderFeelings list =
-    List.map (feelingButton Post) list
+renderFeelings : List Feeling -> Model -> List (Html Msg)
+renderFeelings feelings model =
+    List.map (feelingButton Post model) feelings

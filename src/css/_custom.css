@@ -1,33 +1,33 @@
 body {
   margin: 0;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
 }
 
 /* Fonts */
 
 @font-face {
-  font-family: 'Work Sans';
-  src: url('../fonts/WorkSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'Work Sans';
-  src: url('../fonts/WorkSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'Wellcome';
-  src: url('../fonts/wellcome-bold-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-family: "Wellcome";
+  src: url("../fonts/wellcome-bold-webfont.ttf") format("truetype"); /* Safari, Android, iOS */
 }
 
 .work-sans {
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
 }
 
 .wellcome {
-  font-family: 'Wellcome';
+  font-family: "Wellcome";
 }
 
 /* Line Heights */
@@ -67,6 +67,10 @@ body {
 }
 .h-100vw {
   height: 100vw;
+}
+
+.mb1px {
+  margin-bottom: 1px;
 }
 
 /* Custom Positions */
@@ -233,8 +237,9 @@ body {
 .background-avatar {
   width: 95vw;
 }
+
 .timer-font {
-  font-family: 'Wellcome';
+  font-family: "Wellcome";
   font-size: 72px;
   line-height: 96px;
 }
@@ -305,4 +310,16 @@ body {
 
 .show-child {
   visibility: visible;
+}
+
+.face-container {
+  height: 57px;
+  width: 57px;
+  border-style: solid;
+  border-width: 0.094rem;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

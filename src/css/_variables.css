@@ -9,7 +9,7 @@
 @custom-media --breakpoint-large screen and (min-width: 60em);
 
 :root {
-  --sans-serif: 'Open Sans', 'Raleway' 'helvetica neue', helvetica, arial,
+  --sans-serif: "Open Sans", "Raleway" "helvetica neue", helvetica, arial,
     sans-serif;
   --serif: georgia, serif;
   --handwriting: Caveat;
