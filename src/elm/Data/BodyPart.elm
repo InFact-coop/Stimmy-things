@@ -1,10 +1,10 @@
-module Data.Bodyparts exposing (..)
+module Data.BodyPart exposing (..)
 
 import Types exposing (..)
 
 
-bodyparts : List BodyPart
-bodyparts =
+bodyParts : List BodyPart
+bodyParts =
     [ Head
     , Face
     , Shoulders

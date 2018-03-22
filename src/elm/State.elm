@@ -43,7 +43,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! viewToCmds initModel.view
+    initModel ! [ initHotspots (), initDB () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -84,7 +84,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
