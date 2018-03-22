@@ -1,5 +1,4 @@
 import app from './elm-init';
-
 const hotspotBodyParts = [
   'head',
   'face',
@@ -13,21 +12,27 @@ const hotspotBodyParts = [
 ];
 
 const initHotspots = () => {
-  const avatar = document.getElementById('avatar');
-
   const getSvgDoc = cb => {
-    let svg = avatar ? avatar.getSVGDocument() : null;
-    if (svg === null) {
-      setTimeout(() => getSvgDoc(cb), 300);
+    const avatar = document.getElementById('avatar');
+    if (avatar === null) {
+      return setTimeout(() => getSvgDoc(cb), 300);
+    } else {
+      cb();
+    }
+    const svgDoc = avatar.contentDocument;
+    const hotspot = svgDoc.getElementById('head-hotspot');
+    if (hotspot === null) {
+      return setTimeout(() => getSvgDoc(cb), 300);
     } else {
       cb();
     }
   };
 
   const createHotspotCoords = () => {
+    const avatar = document.getElementById('avatar');
     const svgCoords = avatar.getBoundingClientRect();
+    const svgDoc = avatar.contentDocument;
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
-      const svgDoc = avatar.contentDocument;
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
       const bounding = hotspot.getBoundingClientRect();
       const coords = {
