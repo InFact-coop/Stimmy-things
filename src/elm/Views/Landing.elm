@@ -11,7 +11,7 @@ import Types exposing (..)
 landing : Model -> Html Msg
 landing model =
     div [ class "flex flex-column justify-center items-center", horizontalTransition model ]
-        [ header [ classes [ "flex", "justify-between", "items-center", "pa3", "vw-100" ] ]
+        [ header [ classes [ "flex", "justify-between", "items-center", "pt3", "ph3", "pb2", "vw-100" ] ]
             [ button
                 [ classes [ "button", "bn", "h2", "w2", "bg-inherit" ]
                 , backgroundImageStyle
@@ -21,7 +21,7 @@ landing model =
                 ]
                 []
             , h1 [ class "f3 b" ] [ text model.avatarName ]
-            , div [] []
+            , div [ class "w2 h2" ] [ text " " ]
             ]
         , object
             [ id "avatar", attribute "data" "assets/avatar_2.svg", type_ "image/svg+xml", classes [ "background-avatar" ] ]
@@ -36,7 +36,7 @@ landing model =
         , stimMenu model model.hotspots.legs
         , stimMenu model model.hotspots.feet
         , button
-            [ classes [ "bn", "bg-transparent", "db", "h4", "w4", "fixed", "bottom-0", "outline-0" ]
+            [ classes [ "bn", "bg-transparent", "db", "h4", "w4", "fixed", "bottom-0", "outline-0", "z-2" ]
             , backgroundImageStyle "./assets/Landing/add_stim_btn.svg" 100
             , onClick <| NavigateTo AddStim
             ]
@@ -44,56 +44,56 @@ landing model =
         ]
 
 
-hotspotDiv : HotspotCoords -> Html Msg
-hotspotDiv hotspot =
+hotspotDiv : Model -> HotspotCoords -> Html Msg
+hotspotDiv model hotspot =
     div
-        [ classes [ "br-100", "bg-light-blue-tp", "pointer", "flex", "items-center", "justify-center", "z-2", "show-child" ]
-        , style [ ( "width", toString hotspot.width ++ "px" ), ( "height", toString hotspot.height ++ "px" ) ]
+        [ classes [ "br-100", "bg-light-blue-tp", "pointer", "flex", "items-center", "justify-center", "show-child", selectHotspotIndex model hotspot ]
+        , style [ ( "width", toString (hotspot.width + 10) ++ "px" ), ( "height", toString (hotspot.height + 10) ++ "px" ) ]
         , onClick <| ToggleStimMenu hotspot.name
         ]
-        [ div [ classes [ "z-3", "h1", "w1", "br-100", "breathe", "bg-light-blue", "show-child" ] ] [] ]
+        [ div [ classes [ selectHotspotIndex model hotspot, "h1", "w1", "br-100", "breathe", "bg-light-blue", "show-child" ] ] [] ]
 
 
 stimMenu : Model -> HotspotCoords -> Html Msg
 stimMenu model hotspot =
     div
-        [ classes [ "absolute", ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-4" "vis-hidden z-1" ]
+        [ classes [ "absolute", ifThenElse (model.stimMenuShowing == Just hotspot.name) "" "vis-hidden", "flex", "flex-column" ]
         , style [ ( "right", toString (hotspot.right) ++ "px" ), ( "top", toString (hotspot.top) ++ "px" ) ]
         ]
-        (stimMenuItems model hotspot ++ [ addStimButton (hotspot.height + 32) ])
+        (stimMenuItems model hotspot ++ [ addStimButton model hotspot ])
 
 
 stimMenuItems : Model -> HotspotCoords -> List (Html Msg)
 stimMenuItems model hotspot =
     extractStims hotspot.name model.stims
-        |> List.map (stimToButton (hotspot.height + 32))
-        |> (::) (stimTitle hotspot)
+        |> List.map (stimToButton model hotspot)
+        |> (::) (stimTitle model hotspot)
 
 
-stimTitle : HotspotCoords -> Html Msg
-stimTitle hotspot =
+stimTitle : Model -> HotspotCoords -> Html Msg
+stimTitle model hotspot =
     div
-        [ classes [ "mb1px", "br--right", "bg-white", "pa3", "flex", "justify-end", "items-center", "translucent" ]
+        [ classes [ "relative", "mb1px", "br--right", "bg-white", "pa3", "flex", "justify-end", "items-center", "translucent", "f4", "b", ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "" ]
         , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
         ]
-        [ div [ classes [ "mh6" ] ] [ h2 [ classes [] ] [ text <| unionTypeToString hotspot.name ] ], hotspotDiv hotspot ]
+        [ div [ classes [ "mh6" ] ] [ h2 [ classes [ "f3", "b" ] ] [ text <| unionTypeToString hotspot.name ] ], hotspotDiv model hotspot ]
 
 
-addStimButton : Float -> Html Msg
-addStimButton height =
+addStimButton : Model -> HotspotCoords -> Html Msg
+addStimButton model hotspot =
     button
-        [ classes [ "translucent", "mb1px", "w-80", "flex", "items-center", "justify-center", "link", "work-sans-regular", "black", "pointer", "bn" ]
-        , style [ ( "height", toString height ++ "px" ) ]
+        [ classes [ "relative", "translucent", "mb1px", "w-80", "work-sans-regular", "black", "pointer", "bn", ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "", "tc", "f5" ]
+        , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
         , onClick (ChangeView AddStim)
         ]
         [ text "+ Add a stim!" ]
 
 
-stimToButton : Float -> Stim -> Html Msg
-stimToButton height stim =
+stimToButton : Model -> HotspotCoords -> Stim -> Html Msg
+stimToButton model hotspot stim =
     button
-        [ classes [ "translucent", "mb1px", "w-80", "flex", "items-center", "justify-center", "link", "work-sans-regular", "black", "pointer", "bn" ]
-        , style [ ( "height", toString height ++ "px" ) ]
+        [ classes [ "relative", "translucent", "mb1px", "w-80", "link", "work-sans-regular", "black", "f5", "pointer", "bn", ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "z-0", "tc" ]
+        , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
         , onClick (GoToStim stim)
         ]
         [ text stim.stimName ]

@@ -256,3 +256,4 @@ type Msg
     | AddExerciseName String
     | AddHowTo String
     | SelectAvatar
+    | AddAvatarName String
