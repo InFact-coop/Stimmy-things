@@ -248,10 +248,12 @@ type Msg
     | NavigateTo View
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
+    | ReceiveChosenAvatar String
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
     | GoToStim Stim
     | AddExerciseName String
     | AddHowTo String
+    | SelectAvatar
     | AddAvatarName String

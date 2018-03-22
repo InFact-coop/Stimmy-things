@@ -7,7 +7,7 @@ const initCarousel = () => {
     const flkty = new Flickity(carouselElement, {
       lazyLoad: true,
       adaptiveHeight: true,
-      wrapAround: true,
+      wrapAround: false,
       prevNextButtons: false,
       pageDots: true
     });
@@ -27,4 +27,9 @@ const videoCarousel = () => {
   });
 };
 
-export default { initCarousel, videoCarousel };
+const retrieveChosenAvatar = () => {
+  const chosenElement = document.querySelector('.is-selected');
+  app.ports.receiveChosenAvatar.send(chosenElement.src);
+};
+
+export default { initCarousel, videoCarousel, retrieveChosenAvatar };

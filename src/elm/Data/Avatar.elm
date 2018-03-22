@@ -1,7 +1,8 @@
 module Data.Avatar exposing (..)
 
-import Types exposing (..)
+import Helpers.Utils exposing (fileNameFromURL)
 import Json.Decode exposing (..)
+import Types exposing (..)
 
 
 decodeAvatar : Decoder Avatar
@@ -54,3 +55,28 @@ avatarHeadSelection avatar =
 
         Avatar6 ->
             "./assets/avatar_6_head.svg"
+
+
+avatarSrcToAvatar : String -> Avatar
+avatarSrcToAvatar string =
+    case fileNameFromURL string of
+        "avatar_1.svg" ->
+            Avatar1
+
+        "avatar_2.svg" ->
+            Avatar2
+
+        "avatar_3.svg" ->
+            Avatar3
+
+        "avatar_4.svg" ->
+            Avatar4
+
+        "avatar_5.svg" ->
+            Avatar5
+
+        "avatar_6.svg" ->
+            Avatar6
+
+        _ ->
+            Avatar1
