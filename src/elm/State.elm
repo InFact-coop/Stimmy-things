@@ -4,7 +4,7 @@ import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
@@ -17,7 +17,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = CreateAvatar
+    { view = Splash
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -78,6 +78,9 @@ update msg model =
 
         NoOp ->
             model ! []
+
+        SaveStim stim ->
+            model ! [ saveStim <| normaliseStim stim ]
 
         SetTime time ->
             let
@@ -150,6 +153,12 @@ update msg model =
             dbDataToModel dbData model ! []
 
         ReceiveInitialData (Err err) ->
+            model ! []
+
+        ReceiveStimList (Ok listStims) ->
+            { model | stims = listStims } ! []
+
+        ReceiveStimList (Err err) ->
             model ! []
 
         ReceiveChosenAvatar src ->

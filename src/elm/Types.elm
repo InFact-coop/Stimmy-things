@@ -243,11 +243,13 @@ type Msg
     | RepeatStim
     | ChangeViewFromTimer View
     | SaveLog
+    | SaveStim Stim
     | ToggleNav
     | TransitMsg (Transit.Msg Msg)
     | NavigateTo View
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
+    | ReceiveStimList (Result String (List Stim))
     | ReceiveChosenAvatar String
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
