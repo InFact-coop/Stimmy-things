@@ -73,7 +73,7 @@ addStim model =
                     , onClick <| SaveStim model.newStim
                     ]
                     [ img [ class "mt5", src "./assets/AddStim/Done_green_medium.svg" ] []
-                    , p [ class "mt2 mb3 flex worksans justify-center black " ] [ text "SAVE" ]
+                    , p [ class "mt2 mb3 flex justify-center" ] [ text "SAVE" ]
                     ]
                 ]
             ]
