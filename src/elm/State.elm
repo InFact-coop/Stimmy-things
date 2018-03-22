@@ -155,3 +155,6 @@ update msg model =
             }
                 ! []
                 :> update (ChangeView StimPreparation)
+
+        AddAvatarName name ->
+            { model | avatarName = name } ! []
