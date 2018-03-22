@@ -18,7 +18,7 @@ decodeStim =
         |> required "bodyPart" decodeBodyPart
         |> required "stimName" string
         |> required "instructions" string
-        |> required "videoSrc" (maybe string)
+        |> required "videoSrc" (Json.Decode.map (stringToMaybe) string)
         |> required "shared" bool
         |> required "userId" string
 
@@ -36,3 +36,13 @@ addExerciseName string stim =
 addHowTo : String -> Stim -> Stim
 addHowTo string stim =
     { stim | instructions = string }
+
+
+stringToMaybe : String -> Maybe String
+stringToMaybe str =
+    case str of
+        "" ->
+            Nothing
+
+        string ->
+            Just string

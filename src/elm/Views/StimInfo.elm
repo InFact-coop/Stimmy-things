@@ -1,7 +1,7 @@
 module Views.StimInfo exposing (..)
 
-import Data.BodyPart exposing (bodyPartToString)
 import Helpers.Style exposing (backgroundImageCover, bodyFont, classes, headerFont, verticalTransition)
+import Helpers.Utils exposing (unionTypeToString, viewIf)
 import Html exposing (..)
 import Html.Attributes exposing (class, height, src, width)
 import Html.Events exposing (onClick)
@@ -22,7 +22,7 @@ stimInfo model =
                     , bodyFont
                     ]
                 ]
-                [ text <| bodyPartToString model.selectedStim.bodyPart ]
+                [ text <| unionTypeToString model.selectedStim.bodyPart ]
             ]
         , div [ class "flex flex-column items-center mb3" ]
             [ img [ src "./assets/StimInfo/divider_zigzag_grey_small.svg", class "pa2" ] []
@@ -32,15 +32,20 @@ stimInfo model =
                 , p [ classes [ bodyFont ] ] [ text <| model.selectedStim.instructions ]
                 ]
             ]
-        , div
-            [ backgroundImageCover "./assets/AddStim/zigzag_stim_how_to_bg.svg"
-            , class "flex flex-column items-center"
-            ]
-            [ img [ src "./assets/StimInfo/add_video_icn.svg", class "pt4" ] []
-            , h1 [ classes [ headerFont, "mb3" ] ] [ text "Can this video help?" ]
-            , div [ class "video-height" ]
-                [ iframe [ width 300, height 188, src <| Maybe.withDefault "" model.selectedStim.videoSrc ] []
-                ]
-            ]
+        , viewIf (model.selectedStim.videoSrc /= Nothing) (videoSection model)
         , div [ class "h5" ] []
+        ]
+
+
+videoSection : Model -> Html Msg
+videoSection model =
+    div
+        [ backgroundImageCover "./assets/AddStim/zigzag_stim_how_to_bg.svg"
+        , class "flex flex-column items-center"
+        ]
+        [ img [ src "./assets/StimInfo/add_video_icn.svg", class "pt4" ] []
+        , h1 [ classes [ headerFont, "mb3" ] ] [ text "Can this video help?" ]
+        , div [ class "video-height" ]
+            [ iframe [ width 300, height 188, src <| Maybe.withDefault "" model.selectedStim.videoSrc ] []
+            ]
         ]
