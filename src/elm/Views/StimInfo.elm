@@ -34,7 +34,7 @@ stimInfo model =
             ]
         , div
             [ backgroundImageCover "./assets/AddStim/zigzag_stim_how_to_bg.svg"
-            , class "flex flex-column items-center fit-content"
+            , class "flex flex-column items-center"
             ]
             [ img [ src "./assets/StimInfo/add_video_icn.svg", class "pt4" ] []
             , h1 [ classes [ headerFont, "mb3" ] ] [ text "Can this video help?" ]
