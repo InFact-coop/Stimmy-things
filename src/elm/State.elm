@@ -17,7 +17,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = Splash
+    { view = AddStim
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
