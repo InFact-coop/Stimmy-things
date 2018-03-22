@@ -16,7 +16,7 @@ import Transit
 
 initModel : Model
 initModel =
-    { view = NameAvatar
+    { view = Splash
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
