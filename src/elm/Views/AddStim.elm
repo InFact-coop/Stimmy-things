@@ -34,7 +34,7 @@ addStim model =
                     , p [ class "mv0 mh3 b" ] [ text "Choose a part of the body" ]
                     , p [ class "mv0 mh3" ] [ text "I want to calm my ..." ]
                     , p [ class "mv0 mh3" ] [ text " I am feeling anxious around my ..." ]
-                    , div [ class " flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyparts)
+                    , div [ class " flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyparts model)
                     ]
                 , label [ for "exercise-name", class "b mh3 " ] [ text "what would you call this exercise?" ]
                 , textarea [ class "mb6 bg-transparent bn h-textarea-small", id "exercise-name", onInput AddExerciseName ]
@@ -80,6 +80,6 @@ addStim model =
         ]
 
 
-renderBodyparts : List BodyPart -> List (Html Msg)
-renderBodyparts bodypartList =
-    List.map bodyButton bodypartList
+renderBodyparts : List BodyPart -> Model -> List (Html Msg)
+renderBodyparts bodypartList model =
+    List.map (bodyButton model) bodypartList
