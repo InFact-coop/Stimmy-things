@@ -2,6 +2,7 @@ module State exposing (..)
 
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
+import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
@@ -16,8 +17,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = AddStim
-    , userId = ""
+    { userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
     , skinColour = SkinColour1
@@ -42,7 +42,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! viewToCmds initModel.view
+    initModel ! [ initHotspots (), initDB () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -123,6 +123,9 @@ update msg model =
                 :> update (AdjustTimer Stop)
                 :> update (ChangeView view)
 
+        SelectAvatar ->
+            model ! [ retrieveChosenAvatar () ]
+
         SaveLog ->
             { model
                 | newLog = defaultLog
@@ -156,6 +159,11 @@ update msg model =
 
         ReceiveStimList (Err err) ->
             model ! []
+
+        ReceiveChosenAvatar src ->
+            { model | avatar = avatarSrcToAvatar src }
+                ! []
+                :> update (ChangeView NameAvatar)
 
         GoToStim stim ->
             { model

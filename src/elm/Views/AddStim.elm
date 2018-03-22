@@ -2,7 +2,7 @@ module Views.AddStim exposing (..)
 
 import Components.PillButton exposing (..)
 import Components.Video exposing (videoYT)
-import Data.Bodyparts exposing (bodyparts)
+import Data.BodyPart exposing (bodyParts)
 import Helpers.Style exposing (..)
 import Helpers.Utils exposing (..)
 import Html exposing (..)
@@ -35,7 +35,7 @@ addStim model =
                     , p [ class "mv0 mh3 b" ] [ text "Choose a part of the body" ]
                     , p [ class "mv0 mh3" ] [ text "I want to calm my ..." ]
                     , p [ class "mv0 mh3" ] [ text " I am feeling anxious around my ..." ]
-                    , div [ class " flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyparts model)
+                    , div [ class " flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyParts model)
                     ]
                 , label [ for "exercise-name", class "b mh3 " ] [ text "what would you call this exercise?" ]
                 , textarea [ class "mb6 bg-transparent bn h-textarea-small", id "exercise-name", onInput AddExerciseName ]

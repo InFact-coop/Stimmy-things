@@ -74,3 +74,17 @@ stringToMaybe str =
 
         string ->
             Just string
+
+
+fileNameFromURL : String -> String
+fileNameFromURL url =
+    let
+        splitURL =
+            String.split "/" url
+
+        splitLength =
+            List.length splitURL
+    in
+        List.drop (splitLength - 1) splitURL
+            |> List.head
+            |> Maybe.withDefault ""

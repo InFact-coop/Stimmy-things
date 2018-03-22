@@ -16,6 +16,12 @@ port initCarousel : () -> Cmd msg
 port videoCarousel : () -> Cmd msg
 
 
+port retrieveChosenAvatar : () -> Cmd msg
+
+
+port receiveChosenAvatar : (String -> msg) -> Sub msg
+
+
 port saveLog : DBLog -> Cmd msg
 
 
@@ -60,6 +66,7 @@ subscriptions model =
         , timeSubscription model
         , receiveUpdatedLogs ReceiveUpdatedLogs
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
+        , receiveChosenAvatar ReceiveChosenAvatar
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
         ]
