@@ -82,7 +82,7 @@ viewToCmds view =
             [ initTimeout ]
 
         Landing ->
-            [ initHotspots (), initDB () ]
+            [ initHotspots () ]
 
         CreateAvatar ->
             [ initCarousel () ]

@@ -2,7 +2,9 @@ port module Ports exposing (..)
 
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
+import Data.Stim exposing (decodeStimList)
 import Json.Decode exposing (..)
+import Json.Encode exposing (..)
 import Time exposing (Time)
 import Transit
 import Types exposing (..)
@@ -29,10 +31,16 @@ port initDB : () -> Cmd msg
 port initHotspots : () -> Cmd msg
 
 
+port saveStim : Json.Encode.Value -> Cmd msg
+
+
 port receiveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
 
 
 port receiveUpdatedLogs : (List DBLog -> msg) -> Sub msg
+
+
+port receiveUpdatedStims : (Json.Decode.Value -> msg) -> Sub msg
 
 
 port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
@@ -57,6 +65,7 @@ subscriptions model =
         [ receiveHotspotCoords (decodeHotspots >> ReceiveHotspotCoords)
         , timeSubscription model
         , receiveUpdatedLogs ReceiveUpdatedLogs
+        , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
         , receiveChosenAvatar ReceiveChosenAvatar
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model

@@ -66,6 +66,16 @@ onCheckboxInput tagger =
     on "change" (Decode.map2 tagger targetValue targetChecked)
 
 
+stringToMaybe : String -> Maybe String
+stringToMaybe str =
+    case str of
+        "" ->
+            Nothing
+
+        string ->
+            Just string
+
+
 fileNameFromURL : String -> String
 fileNameFromURL url =
     let

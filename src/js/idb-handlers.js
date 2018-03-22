@@ -31,4 +31,14 @@ const saveLog = log => {
     .catch(err => console.log('Error saving log: ', err));
 };
 
-export default { saveLog, initDB };
+const saveStim = stim => {
+  const db = helpers.createDB();
+
+  helpers
+    .addStim(db, stim)
+    .then(() => helpers.getAllStims(db))
+    .then(stims => app.ports.receiveUpdatedStims.send(stims))
+    .catch(err => console.log('Error saving stim: ', err));
+};
+
+export default { saveLog, saveStim, initDB };
