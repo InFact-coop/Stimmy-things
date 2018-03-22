@@ -73,6 +73,10 @@ body {
   margin-bottom: 1px;
 }
 
+.vh-75 {
+  height: 75vh;
+}
+
 /* Custom Positions */
 
 .top-4 {
@@ -334,8 +338,4 @@ body {
 
 .fill-screen {
   min-height: 100vh;
-}
-
-.name::input {
-  text-align: center;
 }

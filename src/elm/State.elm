@@ -2,6 +2,7 @@ module State exposing (..)
 
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
+import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
@@ -9,9 +10,9 @@ import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Requests.GetVideos exposing (getVideos)
+import Transit
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
-import Transit
 
 
 initModel : Model
@@ -49,7 +50,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeView view ->
-            { model | view = view } ! (scrollToTop :: viewToCmds view)
+            { model | view = view, stimMenuShowing = Nothing, showNav = No } ! (scrollToTop :: viewToCmds view)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -120,6 +121,9 @@ update msg model =
                 :> update (AdjustTimer Stop)
                 :> update (ChangeView view)
 
+        SelectAvatar ->
+            model ! [ retrieveChosenAvatar () ]
+
         SaveLog ->
             { model
                 | newLog = defaultLog
@@ -147,6 +151,11 @@ update msg model =
 
         ReceiveInitialData (Err err) ->
             model ! []
+
+        ReceiveChosenAvatar src ->
+            { model | avatar = avatarSrcToAvatar src }
+                ! []
+                :> update (ChangeView NameAvatar)
 
         GoToStim stim ->
             { model
