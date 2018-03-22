@@ -16,7 +16,7 @@ import Transit
 
 initModel : Model
 initModel =
-    { view = StimPreparation
+    { view = Landing
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -42,7 +42,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! viewToCmds initModel.view
+    initModel ! [ initHotspots (), initDB () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
