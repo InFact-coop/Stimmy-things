@@ -9,7 +9,7 @@ import Types exposing (..)
 createAvatar : Model -> Html Msg
 createAvatar model =
     section [ class "smooth", horizontalTransition model ]
-        [ div [ class "flex justify-center flex-column items-center" ] [ h1 [ class "f3 green avenir center ma0" ] [ text "My Stimmy friend" ], h2 [ class "ma0 avenir fw2 f4" ] [ text "Choose your avatar" ] ]
+        [ header [ class "flex justify-center flex-column items-center pt3 ph3 pb2" ] [ h1 [ class "f3 b green avenir center ma0 lh-f3" ] [ text "My Stimmy friend" ], h2 [ class "ma0 avenir fw2 f5 lh-f5" ] [ text "Choose your avatar" ] ]
         , div
             [ class "db makecarousel mv2" ]
             [ avatarCaroCell "./assets/avatar.svg"
