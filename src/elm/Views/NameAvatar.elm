@@ -24,5 +24,5 @@ nameAvatar model =
         , div []
             [ img [ class "mt6 mb7 mh7 w6", src <| avatarHeadSelection model.avatar ] []
             ]
-        , textarea [ classes [ headerFont, "border-box name b--silver black w-80 br2 outline-0 pa3 h3" ], placeholder "Name", onInput AddAvatarName ] []
+        , textarea [ classes [ headerFont, "border-box b--silver black w-80 br2 outline-0 pa3 h3" ], placeholder "Name", onInput AddAvatarName ] []
         ]
