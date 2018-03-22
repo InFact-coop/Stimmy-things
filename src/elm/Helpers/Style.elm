@@ -1,8 +1,8 @@
 module Helpers.Style exposing (..)
 
+import Helpers.Animation exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Helpers.Animation exposing (..)
 import Types exposing (..)
 
 
@@ -28,6 +28,15 @@ backgroundImageNoPosition url sizePercent =
         [ ( "background-image", "url(" ++ url ++ ")" )
         , ( "background-repeat", "no-repeat" )
         , ( "background-size", toString sizePercent ++ "%" )
+        ]
+
+
+backgroundImageCover : String -> Attribute msg
+backgroundImageCover url =
+    style
+        [ ( "background-image", "url(" ++ url ++ ")" )
+        , ( "background-repeat", "no-repeat" )
+        , ( "background-size", "cover" )
         ]
 
 

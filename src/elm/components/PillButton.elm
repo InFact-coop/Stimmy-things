@@ -12,7 +12,7 @@ feelingButton : LogStage -> Model -> Feeling -> Html Msg
 feelingButton logStage model feeling =
     div
         [ classes
-            [ "flex white justify-center br-pill pa1 pointer w5 h2 mb4"
+            [ "flex white justify-center br-pill pa1 pointer feeling-button h2 mb4"
             , bodyFont
             , ifThenElse (highlightSelectedFeeling logStage model feeling) "bg-light-green" "bg-green"
             ]
