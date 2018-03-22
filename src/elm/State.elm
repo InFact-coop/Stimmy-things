@@ -9,9 +9,9 @@ import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Requests.GetVideos exposing (getVideos)
+import Transit
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
-import Transit
 
 
 initModel : Model

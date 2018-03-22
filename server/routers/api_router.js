@@ -18,7 +18,6 @@ router.route('/youtube').get((req, res, next) => {
     }`,
     (err, apiResponse) => {
       if (err) console.log('ERROR', err);
-
       const parsed = JSON.parse(apiResponse.body);
       const responseItems = parsed.items
         .map(video => {

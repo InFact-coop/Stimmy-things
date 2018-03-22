@@ -1,5 +1,6 @@
 module Helpers.Style exposing (..)
 
+import Helpers.Animation exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Helpers.Utils exposing (..)
