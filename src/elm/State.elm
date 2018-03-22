@@ -17,7 +17,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = CreateAvatar
+    { view = Splash
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -84,7 +84,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
