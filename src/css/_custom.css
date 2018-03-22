@@ -69,6 +69,10 @@ body {
   height: 100vw;
 }
 
+.mb1px {
+  margin-bottom: 1px;
+}
+
 /* Custom Positions */
 
 .top-4 {
@@ -233,6 +237,7 @@ body {
 .background-avatar {
   width: 95vw;
 }
+
 .timer-font {
   font-family: "Wellcome";
   font-size: 72px;

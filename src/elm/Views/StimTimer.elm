@@ -1,6 +1,5 @@
 module Views.StimTimer exposing (..)
 
-import Components.Button exposing (rectButton)
 import Helpers.Style exposing (horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -13,7 +12,7 @@ stimTimer model =
     div [ class "border-box bg-green flex-column tc white m-h-100", horizontalTransition model ]
         [ div [ class "relative flex flex-row ma3 mt0 mb4 items-center justify-between h" ]
             [ img [ onClick <| ChangeViewFromTimer StimPreparation, src "./assets/StimPreparation/back_btn_white.svg" ] []
-            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "Mindful Breathing" ]
+            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text <| model.selectedStim.stimName ]
             , img [ onClick <| ChangeViewFromTimer StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] []
             ]
         , img [ class "mb5", src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []

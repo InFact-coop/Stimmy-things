@@ -1,6 +1,6 @@
 module Views.StimPreparation exposing (..)
 
-import Components.Button exposing (..)
+import Components.Button exposing (rectButton)
 import Components.PillButton exposing (..)
 import Components.Face exposing (face)
 import Data.Face exposing (faces, urlFromFace)
@@ -12,8 +12,8 @@ import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
 import Html.Events exposing (on, onClick, onInput, targetValue)
 import Json.Decode as Json
-import Types exposing (..)
 import Time exposing (Time)
+import Types exposing (..)
 
 
 stimPreparation : Model -> Html Msg
@@ -21,10 +21,16 @@ stimPreparation model =
     div [ class "border-box bg-green flex-column tc dark-gray", horizontalTransition model ]
         [ div [ class "flex flex-row ma3 mt0 mb0 items-center justify-between h" ]
             [ div [class "h-100"] [ img [ onClick <| ChangeView Landing, src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
-            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text "The Mindful Jar" ]
+            , p [ class <| "absolute ma0 left-0 right-0 white lh-f4 f4" ] [ text <| model.selectedStim.stimName  ]
             , div [] [ img [ onClick <| ChangeView StimInfo, src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
             ]
-        , div [ style [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" ), ( "backgroundRepeat", "no-repeat" ) ], class "ma3 mb4 mt0 flex-column work-sans" ]
+        , div
+            [ style
+                [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" )
+                , ( "backgroundRepeat", "no-repeat" )
+                ]
+            , class "ma3 mb4 mt0 flex-column work-sans"
+            ]
             [ div []
                 [ div []
                     [ img [ class "mt6 mb0 mh7", src <| avatarHeadSelection model.avatar ] []
@@ -52,9 +58,7 @@ stimPreparation model =
                     [ p [ class "lh-f5 f5" ] [ text "Any specific feelings?" ]
                     , div [ class "flex flex-wrap items-center justify-between mh4" ] (renderFeelings feelings model)
                     ]
-
-                -- , rectButton "Next" (ChangeView StimTimer)
-                , p [ onClick <| ChangeView StimTimer, class "mh4 bg-green white" ] [ text "Next" ]
+                , rectButton "Next" (ChangeView StimTimer)
                 ]
             ]
         ]

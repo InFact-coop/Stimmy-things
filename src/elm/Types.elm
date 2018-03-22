@@ -1,8 +1,6 @@
 module Types exposing (..)
 
-
 import Http exposing (..)
-
 import Time exposing (..)
 import Transit
 
@@ -33,27 +31,28 @@ type Trilean
 
 
 type alias Model =
-  Transit.WithTransition
-    { view : View
-    , userId : String
-    , avatar : Avatar
-    , avatarName : String
-    , skinColour : SkinColour
-    , stims : List Stim
-    , logs : List Log
-    , newStim : Stim
-    , newLog : Log
-    , counter : Time
-    , timeSelected : Time
-    , timerStatus : TimerStatus
-    , paused : Bool
-    , vidSearchString : String
-    , videos : List Video
-    , videoStatus : RemoteData
-    , showNav : Trilean
-    , stimMenuShowing : Maybe BodyPart
-    , hotspots : Hotspots
-    }
+    Transit.WithTransition
+        { view : View
+        , userId : String
+        , avatar : Avatar
+        , avatarName : String
+        , skinColour : SkinColour
+        , stims : List Stim
+        , logs : List Log
+        , newStim : Stim
+        , newLog : Log
+        , counter : Time
+        , timeSelected : Time
+        , timerStatus : TimerStatus
+        , paused : Bool
+        , vidSearchString : String
+        , videos : List Video
+        , videoStatus : RemoteData
+        , showNav : Trilean
+        , stimMenuShowing : Maybe BodyPart
+        , hotspots : Hotspots
+        , selectedStim : Stim
+        }
 
 
 type Avatar
@@ -252,5 +251,6 @@ type Msg
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
+    | GoToStim Stim
     | AddExerciseName String
     | AddHowTo String

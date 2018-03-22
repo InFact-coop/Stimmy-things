@@ -14,20 +14,18 @@ const hotspotBodyParts = [
 
 const initHotspots = () => {
   const avatar = document.getElementById('avatar');
-  const svgCoords = avatar.getBoundingClientRect();
 
   const getSvgDoc = cb => {
-    let svg = avatar.getSVGDocument();
+    let svg = avatar ? avatar.getSVGDocument() : null;
     if (svg === null) {
-      setTimeout(() => {
-        getSvgDoc(cb);
-      }, 300);
+      setTimeout(() => getSvgDoc(cb), 300);
     } else {
       cb();
     }
   };
 
   const createHotspotCoords = () => {
+    const svgCoords = avatar.getBoundingClientRect();
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
       const svgDoc = avatar.contentDocument;
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');

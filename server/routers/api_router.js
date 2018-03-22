@@ -21,7 +21,6 @@ router.route('/youtube').get((req, res, next) => {
 
       const parsed = JSON.parse(apiResponse.body);
       const responseItems = parsed.items
-
         .map(video => {
           return {
             id: video.id.videoId,

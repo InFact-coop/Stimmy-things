@@ -2,7 +2,6 @@ module Data.Feelings exposing (..)
 
 import Types exposing (..)
 import Json.Decode exposing (..)
-import Json.Decode.Pipeline exposing (..)
 
 
 feelings : List Feeling

@@ -2,7 +2,7 @@ module State exposing (..)
 
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
-import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog)
+import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
@@ -25,8 +25,8 @@ initModel =
     , logs = []
     , newStim = defaultStim
     , newLog = defaultLog
-    , timeSelected = 0
     , counter = 0
+    , timeSelected = 0
     , timerStatus = Stopped
     , paused = False
     , vidSearchString = ""
@@ -35,20 +35,20 @@ initModel =
     , showNav = Neutral
     , stimMenuShowing = Nothing
     , hotspots = defaultHotspots
+    , selectedStim = defaultStim
     , transition = Transit.empty
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! (scrollToTop :: viewToCmds initModel.view)
-
+    initModel ! viewToCmds initModel.view
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeView view ->
-            { model | view = view } ! (scrollToTop :: viewToCmds model.view)
+            { model | view = view } ! (scrollToTop :: viewToCmds view)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -120,7 +120,12 @@ update msg model =
                 :> update (ChangeView view)
 
         SaveLog ->
-            model
+            { model
+                | newLog = defaultLog
+                , timeSelected = 0
+                , counter = 0
+                , selectedStim = defaultStim
+            }
                 ! [ saveLog (normaliseDBLog model.newLog) ]
                 :> update (ChangeView Landing)
 
@@ -141,3 +146,11 @@ update msg model =
 
         ReceiveInitialData (Err err) ->
             model ! []
+
+        GoToStim stim ->
+            { model
+                | selectedStim = stim
+                , newLog = updateStimId stim.stimId model.newLog
+            }
+                ! []
+                :> update (ChangeView StimPreparation)
