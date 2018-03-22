@@ -3,6 +3,7 @@ port module Ports exposing (..)
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
 import Json.Decode exposing (..)
+import Json.Encode exposing (..)
 import Time exposing (Time)
 import Transit
 import Types exposing (..)
@@ -21,6 +22,9 @@ port initDB : () -> Cmd msg
 
 
 port initHotspots : () -> Cmd msg
+
+
+port saveStim : Json.Encode.Value -> Cmd msg
 
 
 port receiveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg

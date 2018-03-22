@@ -3,7 +3,7 @@ module State exposing (..)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
@@ -16,7 +16,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = Landing
+    { view = AddStim
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -78,12 +78,15 @@ update msg model =
         NoOp ->
             model ! []
 
+        SaveStim stim ->
+            model ! [ saveStim <| normaliseStim stim ]
+
         SetTime time ->
             let
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []

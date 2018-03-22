@@ -70,6 +70,7 @@ addStim model =
                 , div
                     [ backgroundImageCover "./assets/AddStim/zigzag_add_stim_save.svg"
                     , class "flex flex-column h-fit-content"
+                    , onClick <| SaveStim model.newStim
                     ]
                     [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
                     , p [ class "ma4 flex worksans justify-center black " ] [ text "SAVE" ]
