@@ -7,7 +7,7 @@ import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
 import Data.Avatar exposing (avatarHeadSelection)
 import Helpers.Style exposing (horizontalTransition, classes, headerFont)
-import Helpers.Utils exposing (stringToFloat, unionTypeToString)
+import Helpers.Utils exposing (stringToFloat, unionTypeToString, ifThenElse)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
 import Html.Events exposing (on, onClick, onInput, targetValue)
@@ -50,7 +50,7 @@ stimPreparation model =
                                 ]
                             ]
                             [ text (unionTypeToString (model.timeSelected / 60)) ]
-                        , p [ class "ma0 pl1" ] [ text <| minOrMins model.timeSelected ]
+                        , p [ class "ma0 pl1" ] [ text <| ifThenElse (model.timeSelected == 60) "min" "mins" ]
                         ]
                     ]
                 , p [ class "lh-f5 f5 mb4" ] [ text "How are you?" ]
@@ -75,13 +75,3 @@ renderFeelings feelings model =
 onInputValue : (String -> msg) -> Attribute msg
 onInputValue tagger =
     on "input" (Json.map tagger targetValue)
-
-
-minOrMins : Time -> String
-minOrMins time =
-    case time == 60 of
-        True ->
-            "min"
-
-        False ->
-            "mins"
