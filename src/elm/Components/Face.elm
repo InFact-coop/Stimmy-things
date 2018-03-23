@@ -24,9 +24,5 @@ highlightSelectedFace logstage model face =
                 model.newLog.postFace
             )
     in
-        case (faceToInt face) == selectedFace of
-            True ->
-                "face-container b--green"
+        if (faceToInt face) == selectedFace then "face-container b--green" else "face-container b--white"
 
-            False ->
-                "face-container b--white"

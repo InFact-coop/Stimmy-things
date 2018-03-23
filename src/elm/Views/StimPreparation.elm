@@ -79,9 +79,7 @@ onInputValue tagger =
 
 minOrMins : Time -> String
 minOrMins time =
-    case time == 60 of
-        True ->
-            "min"
-
-        False ->
-            "mins"
+    if time == 60 then
+        "min"
+    else
+        "mins"

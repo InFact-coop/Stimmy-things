@@ -46,9 +46,7 @@ formatTimeFirstDigits time =
 
 formatTimeSecondDigits : Int -> String
 formatTimeSecondDigits time =
-    case (String.length <| toString time) == 1 of
-        True ->
-            toString time ++ "0"
-
-        False ->
-            toString time
+    if (String.length <| toString time) == 1 then
+        toString time ++ "0"
+    else
+        toString time
