@@ -1,6 +1,7 @@
 module Views.StimTimer exposing (..)
 
 import Helpers.Style exposing (horizontalTransition, headerFont, classes)
+import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
@@ -46,7 +47,4 @@ formatTimeFirstDigits time =
 
 formatTimeSecondDigits : Int -> String
 formatTimeSecondDigits time =
-    if (String.length <| toString time) == 1 then
-        toString time ++ "0"
-    else
-        toString time
+    ifThenElse ((String.length <| toString time) == 1) (toString time ++ "0") (toString time)

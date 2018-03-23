@@ -4,6 +4,7 @@ import Data.Face exposing (urlFromFace, faceToInt)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
+import Helpers.Utils exposing (ifThenElse)
 import Types exposing (..)
 
 
@@ -24,5 +25,4 @@ highlightSelectedFace logstage model face =
                 model.newLog.postFace
             )
     in
-        if (faceToInt face) == selectedFace then "face-container b--green" else "face-container b--white"
-
+        ifThenElse ((faceToInt face) == selectedFace) "face-container b--green" "face-container b--white"
