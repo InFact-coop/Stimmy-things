@@ -179,3 +179,8 @@ update msg model =
 
         AddAvatarName name ->
             { model | avatarName = name } ! []
+
+        AddStimWithoutBodyPart ->
+            { model | newStim = defaultStim }
+                ! []
+                :> update (NavigateTo AddStim)
