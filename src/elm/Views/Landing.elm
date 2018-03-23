@@ -38,7 +38,7 @@ landing model =
         , button
             [ classes [ "bn", "bg-transparent", "db", "h4", "w4", "fixed", "bottom-0", "outline-0", "z-2" ]
             , backgroundImageStyle "./assets/Landing/add_stim_btn.svg" 100
-            , onClick <| NavigateTo AddStim
+            , onClick <| AddStimWithoutBodyPart
             ]
             []
         ]
