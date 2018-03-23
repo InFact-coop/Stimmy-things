@@ -1,0 +1,78 @@
+<svg viewBox="0 0 190 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter x="-13.1%" y="-7.9%" width="126.2%" height="124.9%" filterUnits="objectBoundingBox" id="filter-1">
+      <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0.0470588235 0 0 0 0 0 0 0 0 0 0.2 0 0 0 0.1 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient x1="0%" y1="0%" y2="100%" id="linearGradient-2">
+      <stop stop-color="#45AFD7" offset="0%"/>
+      <stop stop-color="#BEF8E2" offset="52.983%"/>
+      <stop stop-color="#D98480" offset="100%"/>
+    </linearGradient>
+    <path d="M5.003 56.622c-26.33 77.394 56.346 137.08 129.18 116.155 23.114-6.64 36.005-55.05 33.511-74.567C155.174.234 54.107-40.229 6.75 51.208c2.349-6.718 1.766-4.913-1.747 5.414z" id="path-3"/>
+    <filter x="-8.3%" y="-5.6%" width="116.7%" height="115.8%" filterUnits="objectBoundingBox" id="filter-5">
+      <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0.0470588235 0 0 0 0 0 0 0 0 0 0.2 0 0 0 0.1 0" in="shadowBlurOuter1"/>
+    </filter>
+  </defs>
+  <g id="Assets" fill="none" fill-rule="evenodd">
+    <g id="avatars_heads" transform="translate(-448 -46)">
+      <g id="charachter" filter="url(#filter-1)" transform="translate(459 50)">
+        <mask id="mask-4" fill="#fff">
+          <use xlink:href="#path-3"/>
+        </mask>
+        <g id="Mask">
+          <use fill="#000" filter="url(#filter-5)" xlink:href="#path-3"/>
+          <use fill-opacity=".66" fill="url(#linearGradient-2)" xlink:href="#path-3"/>
+        </g>
+        <g mask="url(#mask-4)">
+          <g transform="matrix(-1 0 0 1 179 19)">
+            <g id="body_change_colour" transform="translate(11 10)">
+              <path d="M111.535 120.2a132.197 132.197 0 0 1-7.071-13.317c-1.636-3.546 7.095-12.72 8.485-36.445.295-5.027-2.062-15.073-7.07-30.138.033-6.491.033-11.28 0-14.368-.046-4.095.731-9.256 0-12.265C104.318 7.256 100.193 2.7 93.503 0c-1.381.548-2.206 1.015-2.475 1.402-.714 1.028-.847 3.09-.707 3.855.132.718.785 2.045 2.121 3.504.591.645 2.006 1.463 4.243 2.453 2.352 4.277 3.412 8.015 3.182 11.214-.23 3.198-1.88 7.637-4.95 13.316-7.072-.435-12.376-1.953-15.91-4.555-3.533-2.602-6.48-7.158-8.838-13.667-1.902-5.534-4.142-9.272-6.717-11.214-2.576-1.943-5.758-2.293-9.546-1.051-1.826 1.404-2.651 2.455-2.475 3.153.099.391.467 2.104 1.414 3.154.498.552 1.558 1.253 3.182 2.103 5.536 3.313 8.954 6.233 10.253 8.76 1.3 2.529 1.064 5.8-.707 9.813-1.425 3.305-3.075 5.991-4.95 8.06-4.802 5.299-13.13 11.867-15.202 15.77-3.286 6.188-3.64 11.561-1.06 16.12-3.652 2.723-5.42 4.358-5.304 4.906.054.258-.199 3.036 1.06 4.556.529.637 2.75 1.004 4.243 2.102.78.573 1.84 1.741 3.182 3.505.492 6.707 1.317 11.145 2.475 13.316 1.157 2.17 4.693 6.26 10.606 12.265v12.966l50.911-5.607z" id="head" fill="#30A1D2"/>
+            </g>
+            <g id="right_arm" transform="matrix(-1 0 0 1 43 105)">
+              <path d="M17.2 39.005h11.671v40.744c-2.593 1.279-4.538 1.918-5.835 1.918-1.297 0-3.242-.64-5.836-1.918V39.005z" id="Rectangle-2" fill="#F9C265"/>
+              <g id="Group-3">
+                <ellipse id="Oval-4" fill="#FFEA80" cx="20.235" cy="22.586" rx="20.235" ry="20.076"/>
+                <path d="M42.684 21.958c0-11.087-8.111-21.644-19.287-21.644C12.221.314 0 2.087 0 13.174c0 11.089 42.684 19.872 42.684 8.784z" id="Oval-4" fill="#FF7D68"/>
+              </g>
+            </g>
+            <g id="head-whole" transform="translate(65 52)">
+              <path d="M31.956 44.318c-9.61 4.718-16.897 6.542-25.315-.586" id="mouth" stroke="#CC5C61" stroke-width="2"/>
+              <g id="eyes">
+                <g id="left_eye" transform="translate(18.14 15.183)">
+                  <ellipse id="Oval-11" fill="#FFF" cx="8.023" cy="7.937" rx="8.023" ry="7.937"/>
+                  <ellipse id="eye" fill="#27221B" cx="8.233" cy="7.841" rx="3.14" ry="3.39"/>
+                </g>
+                <g id="right_eye" transform="translate(0 12.423)">
+                  <ellipse id="Oval-11" fill="#FFF" cx="5.93" cy="5.866" rx="5.93" ry="5.866"/>
+                  <ellipse id="eye" fill="#27221B" cx="5.837" cy="5.397" rx="2.442" ry="2.637"/>
+                </g>
+                <g id="top-eye" transform="translate(13.953)">
+                  <ellipse id="Oval-11" fill="#FFF" cx="4.535" cy="4.486" rx="4.535" ry="4.486"/>
+                  <ellipse id="eye" fill="#27221B" cx="4.33" cy="4.796" rx="2.237" ry="2.415"/>
+                </g>
+              </g>
+            </g>
+            <path d="M144.832 125.953c2.94 27.129 4.051 46.91 3.335 59.346-.717 12.435-3.946 47.44-9.688 105.016v14.377c7.188 3.895 12.139 7.157 14.852 9.79 2.714 2.631 4.937 7.321 6.669 14.07L129.992 331l-3.795-12.988-3.177-10.872c-12.978-19.248-25.204-30.567-36.677-33.956-11.473-3.389-20.159 5.279-26.057 26.002v29.367L13 330.388c1.293-4.656 2.607-7.715 3.94-9.177 1.334-1.462 3.557-2.277 6.669-2.447 6.05 2.373 10.395 3.189 13.034 2.447 2.64-.742 6.277-3.8 10.912-9.177-11.11-54.505-17.155-89.968-18.134-106.39-.717-12.024.37-35.325 3.259-69.902L39.348 118c26.814 5.483 47.087 8.742 60.82 9.777 13.731 1.035 28.62.428 44.664-1.824z" id="body-vest" fill="#FF7D68"/>
+            <ellipse id="air_bubble" fill="#DCEBF0" opacity=".482" cx="94.5" cy="73" rx="73.5" ry="73"/>
+            <g id="left_arm" transform="translate(137 118)">
+              <path d="M17.2 39.005h11.671v40.744c-2.593 1.279-4.538 1.918-5.835 1.918-1.297 0-3.242-.64-5.836-1.918V39.005z" id="Rectangle-2" fill="#F9C265"/>
+              <g id="shoulder">
+                <ellipse id="Oval-4" fill="#FFEA80" cx="20.235" cy="22.586" rx="20.235" ry="20.076"/>
+                <path d="M42.684 21.958c0-11.087-8.111-21.644-19.287-21.644C12.221.314 0 2.087 0 13.174c0 11.089 42.684 19.872 42.684 8.784z" id="Oval-4" fill="#FF7D68"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

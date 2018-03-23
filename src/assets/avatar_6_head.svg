@@ -1,0 +1,72 @@
+<svg viewBox="0 0 190 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter x="-13.1%" y="-7.9%" width="126.2%" height="124.9%" filterUnits="objectBoundingBox" id="filter-1">
+      <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0.0470588235 0 0 0 0 0 0 0 0 0 0.2 0 0 0 0.1 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient x1="43.045%" y1="0%" x2="55.565%" y2="100%" id="linearGradient-2">
+      <stop stop-color="#C43561" offset="0%"/>
+      <stop stop-color="#A5D8C3" offset="100%"/>
+    </linearGradient>
+    <path d="M5.003 56.622c-26.33 77.394 56.346 137.08 129.18 116.155 23.114-6.64 36.005-55.05 33.511-74.567C155.174.234 54.107-40.229 6.75 51.208c2.349-6.718 1.766-4.913-1.747 5.414z" id="path-3"/>
+    <filter x="-8.3%" y="-5.6%" width="116.7%" height="115.8%" filterUnits="objectBoundingBox" id="filter-5">
+      <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0.0470588235 0 0 0 0 0 0 0 0 0 0.2 0 0 0 0.1 0" in="shadowBlurOuter1"/>
+    </filter>
+  </defs>
+  <g id="Assets" fill="none" fill-rule="evenodd">
+    <g id="avatars_heads" transform="translate(-448 -329)">
+      <g id="charachter" filter="url(#filter-1)" transform="translate(459 333)">
+        <mask id="mask-4" fill="#fff">
+          <use xlink:href="#path-3"/>
+        </mask>
+        <g id="Mask">
+          <use fill="#000" filter="url(#filter-5)" xlink:href="#path-3"/>
+          <use fill-opacity=".66" fill="url(#linearGradient-2)" xlink:href="#path-3"/>
+        </g>
+        <g mask="url(#mask-4)">
+          <g transform="matrix(-1 0 0 1 179 8)">
+            <g id="body_change_colour" transform="translate(8 34)">
+              <path d="M119.666 35.937v50.946c0 19.806-16 35.861-35.735 35.861-19.737 0-35.736-16.055-35.736-35.86V35.936C48.195 16.2 64.195.2 83.931.2c19.736 0 35.735 16 35.735 35.736z" id="head" fill="#B1D159"/>
+            </g>
+            <g id="top_body" transform="translate(37)">
+              <g id="eye-whole" transform="translate(35.833 58.59)">
+                <ellipse id="Oval" fill="#FFF" cx="19.596" cy="19.569" rx="19.336" ry="19.432"/>
+                <ellipse id="eye" fill="#27221B" cx="20.456" cy="19.137" rx="4.727" ry="5.182"/>
+              </g>
+              <g id="right_ear" transform="matrix(-1 0 0 1 38.672 24.182)">
+                <path id="Path-10" fill="#B1D159" d="M.35 17.068l7.353-7.028 3.85 2.008-3.85 14.39z"/>
+                <ellipse id="Oval-2" fill="#A0BE53" cx="11.904" cy="6.693" rx="7.002" ry="6.693"/>
+              </g>
+              <g id="left_ear" transform="translate(73.047 24.182)">
+                <path id="Path-10" fill="#B1D159" d="M.35 17.068l7.353-7.028 3.85 2.008-3.85 14.39z"/>
+                <ellipse id="Oval-2" fill="#A0BE53" cx="11.904" cy="6.693" rx="7.002" ry="6.693"/>
+              </g>
+              <path d="M110 55v79.399C110 165.106 85.376 190 55 190S0 165.106 0 134.399V55C0 24.624 24.624 0 55 0s55 24.624 55 55z" id="head_bubble" fill="#DCEBF0" opacity=".456"/>
+              <path d="M57.578 111.422c11.77 5.584 17.681-3.38 18.047-13.831" id="mouth" stroke="#CC5C61" stroke-width="2"/>
+            </g>
+            <path d="M143 163h16v73.54c-3.556 2.306-6.222 3.46-8 3.46-1.778 0-4.444-1.154-8-3.46V163z" id="Rectangle-2" fill="#4FAEB2"/>
+            <g id="left_arm" transform="matrix(-1 0 0 1 173 127)">
+              <ellipse id="Oval-4" fill="#FBA945" cx="26.066" cy="27.733" rx="24.328" ry="24.267"/>
+              <path d="M53 26.802C53 13.516 43.259.867 29.837.867S0-2.02 0 11.267c0 13.285 53 28.82 53 15.535z" id="Oval-4" fill="#FAC859"/>
+            </g>
+            <path d="M30.949 60.254c9.883 11.92 16.805 21.102 20.765 27.545 3.96 6.443 10.449 19.928 19.467 40.456 8.748 2.582 15.382 3.874 19.9 3.874 4.518 0 13.17-1.292 25.956-3.874 12.462-18.35 21.259-32.84 26.39-43.469 5.13-10.63 10.321-25.12 15.573-43.469-3.697-12.438-7.303-20.759-10.815-24.962-3.513-4.204-9.858-7.79-19.035-10.76-15.476 4.006-26.868 5.727-34.176 5.165C87.667 10.197 74.833 6.61 56.472 0v10.76C35.822 6.83 20.97 5.11 11.914 5.595 2.859 6.08-1.034 8.805.234 13.772l30.715 46.482z" fill="#163A4D" transform="translate(0 123)" id="shirt"/>
+            <g id="right_arm" transform="translate(0 127)">
+              <path d="M16.014 54.508H32.03v73.682c-3.56 2.312-6.228 3.467-8.008 3.467-1.779 0-4.448-1.155-8.007-3.467V54.508z" id="Rectangle-2" fill="#4FAEB2"/>
+              <ellipse id="Oval-4" fill="#FBA945" cx="27.765" cy="31.077" rx="27.765" ry="27.624"/>
+              <path d="M58.566 30.214C58.566 14.957 47.437.432 32.103.432 16.769.432 0 2.872 0 18.128 0 33.384 58.566 45.47 58.566 30.214z" id="Oval-4" fill="#FAC859"/>
+            </g>
+            <path d="M127.699 126c-17.339 41.688-31.36 71.707-42.063 90.057-10.702 18.35-18.714 26.106-24.035 23.268-.166-1.43-.166-2.435 0-3.016.165-.58.88-2.591 2.146-6.032l-6.868-15.082c-3.814 15.877-4.816 26.075-3.004 30.594 1.811 4.519 7.534 6.099 17.168 4.74 20.22-17.055 33.669-31.705 40.346-43.952 6.677-12.246 15.547-38.53 26.611-78.853L127.699 126z" id="band_across_body" fill="#F9F082"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
