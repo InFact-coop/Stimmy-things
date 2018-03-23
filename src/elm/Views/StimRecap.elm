@@ -36,7 +36,7 @@ stimRecap model =
                     , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                     ]
                 , p [ class "lh-f5 f5 mb4" ] [ text "How do you feel now?" ]
-                , div [ class "mh4 mb4 flex flew-row justify-between" ] (List.map (face Post model) faces)
+                , div [ class "mh0 mb4 flex flew-row justify-center" ] (List.map (face Post model) faces)
                 , div [ class "mh4" ]
                     [ p [ class "lh-f5 f5 mb3" ] [ text "I also feel.." ]
                     , div [ class "flex flex-wrap items-center justify-between" ] (renderFeelings feelings model)
