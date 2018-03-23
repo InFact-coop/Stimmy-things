@@ -14,8 +14,8 @@ about : Model -> Html Msg
 about model =
     div [ classes [ bodyFont, "border-box bg-green flex-column white h-fit-content" ], horizontalTransition model ]
         [ div [ classes [ headerFont, "flex flex-row ma3 mt0 mb0 items-center justify-between h" ] ]
-            [ div [ onClick <| ChangeView Landing, class "h4 w3 flex items-centre" ] [ img [ src "./assets/About/close_btn_white.svg" ] [] ]
-            , div [ onClick <| ChangeView Emergency, class "h4 w3 flex items-centre" ] [ img [ src "./assets/About/help_btn.svg" ] [] ]
+            [ div [ onClick <| NavigateTo Landing, class "h4 w3 flex items-centre" ] [ img [ src "./assets/About/close_btn_white.svg" ] [] ]
+            , div [ onClick <| NavigateTo Emergency, class "h4 w3 flex items-centre" ] [ img [ src "./assets/About/help_btn.svg" ] [] ]
             ]
         , div [ class "mh3" ]
             [ img [ class "mh5", src <| avatarHeadSelection model.avatar ] []

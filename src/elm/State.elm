@@ -124,7 +124,7 @@ update msg model =
             model
                 ! []
                 :> update (AdjustTimer Stop)
-                :> update (ChangeView view)
+                :> update (NavigateTo view)
 
         SelectAvatar ->
             model ! [ retrieveChosenAvatar () ]
@@ -166,7 +166,7 @@ update msg model =
         ReceiveChosenAvatar src ->
             { model | avatar = avatarSrcToAvatar src }
                 ! []
-                :> update (ChangeView NameAvatar)
+                :> update (NavigateTo NameAvatar)
 
         GoToStim stim ->
             { model
@@ -174,7 +174,7 @@ update msg model =
                 , newLog = updateStimId stim.stimId model.newLog
             }
                 ! []
-                :> update (ChangeView StimPreparation)
+                :> update (NavigateTo StimPreparation)
 
         AddAvatarName name ->
             { model | avatarName = name } ! []

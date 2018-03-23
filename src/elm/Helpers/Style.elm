@@ -66,6 +66,10 @@ extraSmallFont : String
 extraSmallFont =
     "f7 lh-f7 work-sans"
 
+onBoardingFont : String 
+onBoardingFont = 
+    "f5 lh-f3 work-sans"
+
 
 horizontalTransition : Model -> Attribute msg
 horizontalTransition model =

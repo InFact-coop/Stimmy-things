@@ -10,7 +10,7 @@ import Types exposing (..)
 
 stimInfo : Model -> Html Msg
 stimInfo model =
-    div [ verticalTransition model, class "bg-washed-yellow" ]
+    div [ verticalTransition model, class "bg-washed-yellow black" ]
         [ div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative" ]
                 [ div [ class "absolute left-0 ml3 pointer", onClick (NavigateTo StimPreparation) ] [ img [ src "./assets/StimInfo/close_btn_white.svg" ] [] ]
@@ -27,7 +27,7 @@ stimInfo model =
         , div [ class "flex flex-column items-center mb3" ]
             [ img [ src "./assets/StimInfo/divider_zigzag_grey_small.svg", class "pa2" ] []
             , img [ src "./assets/StimInfo/instruction_icn.svg" ] []
-            , div [ class "b--black ba tc w-90 pa3" ]
+            , div [ class "b--black br2 ba tc w-90 pa3" ]
                 [ h1 [ classes [ headerFont ] ] [ text "How to do this" ]
                 , p [ classes [ bodyFont ] ] [ text <| model.selectedStim.instructions ]
                 ]

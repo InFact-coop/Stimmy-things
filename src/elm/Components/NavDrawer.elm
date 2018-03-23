@@ -19,7 +19,7 @@ navDrawer model =
 
 drawerItem : String -> View -> Html Msg
 drawerItem imgSrc view =
-    button [ classes [ "db", "pointer", "h4", "w4", "mb1", "bn", "bg-transparent" ], onClick <| ChangeView view, backgroundImageStyle imgSrc 100 ] []
+    button [ classes [ "db", "pointer", "h4", "w4", "mb1", "bn", "bg-transparent" ], onClick <| NavigateTo view, backgroundImageStyle imgSrc 100 ] []
 
 
 showNavClass : Trilean -> String
