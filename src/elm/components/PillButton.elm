@@ -1,6 +1,6 @@
 module Components.PillButton exposing (..)
 
-import Helpers.Style exposing (bodyFont, classes)
+import Helpers.Style exposing (bodyFont, classes, smallFont)
 import Helpers.Utils exposing (ifThenElse, unionTypeToString)
 import Html exposing (..)
 import Html.Events exposing (onClick)
@@ -29,7 +29,7 @@ highlightSelectedFeeling logstage model feeling =
             else
                 model.newLog.postFeelings
     in
-    List.member feeling feelings
+        List.member feeling feelings
 
 
 highlightSelectedBodypart : Model -> BodyPart -> Bool
@@ -41,7 +41,8 @@ bodyButton : Model -> BodyPart -> Html Msg
 bodyButton model bodyPart =
     div
         [ classes
-            [ "w-25 flex justify-center bg-green br4 pa1 pointer mh2 mv2"
+            [ smallFont
+            , "w-25 flex justify-center bg-green br4 pa1 pointer mh2 mv2"
             , ifThenElse (highlightSelectedBodypart model bodyPart) "bg-light-green" "bg-green"
             ]
         , onClick (ToggleBodypart bodyPart)

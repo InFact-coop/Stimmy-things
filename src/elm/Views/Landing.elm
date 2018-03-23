@@ -84,7 +84,7 @@ addStimButton model hotspot =
     button
         [ classes [ "relative", "translucent", "mb1px", "w-80", "work-sans-regular", "black", "pointer", "bn", ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "", "tc", "f5" ]
         , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
-        , onClick (ChangeView AddStim)
+        , onClick (NavigateTo AddStim)
         ]
         [ text "+ Add a stim!" ]
 
