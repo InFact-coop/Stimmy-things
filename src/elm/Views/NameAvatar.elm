@@ -19,7 +19,7 @@ nameAvatar model =
                 , p [ class "ma0 left-0 right-0 dark-gray lh-f5 f5" ] [ text "Choose your avatar" ]
                 ]
             , div [ onClick <| NavigateTo Landing, class "h4 w3 flex items-centre justify-right" ]
-                [ img [ src "./assets/CreateAvatar/Done_green_small.svg" ] [] ]
+                [ img [ src "./assets/CreateAvatar/done_green_small.svg" ] [] ]
             ]
         , div []
             [ img [ class "mt6 mb7 mh7 w6", src <| avatarHeadSelection model.avatar ] []

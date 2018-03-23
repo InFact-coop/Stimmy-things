@@ -25,31 +25,31 @@ decodeBodyPart =
         |> andThen
             (\string ->
                 case string of
-                    "Head" ->
+                    "head" ->
                         succeed Head
 
-                    "Face" ->
+                    "face" ->
                         succeed Face
 
-                    "Shoulders" ->
+                    "shoulders" ->
                         succeed Shoulders
 
-                    "Chest" ->
+                    "chest" ->
                         succeed Chest
 
-                    "Belly" ->
+                    "belly" ->
                         succeed Belly
 
-                    "Arms" ->
+                    "arms" ->
                         succeed Arms
 
-                    "Hands" ->
+                    "hands" ->
                         succeed Hands
 
-                    "Legs" ->
+                    "legs" ->
                         succeed Legs
 
-                    "Feet" ->
+                    "feet" ->
                         succeed Feet
 
                     _ ->

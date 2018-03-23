@@ -15,9 +15,14 @@ addStim : Model -> Html Msg
 addStim model =
     div [ class "bg-washed-yellow", verticalTransition model ]
         [ div [ class "bg-green center tc" ]
-            [ div [ class "flex flex-row items-center justify-center relative h4" ]
+            [ div [ class "flex flex-row items-center justify-center relative pa2" ]
                 [ div [ class "absolute left-0 ml3 pointer", onClick (NavigateTo Landing) ] [ img [ src "./assets/AddStim/close_btn_white.svg" ] [] ]
-                , h1 [ classes [ headerFont, "white pt3 mb3" ] ]
+                , h1
+                    [ classes
+                        [ headerFont
+                        , "white pt3 mb3"
+                        ]
+                    ]
                     [ text "Add new stim" ]
                 ]
             ]
@@ -35,7 +40,7 @@ addStim model =
                     , p [ class "f5 lh-f5 mv0 mh3 b" ] [ text "Choose a part of the body" ]
                     , p [ classes [ smallFont, "mv0 mh3" ] ] [ text "I want to calm my ..." ]
                     , p [ classes [ smallFont, "mv0 mh3" ] ] [ text " I am feeling anxious around my ..." ]
-                    , div [ class " flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyParts model)
+                    , div [ class "flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyParts model)
                     ]
                 , label [ for "exercise-name", class "mh3 mb3 b " ] [ text "What would you call this exercise?" ]
                 , textarea [ class "mh3 mb6 bg-transparent bn h-textarea-small outline-0 f5 lh-f5", id "exercise-name", onInput AddExerciseName ]
@@ -72,7 +77,7 @@ addStim model =
                     , class "flex flex-column h-fit-content"
                     , onClick <| SaveStim model.newStim
                     ]
-                    [ img [ class "mt5", src "./assets/AddStim/Done_green_medium.svg" ] []
+                    [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
                     , p [ class "mt2 mb3 flex justify-center" ] [ text "SAVE" ]
                     ]
                 ]

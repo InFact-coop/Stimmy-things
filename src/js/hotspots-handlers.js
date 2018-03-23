@@ -20,9 +20,9 @@ const initHotspots = () => {
       cb();
     }
     const svgDoc = avatar.contentDocument;
-    const hotspot = svgDoc.getElementById('head-hotspot');
+    const hotspot = svgDoc.getElementById('feet-hotspot');
     if (hotspot === null) {
-      return setTimeout(() => getSvgDoc(cb), 300);
+      setTimeout(() => getSvgDoc(cb), 300);
     } else {
       cb();
     }
