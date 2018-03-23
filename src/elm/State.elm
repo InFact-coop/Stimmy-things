@@ -17,7 +17,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = Emergency
+    { view = AddStim
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -80,7 +80,9 @@ update msg model =
             model ! []
 
         SaveStim stim ->
-            model ! [ saveStim <| normaliseStim stim ]
+            model
+                ! [ saveStim <| normaliseStim stim ]
+                :> update (NavigateTo Landing)
 
         SetTime time ->
             let
