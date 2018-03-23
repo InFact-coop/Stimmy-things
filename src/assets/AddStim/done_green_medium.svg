@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="87px" height="91px" viewBox="0 0 87 91" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>Done_green_medium</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-3" transform="translate(-24.000000, -19.000000)">
+            <g id="DONE" transform="translate(24.000000, 19.000000)">
+                <path d="M2.59091095,29.1107983 C-11.044159,68.9007524 31.7701457,99.5869663 69.4876678,88.8288644 C81.4574293,85.4147506 88.1330472,60.5264244 86.8415238,50.4923858 C80.3579163,0.120269738 28.0195107,-20.682624 3.49554346,26.3271167 C4.71186228,22.873498 4.41031811,23.8013919 2.59091095,29.1107983 Z" id="Path-4" fill="#449694"></path>
+                <g id="check-small" transform="translate(20.000000, 28.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M15.1211077,35 C14.4061089,35 13.6925065,34.7251198 13.1464821,34.1739498 L0,20.9035805 L3.94925125,16.9157034 L15.1211077,28.192839 L43.0507488,0 L47,3.98787708 L17.0957333,34.1739498 C16.5497088,34.7251198 15.8361065,35 15.1211077,35 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
