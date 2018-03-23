@@ -10,7 +10,7 @@ import Types exposing (..)
 
 defaultStim : Stim
 defaultStim =
-    Stim "" Chest "" "" Nothing False ""
+    Stim "" NoBodyPart "" "" Nothing False ""
 
 
 decodeStim : Decoder Stim

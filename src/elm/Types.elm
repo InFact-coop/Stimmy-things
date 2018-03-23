@@ -259,3 +259,4 @@ type Msg
     | AddHowTo String
     | SelectAvatar
     | AddAvatarName String
+    | AddStimWithoutBodyPart
