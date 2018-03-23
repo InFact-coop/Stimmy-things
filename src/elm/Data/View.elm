@@ -78,9 +78,6 @@ getCurrentView model =
 viewToCmds : View -> List (Cmd Msg)
 viewToCmds view =
     case view of
-        Splash ->
-            [ initTimeout ]
-
         Landing ->
             [ initHotspots () ]
 

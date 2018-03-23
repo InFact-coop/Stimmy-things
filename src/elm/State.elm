@@ -1,8 +1,8 @@
 module State exposing (..)
 
+import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
-import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
@@ -13,11 +13,12 @@ import Requests.GetVideos exposing (getVideos)
 import Transit
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
+import Views.Splash exposing (initTimeout)
 
 
 initModel : Model
 initModel =
-    { view = AddStim
+    { view = Splash
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -43,7 +44,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initHotspots (), initDB () ]
+    initModel ! [ initDB (), initTimeout ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
