@@ -1,10 +1,9 @@
 module Views.Onboarding2 exposing (..)
 
-import Helpers.Style exposing (horizontalTransition)
+import Helpers.Style exposing (classes, headerFont, horizontalTransition, onBoardingFont)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-import Helpers.Style exposing (classes, headerFont, onBoardingFont)
 import Types exposing (..)
 
 
@@ -22,7 +21,7 @@ onboarding2 model =
             , div [ class "ml1 dotBigger bg-green" ] []
             ]
         , div [ class "pa5 bg-green flex justify-between" ]
-            [ p [ onClick <| NavigateTo Landing, classes [ headerFont, "white" ] ] [ text "Skip" ]
-            , p [ onClick <| NavigateTo Landing, classes [ headerFont, "white" ] ] [ text "Next" ]
+            [ p [ onClick <| NavigateTo CreateAvatar, classes [ headerFont, "white" ] ] [ text "Skip" ]
+            , p [ onClick <| NavigateTo CreateAvatar, classes [ headerFont, "white" ] ] [ text "Next" ]
             ]
         ]

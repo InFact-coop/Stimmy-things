@@ -24,7 +24,6 @@ landing model =
                 ]
                 []
             , h1 [ class "f3 b" ] [ text model.avatarName ]
-            , div [ class "w2 h2" ] [ text " " ]
             ]
         , object
             [ id "avatar", attribute "data" "assets/avatar_2.svg", type_ "image/svg+xml", classes [ "background-avatar" ] ]
@@ -72,7 +71,7 @@ stimMenu model hotspot =
             [ "absolute"
             , ifThenElse (model.stimMenuShowing == Just hotspot.name) "" "vis-hidden flex flex-column"
             ]
-        , style [ ( "right", toString (hotspot.right) ++ "px" ), ( "top", toString (hotspot.top) ++ "px" ) ]
+        , style [ ( "right", toString hotspot.right ++ "px" ), ( "top", toString hotspot.top ++ "px" ) ]
         ]
         (stimMenuItems model hotspot ++ [ addStimButton model hotspot ])
 

@@ -15,16 +15,15 @@ const initHotspots = () => {
   const getSvgDoc = cb => {
     const avatar = document.getElementById('avatar');
     if (avatar === null) {
-      return setTimeout(() => getSvgDoc(cb), 300);
-    } else {
-      cb();
-    }
-    const svgDoc = avatar.contentDocument;
-    const hotspot = svgDoc.getElementById('feet-hotspot');
-    if (hotspot === null) {
       setTimeout(() => getSvgDoc(cb), 300);
     } else {
-      cb();
+      const svgDoc = avatar.contentDocument;
+      const hotspot = svgDoc.getElementById('feet-hotspot');
+      if (hotspot === null) {
+        setTimeout(() => getSvgDoc(cb), 300);
+      } else {
+        cb();
+      }
     }
   };
 
