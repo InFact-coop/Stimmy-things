@@ -52,6 +52,9 @@ port receiveFirebaseStims : (Json.Decode.Value -> msg) -> Sub msg
 port fetchFirebaseStims : () -> Cmd msg
 
 
+port shareStim : Json.Encode.Value -> Cmd msg
+
+
 timeSubscription : Model -> Sub Msg
 timeSubscription model =
     case model.timerStatus of

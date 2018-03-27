@@ -17,7 +17,8 @@ const getFirebaseStims = () => {
 };
 
 const addFirebaseStim = stim => {
-  return fb.stims.push(stim);
+  stim.shared = true;
+  return fb.ref().push(stim);
 };
 
 export default { fb, getFirebaseStims, addFirebaseStim };

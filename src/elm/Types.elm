@@ -263,3 +263,5 @@ type Msg
     | AddAvatarName String
     | AddStimWithoutBodyPart
     | ReceiveFirebaseStims (Result String (List Stim))
+    | ShareStim Stim
+    | ImportStim Stim

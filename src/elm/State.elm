@@ -192,3 +192,12 @@ update msg model =
             { model | newStim = defaultStim }
                 ! []
                 :> update (NavigateTo AddStim)
+
+        ShareStim stim ->
+            model
+                ! [ shareStim <| normaliseStim stim ]
+                :> update (NavigateTo Landing)
+
+        ImportStim stim ->
+            model
+                ! [ saveStim <| normaliseStim stim ]
