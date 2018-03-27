@@ -15,14 +15,18 @@ defaultStim =
 
 decodeStim : Decoder Stim
 decodeStim =
-    decode Stim
-        |> required "stimId" string
-        |> required "bodyPart" decodeBodyPart
-        |> required "stimName" string
-        |> required "instructions" string
-        |> required "videoSrc" (Json.Decode.map stringToMaybe string)
-        |> required "shared" bool
-        |> required "userId" string
+    let
+        log =
+            Debug.log ("in decode Stim")
+    in
+        decode Stim
+            |> required "stimId" string
+            |> required "bodyPart" decodeBodyPart
+            |> required "stimName" string
+            |> required "instructions" string
+            |> required "videoSrc" (Json.Decode.map stringToMaybe string)
+            |> required "shared" bool
+            |> required "userId" string
 
 
 decodeStimList : Value -> Result String (List Stim)

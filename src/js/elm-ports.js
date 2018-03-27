@@ -16,7 +16,4 @@ app.ports.initDB.subscribe(() => idb.initDB(defaultStims));
 app.ports.saveLog.subscribe(idb.saveLog);
 app.ports.saveStim.subscribe(idb.saveStim);
 
-app.ports.firebase.subscribe(() => {
-  console.log('firebase sub', firebase.getFirebaseStims());
-  return firebase.getFirebaseStims();
-});
+app.ports.fetchFirebaseStims.subscribe(() => firebase.getFirebaseStims());
