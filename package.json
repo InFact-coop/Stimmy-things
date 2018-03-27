@@ -10,12 +10,11 @@
     "elm-watch-debug": "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js --debug'",
     "elm-watch": "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js'",
     "css-watch": "postcss ./src/css/index.css --output ./public/style.min.css --watch --config ./postcss.config.js",
-    "js-watch": "webpack --watch --mode development",
-    "just-frontend": "webpack-dev-server --mode development",
-    "dev-frontend": "webpack --watch --mode development",
+    "just-frontend": "webpack-dev-server --env.DEV --mode development",
+    "dev-frontend": "webpack --env.DEV --watch --mode development",
     "dev-backend": "NODE_ENV=development nodemon ./server/start",
     "css-build": "postcss ./src/css/index.css --output ./public/style.min.css --config ./postcss.config.js",
-    "heroku-postbuild": "npm run css-build; elm-make src/elm/Main.elm --output=public/elm.js --yes"
+    "heroku-postbuild": "webpack --env.PROD --mode production"
   },
   "repository": {
     "type": "git",
@@ -42,7 +41,8 @@
     "postcss-loader": "^2.1.2",
     "style-loader": "^0.20.3",
     "supertest": "^3.0.0",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.1",
+    "workbox-webpack-plugin": "^3.0.1"
   },
   "dependencies": {
     "autoprefixer": "^7.1.6",
@@ -62,7 +62,7 @@
     "postcss-import": "^11.0.0",
     "request": "^2.85.0",
     "tachyons-custom": "^4.9.0",
-    "webpack": "^4.1.1",
+    "webpack": "^4.3.0",
     "webpack-cli": "^2.0.12"
   }
 }
