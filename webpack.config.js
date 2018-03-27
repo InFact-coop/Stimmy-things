@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: './src/js/index.js',
@@ -9,11 +10,11 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public')
   },
-  devServer: {
-    overlay: true,
-    open: true,
-    contentBase: path.resolve(__dirname, 'public')
-  },
+  // devServer: {
+  //   overlay: true,
+  //   open: true,
+  //   contentBase: path.resolve(__dirname, 'public')
+  // },
   module: {
     rules: [
       {
@@ -21,15 +22,15 @@ module.exports = {
         exclude: [/elm-stuff/, /node_modules/],
         loader: 'elm-webpack-loader',
         options: {
-          debug: true,
+          // debug: true,
           warn: true
         }
       },
       {
         test: /\.css$/,
         use: [
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
+          MiniCssExtractPlugin.loader,
+          // 'style-loader',
           { loader: 'css-loader', options: { importLoaders: 1 } },
           'postcss-loader'
         ]
@@ -45,13 +46,17 @@ module.exports = {
       }
     ]
   },
-  devtool: 'eval',
+  // devtool: 'eval',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    // new MiniCssExtractPlugin(),
-    new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }])
+    new MiniCssExtractPlugin(),
+    new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
+    new GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    })
   ]
 };
 
