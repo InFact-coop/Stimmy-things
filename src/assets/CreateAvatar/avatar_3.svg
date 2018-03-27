@@ -85,8 +85,8 @@
         <circle id="feet-hotspot" cx="114" cy="487" r="17"/>
         <circle id="legs-hotspot" cx="77.769" cy="351.258" r="17"/>
         <circle id="hands-hotspot" cx="136" cy="272" r="17"/>
-        <circle id="Belly-hotspot" cx="71" cy="231" r="17"/>
-        <circle id="Arms-hotspot" cx="143" cy="186" r="17"/>
+        <circle id="belly-hotspot" cx="71" cy="231" r="17"/>
+        <circle id="arms-hotspot" cx="143" cy="186" r="17"/>
         <circle id="chest-hotspot" cx="88" cy="161" r="17"/>
         <circle id="shoulders-hotspot" cx="17" cy="120" r="17"/>
         <circle id="face-hotspot" cx="119" cy="80" r="17"/>

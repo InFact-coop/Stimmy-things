@@ -1,5 +1,6 @@
 module Views.Landing exposing (..)
 
+import Data.Avatar exposing (avatarSelection)
 import Helpers.Style exposing (..)
 import Helpers.Utils exposing (..)
 import Html exposing (..)
@@ -10,8 +11,8 @@ import Types exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [ class "flex flex-column justify-center items-center", horizontalTransition model ]
-        [ header [ classes [ "flex relative justify-center items-center pa3 pb2 vw-100" ] ]
+    div [ class "flex flex-column items-center", horizontalTransition model ]
+        [ header [ classes [ "flex relative justify-center items-center ph3 pv4 vw-100" ] ]
             [ button
                 [ classes [ "button absolute left-0 ml3 bn h2 w2 bg-inherit" ]
                 , backgroundImageStyle
@@ -26,7 +27,7 @@ landing model =
             , h1 [ class "f3 b" ] [ text model.avatarName ]
             ]
         , object
-            [ id "avatar", attribute "data" "assets/avatar_2.svg", type_ "image/svg+xml", classes [ "background-avatar" ] ]
+            [ id "avatar", attribute "data" (avatarSelection model.avatar), type_ "image/svg+xml", classes [ "background-avatar" ] ]
             []
         , stimMenu model model.hotspots.head
         , stimMenu model model.hotspots.face
@@ -39,7 +40,7 @@ landing model =
         , stimMenu model model.hotspots.feet
         , viewIf (model.hotspots.head.name /= NoBodyPart)
             (button
-                [ classes [ "bn bg-transparent db h4 w4 fixed bottom-0 outline-0 z-2" ]
+                [ classes [ "bn bg-transparent db h4 w4 fixed bottom-0 outline-0 z-2 pa0" ]
                 , backgroundImageStyle "./assets/Landing/add_stim_btn.svg" 100
                 , onClick <| AddStimWithoutBodyPart
                 ]
@@ -69,7 +70,7 @@ stimMenu model hotspot =
     div
         [ classes
             [ "absolute"
-            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "" "vis-hidden flex flex-column"
+            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "flex flex-column" "vis-hidden"
             ]
         , style [ ( "right", toString hotspot.right ++ "px" ), ( "top", toString hotspot.top ++ "px" ) ]
         ]
@@ -102,7 +103,7 @@ addStimButton model hotspot =
     button
         [ classes
             [ "relative translucent mb1px w-80 work-sans-regular black pointer bn"
-            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "tc f5"
+            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "tc f5 dn"
             , bodyFont
             ]
         , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
@@ -117,7 +118,7 @@ stimToButton model hotspot stim =
         [ classes
             [ "relative translucent mb1px w-80 link black  pointer bn"
             , bodyFont
-            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "z-0 tc"
+            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "z-0 tc dn"
             ]
         , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
         , onClick (GoToStim stim)

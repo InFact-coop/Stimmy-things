@@ -80,3 +80,25 @@ avatarSrcToAvatar string =
 
         _ ->
             Avatar1
+
+
+avatarSelection : Avatar -> String
+avatarSelection avatar =
+    case avatar of
+        Avatar1 ->
+            "./assets/CreateAvatar/avatar_1.svg"
+
+        Avatar2 ->
+            "./assets/CreateAvatar/avatar_2.svg"
+
+        Avatar3 ->
+            "./assets/CreateAvatar/avatar_3.svg"
+
+        Avatar4 ->
+            "./assets/CreateAvatar/avatar_4.svg"
+
+        Avatar5 ->
+            "./assets/CreateAvatar/avatar_5.svg"
+
+        Avatar6 ->
+            "./assets/CreateAvatar/avatar_6.svg"
