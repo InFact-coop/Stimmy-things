@@ -91,7 +91,10 @@ const prodConfig = {
       template: './src/index.html'
     }),
     new MiniCssExtractPlugin(),
-    new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: 'assets' },
+      { from: 'src/manifest.json' }
+    ]),
     new GenerateSW({
       clientsClaim: true,
       skipWaiting: true
