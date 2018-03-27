@@ -53,6 +53,7 @@
     "env2": "^2.2.0",
     "express": "^4.16.2",
     "file-loader": "^1.1.11",
+    "firebase": "^4.12.0",
     "flickity": "^2.0.11",
     "pg-promise": "^8.2.2",
     "postcss-clean": "^1.1.0",

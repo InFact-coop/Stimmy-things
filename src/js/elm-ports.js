@@ -4,6 +4,7 @@ import idb from './idb-handlers';
 import flickity from './flickity-handlers';
 import hotspots from './hotspots-handlers';
 import defaultStims from '../json/defaultStims.json';
+import firebaseDB from '../../firebase';
 
 app.ports.initCarousel.subscribe(flickity.initCarousel);
 app.ports.videoCarousel.subscribe(flickity.videoCarousel);
@@ -14,3 +15,7 @@ app.ports.initDB.subscribe(() => idb.initDB(defaultStims));
 
 app.ports.saveLog.subscribe(idb.saveLog);
 app.ports.saveStim.subscribe(idb.saveStim);
+
+app.ports.getFirebaseStims.subscribe(() => {
+  return firebaseDB.ref('stimId');
+});

@@ -46,6 +46,9 @@ port receiveUpdatedStims : (Json.Decode.Value -> msg) -> Sub msg
 port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
 
 
+port receiveFirebaseStims : (Json.Decode.Value -> msg) -> Sub msg
+
+
 timeSubscription : Model -> Sub Msg
 timeSubscription model =
     case model.timerStatus of
@@ -69,4 +72,5 @@ subscriptions model =
         , receiveChosenAvatar ReceiveChosenAvatar
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
+        , receiveFirebaseStims (decodeStimList >> ReceiveFirebaseStims)
         ]

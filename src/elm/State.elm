@@ -39,6 +39,7 @@ initModel =
     , hotspots = defaultHotspots
     , selectedStim = defaultStim
     , transition = Transit.empty
+    , blogStims = []
     }
 
 
@@ -162,6 +163,12 @@ update msg model =
             { model | stims = listStims } ! []
 
         ReceiveStimList (Err err) ->
+            model ! []
+
+        ReceiveFirebaseStims (Ok listStims) ->
+            { model | blogStims = listStims } ! []
+
+        ReceiveFirebaseStims (Err err) ->
             model ! []
 
         ReceiveChosenAvatar src ->
