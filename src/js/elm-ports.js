@@ -4,7 +4,7 @@ import idb from './idb-handlers';
 import flickity from './flickity-handlers';
 import hotspots from './hotspots-handlers';
 import defaultStims from '../json/defaultStims.json';
-import firebase from './firebase';
+import firebase from './firebase-handlers';
 
 app.ports.initCarousel.subscribe(flickity.initCarousel);
 app.ports.videoCarousel.subscribe(flickity.videoCarousel);
