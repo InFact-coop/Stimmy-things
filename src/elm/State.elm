@@ -163,13 +163,13 @@ update msg model =
             { model | stims = listStims } ! []
 
         ReceiveStimList (Err err) ->
-            model ! []
+              model ! []
 
         ReceiveFirebaseStims (Ok listStims) ->
             { model | blogStims = listStims } ! []
 
         ReceiveFirebaseStims (Err err) ->
-            { model | err = err } ! []
+              model ! []
 
         ReceiveChosenAvatar src ->
             { model | avatar = avatarSrcToAvatar src }
