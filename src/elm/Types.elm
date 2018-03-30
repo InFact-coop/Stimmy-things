@@ -54,6 +54,7 @@ type alias Model =
         , selectedStim : Stim
         , blogStims : List Stim
         , stimInfoDestination : View
+        , err : String
         }
 
 
