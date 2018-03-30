@@ -3,10 +3,11 @@ module Views.StimRecap exposing (..)
 import Components.Button exposing (rectButton)
 import Components.Face exposing (face)
 import Components.PillButton exposing (..)
+import Data.Avatar exposing (avatarHeadSelection)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
-import Data.Avatar exposing (avatarHeadSelection)
 import Helpers.Style exposing (classes, headerFont, horizontalTransition)
+import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -42,7 +43,7 @@ stimRecap model =
                     , div [ class "flex flex-wrap items-center justify-between" ] (renderFeelings feelings model)
                     ]
                 , div [ class "mh4 h3 mb2" ] [ rectButton "Done" SaveLog ]
-                , div [ class "green underline pb4 ", onClick <| ShareStim model.selectedStim ] [ text "Share Stim" ]
+                , checkStimShare model model.selectedStim
                 , div [ class "green underline pb4 ", onClick RepeatStim ] [ text "Or do it again?" ]
                 ]
             ]
@@ -52,3 +53,11 @@ stimRecap model =
 renderFeelings : List Feeling -> Model -> List (Html Msg)
 renderFeelings feelings model =
     List.map (feelingButton Post model) feelings
+
+
+checkStimShare : Model -> Stim -> Html Msg
+checkStimShare model stim =
+    ifThenElse
+        stim.shared
+        (p [ class "red" ] [ text "You've already shared this stim! Maybe try out another one?" ])
+        (p [ onClick <| ShareStim model.selectedStim ] [ text "Share Stim" ])

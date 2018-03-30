@@ -1,5 +1,6 @@
 import helpers from './idb-helpers';
 import app from './elm-init';
+import firebase from './firebase-handlers';
 
 const initDB = defaultStims => {
   const db = helpers.createDB();
@@ -41,4 +42,21 @@ const saveStim = stim => {
     .catch(err => console.log('Error saving stim: ', err));
 };
 
-export default { saveLog, saveStim, initDB };
+const shareStim = stim => {
+  const db = helpers.createDB();
+  const stimClone = { ...stim, shared: true };
+  helpers
+    .addStim(db, stimClone)
+    .then(() => firebase.addFirebaseStim(stimClone))
+    .then(() => {
+      return helpers.getAllStims(db);
+    })
+    .then(stims => {
+      return new Promise((resolve, reject) => {
+        app.ports.receiveUpdatedStims.send(stims);
+      });
+    })
+    .catch(err => console.log('Error sharing stim: ', err));
+};
+
+export default { saveLog, saveStim, initDB, shareStim };
