@@ -39,19 +39,26 @@ initModel =
     , hotspots = defaultHotspots
     , selectedStim = defaultStim
     , transition = Transit.empty
+    , blogStims = []
+    , stimInfoDestination = StimPreparation
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initDB () ]
+    initModel ! [ initDB (), fetchFirebaseStims () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeView view ->
-            { model | view = view, stimMenuShowing = Nothing, showNav = Neutral } ! (scrollToTop :: viewToCmds view)
+            { model
+                | view = view
+                , stimMenuShowing = Nothing
+                , showNav = Neutral
+            }
+                ! (scrollToTop :: viewToCmds view)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -172,6 +179,12 @@ update msg model =
         ReceiveStimList (Err err) ->
             model ! []
 
+        ReceiveFirebaseStims (Ok listStims) ->
+            { model | blogStims = listStims } ! []
+
+        ReceiveFirebaseStims (Err err) ->
+            model ! []
+
         ReceiveChosenAvatar src ->
             { model | avatar = avatarSrcToAvatar src }
                 ! []
@@ -192,3 +205,17 @@ update msg model =
             { model | newStim = defaultStim }
                 ! []
                 :> update (NavigateTo AddStim)
+
+        ShareStim stim ->
+            model
+                ! [ shareStim <| normaliseStim stim ]
+                :> update (NavigateTo Landing)
+
+        ImportStim stim ->
+            model
+                ! [ saveStim <| normaliseStim stim ]
+
+        NavigateToStimInfo ->
+            { model | stimInfoDestination = model.view }
+                ! []
+                :> update (NavigateTo StimInfo)

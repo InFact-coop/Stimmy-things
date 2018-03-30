@@ -1,5 +1,5 @@
-import helpers from './idb-helpers';
-import app from './elm-init';
+import app from '../elm-init';
+import helpers from '../idb-helpers';
 
 const initDB = defaultStims => {
   const db = helpers.createDB();
@@ -25,7 +25,6 @@ const saveLog = log => {
 
 const saveStim = stim => {
   const db = helpers.createDB();
-
   helpers
     .addStim(db, stim)
     .then(() => helpers.getAllStims(db))

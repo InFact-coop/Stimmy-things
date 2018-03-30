@@ -62,6 +62,15 @@ initTimeout userId =
             (\_ -> NavigateTo <| ifThenElse (userId == "") OnboardingFirst Landing)
 
 
+port receiveFirebaseStims : (Json.Decode.Value -> msg) -> Sub msg
+
+
+port fetchFirebaseStims : () -> Cmd msg
+
+
+port shareStim : Json.Encode.Value -> Cmd msg
+
+
 timeSubscription : Model -> Sub Msg
 timeSubscription model =
     case model.timerStatus of
@@ -86,4 +95,5 @@ subscriptions model =
         , receiveUserSaveSuccess ReceiveUserSaveSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
+        , receiveFirebaseStims (decodeStimList >> ReceiveFirebaseStims)
         ]
