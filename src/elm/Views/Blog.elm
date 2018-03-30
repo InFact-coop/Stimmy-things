@@ -43,8 +43,8 @@ renderBlogStims model =
                     [ img [ class "w-100 mb3", src "./assets/StimInfo/divider_zigzag_grey_small.svg" ] []
                     ]
                 , div
-                    [ class "fit-content bg-center br2"
-                    , backgroundImageCover "./assets/Moodboard/zigzag_moodboard_card.svg"
+                    [ class "fit-content bg-top br2"
+                    , backgroundImageCover "./assets/ShareModal/zigzag_modal_bg.svg"
                     , onClick <| GoToStim stim
                     ]
                     [ div [ class "flex items-center mb3 mh4 mt4" ]
