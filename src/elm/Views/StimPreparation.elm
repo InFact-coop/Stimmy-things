@@ -12,7 +12,6 @@ import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
 import Html.Events exposing (on, onClick, onInput, targetValue)
 import Json.Decode as Json
-import Time exposing (Time)
 import Types exposing (..)
 
 
@@ -20,9 +19,17 @@ stimPreparation : Model -> Html Msg
 stimPreparation model =
     div [ class "border-box bg-green flex-column tc dark-gray h-fit-content", horizontalTransition model ]
         [ div [ classes [ headerFont, "flex flex-row ma3 mt0 mb0 items-center justify-between h" ] ]
-            [ div [ onClick <| NavigateTo Landing, class "h4 w3 flex items-centre justify-left" ] [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
+            [ div
+                [ onClick <| NavigateTo Landing
+                , class "h4 w3 flex items-centre justify-left"
+                ]
+                [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
             , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ] [ text <| model.selectedStim.stimName ]
-            , div [ onClick <| NavigateTo StimInfo, class "h4 w3 flex items-centre justify-right" ] [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
+            , div
+                [ onClick NavigateToStimInfo
+                , class "h4 w3 flex items-centre justify-right"
+                ]
+                [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
             ]
         , div
             [ style
@@ -40,7 +47,15 @@ stimPreparation model =
                     ]
                 , p [ class "mh7 mv3 f6 lh-f6" ] [ text "How long do you want to do the exercise for?" ]
                 , div [ class "w-80 items-center justify-between tc inline-flex center mb4" ]
-                    [ input [ id "myRange", type_ "range", Attr.min "0", Attr.max "1800", step "60", class "w-75 bg-light-gray input-reset h-custom slider", onInputValue SetTime ]
+                    [ input
+                        [ id "myRange"
+                        , type_ "range"
+                        , Attr.min "0"
+                        , Attr.max "1800"
+                        , step "60"
+                        , class "w-75 bg-light-gray input-reset h-custom slider"
+                        , onInputValue SetTime
+                        ]
                         []
                     , div []
                         [ div

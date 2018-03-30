@@ -1,6 +1,6 @@
 export function config() {
   return {
-    apiKey: 'AIzaSyB_MH_CW9Y_79KlOAj476V59sTOisvjRk4',
+    apiKey: process.env.FIREBASE_API_KEY,
     authDomain: 'stimmy-things-infact.firebaseapp.com',
     databaseURL: 'https://stimmy-things-infact.firebaseio.com',
     projectId: 'stimmy-things-infact',

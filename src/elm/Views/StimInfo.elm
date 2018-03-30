@@ -13,7 +13,11 @@ stimInfo model =
     div [ verticalTransition model, class "bg-washed-yellow black" ]
         [ div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative" ]
-                [ div [ class "absolute left-0 ml3 pointer", onClick (NavigateTo StimPreparation) ] [ img [ src "./assets/StimInfo/close_btn_white.svg" ] [] ]
+                [ div
+                    [ class "absolute left-0 ml3 pointer"
+                    , onClick <| NavigateTo model.stimInfoDestination
+                    ]
+                    [ img [ src "./assets/StimInfo/close_btn_white.svg" ] [] ]
                 , h1 [ classes [ headerFont, "white pt3 mb3" ] ] [ text <| model.selectedStim.stimName ]
                 ]
             , button
