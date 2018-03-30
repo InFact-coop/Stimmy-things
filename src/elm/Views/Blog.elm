@@ -10,7 +10,7 @@ import Html.Attributes exposing (..)
 
 blog : Model -> Html Msg
 blog model =
-    div [ horizontalTransition model, class "bg-washed-yellow black" ]
+    div [ horizontalTransition model, class "bg-washed-yellow black fit-content mb3" ]
         [ div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative mb4" ]
                 [ div
