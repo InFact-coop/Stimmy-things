@@ -59,5 +59,5 @@ checkStimShare : Model -> Stim -> Html Msg
 checkStimShare model stim =
     ifThenElse
         stim.shared
-        (p [ class "red" ] [ text "You've already shared this stim! Maybe try out another one?" ])
+        (p [] [])
         (p [ onClick <| ShareStim model.selectedStim ] [ text "Share Stim" ])
