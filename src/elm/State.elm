@@ -13,15 +13,14 @@ import Requests.GetVideos exposing (getVideos)
 import Transit
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
-import Views.Splash exposing (initTimeout)
 
 
 initModel : Model
 initModel =
     { view = Splash
     , userId = ""
-    , avatar = Avatar2
-    , avatarName = "Sion"
+    , avatar = Avatar1
+    , avatarName = ""
     , skinColour = SkinColour1
     , stims = []
     , logs = []
@@ -44,7 +43,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initDB (), initTimeout ]
+    initModel ! [ initDB () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -90,7 +89,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -153,10 +152,10 @@ update msg model =
             { model | newStim = addHowTo string model.newStim } ! []
 
         ReceiveInitialData (Ok dbData) ->
-            dbDataToModel dbData model ! []
+            dbDataToModel dbData model ! [ initTimeout dbData.user.userId ]
 
         ReceiveInitialData (Err err) ->
-            model ! []
+            model ! [ initTimeout "" ]
 
         ReceiveStimList (Ok listStims) ->
             { model | stims = listStims } ! []

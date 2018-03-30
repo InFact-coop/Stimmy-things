@@ -3,8 +3,11 @@ port module Ports exposing (..)
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
 import Data.Stim exposing (decodeStimList)
+import Helpers.Utils exposing (ifThenElse)
 import Json.Decode exposing (..)
 import Json.Encode exposing (..)
+import Process exposing (sleep)
+import Task exposing (perform)
 import Time exposing (Time)
 import Transit
 import Types exposing (..)
@@ -44,6 +47,13 @@ port receiveUpdatedStims : (Json.Decode.Value -> msg) -> Sub msg
 
 
 port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
+
+
+initTimeout : String -> Cmd Msg
+initTimeout userId =
+    Process.sleep (2 * Time.second)
+        |> Task.perform
+            (\_ -> NavigateTo <| ifThenElse (userId == "") OnboardingFirst Landing)
 
 
 timeSubscription : Model -> Sub Msg

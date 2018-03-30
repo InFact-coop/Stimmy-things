@@ -7,14 +7,6 @@ const initDB = defaultStims => {
   const stimPromises = defaultStims.map(stim => helpers.addStim(db, stim));
 
   Promise.all(stimPromises)
-    .then(() => {
-      return helpers.createOrUpdateUser(db, {
-        userId: '234234',
-        avatar: 'avatar1',
-        skinColour: 'skinColour1',
-        name: 'Neil'
-      });
-    })
     .then(() => helpers.getAllTheData(db))
     .then(data => app.ports.receiveInitialData.send(data))
     .catch(err => console.log('Failure', err));
