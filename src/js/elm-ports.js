@@ -1,10 +1,11 @@
 import app from './elm-init';
 
-import idb from './idb-handlers';
-import flickity from './flickity-handlers';
-import hotspots from './hotspots-handlers';
+import idb from './port-handlers/idb-handlers';
+import flickity from './port-handlers/flickity-handlers';
+import hotspots from './port-handlers/hotspots-handlers';
+import firebase from './port-handlers/firebase-handlers';
+
 import defaultStims from '../json/defaultStims.json';
-import firebase from './firebase-handlers';
 
 app.ports.initCarousel.subscribe(flickity.initCarousel);
 app.ports.videoCarousel.subscribe(flickity.videoCarousel);

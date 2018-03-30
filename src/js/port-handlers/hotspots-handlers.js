@@ -1,4 +1,5 @@
-import app from './elm-init';
+import app from '../elm-init';
+
 const hotspotBodyParts = [
   'head',
   'face',

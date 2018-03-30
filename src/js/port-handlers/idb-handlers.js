@@ -1,5 +1,5 @@
-import helpers from './idb-helpers';
-import app from './elm-init';
+import app from '../elm-init';
+import helpers from '../idb-helpers';
 
 const initDB = defaultStims => {
   const db = helpers.createDB();
