@@ -40,6 +40,7 @@ initModel =
     , selectedStim = defaultStim
     , transition = Transit.empty
     , blogStims = []
+    , stimInfoDestination = StimPreparation
     }
 
 
@@ -52,7 +53,12 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeView view ->
-            { model | view = view, stimMenuShowing = Nothing, showNav = Neutral } ! (scrollToTop :: viewToCmds view)
+            { model
+                | view = view
+                , stimMenuShowing = Nothing
+                , showNav = Neutral
+            }
+                ! (scrollToTop :: viewToCmds view)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -200,3 +206,8 @@ update msg model =
         ImportStim stim ->
             model
                 ! [ saveStim <| normaliseStim stim ]
+
+        NavigateToStimInfo ->
+            { model | stimInfoDestination = model.view }
+                ! []
+                :> update (NavigateTo StimInfo)
