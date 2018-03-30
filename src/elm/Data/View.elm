@@ -8,6 +8,7 @@ import Views.About exposing (..)
 import Views.AddStim exposing (..)
 import Views.Blog exposing (..)
 import Views.CreateAvatar exposing (..)
+import Views.Definition exposing (definition)
 import Views.Emergency exposing (..)
 import Views.Landing exposing (..)
 import Views.Moodboard exposing (..)
@@ -20,7 +21,9 @@ import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
-import Views.Splash exposing (..)
+import Process exposing (sleep)
+import Task exposing (perform)
+import Time exposing (Time)
 
 
 getCurrentView : Model -> Html Msg
@@ -74,6 +77,9 @@ getCurrentView model =
         Splash ->
             splash model
 
+        Definition ->
+            definition model
+
 
 viewToCmds : View -> List (Cmd Msg)
 viewToCmds view =
@@ -107,3 +113,9 @@ updateStimMenu model bodyPart =
         (model.stimMenuShowing == Just bodyPart)
         (Nothing)
         (Just bodyPart)
+
+
+navigateFromSplash : Cmd Msg
+navigateFromSplash =
+    Process.sleep (3 * Time.second)
+        |> Task.perform (\_ -> NavigateTo Definition)

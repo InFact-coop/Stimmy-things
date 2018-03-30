@@ -13,7 +13,6 @@ import Requests.GetVideos exposing (getVideos)
 import Transit
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
-import Views.Splash exposing (initTimeout)
 
 
 initModel : Model
@@ -46,7 +45,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initDB (), initTimeout, fetchFirebaseStims () ]
+    initModel ! [ initDB (), fetchFirebaseStims (), navigateFromSplash ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
