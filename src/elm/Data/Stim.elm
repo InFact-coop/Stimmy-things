@@ -2,6 +2,7 @@ module Data.Stim exposing (..)
 
 import Data.BodyPart exposing (stringToBodyPart)
 import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
+import Data.BodyPart exposing (stringToBodyPart)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode

@@ -18,7 +18,7 @@ import Views.Splash exposing (initTimeout)
 
 initModel : Model
 initModel =
-    { view = Splash
+    { view = Blog
     , userId = ""
     , avatar = Avatar2
     , avatarName = "Sion"
@@ -47,7 +47,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initDB (), initTimeout, fetchFirebaseStims () ]
+    initModel ! [ initDB (), fetchFirebaseStims () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
