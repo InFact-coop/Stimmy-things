@@ -38,12 +38,12 @@ renderBlogStims : Model -> List (Html Msg)
 renderBlogStims model =
     List.map
         (\stim ->
-            div [ class "flex flex-column" ]
-                [ div [ class "mh3 mt3" ]
+            div [ class "flex flex-column mh3" ]
+                [ div [ class "mt3" ]
                     [ img [ class "w-100 mb3", src "./assets/StimInfo/divider_zigzag_grey_small.svg" ] []
                     ]
                 , div
-                    [ class "fit-content"
+                    [ class "fit-content bg-center br2"
                     , backgroundImageCover "./assets/Moodboard/zigzag_moodboard_card.svg"
                     , onClick <| GoToStim stim
                     ]
@@ -85,6 +85,6 @@ videoSection stim =
         [ class "flex flex-column items-center fit-content mb3"
         ]
         [ div []
-            [ iframe [ width 280, height 160, src <| Maybe.withDefault "" stim.videoSrc ] []
+            [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ] []
             ]
         ]
