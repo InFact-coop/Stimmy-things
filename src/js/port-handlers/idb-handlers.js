@@ -35,9 +35,7 @@ const saveStim = stim => {
   const db = helpers.createDB();
   helpers
     .addStim(db, stim)
-    .then(() => {
-      return helpers.getAllStims(db);
-    })
+    .then(() => helpers.getAllStims(db))
     .then(stims => app.ports.receiveUpdatedStims.send(stims))
     .catch(err => console.log('Error saving stim: ', err));
 };
