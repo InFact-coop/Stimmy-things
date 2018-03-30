@@ -32,13 +32,10 @@ const saveLog = log => {
 };
 
 const saveStim = stim => {
-  console.log('in saveStim, stim', stim);
   const db = helpers.createDB();
-  console.log('all stims before adding', helpers.getAllStims(db));
   helpers
     .addStim(db, stim)
     .then(() => {
-      console.log('after adding', helpers.getAllStims(db));
       return helpers.getAllStims(db);
     })
     .then(stims => app.ports.receiveUpdatedStims.send(stims))
