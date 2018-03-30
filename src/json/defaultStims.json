@@ -2,7 +2,7 @@
   {
     "stimId": "678910",
     "stimName": "The Mindful Jar",
-    "bodyPart": "head",
+    "bodyPart": "Head",
     "instructions":
       "Fill a jar with water, add a spoonful of glitter, shake the jar to make the glitter swirl, and think about how your mind is like the jar - sometimes its crazy and chaotic and you can’t see very well, but when the glitter is settled, it sinks and you can see clearly! Use this exercise to remind yourself this simple but powerful concept!",
     "videoSrc": "https://www.youtube.com/embed/WwWbO2JDYaA",
@@ -12,7 +12,7 @@
   {
     "stimId": "6789103",
     "stimName": "Noise cancelling",
-    "bodyPart": "face",
+    "bodyPart": "Face",
     "instructions":
       "This exercise concentrates on your hearing and ears. Use an adjustable headset to filter outside noise. You can then listen to beautiful nature sounds like a bird song! It can help you relax and regain some calm ",
     "videoSrc": "https://www.youtube.com/embed/Qm846KdZN_c",
@@ -22,7 +22,7 @@
   {
     "stimId": "6789102",
     "stimName": "Chew a gum!",
-    "bodyPart": "face",
+    "bodyPart": "Face",
     "instructions":
       "Use a sugar-free, dye-free chewing gum. it can give you both oral and proprioceptive input. If it allows your head to focus and have more clarity, than why not!",
     "videoSrc": "https://www.youtube.com/embed/nv4yruWX7HI",
@@ -32,7 +32,7 @@
   {
     "stimId": "678910dkskldj",
     "stimName": "Bubble Breath",
-    "bodyPart": "face",
+    "bodyPart": "Face",
     "instructions":
       "Imagine you have a bubble wand with some soapy bubble. Breathe in and then breathe out whilst being careful not to burst the bubble! Feel the air coming in and out of your mouth and concentrate on your bubbles. Breathe in and hold your breath for five seconds and then breathe out to make a bubble blowing slowly for another five seconds.",
     "videoSrc": "https://www.youtube.com/embed/5DqTuWve9t8",
@@ -42,7 +42,7 @@
   {
     "stimId": "678910sadjflas",
     "stimName": "Self Hug",
-    "bodyPart": "shoulders",
+    "bodyPart": "Shoulders",
     "instructions":
       "cross your arms in front of you and bring your palms to your side to squeeze yourself with a big self hug for 10 seconds. You can then open your arms widely which will also release your shoulders! Repeat a few times.",
     "videoSrc": "https://www.youtube.com/embed/DFzF6EzXHes",
@@ -52,7 +52,7 @@
   {
     "stimId": "678910asldjf",
     "stimName": "Heartbeat exercise",
-    "bodyPart": "chest",
+    "bodyPart": "Chest",
     "instructions":
       "Jump up and down or do jumping jacks for one minute, then sit down and put your hand over your heart, close your eyes and pay attention to your heartbeat and your breath.",
     "videoSrc": "https://www.youtube.com/embed/fpD9kRyBn8o",
@@ -62,7 +62,7 @@
   {
     "stimId": "678910asldjf",
     "stimName": "Arms massage",
-    "bodyPart": "arms",
+    "bodyPart": "Arms",
     "instructions":
       "Massage your arm up and down starting at your wrist. Do the same thing on your other arm. Concetrate on the feeling of your fingers sqeezing your arms, and after a ten times stop and notice - does it make you feel more focused?",
     "videoSrc": "./stuff.js",
@@ -72,7 +72,7 @@
   {
     "stimId": "678910aslkjfdl",
     "stimName": "Mindful breathing",
-    "bodyPart": "belly",
+    "bodyPart": "Belly",
     "instructions":
       "Focus on your breath. Imagine a sail boat on your belly that raises and falls with each breath, envision your breath as a colour and pretend you’re a fish breathing air for the first time!",
     "videoSrc": "https://www.youtube.com/embed/CvF9AEe-ozc",
@@ -82,7 +82,7 @@
   {
     "stimId": "678910asdljf",
     "stimName": "Palm push",
-    "bodyPart": "hands",
+    "bodyPart": "Hands",
     "instructions":
       "Put your palms together and push and hold for ten seconds. When you are feeling fidgety and emotional about something, this exercise can help you feel your body and awakes your mind.",
     "videoSrc": "./stuff.js",
@@ -92,7 +92,7 @@
   {
     "stimId": "678910asdlfj",
     "stimName": "Donkey Kicks",
-    "bodyPart": "legs",
+    "bodyPart": "Legs",
     "instructions":
       "Starting in the standing position, lean over and put both hands and both feet on the ground. When the area around you is clear, jump with your legs and kick behind you, leaving your hands on the ground.",
     "videoSrc": "https://www.youtube.com/embed/XJ5IW-lu3eg",
@@ -102,7 +102,7 @@
   {
     "stimId": "678910asdljf",
     "stimName": "Frog Jumps",
-    "bodyPart": "feet",
+    "bodyPart": "Feet",
     "instructions":
       "Start in the squatted position. Place your hands on the floor in between your knees. Using your feet, jump forward and land with your hands and feet on the ground.",
     "videoSrc": "https://www.youtube.com/embed/pQHatuScA_E",

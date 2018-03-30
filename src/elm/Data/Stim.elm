@@ -1,5 +1,9 @@
 module Data.Stim exposing (..)
 
+<<<<<<< HEAD
+=======
+import Data.BodyPart exposing (stringToBodyPart)
+>>>>>>> master
 import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
@@ -14,10 +18,6 @@ defaultStim =
 
 decodeStim : Decoder Stim
 decodeStim =
-    let
-        log =
-            Debug.log ("in decode Stim")
-    in
         decode Stim
             |> required "stimId" string
             |> required "bodyPart" decodeBodyPartDB
