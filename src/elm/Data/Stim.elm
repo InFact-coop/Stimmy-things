@@ -1,6 +1,5 @@
 module Data.Stim exposing (..)
 
-import Data.BodyPart exposing (stringToBodyPart)
 import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
@@ -15,14 +14,14 @@ defaultStim =
 
 decodeStim : Decoder Stim
 decodeStim =
-        decode Stim
-            |> required "stimId" string
-            |> required "bodyPart" decodeBodyPartDB
-            |> required "stimName" string
-            |> required "instructions" string
-            |> required "videoSrc" (Json.Decode.map stringToMaybe string)
-            |> required "shared" bool
-            |> required "userId" string
+    decode Stim
+        |> required "stimId" string
+        |> required "bodyPart" decodeBodyPartDB
+        |> required "stimName" string
+        |> required "instructions" string
+        |> required "videoSrc" (Json.Decode.map stringToMaybe string)
+        |> required "shared" bool
+        |> required "userId" string
 
 
 decodeStimList : Value -> Result String (List Stim)
