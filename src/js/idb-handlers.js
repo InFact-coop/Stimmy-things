@@ -35,7 +35,7 @@ const saveStim = stim => {
 
 const saveUser = user => {
   const db = helpers.createDB();
-  const id = helpers.generateId('user-', 10);
+  const id = helpers.generateId('_user-');
   helpers
     .createOrUpdateUser(db, { userId: id, ...user })
     .then(() => helpers.getUser(db))

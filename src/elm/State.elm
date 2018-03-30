@@ -138,7 +138,7 @@ update msg model =
                 , selectedStim = defaultStim
             }
                 ! [ saveLog (normaliseDBLog model.newLog) ]
-                :> update (ChangeView Landing)
+                :> update (NavigateTo Landing)
 
         SaveUser ->
             model ! [ saveUser <| normaliseUser model ]
@@ -165,7 +165,9 @@ update msg model =
             { model | stims = listStims } ! []
 
         ReceiveUserSaveSuccess bool ->
-            { model | view = Landing } ! []
+            model
+                ! []
+                :> update (NavigateTo Landing)
 
         ReceiveStimList (Err err) ->
             model ! []
