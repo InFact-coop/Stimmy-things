@@ -41,8 +41,8 @@ landing model =
         , viewIf (model.hotspots.head.name /= NoBodyPart)
             (button
                 [ classes [ "bn bg-transparent db h4 w4 fixed bottom-0 outline-0 z-2 pa0" ]
-                , backgroundImageStyle "./assets/Landing/add_stim_btn.svg" 100
-                , onClick <| AddStimWithoutBodyPart
+                , backgroundImageStyle "./assets/Landing/shuffle_stim_btn.svg" 100
+                , onClick <| GoToRandomStim
                 ]
                 []
             )

@@ -4,11 +4,12 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, generateRandomStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
+import Random
 import Requests.GetVideos exposing (getVideos)
 import Transit
 import Types exposing (..)
@@ -197,6 +198,11 @@ update msg model =
             { model | newStim = defaultStim }
                 ! []
                 :> update (NavigateTo AddStim)
+
+        GoToRandomStim ->
+            model
+                ! [ Random.generate GoToStim (generateRandomStim model)
+                  ]
 
         ShareStim stim ->
             model

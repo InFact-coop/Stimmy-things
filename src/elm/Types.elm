@@ -257,6 +257,7 @@ type Msg
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
     | GoToStim Stim
+    | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
     | SelectAvatar
