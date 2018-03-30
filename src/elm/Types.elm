@@ -22,6 +22,7 @@ type View
     | Splash
     | ShareModal
     | Blog
+    | Definition
 
 
 type Trilean

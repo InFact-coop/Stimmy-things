@@ -55,13 +55,6 @@ port receiveUserSaveSuccess : (Bool -> msg) -> Sub msg
 port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
 
 
-initTimeout : String -> Cmd Msg
-initTimeout userId =
-    Process.sleep (2 * Time.second)
-        |> Task.perform
-            (\_ -> NavigateTo <| ifThenElse (userId == "") OnboardingFirst Landing)
-
-
 port receiveFirebaseStims : (Json.Decode.Value -> msg) -> Sub msg
 
 

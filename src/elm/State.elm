@@ -163,10 +163,10 @@ update msg model =
             { model | newStim = addHowTo string model.newStim } ! []
 
         ReceiveInitialData (Ok dbData) ->
-            dbDataToModel dbData model ! [ initTimeout dbData.user.userId ]
+            dbDataToModel dbData model ! [ navigateFromSplash dbData.user.userId ]
 
         ReceiveInitialData (Err err) ->
-            model ! [ initTimeout "" ]
+            model ! [ navigateFromSplash "" ]
 
         ReceiveStimList (Ok listStims) ->
             { model | stims = listStims } ! []
