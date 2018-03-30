@@ -33,7 +33,6 @@ const saveLog = log => {
 
 const saveStim = stim => {
   const db = helpers.createDB();
-
   helpers
     .addStim(db, stim)
     .then(() => helpers.getAllStims(db))
