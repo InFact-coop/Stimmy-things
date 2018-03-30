@@ -53,6 +53,7 @@ type alias Model =
         , hotspots : Hotspots
         , selectedStim : Stim
         , blogStims : List Stim
+        , err : String
         }
 
 
