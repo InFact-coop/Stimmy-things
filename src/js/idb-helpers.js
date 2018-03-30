@@ -16,7 +16,7 @@ const createDB = () => {
 };
 
 const createOrUpdateUser = (db, { userId, avatar, skinColour, name }) => {
-  return db.user.put({ userId, name, avatar, skinColour });
+  return db.user.put({ userId, avatar, skinColour, name });
 };
 
 const getUser = db => {
@@ -75,9 +75,17 @@ const getAllTheData = db => {
   });
 };
 
+const generateId = prefix => {
+  const uniqueString = Math.random()
+    .toString(36)
+    .substr(2, 9);
+  return prefix + uniqueString;
+};
+
 export default {
   createOrUpdateUser,
   getUser,
+  generateId,
   createDB,
   getAllStims,
   addStim,
