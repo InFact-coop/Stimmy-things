@@ -246,6 +246,7 @@ type Msg
     | RepeatStim
     | ChangeViewFromTimer View
     | SaveLog
+    | SaveUser
     | SaveStim Stim
     | ToggleNav
     | TransitMsg (Transit.Msg Msg)
@@ -257,6 +258,7 @@ type Msg
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
+    | ReceiveUserSaveSuccess Bool
     | GoToStim Stim
     | AddExerciseName String
     | AddHowTo String

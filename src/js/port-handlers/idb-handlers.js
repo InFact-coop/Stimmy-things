@@ -7,14 +7,6 @@ const initDB = defaultStims => {
   const stimPromises = defaultStims.map(stim => helpers.addStim(db, stim));
 
   Promise.all(stimPromises)
-    .then(() => {
-      return helpers.createOrUpdateUser(db, {
-        userId: '234234',
-        avatar: 'avatar1',
-        skinColour: 'skinColour1',
-        name: 'Neil'
-      });
-    })
     .then(() => helpers.getAllTheData(db))
     .then(data => app.ports.receiveInitialData.send(data))
     .catch(err => console.log('Failure', err));
@@ -40,4 +32,17 @@ const saveStim = stim => {
     .catch(err => console.log('Error saving stim: ', err));
 };
 
-export default { saveLog, saveStim, initDB };
+const saveUser = user => {
+  const db = helpers.createDB();
+  const id = helpers.generateId('_user-');
+  helpers
+    .createOrUpdateUser(db, { userId: id, ...user })
+    .then(() => helpers.getUser(db))
+    .then(user => app.ports.receiveUserSaveSuccess.send(true))
+    .catch(err => {
+      console.log('Error saving user: ', err);
+      app.ports.receiveUserSaveSuccess.send(false);
+    });
+};
+
+export default { saveLog, saveStim, saveUser, initDB };

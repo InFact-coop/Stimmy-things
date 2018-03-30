@@ -115,7 +115,8 @@ updateStimMenu model bodyPart =
         (Just bodyPart)
 
 
-navigateFromSplash : Cmd Msg
-navigateFromSplash =
-    Process.sleep (3 * Time.second)
-        |> Task.perform (\_ -> NavigateTo Definition)
+navigateFromSplash : String -> Cmd Msg
+navigateFromSplash userId =
+    Process.sleep (2 * Time.second)
+        |> Task.perform
+            (\_ -> NavigateTo <| ifThenElse (userId == "") Definition Landing)

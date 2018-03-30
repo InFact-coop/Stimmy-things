@@ -3,8 +3,11 @@ port module Ports exposing (..)
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
 import Data.Stim exposing (decodeStimList)
+import Helpers.Utils exposing (ifThenElse)
 import Json.Decode exposing (..)
 import Json.Encode exposing (..)
+import Process exposing (sleep)
+import Task exposing (perform)
 import Time exposing (Time)
 import Transit
 import Types exposing (..)
@@ -34,6 +37,9 @@ port initHotspots : () -> Cmd msg
 port saveStim : Json.Encode.Value -> Cmd msg
 
 
+port saveUser : Json.Encode.Value -> Cmd msg
+
+
 port receiveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
 
 
@@ -41,6 +47,9 @@ port receiveUpdatedLogs : (List DBLog -> msg) -> Sub msg
 
 
 port receiveUpdatedStims : (Json.Decode.Value -> msg) -> Sub msg
+
+
+port receiveUserSaveSuccess : (Bool -> msg) -> Sub msg
 
 
 port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
@@ -76,6 +85,7 @@ subscriptions model =
         , receiveUpdatedLogs ReceiveUpdatedLogs
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
         , receiveChosenAvatar ReceiveChosenAvatar
+        , receiveUserSaveSuccess ReceiveUserSaveSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
         , receiveFirebaseStims (decodeStimList >> ReceiveFirebaseStims)

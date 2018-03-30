@@ -6,6 +6,7 @@ import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
+import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
@@ -19,8 +20,8 @@ initModel : Model
 initModel =
     { view = Splash
     , userId = ""
-    , avatar = Avatar2
-    , avatarName = "Sion"
+    , avatar = Avatar1
+    , avatarName = ""
     , skinColour = SkinColour1
     , stims = []
     , logs = []
@@ -45,7 +46,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initDB (), fetchFirebaseStims (), navigateFromSplash ]
+    initModel ! [ initDB (), fetchFirebaseStims () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -144,7 +145,10 @@ update msg model =
                 , selectedStim = defaultStim
             }
                 ! [ saveLog (normaliseDBLog model.newLog) ]
-                :> update (ChangeView Landing)
+                :> update (NavigateTo Landing)
+
+        SaveUser ->
+            model ! [ saveUser <| normaliseUser model ]
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
@@ -159,13 +163,18 @@ update msg model =
             { model | newStim = addHowTo string model.newStim } ! []
 
         ReceiveInitialData (Ok dbData) ->
-            dbDataToModel dbData model ! []
+            dbDataToModel dbData model ! [ navigateFromSplash dbData.user.userId ]
 
         ReceiveInitialData (Err err) ->
-            model ! []
+            model ! [ navigateFromSplash "" ]
 
         ReceiveStimList (Ok listStims) ->
             { model | stims = listStims } ! []
+
+        ReceiveUserSaveSuccess bool ->
+            model
+                ! []
+                :> update (NavigateTo Landing)
 
         ReceiveStimList (Err err) ->
             model ! []
