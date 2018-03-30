@@ -1,5 +1,6 @@
 module Views.Blog exposing (..)
 
+import Helpers.Utils exposing (ifThenElse)
 import Helpers.Style exposing (horizontalTransition)
 import Html exposing (..)
 import Types exposing (..)
@@ -23,8 +24,23 @@ renderBlogStims model =
         (\stim ->
             div []
                 [ p [] [ text stim.stimName ]
-                , p [] [ text stim.instructions ]
-                , button [ onClick <| ImportStim stim ] [ text "Add to my stims!" ]
+                , p []
+                    [ text stim.instructions ]
+                , addOrDoStim (alreadyExistsInIndexedDB stim model) stim
                 ]
         )
         model.blogStims
+
+
+alreadyExistsInIndexedDB : Stim -> Model -> Bool
+alreadyExistsInIndexedDB blogStim model =
+    let
+        stimIdList =
+            List.map (\stim -> stim.stimId) model.stims
+    in
+        List.member blogStim.stimId stimIdList
+
+
+addOrDoStim : Bool -> Stim -> Html Msg
+addOrDoStim bool stim =
+    ifThenElse bool (button [ onClick <| GoToStim stim ] [ text "Do this stim!" ]) (button [ onClick <| ImportStim stim ] [ text "Add to my stims!" ])

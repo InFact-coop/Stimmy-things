@@ -12,9 +12,17 @@ stimTimer : Model -> Html Msg
 stimTimer model =
     div [ class "border-box bg-green flex flex-column tc white fill-screen", horizontalTransition model ]
         [ div [ classes [ headerFont, "flex flex-row ma3 mt0 mb0 items-center justify-between h" ] ]
-            [ div [ onClick <| ChangeViewFromTimer StimPreparation, class "h4 w3 flex items-centre justify-left" ] [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
+            [ div
+                [ onClick <| ChangeViewFromTimer StimPreparation
+                , class "h4 w3 flex items-centre justify-left"
+                ]
+                [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
             , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ] [ text <| model.selectedStim.stimName ]
-            , div [ onClick <| ChangeViewFromTimer StimInfo, class "h4 w3 flex items-centre justify-right" ] [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
+            , div
+                [ onClick NavigateToStimInfo
+                , class "h4 w3 flex items-centre justify-right"
+                ]
+                [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
             ]
         , img [ class "mb5", src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []
         , img [ class "mb4", src "./assets/StimTimer/timer_icn.svg" ] []

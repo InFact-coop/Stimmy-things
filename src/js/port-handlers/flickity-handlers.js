@@ -1,4 +1,4 @@
-import app from './elm-init';
+import app from '../elm-init';
 import Flickity from 'flickity';
 
 const initCarousel = () => {

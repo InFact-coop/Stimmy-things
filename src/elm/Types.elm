@@ -53,6 +53,7 @@ type alias Model =
         , hotspots : Hotspots
         , selectedStim : Stim
         , blogStims : List Stim
+        , stimInfoDestination : View
         }
 
 
@@ -244,6 +245,7 @@ type Msg
     | RepeatStim
     | ChangeViewFromTimer View
     | SaveLog
+    | SaveUser
     | SaveStim Stim
     | ToggleNav
     | TransitMsg (Transit.Msg Msg)
@@ -255,6 +257,7 @@ type Msg
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
+    | ReceiveUserSaveSuccess Bool
     | GoToStim Stim
     | AddExerciseName String
     | AddHowTo String
@@ -264,3 +267,4 @@ type Msg
     | ReceiveFirebaseStims (Result String (List Stim))
     | ShareStim Stim
     | ImportStim Stim
+    | NavigateToStimInfo

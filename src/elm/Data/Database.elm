@@ -1,8 +1,9 @@
 module Data.Database exposing (..)
 
-import Data.Log exposing (decodeLog)
+import Data.Log exposing (decodeLog, defaultLog)
 import Data.Stim exposing (decodeStim)
-import Data.User exposing (decodeUser)
+import Data.User exposing (decodeUser, defaultUser)
+import Helpers.Utils exposing (ifThenElse)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Types exposing (..)
@@ -16,9 +17,9 @@ decodeInitialData =
 databaseDecoder : Decoder DBData
 databaseDecoder =
     decode DBData
-        |> required "user" decodeUser
+        |> optional "user" decodeUser defaultUser
         |> required "stims" (list decodeStim)
-        |> required "logs" (list decodeLog)
+        |> optional "logs" (list decodeLog) []
 
 
 dbDataToModel : DBData -> Model -> Model
