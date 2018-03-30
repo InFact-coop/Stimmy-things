@@ -1,5 +1,6 @@
 module Data.Stim exposing (..)
 
+import Data.BodyPart exposing (stringToBodyPart)
 import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
 import Data.BodyPart exposing (stringToBodyPart)
 import Json.Decode exposing (..)
@@ -33,71 +34,6 @@ decodeStimList =
 addBodypart : BodyPart -> Stim -> Stim
 addBodypart bodypart stim =
     { stim | bodyPart = bodypart }
-
-
-decodeBodyPartDB : Decoder BodyPart
-decodeBodyPartDB =
-    string
-        |> andThen
-            (\string ->
-                case string of
-                    "Head" ->
-                        succeed Head
-
-                    "Face" ->
-                        succeed Face
-
-                    "Shoulders" ->
-                        succeed Shoulders
-
-                    "Chest" ->
-                        succeed Chest
-
-                    "Belly" ->
-                        succeed Belly
-
-                    "Arms" ->
-                        succeed Arms
-
-                    "Hands" ->
-                        succeed Hands
-
-                    "Legs" ->
-                        succeed Legs
-
-                    "Feet" ->
-                        succeed Feet
-
-                    "head" ->
-                        succeed Head
-
-                    "face" ->
-                        succeed Face
-
-                    "shoulders" ->
-                        succeed Shoulders
-
-                    "chest" ->
-                        succeed Chest
-
-                    "belly" ->
-                        succeed Belly
-
-                    "arms" ->
-                        succeed Arms
-
-                    "hands" ->
-                        succeed Hands
-
-                    "legs" ->
-                        succeed Legs
-
-                    "feet" ->
-                        succeed Feet
-
-                    _ ->
-                        succeed NoBodyPart
-            )
 
 
 addExerciseName : String -> Stim -> Stim

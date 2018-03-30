@@ -8,7 +8,7 @@ import Types exposing (..)
 hotspotCoordsDecoder : Decoder HotspotCoords
 hotspotCoordsDecoder =
     decode HotspotCoords
-        |> required "name" decodeBodyPart
+        |> required "name" decodeHotspotBodyPart
         |> required "bottom" float
         |> required "height" float
         |> required "left" float
@@ -19,8 +19,8 @@ hotspotCoordsDecoder =
         |> required "y" float
 
 
-decodeBodyPart : Decoder BodyPart
-decodeBodyPart =
+decodeHotspotBodyPart : Decoder BodyPart
+decodeHotspotBodyPart =
     string
         |> andThen
             (\string ->
