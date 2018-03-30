@@ -1,11 +1,11 @@
-var firebase = require('firebase/app');
-require('firebase/database');
-var _ = require('lodash');
+import firebase from 'firebase/app';
+import 'firebase/database';
+import _ from 'lodash';
 import app from './elm-init';
 
 import { config } from './firebase-config.js';
 
-var fb = firebase.initializeApp(config()).database();
+const fb = firebase.initializeApp(config()).database();
 
 const getFirebaseStims = () => {
   return fb
