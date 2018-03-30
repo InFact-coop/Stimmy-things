@@ -52,6 +52,7 @@ type alias Model =
         , stimMenuShowing : Maybe BodyPart
         , hotspots : Hotspots
         , selectedStim : Stim
+        , blogStims : List Stim
         }
 
 
@@ -260,3 +261,6 @@ type Msg
     | SelectAvatar
     | AddAvatarName String
     | AddStimWithoutBodyPart
+    | ReceiveFirebaseStims (Result String (List Stim))
+    | ShareStim Stim
+    | ImportStim Stim

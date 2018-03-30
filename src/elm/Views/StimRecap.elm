@@ -42,6 +42,7 @@ stimRecap model =
                     , div [ class "flex flex-wrap items-center justify-between" ] (renderFeelings feelings model)
                     ]
                 , div [ class "mh4 h3 mb2" ] [ rectButton "Done" SaveLog ]
+                , div [ class "green underline pb4 ", onClick <| ShareStim model.selectedStim ] [ text "Share Stim" ]
                 , div [ class "green underline pb4 ", onClick RepeatStim ] [ text "Or do it again?" ]
                 ]
             ]

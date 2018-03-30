@@ -39,12 +39,13 @@ initModel =
     , hotspots = defaultHotspots
     , selectedStim = defaultStim
     , transition = Transit.empty
+    , blogStims = []
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initDB (), initTimeout ]
+    initModel ! [ initDB (), initTimeout, fetchFirebaseStims () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -90,7 +91,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -162,7 +163,13 @@ update msg model =
             { model | stims = listStims } ! []
 
         ReceiveStimList (Err err) ->
-            model ! []
+              model ! []
+
+        ReceiveFirebaseStims (Ok listStims) ->
+            { model | blogStims = listStims } ! []
+
+        ReceiveFirebaseStims (Err err) ->
+              model ! []
 
         ReceiveChosenAvatar src ->
             { model | avatar = avatarSrcToAvatar src }
@@ -184,3 +191,12 @@ update msg model =
             { model | newStim = defaultStim }
                 ! []
                 :> update (NavigateTo AddStim)
+
+        ShareStim stim ->
+            model
+                ! [ shareStim <| normaliseStim stim ]
+                :> update (NavigateTo Landing)
+
+        ImportStim stim ->
+            model
+                ! [ saveStim <| normaliseStim stim ]
