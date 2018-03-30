@@ -67,7 +67,7 @@ addStim model =
                         ]
                     , div []
                         [ input [ type_ "text", onInput UpdateVideoSearch, class "flex-column ba bw1 b--silver br2 mb3 pa1 h2 w-100 outline-0", placeholder "hand press" ] []
-                        , button [ onClick CallVideoRequest, classes [ bodyFont, "flex bg-green br2 bn pa2 mb3 white w5 justify-center" ] ] [ text "Search" ]
+                        , div [ onClick CallVideoRequest, classes [ bodyFont, "flex bg-green br2 bn pa2 mb3 white w5 justify-center" ] ] [ text "Search" ]
                         , viewIf (model.videos /= [])
                             (div [ class "youtubeCarousel mb4" ] (List.map videoYT model.videos))
                         ]
