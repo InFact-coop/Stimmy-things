@@ -75,9 +75,28 @@ const getAllTheData = db => {
   });
 };
 
+const generateId = (prefix, length) => {
+  const possibleChars =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const idLengthArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  console.log('IDLENGTHARRAY', idLengthArray);
+  const id = idLengthArray.reduce(acc => {
+    console.log('HELLO?');
+    console.log(
+      'char: ',
+      (acc += possibleChars.charAt(Math.floor(Math.random() * length)))
+    );
+    return (acc += possibleChars.charAt(Math.floor(Math.random() * length)));
+  }, prefix);
+
+  console.log('id: ', id);
+  return id;
+};
+
 export default {
   createOrUpdateUser,
   getUser,
+  generateId,
   createDB,
   getAllStims,
   addStim,

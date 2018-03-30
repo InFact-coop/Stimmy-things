@@ -37,7 +37,7 @@ port initHotspots : () -> Cmd msg
 port saveStim : Json.Encode.Value -> Cmd msg
 
 
-port saveUser : DBUser -> Cmd msg
+port saveUser : Json.Encode.Value -> Cmd msg
 
 
 port receiveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg

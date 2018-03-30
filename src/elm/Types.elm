@@ -221,14 +221,6 @@ type alias User =
     }
 
 
-type alias DBUser =
-    { userId : String
-    , avatar : String
-    , skinColour : String
-    , name : String
-    }
-
-
 type alias DBData =
     { user : User
     , stims : List Stim

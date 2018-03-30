@@ -34,11 +34,10 @@ const saveStim = stim => {
 };
 
 const saveUser = user => {
-  console.log('USERHEY');
   const db = helpers.createDB();
-
+  const id = helpers.generateId('user-', 10);
   helpers
-    .createOrUpdateUser(db, user)
+    .createOrUpdateUser(db, { userId: id, ...user })
     .then(() => helpers.getUser(db))
     .then(user => app.ports.receiveUserSaveSuccess.send(true))
     .catch(err => {
