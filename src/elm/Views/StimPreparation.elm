@@ -6,7 +6,7 @@ import Components.Face exposing (face)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
 import Data.Avatar exposing (avatarHeadSelection)
-import Helpers.Style exposing (horizontalTransition, classes, headerFont)
+import Helpers.Style exposing (horizontalTransition, classes, headerFont, backgroundImageCover)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString, ifThenElse)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
@@ -50,19 +50,18 @@ stimPreparation model =
                     [ input
                         [ id "myRange"
                         , type_ "range"
+                        , defaultValue "0"
                         , Attr.min "0"
-                        , Attr.max "1800"
+                        , Attr.max "600"
                         , step "60"
                         , class "w-75 bg-light-gray input-reset h-custom slider"
                         , onInputValue SetTime
                         ]
                         []
                     , div []
-                        [ div
+                        [ input
                             [ class "bg-center w3 h2 flex justify-center items-center pl1 mt3"
-                            , style
-                                [ ( "backgroundImage", "url(./assets/StimPreparation/slider_counter_tag.svg)" )
-                                ]
+                            , backgroundImageCover "(./assets/StimPreparation/slider_counter_tag.svg)"
                             ]
                             [ text (unionTypeToString (model.timeSelected / 60)) ]
                         , p [ class "ma0 pl1" ] [ text <| ifThenElse (model.timeSelected == 60) "min" "mins" ]
