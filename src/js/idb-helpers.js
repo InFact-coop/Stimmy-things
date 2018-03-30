@@ -79,7 +79,6 @@ const generateId = prefix => {
   const uniqueString = Math.random()
     .toString(36)
     .substr(2, 9);
-  console.log('ID: ', prefix + uniqueString);
   return prefix + uniqueString;
 };
 
