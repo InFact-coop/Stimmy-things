@@ -43,7 +43,7 @@ stimRecap model =
                     , div [ class "flex flex-wrap items-center justify-between" ] (renderFeelings feelings model)
                     ]
                 , div [ class "mh4 h3 mb2" ] [ rectButton "Done" SaveLog ]
-                , checkStimShare model model.selectedStim
+                , checkStimShare model
                 , div [ class "green underline pb4 ", onClick RepeatStim ] [ text "Or do it again?" ]
                 ]
             ]
@@ -55,9 +55,9 @@ renderFeelings feelings model =
     List.map (feelingButton Post model) feelings
 
 
-checkStimShare : Model -> Stim -> Html Msg
-checkStimShare model stim =
+checkStimShare : Model -> Html Msg
+checkStimShare model =
     ifThenElse
-        stim.shared
+        model.selectedStim.shared
         (p [] [])
-        (p [ onClick <| ShareStim model.selectedStim ] [ text "Share Stim" ])
+        (p [ onClick <| NavigateTo ShareModal ] [ text "Share your stim!" ])

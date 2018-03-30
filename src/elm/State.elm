@@ -18,7 +18,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = Splash
+    { view = ShareModal
     , userId = ""
     , avatar = Avatar1
     , avatarName = ""
@@ -46,7 +46,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ initDB (), fetchFirebaseStims () ]
+    initModel ! [ fetchFirebaseStims () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -97,7 +97,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-                { model | timeSelected = interval, counter = interval } ! []
+            { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
