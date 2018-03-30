@@ -53,6 +53,7 @@ type alias Model =
         , hotspots : Hotspots
         , selectedStim : Stim
         , blogStims : List Stim
+        , stimInfoDestination : View
         }
 
 
@@ -264,3 +265,4 @@ type Msg
     | ReceiveFirebaseStims (Result String (List Stim))
     | ShareStim Stim
     | ImportStim Stim
+    | NavigateToStimInfo
