@@ -14,3 +14,4 @@ app.ports.initDB.subscribe(() => idb.initDB(defaultStims));
 
 app.ports.saveLog.subscribe(idb.saveLog);
 app.ports.saveStim.subscribe(idb.saveStim);
+app.ports.saveUser.subscribe(idb.saveUser);

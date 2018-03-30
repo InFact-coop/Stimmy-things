@@ -33,4 +33,17 @@ const saveStim = stim => {
     .catch(err => console.log('Error saving stim: ', err));
 };
 
+const saveUser = user => {
+  const db = helpers.createDB();
+
+  helpers
+    .createOrUpdateUser(db, user)
+    .then(() => helpers.getUser(db))
+    .then(user => app.ports.userSaveSuccess.send(true))
+    .catch(err => {
+      console.log('Error saving stim: ', err);
+      app.ports.userSaveSuccess.send(false);
+    });
+};
+
 export default { saveLog, saveStim, initDB };
