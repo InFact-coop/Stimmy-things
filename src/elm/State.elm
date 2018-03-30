@@ -40,7 +40,6 @@ initModel =
     , selectedStim = defaultStim
     , transition = Transit.empty
     , blogStims = []
-    , err = ""
     }
 
 
