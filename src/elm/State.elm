@@ -6,6 +6,7 @@ import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
+import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
@@ -139,6 +140,9 @@ update msg model =
                 ! [ saveLog (normaliseDBLog model.newLog) ]
                 :> update (ChangeView Landing)
 
+        SaveUser ->
+            model ! [ saveUser <| normaliseUser model ]
+
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
 
@@ -159,6 +163,9 @@ update msg model =
 
         ReceiveStimList (Ok listStims) ->
             { model | stims = listStims } ! []
+
+        ReceiveUserSaveSuccess bool ->
+            { model | view = Landing } ! []
 
         ReceiveStimList (Err err) ->
             model ! []

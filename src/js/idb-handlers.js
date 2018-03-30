@@ -34,16 +34,17 @@ const saveStim = stim => {
 };
 
 const saveUser = user => {
+  console.log('USERHEY');
   const db = helpers.createDB();
 
   helpers
     .createOrUpdateUser(db, user)
     .then(() => helpers.getUser(db))
-    .then(user => app.ports.userSaveSuccess.send(true))
+    .then(user => app.ports.receiveUserSaveSuccess.send(true))
     .catch(err => {
-      console.log('Error saving stim: ', err);
-      app.ports.userSaveSuccess.send(false);
+      console.log('Error saving user: ', err);
+      app.ports.receiveUserSaveSuccess.send(false);
     });
 };
 
-export default { saveLog, saveStim, initDB };
+export default { saveLog, saveStim, saveUser, initDB };

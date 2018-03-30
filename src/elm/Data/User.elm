@@ -23,11 +23,26 @@ defaultUser =
     User "" Avatar1 SkinColour1 ""
 
 
-normaliseUser : Model -> Encode.Value
+normaliseUser : Model -> DBUser
 normaliseUser model =
-    Encode.object
-        [ ( "userId", Encode.string model.userId )
-        , ( "avatar", Encode.string <| unionTypeToString model.avatar )
-        , ( "skinColour", Encode.string <| unionTypeToString model.skinColour )
-        , ( "name", Encode.string model.avatarName )
-        ]
+    DBUser "1234"
+        (unionTypeToString model.avatar)
+        (toString model.skinColour)
+        model.avatarName
+
+
+
+-- Encode.object
+-- [ ( "userId", Encode.string "1234" )
+-- , ( "avatar", Encode.string <| unionTypeToString model.avatar )
+-- , ( "skinColour", Encode.string <| toString model.skinColour )
+-- , ( "name", Encode.string model.avatarName )
+-- ]
+-- normaliseUser : Model -> Encode.Value
+-- normaliseUser model =
+--     Encode.object
+--         [ ( "userId", Encode.string "1234" )
+--         , ( "avatar", Encode.string <| unionTypeToString model.avatar )
+--         , ( "skinColour", Encode.string <| toString model.skinColour )
+--         , ( "name", Encode.string model.avatarName )
+--         ]

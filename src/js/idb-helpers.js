@@ -16,7 +16,7 @@ const createDB = () => {
 };
 
 const createOrUpdateUser = (db, { userId, avatar, skinColour, name }) => {
-  return db.user.put({ userId, name, avatar, skinColour });
+  return db.user.put({ userId, avatar, skinColour, name });
 };
 
 const getUser = db => {

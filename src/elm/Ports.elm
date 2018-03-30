@@ -37,6 +37,9 @@ port initHotspots : () -> Cmd msg
 port saveStim : Json.Encode.Value -> Cmd msg
 
 
+port saveUser : DBUser -> Cmd msg
+
+
 port receiveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
 
 
@@ -44,6 +47,9 @@ port receiveUpdatedLogs : (List DBLog -> msg) -> Sub msg
 
 
 port receiveUpdatedStims : (Json.Decode.Value -> msg) -> Sub msg
+
+
+port receiveUserSaveSuccess : (Bool -> msg) -> Sub msg
 
 
 port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
@@ -77,6 +83,7 @@ subscriptions model =
         , receiveUpdatedLogs ReceiveUpdatedLogs
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
         , receiveChosenAvatar ReceiveChosenAvatar
+        , receiveUserSaveSuccess ReceiveUserSaveSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
         ]
