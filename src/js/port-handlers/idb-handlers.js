@@ -26,7 +26,7 @@ const saveLog = log => {
 
 const saveStim = stim => {
   const db = helpers.createDB();
-  if ((stimId = '')) stim.stimId = helpers.generateId('_stim-');
+  if (stim.stimId === '') stim.stimId = helpers.generateId('_stim-');
 
   helpers
     .addStim(db, stim)

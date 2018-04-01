@@ -62,7 +62,7 @@ renderBlogStims model =
                     ]
                 ]
         )
-        model.blogStims
+        (List.reverse model.blogStims)
 
 
 alreadyExistsInIndexedDB : Stim -> Model -> Bool
