@@ -221,4 +221,4 @@ update msg model =
                 :> update (NavigateTo StimInfo)
 
         ChangeSkinColour ->
-            { model | skinColour = toggleSkinColour model } ! []
+            { model | skinColour = toggleSkinColour model } ! [ changeSkinColour (toggleSkinColour model |> skinColourToHexValue) ]

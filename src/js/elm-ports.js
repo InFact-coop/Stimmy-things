@@ -20,3 +20,4 @@ app.ports.saveUser.subscribe(idb.saveUser);
 
 app.ports.fetchFirebaseStims.subscribe(() => firebase.getFirebaseStims());
 app.ports.shareStim.subscribe(stim => firebase.addFirebaseStim(stim));
+app.ports.changeSkinColour.subscribe(string => console.log('hex', string));
