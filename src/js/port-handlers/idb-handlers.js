@@ -26,6 +26,8 @@ const saveLog = log => {
 
 const saveStim = stim => {
   const db = helpers.createDB();
+  const id = helpers.generateId('_stim-');
+  stim.stimId = id;
   helpers
     .addStim(db, stim)
     .then(() => helpers.getAllStims(db))
