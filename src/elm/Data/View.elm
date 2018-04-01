@@ -144,6 +144,27 @@ toggleSkinColour model =
             SkinColour7
 
         SkinColour7 ->
+            SkinColour8
+
+        SkinColour8 ->
+            SkinColour9
+
+        SkinColour9 ->
+            SkinColour10
+
+        SkinColour10 ->
+            SkinColour11
+
+        SkinColour11 ->
+            SkinColour12
+
+        SkinColour12 ->
+            SkinColour13
+
+        SkinColour13 ->
+            SkinColour14
+
+        SkinColour14 ->
             SkinColour1
 
 
@@ -170,3 +191,24 @@ skinColourToHexValue skinColour =
 
         SkinColour7 ->
             "#E8E8E8"
+
+        SkinColour8 ->
+            "#30A1D2"
+
+        SkinColour9 ->
+            "#B1D159"
+
+        SkinColour10 ->
+            "#25587C"
+
+        SkinColour11 ->
+            "#039645"
+
+        SkinColour12 ->
+            "#C79EC7"
+
+        SkinColour13 ->
+            "#FFC908"
+
+        SkinColour14 ->
+            "#FDA1A2"

@@ -20,4 +20,32 @@ app.ports.saveUser.subscribe(idb.saveUser);
 
 app.ports.fetchFirebaseStims.subscribe(() => firebase.getFirebaseStims());
 app.ports.shareStim.subscribe(stim => firebase.addFirebaseStim(stim));
-app.ports.changeSkinColour.subscribe(string => console.log('hex', string));
+app.ports.changeSkinColour.subscribe(hex => {
+  const getSvgDoc = cb => {
+    const currentAvatar = document.querySelector('.is-selected')
+      .firstElementChild;
+    console.log(currentAvatar);
+    if (currentAvatar === null) {
+      setTimeout(() => getSvgDoc(cb), 300);
+    } else {
+      const svgDoc = currentAvatar.contentDocument;
+      const bodyElements = svgDoc.getElementById('body_change_colour');
+      if (bodyElements === null) {
+        setTimeout(() => getSvgDoc(cb), 300);
+      } else {
+        cb();
+      }
+    }
+  };
+
+  const updateSkinColour = () => {
+    const currentAvatar = document.querySelector('.is-selected')
+      .firstElementChild;
+    const svgDoc = currentAvatar.contentDocument;
+
+    const skinColours = svgDoc.getElementById('body_change_colour');
+    skinColours.setAttribute('fill', hex);
+    console.log('skin colours', hex);
+  };
+  getSvgDoc(updateSkinColour);
+});
