@@ -7,6 +7,8 @@ import Data.User exposing (defaultUser, decodeUser)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode
+import Random exposing (Generator)
+import Random.List
 import Types exposing (..)
 
 
@@ -70,3 +72,16 @@ normaliseStim stim =
         , ( "userId", Encode.string stim.userId )
         , ( "shared", Encode.bool stim.shared )
         ]
+
+
+generateRandomStim : Model -> Generator Stim
+generateRandomStim model =
+    Random.List.shuffle model.stims
+        |> Random.map retrieveFirstStim
+
+
+retrieveFirstStim : List Stim -> Stim
+retrieveFirstStim listStim =
+    listStim
+        |> List.head
+        |> Maybe.withDefault defaultStim
