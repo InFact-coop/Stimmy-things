@@ -98,7 +98,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -148,8 +148,8 @@ update msg model =
                 ! [ saveLog (normaliseDBLog model.newLog) ]
                 :> update (NavigateTo Landing)
 
-        SaveUser ->
-            model ! [ saveUser <| normaliseUser model ]
+        SaveOrUpdateUser ->
+            model ! [ saveOrUpdateUser <| normaliseUser model ]
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
