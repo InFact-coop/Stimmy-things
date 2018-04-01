@@ -42,7 +42,6 @@ initModel =
     , transition = Transit.empty
     , blogStims = []
     , stimInfoDestination = StimPreparation
-    , err = ""
     }
 
 
@@ -185,7 +184,7 @@ update msg model =
             { model | blogStims = listStims } ! []
 
         ReceiveFirebaseStims (Err err) ->
-            { model | err = err } ! []
+            model ! []
 
         ReceiveChosenAvatar src ->
             { model | avatar = avatarSrcToAvatar src }

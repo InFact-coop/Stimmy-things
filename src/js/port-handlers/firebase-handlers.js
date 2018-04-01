@@ -21,7 +21,6 @@ const addFirebaseStim = stimAndUserInfo => {
     user: stimAndUserInfo[1]
   };
   firebaseStimUser.stim.shared = true;
-  console.log('clone', firebaseStimUser);
   return fb.ref().push(firebaseStimUser);
 };
 
