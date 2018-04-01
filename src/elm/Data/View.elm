@@ -3,6 +3,9 @@ module Data.View exposing (..)
 import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Ports exposing (..)
+import Process exposing (sleep)
+import Task exposing (perform)
+import Time exposing (Time)
 import Types exposing (..)
 import Views.About exposing (..)
 import Views.AddStim exposing (..)
@@ -21,9 +24,6 @@ import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
-import Process exposing (sleep)
-import Task exposing (perform)
-import Time exposing (Time)
 
 
 getCurrentView : Model -> Html Msg
@@ -111,7 +111,7 @@ updateStimMenu : Model -> BodyPart -> Maybe BodyPart
 updateStimMenu model bodyPart =
     ifThenElse
         (model.stimMenuShowing == Just bodyPart)
-        (Nothing)
+        Nothing
         (Just bodyPart)
 
 
@@ -120,3 +120,28 @@ navigateFromSplash userId =
     Process.sleep (2 * Time.second)
         |> Task.perform
             (\_ -> NavigateTo <| ifThenElse (userId == "") Definition Landing)
+
+
+toggleSkinColour : Model -> SkinColour
+toggleSkinColour model =
+    case model.skinColour of
+        SkinColour1 ->
+            SkinColour2
+
+        SkinColour2 ->
+            SkinColour3
+
+        SkinColour3 ->
+            SkinColour4
+
+        SkinColour4 ->
+            SkinColour5
+
+        SkinColour5 ->
+            SkinColour6
+
+        SkinColour6 ->
+            SkinColour7
+
+        SkinColour7 ->
+            SkinColour1

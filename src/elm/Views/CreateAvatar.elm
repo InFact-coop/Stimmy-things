@@ -1,6 +1,6 @@
 module Views.CreateAvatar exposing (..)
 
-import Helpers.Style exposing (classes, backgroundImageStyle, horizontalTransition)
+import Helpers.Style exposing (backgroundImageStyle, classes, horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -32,6 +32,7 @@ createAvatar model =
             , avatarCaroCell "./assets/CreateAvatar/avatar_5.svg"
             , avatarCaroCell "./assets/CreateAvatar/avatar_6.svg"
             ]
+        , button [ class "pa4", onClick ChangeSkinColour ] [ text "change skin colour" ]
         ]
 
 

@@ -34,7 +34,7 @@ const initHotspots = () => {
     const svgDoc = avatar.contentDocument;
 
     const skinColours = svgDoc.getElementById('body_change_colour');
-    skinColours.setAttribute('fill');
+    skinColours.setAttribute('fill', 'green');
     console.log('skin colours', skinColours);
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');

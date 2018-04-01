@@ -97,7 +97,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-                { model | timeSelected = interval, counter = interval } ! []
+            { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -219,3 +219,6 @@ update msg model =
             { model | stimInfoDestination = model.view }
                 ! []
                 :> update (NavigateTo StimInfo)
+
+        ChangeSkinColour ->
+            { model | skinColour = toggleSkinColour model } ! []

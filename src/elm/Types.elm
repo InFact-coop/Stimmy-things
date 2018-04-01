@@ -269,3 +269,4 @@ type Msg
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo
+    | ChangeSkinColour
