@@ -39,14 +39,8 @@ const shareStim = stim => {
   helpers
     .addStim(db, stimClone)
     .then(() => firebase.addFirebaseStim(stimClone))
-    .then(() => {
-      return helpers.getAllStims(db);
-    })
-    .then(stims => {
-      return new Promise((resolve, reject) => {
-        app.ports.receiveUpdatedStims.send(stims);
-      });
-    })
+    .then(() => helpers.getAllStims(db))
+    .then(stims => app.ports.receiveUpdatedStims.send(stims))
     .catch(err => console.log('Error sharing stim: ', err));
 };
 
