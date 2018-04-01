@@ -32,11 +32,11 @@ const saveStim = stim => {
     .catch(err => console.log('Error saving stim: ', err));
 };
 
-const saveUser = user => {
+const saveOrUpdateUser = user => {
   const db = helpers.createDB();
-  const id = helpers.generateId('_user-');
+  const id = user.userId === '' ? helpers.generateId('_user-') : user.userId;
   helpers
-    .createOrUpdateUser(db, { userId: id, ...user })
+    .createOrUpdateUser(db, { ...user, userId: id })
     .then(() => helpers.getUser(db))
     .then(user => app.ports.receiveUserSaveSuccess.send(true))
     .catch(err => {
@@ -45,4 +45,4 @@ const saveUser = user => {
     });
 };
 
-export default { saveLog, saveStim, saveUser, initDB };
+export default { saveLog, saveStim, saveOrUpdateUser, initDB };

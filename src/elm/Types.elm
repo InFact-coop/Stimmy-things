@@ -246,7 +246,7 @@ type Msg
     | RepeatStim
     | ChangeViewFromTimer View
     | SaveLog
-    | SaveUser
+    | SaveOrUpdateUser
     | SaveStim Stim
     | ToggleNav
     | TransitMsg (Transit.Msg Msg)

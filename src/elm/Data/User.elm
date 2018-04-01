@@ -29,4 +29,5 @@ normaliseUser model =
         [ ( "avatar", Encode.string <| unionTypeToString model.avatar )
         , ( "skinColour", Encode.string <| toString model.skinColour )
         , ( "name", Encode.string model.avatarName )
+        , ( "userId", Encode.string model.userId )
         ]
