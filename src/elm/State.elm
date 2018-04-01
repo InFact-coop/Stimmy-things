@@ -214,7 +214,7 @@ update msg model =
 
         ShareStim stim ->
             model
-                ! [ shareStim <| normaliseStim stim ]
+                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ) ]
                 :> update (NavigateTo Landing)
 
         ImportStim stim ->

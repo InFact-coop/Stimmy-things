@@ -3,11 +3,9 @@ port module Ports exposing (..)
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
 import Data.Stim exposing (decodeStimList)
-import Helpers.Utils exposing (ifThenElse)
+import Data.Stim exposing (decodeFirebaseData)
 import Json.Decode exposing (..)
 import Json.Encode exposing (..)
-import Process exposing (sleep)
-import Task exposing (perform)
 import Time exposing (Time)
 import Transit
 import Types exposing (..)
@@ -61,7 +59,7 @@ port receiveFirebaseStims : (Json.Decode.Value -> msg) -> Sub msg
 port fetchFirebaseStims : () -> Cmd msg
 
 
-port shareStim : Json.Encode.Value -> Cmd msg
+port shareStim : ( Json.Encode.Value, Json.Encode.Value ) -> Cmd msg
 
 
 timeSubscription : Model -> Sub Msg
@@ -88,5 +86,5 @@ subscriptions model =
         , receiveUserSaveSuccess ReceiveUserSaveSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
-        , receiveFirebaseStims (decodeStimList >> ReceiveFirebaseStims)
+        , receiveFirebaseStims (decodeFirebaseData >> ReceiveFirebaseStims)
         ]

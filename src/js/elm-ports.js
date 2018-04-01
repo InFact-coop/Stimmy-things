@@ -19,4 +19,6 @@ app.ports.saveStim.subscribe(idb.saveStim);
 app.ports.saveOrUpdateUser.subscribe(idb.saveOrUpdateUser);
 
 app.ports.fetchFirebaseStims.subscribe(() => firebase.getFirebaseStims());
-app.ports.shareStim.subscribe(stim => firebase.addFirebaseStim(stim));
+app.ports.shareStim.subscribe((stim, userInfo) =>
+  firebase.addFirebaseStim(stim, userInfo)
+);
