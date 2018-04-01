@@ -60,12 +60,12 @@
     "shared": true
   },
   {
-    "stimId": "678910asldjf",
+    "stimId": "678910asldjfe",
     "stimName": "Arms massage",
     "bodyPart": "Arms",
     "instructions":
       "Massage your arm up and down starting at your wrist. Do the same thing on your other arm. Concetrate on the feeling of your fingers sqeezing your arms, and after a ten times stop and notice - does it make you feel more focused?",
-    "videoSrc": "./stuff.js",
+    "videoSrc": "",
     "userId": "1356889538475",
     "shared": true
   },
@@ -85,7 +85,7 @@
     "bodyPart": "Hands",
     "instructions":
       "Put your palms together and push and hold for ten seconds. When you are feeling fidgety and emotional about something, this exercise can help you feel your body and awakes your mind.",
-    "videoSrc": "./stuff.js",
+    "videoSrc": "https://www.youtube.com/embed/LG1mKrmvjWY&t=4s",
     "userId": "1356889538475",
     "shared": true
   },

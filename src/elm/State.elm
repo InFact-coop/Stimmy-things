@@ -4,12 +4,13 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, generateRandomStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
+import Random
 import Requests.GetVideos exposing (getVideos)
 import Transit
 import Types exposing (..)
@@ -163,10 +164,10 @@ update msg model =
             { model | newStim = addHowTo string model.newStim } ! []
 
         ReceiveInitialData (Ok dbData) ->
-            dbDataToModel dbData model ! [ initTimeout dbData.user.userId ]
+            dbDataToModel dbData model ! [ navigateFromSplash dbData.user.userId ]
 
         ReceiveInitialData (Err err) ->
-            model ! [ initTimeout "" ]
+            model ! [ navigateFromSplash "" ]
 
         ReceiveStimList (Ok listStims) ->
             { model | stims = listStims } ! []
@@ -206,9 +207,14 @@ update msg model =
                 ! []
                 :> update (NavigateTo AddStim)
 
+        GoToRandomStim ->
+            model
+                ! [ Random.generate GoToStim (generateRandomStim model)
+                  ]
+
         ShareStim stim ->
             model
-                ! [ shareStim <| normaliseStim stim ]
+                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ), fetchFirebaseStims () ]
                 :> update (NavigateTo Landing)
 
         ImportStim stim ->
