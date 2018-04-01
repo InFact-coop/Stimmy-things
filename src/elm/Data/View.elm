@@ -145,3 +145,28 @@ toggleSkinColour model =
 
         SkinColour7 ->
             SkinColour1
+
+
+skinColourToHexValue : SkinColour -> String
+skinColourToHexValue skinColour =
+    case skinColour of
+        SkinColour1 ->
+            "#D99877"
+
+        SkinColour2 ->
+            "#885B3E"
+
+        SkinColour3 ->
+            "#BC8D80"
+
+        SkinColour4 ->
+            "#FFEAC2"
+
+        SkinColour5 ->
+            "#EDB597"
+
+        SkinColour6 ->
+            "#EFDD93"
+
+        SkinColour7 ->
+            "#E8E8E8"
