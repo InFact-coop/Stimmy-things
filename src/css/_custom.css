@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Work Sans';
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Fonts */
