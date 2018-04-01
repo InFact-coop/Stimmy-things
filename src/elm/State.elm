@@ -41,6 +41,7 @@ initModel =
     , transition = Transit.empty
     , blogStims = []
     , stimInfoDestination = StimPreparation
+    , err = ""
     }
 
 
@@ -183,7 +184,7 @@ update msg model =
             { model | blogStims = listStims } ! []
 
         ReceiveFirebaseStims (Err err) ->
-            model ! []
+            { model | err = err } ! []
 
         ReceiveChosenAvatar src ->
             { model | avatar = avatarSrcToAvatar src }
@@ -208,7 +209,7 @@ update msg model =
 
         ShareStim stim ->
             model
-                ! [ shareStim <| normaliseStim stim ]
+                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ) ]
                 :> update (NavigateTo Landing)
 
         ImportStim stim ->

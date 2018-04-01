@@ -3,6 +3,7 @@ module Data.Stim exposing (..)
 import Data.BodyPart exposing (stringToBodyPart)
 import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
 import Data.BodyPart exposing (stringToBodyPart)
+import Data.User exposing (defaultUser, decodeUser)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode
@@ -29,6 +30,18 @@ decodeStim =
 decodeStimList : Value -> Result String (List Stim)
 decodeStimList =
     decodeValue (list decodeStim)
+
+
+firebaseDecoder : Decoder FirebaseData
+firebaseDecoder =
+    decode FirebaseData
+        |> required "stim" decodeStim
+        |> optional "user" decodeUser defaultUser
+
+
+decodeFirebaseData : Value -> Result String (List FirebaseData)
+decodeFirebaseData =
+    decodeValue (list firebaseDecoder)
 
 
 addBodypart : BodyPart -> Stim -> Stim

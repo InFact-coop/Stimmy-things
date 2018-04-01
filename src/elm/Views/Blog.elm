@@ -21,12 +21,12 @@ blog model =
 renderBlogStims : Model -> List (Html Msg)
 renderBlogStims model =
     List.map
-        (\stim ->
+        (\firebaseStim ->
             div []
-                [ p [] [ text stim.stimName ]
+                [ p [] [ text firebaseStim.stim.stimName ]
                 , p []
-                    [ text stim.instructions ]
-                , addOrDoStim (alreadyExistsInIndexedDB stim model) stim
+                    [ text firebaseStim.stim.instructions ]
+                , addOrDoStim (alreadyExistsInIndexedDB firebaseStim.stim model) firebaseStim.stim
                 ]
         )
         model.blogStims
