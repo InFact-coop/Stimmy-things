@@ -1,11 +1,11 @@
-import firebase from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import 'firebase/database';
 import _ from 'lodash';
 import app from '../elm-init';
 
-import { config } from '../firebase-config.js';
+import firebase_config from '../firebase-config.js';
 
-const fb = firebase.initializeApp(config()).database();
+const fb = initializeApp(firebase_config).database();
 
 const getFirebaseStims = () => {
   return fb
@@ -22,4 +22,4 @@ const addFirebaseStim = stim => {
   return fb.ref().push(stimClone);
 };
 
-export default { fb, getFirebaseStims, addFirebaseStim };
+export default { getFirebaseStims, addFirebaseStim };
