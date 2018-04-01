@@ -18,7 +18,7 @@ import Update.Extra.Infix exposing ((:>))
 
 initModel : Model
 initModel =
-    { view = ShareModal
+    { view = Splash
     , userId = ""
     , avatar = Avatar1
     , avatarName = ""
@@ -46,7 +46,7 @@ initModel =
 
 init : ( Model, Cmd Msg )
 init =
-    initModel ! [ fetchFirebaseStims () ]
+    initModel ! [ initDB (), fetchFirebaseStims () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
