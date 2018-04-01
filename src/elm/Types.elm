@@ -53,7 +53,7 @@ type alias Model =
         , stimMenuShowing : Maybe BodyPart
         , hotspots : Hotspots
         , selectedStim : Stim
-        , blogStims : List Stim
+        , blogStims : List FirebaseData
         , stimInfoDestination : View
         }
 
@@ -231,6 +231,12 @@ type alias DBData =
     }
 
 
+type alias FirebaseData =
+    { stim : Stim
+    , user : User
+    }
+
+
 type Msg
     = NoOp
     | UpdateVideoSearch String
@@ -266,7 +272,7 @@ type Msg
     | SelectAvatar
     | AddAvatarName String
     | AddStimWithoutBodyPart
-    | ReceiveFirebaseStims (Result String (List Stim))
+    | ReceiveFirebaseStims (Result String (List FirebaseData))
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo
