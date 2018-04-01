@@ -5,10 +5,12 @@ const initCarousel = () => {
   window.requestAnimationFrame(() => {
     const carouselElement = document.querySelector('.makecarousel');
     const flkty = new Flickity(carouselElement, {
-      lazyLoad: true,
       adaptiveHeight: true,
-      wrapAround: false,
+      wrapAround: true,
+      draggable: true,
       prevNextButtons: false,
+      cellSelector: '.carousel-cell',
+      imagesLoaded: true,
       pageDots: true
     });
   });
