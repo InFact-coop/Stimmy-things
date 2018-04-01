@@ -77,7 +77,7 @@ alreadyExistsInIndexedDB blogStim model =
 
 addOrDoStim : Bool -> Stim -> Html Msg
 addOrDoStim bool stim =
-    ifThenElse bool (div [ class "bg-right h2 mr4 mb3" ] []) (div [ class "bg-right h2 mr4 mb3", backgroundImageNoPosition "./assets/Blog/upload_stim_icn.svg" 7, onClick <| ImportStim stim ] [])
+    ifThenElse bool (div [ class "bg-right h2 mr4 mb3" ] [ text "Already in your stims!" ]) (div [ class "bg-right h2 mr4 mb3", backgroundImageNoPosition "./assets/Blog/upload_stim_icn.svg" 7, onClick <| ImportStim stim ] [])
 
 
 videoSection : Stim -> Html Msg
