@@ -37,7 +37,7 @@ blog model =
 renderBlogStims : Model -> List (Html Msg)
 renderBlogStims model =
     List.map
-        (\stim ->
+        (\firebaseStim ->
             div [ class "flex flex-column mh3" ]
                 [ div [ class "mt3" ]
                     [ img [ class "w-100 mb3", src "./assets/StimInfo/divider_zigzag_grey_small.svg" ] []
@@ -45,20 +45,20 @@ renderBlogStims model =
                 , div
                     [ class "fit-content bg-top br2"
                     , backgroundImageCover "./assets/ShareModal/zigzag_modal_bg.svg"
-                    , onClick <| GoToStim stim
+                    , onClick <| GoToStim firebaseStim.stim
                     ]
                     [ div [ class "flex items-center mb3 mh4 mt4" ]
                         [ img [ class "w3", src "./assets/avatar_1_head.svg" ] []
                         , div [ class "flex-column mv3 ml3" ]
-                            [ p [ classes [ headerFont, "black mb1" ] ] [ text stim.stimName ]
+                            [ p [ classes [ headerFont, "black mb1" ] ] [ text firebaseStim.stim.stimName ]
                             , p [ class "self-end w-100" ] [ text "By Ivan" ]
                             ]
                         ]
                     , p [ classes [ headerFont, "black mh4 mb3" ] ] [ text "How to do this:" ]
-                    , p [ classes [ bodyFont, "black mb3 mh4" ] ] [ text stim.instructions ]
-                    , viewIf (stim.videoSrc /= Nothing) (videoSection stim)
+                    , p [ classes [ bodyFont, "black mb3 mh4" ] ] [ text firebaseStim.stim.instructions ]
+                    , viewIf (firebaseStim.stim.videoSrc /= Nothing) (videoSection firebaseStim.stim)
                     , hr [ class "light-gray mb2 mh4" ] []
-                    , addOrDoStim (alreadyExistsInIndexedDB stim model) stim
+                    , addOrDoStim (alreadyExistsInIndexedDB firebaseStim.stim model) firebaseStim.stim
                     ]
                 ]
         )

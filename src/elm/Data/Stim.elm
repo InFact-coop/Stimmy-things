@@ -3,9 +3,12 @@ module Data.Stim exposing (..)
 import Data.BodyPart exposing (stringToBodyPart)
 import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
 import Data.BodyPart exposing (stringToBodyPart)
+import Data.User exposing (defaultUser, decodeUser)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode
+import Random exposing (Generator)
+import Random.List
 import Types exposing (..)
 
 
@@ -29,6 +32,18 @@ decodeStim =
 decodeStimList : Value -> Result String (List Stim)
 decodeStimList =
     decodeValue (list decodeStim)
+
+
+firebaseDecoder : Decoder FirebaseData
+firebaseDecoder =
+    decode FirebaseData
+        |> required "stim" decodeStim
+        |> optional "user" decodeUser defaultUser
+
+
+decodeFirebaseData : Value -> Result String (List FirebaseData)
+decodeFirebaseData =
+    decodeValue (list firebaseDecoder)
 
 
 addBodypart : BodyPart -> Stim -> Stim
@@ -57,3 +72,16 @@ normaliseStim stim =
         , ( "userId", Encode.string stim.userId )
         , ( "shared", Encode.bool stim.shared )
         ]
+
+
+generateRandomStim : Model -> Generator Stim
+generateRandomStim model =
+    Random.List.shuffle model.stims
+        |> Random.map retrieveFirstStim
+
+
+retrieveFirstStim : List Stim -> Stim
+retrieveFirstStim listStim =
+    listStim
+        |> List.head
+        |> Maybe.withDefault defaultStim

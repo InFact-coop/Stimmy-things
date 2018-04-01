@@ -1,0 +1,62 @@
+<svg width="383" height="399" viewBox="0 0 383 399" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>shuffle_stim_btn</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(83 519)">
+<g id="shuffle_stim_btn">
+<g id="add_stim_btn">
+<g id="Assets">
+<g id="Artboard 3">
+<g id="add stim btn" filter="url(#filter0_d)">
+<g id="Path 4">
+<use xlink:href="#path0_fill" transform="translate(-75 -515)" fill="#449694"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="noun_104847_cc">
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="translate(25 -368.994)" fill="#FFFFFF"/>
+</g>
+</g>
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path2_fill" transform="translate(100.154 -364.666)" fill="#FFFFFF"/>
+</g>
+</g>
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path3_fill" transform="translate(25 -305.035)" fill="#FFFFFF"/>
+</g>
+</g>
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path4_fill" transform="translate(157.139 -312.248)" fill="#FFFFFF"/>
+</g>
+</g>
+<g id="Group">
+<g id="Vector">
+<use xlink:href="#path4_fill" transform="translate(157.139 -394)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d" filterUnits="userSpaceOnUse" x="-83" y="-519" width="383" height="399" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0"/>
+<feOffset dx="0" dy="4"/>
+<feGaussianBlur stdDeviation="4"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0470588 0 0 0 0 0 0 0 0 0 0.2 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<path id="path0_fill" fill-rule="evenodd" d="M 10.9295 122.521C -46.5886 289.989 134.019 419.141 293.126 373.862C 343.619 359.493 371.78 254.743 366.331 212.512C 338.981 0.50619 118.197 -87.0488 14.7456 110.805C 19.8765 96.2698 18.6044 100.175 10.9295 122.521Z"/>
+<path id="path1_fill" d="M 140.398 96.1783C 94.1493 96.1783 78.8707 72.6146 63.5921 49.5318C 49.9652 29.3344 37.1642 9.61783 0 9.61783L 0 0C 41.2935 0 55.7463 22.121 70.199 43.7611C 84.6517 65.8822 98.2786 86.5605 140.398 86.5605L 140.398 96.1783Z"/>
+<path id="path2_fill" d="M 6.19403 36.5478L 3.15045e-06 29.8153C 11.5622 15.3885 28.4925 7.33783e-06 64.8308 7.33783e-06L 64.8308 9.61784C 31.796 10.0987 16.9304 23.5637 6.19403 36.5478Z"/>
+<path id="path3_fill" d="M 0 37.0287L 0 27.4108C 30.1443 27.4108 44.1841 14.4267 54.5075 -3.66891e-06L 60.7015 6.25159C 49.5522 21.6401 33.4478 37.0287 0 37.0287Z"/>
+<path id="path4_fill" d="M 0 69.2484L 0 -3.66891e-06L 33.8607 34.6242L 0 69.2484ZM 8.25871 21.1592L 8.25871 48.0892L 21.4726 34.6242L 8.25871 21.1592Z"/>
+</defs>
+</svg>
