@@ -260,6 +260,7 @@ type Msg
     | ReceiveInitialData (Result String DBData)
     | ReceiveUserSaveSuccess Bool
     | GoToStim Stim
+    | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
     | SelectAvatar
