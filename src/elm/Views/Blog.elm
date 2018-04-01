@@ -2,6 +2,7 @@ module Views.Blog exposing (..)
 
 import Helpers.Utils exposing (ifThenElse, viewIf)
 import Helpers.Style exposing (horizontalTransition, classes, headerFont, bodyFont, backgroundImageNoPosition, backgroundImageCover)
+import Data.Avatar exposing (avatarHeadSelection)
 import Html exposing (..)
 import Types exposing (..)
 import Html.Events exposing (onClick)
@@ -12,13 +13,13 @@ blog : Model -> Html Msg
 blog model =
     div [ horizontalTransition model, class "bg-washed-yellow black fit-content mb3" ]
         [ div [ class "bg-green center tc" ]
-            [ div [ class "flex flex-row items-center justify-center relative mb4" ]
+            [ div [ class "flex flex-row items-center justify-center relative" ]
                 [ div
-                    [ class "absolute left-0 ml3 pointer"
+                    [ class "absolute left-0 ml3 pointer mt3"
                     , onClick <| NavigateTo Landing
                     ]
                     [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
-                , h1 [ classes [ headerFont, "white pt3 mb3" ] ] [ text "Stimmy Stuff" ]
+                , h1 [ classes [ headerFont, "white mb3 mt4" ] ] [ text "Stimmy Stuff" ]
                 ]
             , button
                 [ classes
@@ -48,10 +49,10 @@ renderBlogStims model =
                     , onClick <| GoToStim firebaseStim.stim
                     ]
                     [ div [ class "flex items-center mb3 mh4 mt4" ]
-                        [ img [ class "w3", src "./assets/avatar_1_head.svg" ] []
+                        [ img [ class "w3", src <| avatarHeadSelection firebaseStim.user.avatar ] []
                         , div [ class "flex-column mv3 ml3" ]
                             [ p [ classes [ headerFont, "black mb1" ] ] [ text firebaseStim.stim.stimName ]
-                            , p [ class "self-end w-100" ] [ text "By Ivan" ]
+                            , p [ class "self-end w-100" ] [ text ("By " ++ firebaseStim.user.name) ]
                             ]
                         ]
                     , p [ classes [ headerFont, "black mh4 mb3" ] ] [ text "How to do this:" ]

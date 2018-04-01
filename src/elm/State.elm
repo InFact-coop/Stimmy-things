@@ -214,7 +214,7 @@ update msg model =
 
         ShareStim stim ->
             model
-                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ) ]
+                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ), fetchFirebaseStims () ]
                 :> update (NavigateTo Landing)
 
         ImportStim stim ->
