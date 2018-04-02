@@ -37,10 +37,10 @@ const initHotspots = () => {
       const bounding = hotspot.getBoundingClientRect();
       const coords = {
         name: bodypart,
-        bottom: bounding.bottom,
+        bottom: svgCoords.bottom - window.scrollY - bounding.bottom,
         height: bounding.height,
         left: bounding.left + window.scrollX + svgCoords.left,
-        right: svgCoords.right - bounding.right - 16,
+        right: svgCoords.right - window.scrollY - bounding.right - 16,
         top: bounding.top + window.scrollY + svgCoords.top - 16,
         width: bounding.width,
         x: bounding.x,
@@ -49,7 +49,6 @@ const initHotspots = () => {
       acc[bodypart] = coords;
       return acc;
     }, {});
-
     app.ports.receiveHotspotCoords.send(hotspotCoords);
   };
 
