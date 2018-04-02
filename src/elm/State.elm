@@ -148,8 +148,8 @@ update msg model =
                 ! [ saveLog (normaliseDBLog model.newLog) ]
                 :> update (NavigateTo Landing)
 
-        SaveUser ->
-            model ! [ saveUser <| normaliseUser model ]
+        SaveOrUpdateUser ->
+            model ! [ saveOrUpdateUser <| normaliseUser model ]
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
@@ -214,7 +214,7 @@ update msg model =
 
         ShareStim stim ->
             model
-                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ) ]
+                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ), fetchFirebaseStims () ]
                 :> update (NavigateTo Landing)
 
         ImportStim stim ->

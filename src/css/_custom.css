@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Work Sans';
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Fonts */
@@ -202,17 +203,18 @@ body {
 
 .exitNav {
   animation-name: exitNavAnimation;
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
   animation-iteration-count: 1;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in;
   transform: translateX(-7rem);
   opacity: 0;
 }
+
 .enterNav {
   animation-name: enterNavAnimation;
-  animation-duration: 0.3s;
+  animation-duration: 0.25s;
   animation-iteration-count: 1;
-  animation-timing-function: linear;
+  animation-timing-function: ease-out;
   transform: translateX(0rem);
   opacity: 1;
 }

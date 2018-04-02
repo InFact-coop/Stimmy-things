@@ -35,7 +35,7 @@ emergency model =
                 , p [ class "mt3" ] [ text "Samaritans:" ]
                 , a [ href "tel:+44116123" ] [ text "116 123" ]
                 , p [ class "mt3" ] [ text "Childline:" ]
-                , a [ href "tel:+44800111" ] [ text "0800 111" ]
+                , a [ href "tel:+448001111" ] [ text "0800 1111" ]
                 , p [ class "mt3" ] [ text "Runaway Helpline:" ]
                 , a [ href "tel:+44116000" ] [ text "116 000" ]
                 , p [ class "mt3" ] [ text "NSPCC Child Protection:" ]
