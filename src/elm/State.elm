@@ -80,10 +80,10 @@ update msg model =
             { model | videoStatus = ResponseFailure } ! []
 
         ToggleNav ->
-            { model | showNav = updateNav model.showNav } ! []
+            { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart } ! []
+            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav } ! []
 
         NoOp ->
             model ! []
