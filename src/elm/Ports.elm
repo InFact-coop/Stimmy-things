@@ -2,10 +2,10 @@ port module Ports exposing (..)
 
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
-import Data.Stim exposing (decodeStimList)
-import Data.Stim exposing (decodeFirebaseData)
+import Data.Stim exposing (decodeFirebaseData, decodeStimList)
 import Json.Decode exposing (..)
 import Json.Encode exposing (..)
+import Keyboard exposing (..)
 import Time exposing (Time)
 import Transit
 import Types exposing (..)
@@ -60,6 +60,15 @@ port fetchFirebaseStims : () -> Cmd msg
 
 
 port shareStim : ( Json.Encode.Value, Json.Encode.Value ) -> Cmd msg
+
+
+port keyUps : (KeyCode -> msg) -> Sub msg
+
+
+port keyDowns : (KeyCode -> msg) -> Sub msg
+
+
+port keyPresses : (KeyCode -> msg) -> Sub msg
 
 
 timeSubscription : Model -> Sub Msg

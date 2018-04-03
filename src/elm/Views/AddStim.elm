@@ -8,6 +8,8 @@ import Helpers.Utils exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Json.Decode as Json
+import Keyboard exposing (..)
 import Types exposing (..)
 
 
@@ -28,7 +30,7 @@ addStim model =
             ]
         , div
             [ classes [ bodyFont, "black ma0" ] ]
-            [ Html.form [ class "flex flex-column" ]
+            [ Html.div [ class "flex flex-column" ]
                 [ div
                     [ backgroundImageCover "./assets/AddStim/zigzag_choose_part_tags_bg.svg"
                     , class "flex flex-column mb3 pb3 h-fit-content"
@@ -66,7 +68,7 @@ addStim model =
                         [ img [ src "./assets/AddStim/youtube_logo.png" ] []
                         ]
                     , div []
-                        [ input [ type_ "text", onInput UpdateVideoSearch, class "flex-column ba bw1 b--silver br2 mb3 pa1 h2 w-100 outline-0", placeholder "hand press" ] []
+                        [ input [ type_ "text", onKeyDown <| KeyDown model.vidSearchString, onInput UpdateVideoSearch, class "flex-column ba bw1 b--silver br2 mb3 pa1 h2 w-100 outline-0", placeholder "hand press" ] []
                         , div [ onClick CallVideoRequest, classes [ bodyFont, "flex bg-green br2 bn pa2 mb3 white w5 justify-center" ] ] [ text "Search" ]
                         , viewIf (model.videos /= [])
                             (div [ class "youtubeCarousel mb4" ] (List.map videoYT model.videos))
@@ -78,7 +80,7 @@ addStim model =
                     , onClick <| SaveStim model.newStim
                     ]
                     [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
-                    , p [ class "mt2 mb3 flex justify-center" ] [ text "SAVE" ]
+                    , p [ type_ "submit", class "mt2 mb3 flex justify-center" ] [ text "SAVE" ]
                     ]
                 ]
             ]
@@ -88,3 +90,8 @@ addStim model =
 renderBodyparts : List BodyPart -> Model -> List (Html Msg)
 renderBodyparts bodypartList model =
     List.map (bodyButton model) bodypartList
+
+
+onKeyDown : (Int -> msg) -> Attribute msg
+onKeyDown tagger =
+    on "keydown" (Json.map tagger keyCode)

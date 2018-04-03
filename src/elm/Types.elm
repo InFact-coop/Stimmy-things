@@ -55,6 +55,7 @@ type alias Model =
         , selectedStim : Stim
         , blogStims : List FirebaseData
         , stimInfoDestination : View
+        , key : Int
         }
 
 
@@ -269,6 +270,7 @@ type Msg
     | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
+    | AddVideoSrc String
     | SelectAvatar
     | AddAvatarName String
     | AddStimWithoutBodyPart
@@ -276,3 +278,4 @@ type Msg
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo
+    | KeyDown String Int

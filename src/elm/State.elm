@@ -4,7 +4,7 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, generateRandomStim, normaliseStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -42,6 +42,7 @@ initModel =
     , transition = Transit.empty
     , blogStims = []
     , stimInfoDestination = StimPreparation
+    , key = 0
     }
 
 
@@ -68,7 +69,9 @@ update msg model =
             model ! []
 
         UpdateVideoSearch string ->
-            { model | vidSearchString = string } ! []
+            { model | vidSearchString = string }
+                ! []
+                :> update (AddVideoSrc string)
 
         CallVideoRequest ->
             { model | videoStatus = Loading, videos = [] } ! [ getVideos model, videoCarousel () ]
@@ -98,7 +101,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-                { model | timeSelected = interval, counter = interval } ! []
+            { model | timeSelected = interval, counter = interval } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -159,6 +162,9 @@ update msg model =
 
         AddExerciseName string ->
             { model | newStim = addExerciseName string model.newStim } ! []
+
+        AddVideoSrc string ->
+            { model | newStim = addVideoSrc string model.newStim } ! []
 
         AddHowTo string ->
             { model | newStim = addHowTo string model.newStim } ! []
@@ -225,3 +231,11 @@ update msg model =
             { model | stimInfoDestination = model.view }
                 ! []
                 :> update (NavigateTo StimInfo)
+
+        KeyDown string key ->
+            if key == 13 then
+                { model | vidSearchString = string, key = key }
+                    ! []
+                    :> update CallVideoRequest
+            else
+                { model | key = key } ! []
