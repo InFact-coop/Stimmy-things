@@ -140,7 +140,7 @@ type Feeling
     | Angry
     | Excited
     | Bored
-    | Optimistic
+    | Sad
     | Annoyed
     | Relaxed
     | Frustrated

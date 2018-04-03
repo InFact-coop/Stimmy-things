@@ -1,7 +1,7 @@
 module Data.Feelings exposing (..)
 
-import Types exposing (..)
 import Json.Decode exposing (..)
+import Types exposing (..)
 
 
 feelings : List Feeling
@@ -14,7 +14,7 @@ feelings =
     , Angry
     , Excited
     , Bored
-    , Optimistic
+    , Sad
     , Annoyed
     , Relaxed
     , Frustrated
@@ -23,7 +23,7 @@ feelings =
 
 decodeFeeling : Decoder Feeling
 decodeFeeling =
-    Json.Decode.map (stringToFeeling) string
+    Json.Decode.map stringToFeeling string
 
 
 stringToFeeling : String -> Feeling
@@ -53,8 +53,8 @@ stringToFeeling string =
         "Bored" ->
             Bored
 
-        "Optimistic" ->
-            Optimistic
+        "Sad" ->
+            Sad
 
         "Annoyed" ->
             Annoyed
