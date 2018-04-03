@@ -103,7 +103,12 @@ update msg model =
         SetTimeFromText time ->
             let
                 interval =
-                    stringToFloat time
+                    if ((stringToFloat time) > 10) then
+                        10
+                    else if ((stringToFloat time) < 0) then
+                        0
+                    else
+                        stringToFloat time
             in
                 { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 

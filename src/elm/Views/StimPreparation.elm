@@ -62,9 +62,8 @@ stimPreparation model =
                         []
                     , div []
                         [ input
-                            [ class <| "outline-0 mt3 tc w3 f6 lh-f7 pl1 pa0 pb1 flex justify-center items-center timer-tag " ++ styleNumberInput model.timeSelected
+                            [ class <| "outline-0 mt3 tc w3 f6 lh-f7 pl1 pa0 pb1 flex justify-center items-center timer-tag"
                             , type_ "number"
-                            , style [("color", styleNumberInput model.timeSelected)]
                             , onInputValue SetTimeFromText
                             , placeholder "0"
                             , value <| ifThenElse (model.timeSelected == 0) "" (toString <| model.timeSelected / 60)
@@ -95,8 +94,3 @@ renderFeelings feelings model =
 onInputValue : (String -> msg) -> Attribute msg
 onInputValue tagger =
     on "input" (Json.map tagger targetValue)
-
-
-styleNumberInput : Float -> String
-styleNumberInput time =
-    ifThenElse (time < 0 || time > 600) "#CB5C64" "black"
