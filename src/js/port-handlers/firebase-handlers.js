@@ -1,10 +1,10 @@
-import firebase from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import 'firebase/database';
 import app from '../elm-init';
 
-import { config } from '../firebase-config.js';
+import firebase_config from '../firebase-config.js';
 
-const fb = firebase.initializeApp(config()).database();
+const fb = initializeApp(firebase_config).database();
 
 const getFirebaseStims = () => {
   return fb
@@ -24,4 +24,4 @@ const addFirebaseStim = stimAndUserInfo => {
   return fb.ref().push(firebaseStimUser);
 };
 
-export default { fb, getFirebaseStims, addFirebaseStim };
+export default { getFirebaseStims, addFirebaseStim };

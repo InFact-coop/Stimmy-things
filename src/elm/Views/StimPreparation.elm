@@ -1,8 +1,9 @@
 module Views.StimPreparation exposing (..)
 
 import Components.Button exposing (rectButton)
-import Components.PillButton exposing (..)
 import Components.Face exposing (face)
+import Components.PillButton exposing (..)
+import Data.Avatar exposing (avatarHeadSelection)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
 import Data.Avatar exposing (avatarHeadSelection)

@@ -46,9 +46,8 @@ renderBlogStims model =
                 , div
                     [ class "fit-content bg-top br2"
                     , backgroundImageCover "./assets/ShareModal/zigzag_modal_bg.svg"
-                    , onClick <| GoToStim firebaseStim.stim
                     ]
-                    [ div [ class "flex items-center mb3 mh4 mt4" ]
+                    [ div [ class "flex items-center mb3 mh4 mt4", onClick <| GoToStim firebaseStim.stim ]
                         [ img [ class "w3", src <| avatarHeadSelection firebaseStim.user.avatar ] []
                         , div [ class "flex-column mv3 ml3" ]
                             [ p [ classes [ headerFont, "black mb1" ] ] [ text firebaseStim.stim.stimName ]
@@ -63,7 +62,7 @@ renderBlogStims model =
                     ]
                 ]
         )
-        model.blogStims
+        (List.reverse model.blogStims)
 
 
 alreadyExistsInIndexedDB : Stim -> Model -> Bool
@@ -77,7 +76,7 @@ alreadyExistsInIndexedDB blogStim model =
 
 addOrDoStim : Bool -> Stim -> Html Msg
 addOrDoStim bool stim =
-    ifThenElse bool (div [ class "bg-right h2 mr4 mb3" ] []) (div [ class "bg-right h2 mr4 mb3", backgroundImageNoPosition "./assets/Blog/upload_stim_icn.svg" 7, onClick <| ImportStim stim ] [])
+    ifThenElse bool (div [ class "bg-right h2 mr4 mb3 tr f7 green" ] [ text "Already in your stims!" ]) (div [ class "bg-right h2 mr4 mb3", backgroundImageNoPosition "./assets/Blog/upload_stim_icn.svg" 7, onClick <| ImportStim stim ] [])
 
 
 videoSection : Stim -> Html Msg
