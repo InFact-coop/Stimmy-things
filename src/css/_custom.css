@@ -356,3 +356,14 @@ body {
   width: 12px;
   border-radius: 50%;
 }
+
+.timer-tag {
+  background-image: url('/assets/StimPreparation/slider_counter_tag.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  height: 21px;
+  width: 42px;
+}

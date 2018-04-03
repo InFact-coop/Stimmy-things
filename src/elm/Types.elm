@@ -243,6 +243,7 @@ type Msg
     | CallVideoRequest
     | ReceiveVideos (Result Http.Error (List Video))
     | SetTime String
+    | SetTimeFromText String
     | ChangeView View
     | Tick Time
     | AdjustTimer TimerControl

@@ -55,15 +55,20 @@ stimPreparation model =
                         , Attr.max "600"
                         , step "60"
                         , class "w-75 bg-light-gray input-reset h-custom slider"
+                        , onClick <| SetTime ""
                         , onInputValue SetTime
                         ]
                         []
                     , div []
                         [ input
-                            [ class "bg-center w3 h2 flex justify-center items-center pl1 mt3"
-                            , backgroundImageCover "(./assets/StimPreparation/slider_counter_tag.svg)"
+                            [ class "mt3 tc w3 f6 lh-f7 pl1 pa0 pb1 flex justify-center black items-center timer-tag"
+                            , type_ "text"
+                            , onClick <| SetTimeFromText ""
+                            , onInputValue SetTimeFromText
+                            , placeholder (toString <| model.timeSelected / 60)
+                            , value (toString <| model.timeSelected / 60)
                             ]
-                            [ text (unionTypeToString (model.timeSelected / 60)) ]
+                            []
                         , p [ class "ma0 pl1" ] [ text <| ifThenElse (model.timeSelected == 60) "min" "mins" ]
                         ]
                     ]

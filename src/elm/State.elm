@@ -100,6 +100,13 @@ update msg model =
             in
                 { model | timeSelected = interval, counter = interval } ! []
 
+        SetTimeFromText time ->
+            let
+                interval =
+                    stringToFloat time
+            in
+                { model | timeSelected = interval * 60 } ! []
+
         Tick _ ->
             trackCounter model ! []
 
