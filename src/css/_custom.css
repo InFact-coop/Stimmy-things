@@ -279,6 +279,10 @@ body {
   -webkit-appearance: none;
 }
 
+.slider:focus {
+  outline: none;
+}
+
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: var(--green);
@@ -368,4 +372,8 @@ body {
   -webkit-appearance: none;
   height: 21px;
   width: 42px;
+}
+
+.timer-tag:focus::-webkit-input-placeholder {
+  opacity: 0%;
 }

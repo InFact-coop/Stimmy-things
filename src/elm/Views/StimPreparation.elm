@@ -51,23 +51,23 @@ stimPreparation model =
                     [ input
                         [ id "myRange"
                         , type_ "range"
-                        , defaultValue "0"
                         , Attr.min "0"
                         , Attr.max "600"
                         , step "60"
+                        , defaultValue ""
                         , class "w-75 bg-light-gray input-reset h-custom slider"
-                        , onClick <| SetTime ""
+                        , value (toString <| model.timeSelected)
                         , onInputValue SetTime
                         ]
                         []
                     , div []
                         [ input
-                            [ class "mt3 tc w3 f6 lh-f7 pl1 pa0 pb1 flex justify-center black items-center timer-tag"
-                            , type_ "text"
-                            , onClick <| SetTimeFromText ""
+                            [ class <| "outline-0 mt3 tc w3 f6 lh-f7 pl1 pa0 pb1 flex justify-center items-center timer-tag " ++ styleNumberInput model.timeSelected
+                            , type_ "number"
+                            , style [("color", styleNumberInput model.timeSelected)]
                             , onInputValue SetTimeFromText
-                            , placeholder (toString <| model.timeSelected / 60)
-                            , value (toString <| model.timeSelected / 60)
+                            , placeholder "0"
+                            , value <| ifThenElse (model.timeSelected == 0) "" (toString <| model.timeSelected / 60)
                             ]
                             []
                         , p [ class "ma0 pl1" ] [ text <| ifThenElse (model.timeSelected == 60) "min" "mins" ]
@@ -95,3 +95,8 @@ renderFeelings feelings model =
 onInputValue : (String -> msg) -> Attribute msg
 onInputValue tagger =
     on "input" (Json.map tagger targetValue)
+
+
+styleNumberInput : Float -> String
+styleNumberInput time =
+    ifThenElse (time < 0 || time > 600) "#CB5C64" "black"
