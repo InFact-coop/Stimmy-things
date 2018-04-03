@@ -1,12 +1,13 @@
 module Views.StimPreparation exposing (..)
 
 import Components.Button exposing (rectButton)
-import Components.PillButton exposing (..)
 import Components.Face exposing (face)
+import Components.PillButton exposing (..)
+import Data.Avatar exposing (avatarHeadSelection)
 import Data.Face exposing (faces, urlFromFace)
 import Data.Feelings exposing (feelings)
 import Data.Avatar exposing (avatarHeadSelection)
-import Helpers.Style exposing (horizontalTransition, classes, headerFont)
+import Helpers.Style exposing (horizontalTransition, classes, headerFont, backgroundImageCover)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString, ifThenElse)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
@@ -51,20 +52,23 @@ stimPreparation model =
                         [ id "myRange"
                         , type_ "range"
                         , Attr.min "0"
-                        , Attr.max "1800"
+                        , Attr.max "600"
                         , step "60"
+                        , defaultValue ""
                         , class "w-75 bg-light-gray input-reset h-custom slider"
+                        , value (toString <| model.timeSelected)
                         , onInputValue SetTime
                         ]
                         []
                     , div []
-                        [ div
-                            [ class "bg-center w3 h2 flex justify-center items-center pl1 mt3"
-                            , style
-                                [ ( "backgroundImage", "url(./assets/StimPreparation/slider_counter_tag.svg)" )
-                                ]
+                        [ input
+                            [ class <| "outline-0 mt3 tc w3 f6 lh-f7 pl1 pa0 pb1 flex justify-center items-center timer-tag"
+                            , type_ "number"
+                            , onInputValue SetTimeFromText
+                            , placeholder "0"
+                            , value <| ifThenElse (model.timeSelected == 0) "" (toString <| model.timeSelected / 60)
                             ]
-                            [ text (unionTypeToString (model.timeSelected / 60)) ]
+                            []
                         , p [ class "ma0 pl1" ] [ text <| ifThenElse (model.timeSelected == 60) "min" "mins" ]
                         ]
                     ]

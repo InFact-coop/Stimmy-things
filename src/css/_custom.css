@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Work Sans';
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Fonts */
@@ -202,17 +203,18 @@ body {
 
 .exitNav {
   animation-name: exitNavAnimation;
-  animation-duration: 0.5s;
+  animation-duration: 0.2s;
   animation-iteration-count: 1;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in;
   transform: translateX(-7rem);
   opacity: 0;
 }
+
 .enterNav {
   animation-name: enterNavAnimation;
-  animation-duration: 0.5s;
+  animation-duration: 0.25s;
   animation-iteration-count: 1;
-  animation-timing-function: linear;
+  animation-timing-function: ease-out;
   transform: translateX(0rem);
   opacity: 1;
 }
@@ -281,11 +283,15 @@ body {
   -webkit-appearance: none;
 }
 
+.slider:focus {
+  outline: none;
+}
+
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: var(--green);
-  width: 21px;
-  height: 21px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -359,4 +365,19 @@ body {
   height: 12px;
   width: 12px;
   border-radius: 50%;
+}
+
+.timer-tag {
+  background-image: url('/assets/StimPreparation/slider_counter_tag.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  height: 21px;
+  width: 42px;
+}
+
+.timer-tag:focus::-webkit-input-placeholder {
+  opacity: 0%;
 }

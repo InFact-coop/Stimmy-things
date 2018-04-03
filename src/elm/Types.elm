@@ -53,7 +53,7 @@ type alias Model =
         , stimMenuShowing : Maybe BodyPart
         , hotspots : Hotspots
         , selectedStim : Stim
-        , blogStims : List Stim
+        , blogStims : List FirebaseData
         , stimInfoDestination : View
         }
 
@@ -147,7 +147,7 @@ type Feeling
     | Angry
     | Excited
     | Bored
-    | Optimistic
+    | Sad
     | Annoyed
     | Relaxed
     | Frustrated
@@ -238,12 +238,19 @@ type alias DBData =
     }
 
 
+type alias FirebaseData =
+    { stim : Stim
+    , user : User
+    }
+
+
 type Msg
     = NoOp
     | UpdateVideoSearch String
     | CallVideoRequest
     | ReceiveVideos (Result Http.Error (List Video))
     | SetTime String
+    | SetTimeFromText String
     | ChangeView View
     | Tick Time
     | AdjustTimer TimerControl
@@ -253,7 +260,7 @@ type Msg
     | RepeatStim
     | ChangeViewFromTimer View
     | SaveLog
-    | SaveUser
+    | SaveOrUpdateUser
     | SaveStim Stim
     | ToggleNav
     | TransitMsg (Transit.Msg Msg)
@@ -267,12 +274,13 @@ type Msg
     | ReceiveInitialData (Result String DBData)
     | ReceiveUserSaveSuccess Bool
     | GoToStim Stim
+    | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
     | SelectAvatar
     | AddAvatarName String
     | AddStimWithoutBodyPart
-    | ReceiveFirebaseStims (Result String (List Stim))
+    | ReceiveFirebaseStims (Result String (List FirebaseData))
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo

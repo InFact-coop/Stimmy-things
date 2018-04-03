@@ -4,12 +4,13 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, normaliseStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, generateRandomStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
 import Helpers.Utils exposing (scrollToTop, stringToFloat)
 import Ports exposing (..)
+import Random
 import Requests.GetVideos exposing (getVideos)
 import Transit
 import Types exposing (..)
@@ -99,6 +100,18 @@ update msg model =
             in
             { model | timeSelected = interval, counter = interval } ! []
 
+        SetTimeFromText time ->
+            let
+                interval =
+                    if ((stringToFloat time) > 10) then
+                        10
+                    else if ((stringToFloat time) < 0) then
+                        0
+                    else
+                        stringToFloat time
+            in
+                { model | timeSelected = interval * 60, counter = interval * 60 } ! []
+
         Tick _ ->
             trackCounter model ! []
 
@@ -147,8 +160,8 @@ update msg model =
                 ! [ saveLog (normaliseDBLog model.newLog) ]
                 :> update (NavigateTo Landing)
 
-        SaveUser ->
-            model ! [ saveUser <| normaliseUser model ]
+        SaveOrUpdateUser ->
+            model ! [ saveOrUpdateUser <| normaliseUser model ]
 
         ReceiveUpdatedLogs dbLogs ->
             { model | logs = List.map normaliseLog dbLogs } ! []
@@ -206,9 +219,14 @@ update msg model =
                 ! []
                 :> update (NavigateTo AddStim)
 
+        GoToRandomStim ->
+            model
+                ! [ Random.generate GoToStim (generateRandomStim model)
+                  ]
+
         ShareStim stim ->
             model
-                ! [ shareStim <| normaliseStim stim ]
+                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ), fetchFirebaseStims () ]
                 :> update (NavigateTo Landing)
 
         ImportStim stim ->
