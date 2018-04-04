@@ -31,7 +31,7 @@ const videoCarousel = () => {
 
 const retrieveChosenAvatar = () => {
   const chosenElement = document.querySelector('.is-selected');
-  app.ports.receiveChosenAvatar.send(chosenElement.src);
+  app.ports.receiveChosenAvatar.send(chosenElement.firstChild.data);
 };
 
 export default { initCarousel, videoCarousel, retrieveChosenAvatar };

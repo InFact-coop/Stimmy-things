@@ -32,7 +32,7 @@ createAvatar model =
             , avatarCaroCell "./assets/CreateAvatar/avatar_5.svg"
             , avatarCaroCell "./assets/CreateAvatar/avatar_6.svg"
             , div [ class "mh3" ]
-                [ img [ class "pa4", onClick ChangeSkinColour, src <| avatarSkinColourSelection model.skinColour ] []
+                [ img [ class "pa4", onClick ChangeSkinColour, src <| logSrc model.skinColour ] []
                 ]
             ]
         ]
@@ -45,6 +45,15 @@ avatarCaroCell imgSrc =
             [ id "avatar", attribute "data" imgSrc, type_ "image/svg+xml", classes [ "carousel-cell-image", "vh-75" ] ]
             []
         ]
+
+
+logSrc : SkinColour -> String
+logSrc skinColour =
+    let
+        log =
+            Debug.log "src" (avatarSkinColourSelection skinColour)
+    in
+        avatarSkinColourSelection skinColour
 
 
 avatarSkinColourSelection : SkinColour -> String
@@ -71,23 +80,22 @@ avatarSkinColourSelection skinColour =
         SkinColour7 ->
             "./assets/CreateAvatar/paint_btn_7.svg"
 
-        SkinColour8 ->
-            "./assets/CreateAvatar/paint_btn_8.svg"
+        _ ->
+            "./assets/CreateAvatar/paint_btn_7.svg"
 
-        SkinColour9 ->
-            "./assets/CreateAvatar/paint_btn_9.svg"
 
-        SkinColour10 ->
-            "./assets/CreateAvatar/paint_btn_10.svg"
 
-        SkinColour11 ->
-            "./assets/CreateAvatar/paint_btn_11.svg"
-
-        SkinColour12 ->
-            "./assets/CreateAvatar/paint_btn_12.svg"
-
-        SkinColour13 ->
-            "./assets/CreateAvatar/paint_btn_13.svg"
-
-        SkinColour14 ->
-            "./assets/CreateAvatar/paint_btn_14.svg"
+-- SkinColour8 ->
+--     "./assets/CreateAvatar/paint_btn_8.svg"
+-- SkinColour9 ->
+--     "./assets/CreateAvatar/paint_btn_9.svg"
+-- SkinColour10 ->
+--     "./assets/CreateAvatar/paint_btn_10.svg"
+-- SkinColour11 ->
+--     "./assets/CreateAvatar/paint_btn_11.svg"
+-- SkinColour12 ->
+--     "./assets/CreateAvatar/paint_btn_12.svg"
+-- SkinColour13 ->
+--     "./assets/CreateAvatar/paint_btn_13.svg"
+-- SkinColour14 ->
+--     "./assets/CreateAvatar/paint_btn_14.svg"
