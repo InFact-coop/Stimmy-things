@@ -9,7 +9,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as Json
-import Keyboard exposing (..)
 import Types exposing (..)
 
 
@@ -77,7 +76,7 @@ addStim model =
                 , div
                     [ backgroundImageCover "./assets/AddStim/zigzag_add_stim_save.svg"
                     , class "flex flex-column h-fit-content"
-                    , onClick <| SaveStim model.newStim
+                    , onClick RetrieveChosenVideo
                     ]
                     [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
                     , p [ type_ "submit", class "mt2 mb3 flex justify-center" ] [ text "SAVE" ]

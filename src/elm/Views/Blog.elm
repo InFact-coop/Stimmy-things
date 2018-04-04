@@ -1,12 +1,12 @@
 module Views.Blog exposing (..)
 
-import Helpers.Utils exposing (ifThenElse, viewIf)
-import Helpers.Style exposing (horizontalTransition, classes, headerFont, bodyFont, backgroundImageNoPosition, backgroundImageCover)
 import Data.Avatar exposing (avatarHeadSelection)
+import Helpers.Style exposing (backgroundImageCover, backgroundImageNoPosition, bodyFont, classes, headerFont, horizontalTransition)
+import Helpers.Utils exposing (ifThenElse, viewIf)
 import Html exposing (..)
-import Types exposing (..)
-import Html.Events exposing (onClick)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
+import Types exposing (..)
 
 
 blog : Model -> Html Msg
@@ -71,7 +71,7 @@ alreadyExistsInIndexedDB blogStim model =
         stimIdList =
             List.map (\stim -> stim.stimId) model.stims
     in
-        List.member blogStim.stimId stimIdList
+    List.member blogStim.stimId stimIdList
 
 
 addOrDoStim : Bool -> Stim -> Html Msg
@@ -85,6 +85,6 @@ videoSection stim =
         [ class "flex flex-column items-center fit-content mb3"
         ]
         [ div []
-            [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ] []
+            [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ++ "&output=embed" ] []
             ]
         ]

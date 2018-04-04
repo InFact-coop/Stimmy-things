@@ -262,6 +262,8 @@ type Msg
     | ReceiveUpdatedLogs (List DBLog)
     | ReceiveStimList (Result String (List Stim))
     | ReceiveChosenAvatar String
+    | ReceiveChosenVideo String
+    | RetrieveChosenVideo
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)

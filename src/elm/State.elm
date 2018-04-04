@@ -71,7 +71,6 @@ update msg model =
         UpdateVideoSearch string ->
             { model | vidSearchString = string }
                 ! []
-                :> update (AddVideoSrc string)
 
         CallVideoRequest ->
             { model | videoStatus = Loading, videos = [] } ! [ getVideos model, videoCarousel () ]
@@ -196,6 +195,18 @@ update msg model =
             { model | avatar = avatarSrcToAvatar src }
                 ! []
                 :> update (NavigateTo NameAvatar)
+
+        ReceiveChosenVideo src ->
+            let
+                newModel =
+                    { model | newStim = addVideoSrc src model.newStim }
+            in
+            newModel
+                ! []
+                :> update (SaveStim <| newModel.newStim)
+
+        RetrieveChosenVideo ->
+            model ! [ retrieveChosenVideo () ]
 
         GoToStim stim ->
             { model
