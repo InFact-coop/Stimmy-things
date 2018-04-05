@@ -1,9 +1,8 @@
 module Data.Stim exposing (..)
 
 import Data.BodyPart exposing (stringToBodyPart)
+import Data.User exposing (decodeUser, defaultUser)
 import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
-import Data.BodyPart exposing (stringToBodyPart)
-import Data.User exposing (defaultUser, decodeUser)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode
@@ -54,6 +53,11 @@ addBodypart bodypart stim =
 addExerciseName : String -> Stim -> Stim
 addExerciseName string stim =
     { stim | stimName = string }
+
+
+addVideoSrc : String -> Stim -> Stim
+addVideoSrc string stim =
+    { stim | videoSrc = stringToMaybe string }
 
 
 addHowTo : String -> Stim -> Stim
