@@ -42,7 +42,6 @@ initModel =
     , transition = Transit.empty
     , blogStims = []
     , stimInfoDestination = StimPreparation
-    , key = 0
     }
 
 
@@ -245,8 +244,8 @@ update msg model =
 
         KeyDown string key ->
             if key == 13 then
-                { model | vidSearchString = string, key = key }
+                { model | vidSearchString = string }
                     ! []
                     :> update CallVideoRequest
             else
-                { model | key = key } ! []
+                model ! []

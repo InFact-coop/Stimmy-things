@@ -1,25 +1,22 @@
 {
-    "version": "1.0.0",
-    "summary": "App for children ADHD",
-    "repository": "https://github.com/inFact-coop/stimmy-things.git",
-    "license": "BSD3",
-    "source-directories": [
-        "src/elm"
-    ],
-    "exposed-modules": [],
-    "dependencies": {
-        "NoRedInk/elm-decode-pipeline": "3.0.0 <= v < 4.0.0",
-        "andrewMacmurray/elm-delay": "2.0.3 <= v < 3.0.0",
-        "ccapndave/elm-update-extra": "3.0.0 <= v < 4.0.0",
-        "elm-community/easing-functions": "1.0.2 <= v < 2.0.0",
-        "elm-community/random-extra": "2.0.0 <= v < 3.0.0",
-        "elm-lang/core": "5.1.1 <= v < 6.0.0",
-        "elm-lang/dom": "1.1.1 <= v < 2.0.0",
-        "elm-lang/html": "2.0.0 <= v < 3.0.0",
-        "elm-lang/http": "1.0.0 <= v < 2.0.0",
-        "elm-lang/virtual-dom": "2.0.4 <= v < 3.0.0",
-        "etaque/elm-transit": "7.0.4 <= v < 8.0.0",
-        "etaque/elm-transit-style": "3.1.0 <= v < 4.0.0"
-    },
-    "elm-version": "0.18.0 <= v < 0.19.0"
+  "version": "1.0.0",
+  "summary": "App for children ADHD",
+  "repository": "https://github.com/inFact-coop/stimmy-things.git",
+  "license": "BSD3",
+  "source-directories": ["src/elm"],
+  "exposed-modules": [],
+  "dependencies": {
+    "NoRedInk/elm-decode-pipeline": "3.0.0 <= v < 4.0.0",
+    "ccapndave/elm-update-extra": "3.0.0 <= v < 4.0.0",
+    "elm-community/easing-functions": "1.0.2 <= v < 2.0.0",
+    "elm-community/random-extra": "2.0.0 <= v < 3.0.0",
+    "elm-lang/core": "5.1.1 <= v < 6.0.0",
+    "elm-lang/dom": "1.1.1 <= v < 2.0.0",
+    "elm-lang/html": "2.0.0 <= v < 3.0.0",
+    "elm-lang/http": "1.0.0 <= v < 2.0.0",
+    "elm-lang/virtual-dom": "2.0.4 <= v < 3.0.0",
+    "etaque/elm-transit": "7.0.4 <= v < 8.0.0",
+    "etaque/elm-transit-style": "3.1.0 <= v < 4.0.0"
+  },
+  "elm-version": "0.18.0 <= v < 0.19.0"
 }

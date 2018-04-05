@@ -55,7 +55,6 @@ type alias Model =
         , selectedStim : Stim
         , blogStims : List FirebaseData
         , stimInfoDestination : View
-        , key : Int
         }
 
 
