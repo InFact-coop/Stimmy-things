@@ -88,10 +88,3 @@ fileNameFromURL url =
     List.drop (splitLength - 1) splitURL
         |> List.head
         |> Maybe.withDefault ""
-
-
-
--- submitOnEnter : Bool -> Html Msg
--- submitOnEnter bool =
---   case bool of
---     keycode
