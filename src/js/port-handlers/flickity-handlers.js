@@ -34,4 +34,15 @@ const retrieveChosenAvatar = () => {
   app.ports.receiveChosenAvatar.send(chosenElement.firstChild.data);
 };
 
-export default { initCarousel, videoCarousel, retrieveChosenAvatar };
+const retrieveChosenVideo = () => {
+  const chosenElement = document.querySelector('.is-selected');
+  const embedSrc = chosenElement.href.replace('watch?v=', 'embed/');
+  app.ports.receiveChosenVideo.send(embedSrc);
+};
+
+export default {
+  initCarousel,
+  videoCarousel,
+  retrieveChosenAvatar,
+  retrieveChosenVideo
+};

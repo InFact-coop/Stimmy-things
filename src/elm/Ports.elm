@@ -2,8 +2,7 @@ port module Ports exposing (..)
 
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
-import Data.Stim exposing (decodeStimList)
-import Data.Stim exposing (decodeFirebaseData)
+import Data.Stim exposing (decodeFirebaseData, decodeStimList)
 import Json.Decode exposing (..)
 import Json.Encode exposing (..)
 import Time exposing (Time)
@@ -21,6 +20,12 @@ port retrieveChosenAvatar : () -> Cmd msg
 
 
 port receiveChosenAvatar : (String -> msg) -> Sub msg
+
+
+port retrieveChosenVideo : () -> Cmd msg
+
+
+port receiveChosenVideo : (String -> msg) -> Sub msg
 
 
 port saveLog : DBLog -> Cmd msg
@@ -94,4 +99,5 @@ subscriptions model =
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
         , receiveFirebaseStims (decodeFirebaseData >> ReceiveFirebaseStims)
+        , receiveChosenVideo ReceiveChosenVideo
         ]

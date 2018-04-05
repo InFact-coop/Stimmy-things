@@ -4,11 +4,11 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, generateRandomStim, normaliseStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
-import Helpers.Utils exposing (scrollToTop, stringToFloat)
+import Helpers.Utils exposing (ifThenElse, scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Random
 import Requests.GetVideos exposing (getVideos)
@@ -68,7 +68,8 @@ update msg model =
             model ! []
 
         UpdateVideoSearch string ->
-            { model | vidSearchString = string } ! []
+            { model | vidSearchString = string }
+                ! []
 
         CallVideoRequest ->
             { model | videoStatus = Loading, videos = [] } ! [ getVideos model, videoCarousel () ]
@@ -80,10 +81,10 @@ update msg model =
             { model | videoStatus = ResponseFailure } ! []
 
         ToggleNav ->
-            { model | showNav = updateNav model.showNav } ! []
+            { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart } ! []
+            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav } ! []
 
         NoOp ->
             model ! []
@@ -172,6 +173,9 @@ update msg model =
         AddExerciseName string ->
             { model | newStim = addExerciseName string model.newStim } ! []
 
+        AddVideoSrc string ->
+            { model | newStim = addVideoSrc string model.newStim } ! []
+
         AddHowTo string ->
             { model | newStim = addHowTo string model.newStim } ! []
 
@@ -202,6 +206,18 @@ update msg model =
             { model | avatar = avatarSrcToAvatar src }
                 ! []
                 :> update (NavigateTo NameAvatar)
+
+        ReceiveChosenVideo src ->
+            let
+                newModel =
+                    { model | newStim = addVideoSrc src model.newStim }
+            in
+                newModel
+                    ! []
+                    :> update (SaveStim <| newModel.newStim)
+
+        RetrieveChosenVideo ->
+            model ! [ retrieveChosenVideo () ]
 
         GoToStim stim ->
             { model
@@ -240,3 +256,11 @@ update msg model =
 
         ChangeSkinColour ->
             { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( (toggleSkinColour model |> skinColourToHexValue), ".is-selected" ) ]
+
+        KeyDown string key ->
+            ifThenElse (key == 13)
+                ({ model | vidSearchString = string }
+                    ! []
+                    :> update CallVideoRequest
+                )
+                (model ! [])

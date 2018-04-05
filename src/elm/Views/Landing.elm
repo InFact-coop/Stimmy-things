@@ -1,6 +1,7 @@
 module Views.Landing exposing (..)
 
 import Data.Avatar exposing (avatarSelection)
+import Data.Hotspots exposing (hotspotToQuadrant)
 import Helpers.Style exposing (..)
 import Helpers.Utils exposing (..)
 import Html exposing (..)
@@ -40,7 +41,7 @@ landing model =
         , stimMenu model model.hotspots.feet
         , viewIf (model.hotspots.head.name /= NoBodyPart)
             (button
-                [ classes [ "bn bg-transparent db h4 w4 fixed bottom-0 outline-0 z-2 pa0" ]
+                [ classes [ "bn bg-transparent db h3 w3 fixed bottom-0 outline-0 z-2 pa0" ]
                 , backgroundImageStyle "./assets/Landing/shuffle_stim_btn.svg" 100
                 , onClick <| GoToRandomStim
                 ]
@@ -67,35 +68,81 @@ hotspotDiv model hotspot =
 
 stimMenu : Model -> HotspotCoords -> Html Msg
 stimMenu model hotspot =
-    div
-        [ classes
-            [ "absolute"
-            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "flex flex-column" "vis-hidden"
-            ]
-        , style [ ( "right", toString hotspot.right ++ "px" ), ( "top", toString hotspot.top ++ "px" ) ]
-        ]
-        (stimMenuItems model hotspot ++ [ addStimButton model hotspot ])
+    case hotspotToQuadrant hotspot of
+        TopRight ->
+            div
+                [ classes
+                    [ "absolute"
+                    , ifThenElse (model.stimMenuShowing == Just hotspot.name) "flex flex-column items-start" "vis-hidden"
+                    ]
+                , style [ ( "right", toString hotspot.right ++ "px" ), ( "top", toString hotspot.top ++ "px" ) ]
+                ]
+                (stimTitle model hotspot :: stimMenuItems model hotspot ++ [ addStimButton model hotspot ])
+
+        TopLeft ->
+            div
+                [ classes
+                    [ "absolute"
+                    , ifThenElse (model.stimMenuShowing == Just hotspot.name) "flex flex-column items-end" "vis-hidden"
+                    ]
+                , style [ ( "left", toString hotspot.left ++ "px" ), ( "top", toString hotspot.top ++ "px" ) ]
+                ]
+                (stimTitle model hotspot :: stimMenuItems model hotspot ++ [ addStimButton model hotspot ])
+
+        BottomRight ->
+            div
+                [ classes
+                    [ "absolute"
+                    , ifThenElse (model.stimMenuShowing == Just hotspot.name) "flex flex-column items-start" "vis-hidden"
+                    ]
+                , style [ ( "right", toString hotspot.right ++ "px" ), ( "bottom", toString hotspot.bottom ++ "px" ) ]
+                ]
+                (addStimButton model hotspot :: stimMenuItems model hotspot ++ [ stimTitle model hotspot ])
+
+        BottomLeft ->
+            div
+                [ classes
+                    [ "absolute"
+                    , ifThenElse (model.stimMenuShowing == Just hotspot.name) "flex flex-column items-end" "vis-hidden"
+                    ]
+                , style [ ( "left", toString hotspot.left ++ "px" ), ( "bottom", toString hotspot.bottom ++ "px" ) ]
+                ]
+                (addStimButton model hotspot :: stimMenuItems model hotspot ++ [ stimTitle model hotspot ])
 
 
 stimMenuItems : Model -> HotspotCoords -> List (Html Msg)
 stimMenuItems model hotspot =
     extractStims hotspot.name model.stims
         |> List.map (stimToButton model hotspot)
-        |> (::) (stimTitle model hotspot)
 
 
 stimTitle : Model -> HotspotCoords -> Html Msg
 stimTitle model hotspot =
-    div
-        [ classes
-            [ "relative mb1px br--right bg-white pa3 flex justify-end items-center translucent f4 b"
-            , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" ""
+    let
+        rightPositioned =
+            hotspotToQuadrant hotspot
+                == TopRight
+                || hotspotToQuadrant hotspot
+                == BottomRight
+    in
+        div
+            [ classes
+                [ "relative mb1px bg-white pa3 flex items-center translucent f4 b"
+                , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" ""
+                , ifThenElse rightPositioned "br--right justify-end" "br--left justify-start"
+                ]
+            , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
             ]
-        , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
-        ]
-        [ div [ classes [ "mh6" ] ] [ h2 [ classes [ "f3 b" ] ] [ text <| unionTypeToString hotspot.name ] ]
-        , viewIf (hotspot.name /= NoBodyPart) (hotspotDiv model hotspot)
-        ]
+            (ifThenElse
+                rightPositioned
+                [ div [ classes [ "mh4" ] ] [ h2 [ classes [ "f3 b" ] ] [ text <| unionTypeToString hotspot.name ] ]
+                , viewIf (hotspot.name /= NoBodyPart)
+                    (hotspotDiv model hotspot)
+                ]
+                [ viewIf (hotspot.name /= NoBodyPart) (hotspotDiv model hotspot)
+                , div [ classes [ "ml3 mr2" ] ] [ h2 [ classes [ "f3 b" ] ] [ text <| unionTypeToString hotspot.name ] ]
+                ]
+            )
 
 
 addStimButton : Model -> HotspotCoords -> Html Msg

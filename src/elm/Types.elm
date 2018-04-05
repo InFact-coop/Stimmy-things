@@ -186,6 +186,13 @@ type LogStage
     | Post
 
 
+type Quadrant
+    = TopLeft
+    | TopRight
+    | BottomLeft
+    | BottomRight
+
+
 type alias HotspotCoords =
     { name : BodyPart
     , bottom : Float
@@ -269,6 +276,8 @@ type Msg
     | ReceiveUpdatedLogs (List DBLog)
     | ReceiveStimList (Result String (List Stim))
     | ReceiveChosenAvatar String
+    | ReceiveChosenVideo String
+    | RetrieveChosenVideo
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
@@ -277,6 +286,7 @@ type Msg
     | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
+    | AddVideoSrc String
     | SelectAvatar
     | AddAvatarName String
     | AddStimWithoutBodyPart
@@ -285,3 +295,4 @@ type Msg
     | ImportStim Stim
     | NavigateToStimInfo
     | ChangeSkinColour
+    | KeyDown String Int
