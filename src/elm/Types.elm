@@ -179,6 +179,13 @@ type LogStage
     | Post
 
 
+type Quadrant
+    = TopLeft
+    | TopRight
+    | BottomLeft
+    | BottomRight
+
+
 type alias HotspotCoords =
     { name : BodyPart
     , bottom : Float

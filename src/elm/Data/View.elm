@@ -107,6 +107,19 @@ updateNav trilean =
             Yes
 
 
+hideNav : Trilean -> Trilean
+hideNav trilean =
+    case trilean of
+        Yes ->
+            No
+
+        No ->
+            Neutral
+
+        Neutral ->
+            Neutral
+
+
 updateStimMenu : Model -> BodyPart -> Maybe BodyPart
 updateStimMenu model bodyPart =
     ifThenElse

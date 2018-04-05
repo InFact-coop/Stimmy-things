@@ -23,13 +23,17 @@ const initHotspots = () => {
       if (hotspot === null) {
         setTimeout(() => getSvgDoc(cb), 300);
       } else {
-        cb();
+        setTimeout(() => {
+          cb();
+        }, 0);
       }
     }
   };
 
   const createHotspotCoords = () => {
     const avatar = document.getElementById('avatar');
+    const container = document.getElementById('container');
+    const containerCoords = container.getBoundingClientRect();
     const svgCoords = avatar.getBoundingClientRect();
     const svgDoc = avatar.contentDocument;
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
@@ -37,10 +41,14 @@ const initHotspots = () => {
       const bounding = hotspot.getBoundingClientRect();
       const coords = {
         name: bodypart,
-        bottom: bounding.bottom,
+        bottom:
+          containerCoords.bottom -
+          svgCoords.bottom +
+          (svgCoords.height - bounding.bottom) -
+          32,
         height: bounding.height,
-        left: bounding.left + window.scrollX + svgCoords.left,
-        right: svgCoords.right - bounding.right - 16,
+        left: bounding.left + window.scrollX + svgCoords.left - 16,
+        right: svgCoords.right - window.scrollY - bounding.right - 16,
         top: bounding.top + window.scrollY + svgCoords.top - 16,
         width: bounding.width,
         x: bounding.x,
