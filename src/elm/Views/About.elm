@@ -19,7 +19,7 @@ about model =
             ]
         , div [ class "mh3" ]
             [ object
-                [ id "avatarHead", attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "mh5" ]
+                [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "avatarHead mh5" ]
                 []
             , p [ classes [ headerFont, "tc" ] ] [ text <| "Hi, I'm " ++ model.avatarName ++ "!" ]
             , p [ classes [ headerFont, "tc mb2" ] ] [ text "I'm your stimmy friend." ]

@@ -21,10 +21,12 @@ app.ports.saveOrUpdateUser.subscribe(idb.saveOrUpdateUser);
 app.ports.fetchFirebaseStims.subscribe(() => firebase.getFirebaseStims());
 app.ports.shareStim.subscribe(stim => firebase.addFirebaseStim(stim));
 
-app.ports.changeSkinColour.subscribe(hex => {
+app.ports.changeSkinColour.subscribe(arrayHexClass => {
   const getSvgDoc = cb => {
-    const currentAvatar = document.querySelector('.is-selected')
-      .firstElementChild;
+    let currentAvatar = document.querySelector(arrayHexClass[1]);
+    if (arrayHexClass[1] == '.is-selected') {
+      currentAvatar = currentAvatar.firstElementChild;
+    }
     if (currentAvatar === null) {
       setTimeout(() => getSvgDoc(cb), 300);
     } else {
@@ -39,47 +41,22 @@ app.ports.changeSkinColour.subscribe(hex => {
   };
 
   const updateSkinColour = () => {
-    const currentAvatar = document.querySelector('.is-selected')
-      .firstElementChild;
+    let currentAvatar = document.querySelector(arrayHexClass[1]);
+
+    if (arrayHexClass[1] == '.is-selected') {
+      currentAvatar = currentAvatar.firstElementChild;
+    }
+
     const svgDoc = currentAvatar.contentDocument;
 
-    svgDoc.getElementById('body_change_colour').setAttribute('fill', hex);
-
+    if (svgDoc.getElementById('body_change_colour')) {
+      svgDoc
+        .getElementById('body_change_colour')
+        .setAttribute('fill', arrayHexClass[0]);
+    }
     if (svgDoc.getElementById('head')) {
-      svgDoc.getElementById('head').setAttribute('fill', hex);
+      svgDoc.getElementById('head').setAttribute('fill', arrayHexClass[0]);
     }
   };
   getSvgDoc(updateSkinColour);
-});
-
-app.ports.changeHeadSkinColour.subscribe(hex => {
-  const getSvgHead = cb => {
-    const currentAvatarHead = document.getElementById('avatarHead');
-
-    if (currentAvatarHead === null) {
-      setTimeout(() => getSvgHead(cb), 300);
-    } else {
-      const svgDoc = currentAvatarHead.contentDocument;
-
-      const bodyElements = svgDoc.getElementById('body_change_colour');
-
-      if (bodyElements === null) {
-        setTimeout(() => getSvgHead(cb), 300);
-      } else {
-        cb();
-      }
-    }
-  };
-
-  const updateSkinColour = () => {
-    const currentAvatarHead = document.getElementById('avatarHead');
-
-    const svgDoc = currentAvatarHead.contentDocument;
-
-    const skinColours = svgDoc.getElementById('head');
-
-    skinColours.setAttribute('fill', hex);
-  };
-
-  getSvgHead(updateSkinColour);
 });

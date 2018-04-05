@@ -49,7 +49,7 @@ renderBlogStims model =
                     ]
                     [ div [ class "flex items-center mb3 mh4 mt4", onClick <| GoToStim firebaseStim.stim ]
                         [ object
-                            [ id "avatarHead", attribute "data" <| avatarHeadSelection firebaseStim.user.avatar, type_ "image/svg+xml", class "w3" ]
+                            [ attribute "data" <| avatarHeadSelection firebaseStim.user.avatar, type_ "image/svg+xml", class "avatarHead w3" ]
                             []
                         , div [ class "flex-column mv3 ml3" ]
                             [ p [ classes [ headerFont, "black mb1" ] ] [ text firebaseStim.stim.stimName ]

@@ -22,7 +22,7 @@ emergency model =
             ]
         , div [ class "mh3" ]
             [ object
-                [ id "avatarHead", attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "mh5" ]
+                [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "avatarHead mh5" ]
                 []
             , p [ classes [ headerFont, "tc mb4" ] ] [ text "Here are some helpful links if you need immediate help." ]
             , div [ class "mb5" ]

@@ -91,22 +91,22 @@ viewToCmds view model =
             [ initCarousel () ]
 
         NameAvatar ->
-            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
 
         About ->
-            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
 
         Blog ->
-            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
 
         Emergency ->
-            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
 
         StimPreparation ->
-            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
 
         StimRecap ->
-            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
 
         _ ->
             []

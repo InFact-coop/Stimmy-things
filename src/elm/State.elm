@@ -239,4 +239,4 @@ update msg model =
                 :> update (NavigateTo StimInfo)
 
         ChangeSkinColour ->
-            { model | skinColour = toggleSkinColour model } ! [ changeSkinColour (toggleSkinColour model |> skinColourToHexValue) ]
+            { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( (toggleSkinColour model |> skinColourToHexValue), ".is-selected" ) ]

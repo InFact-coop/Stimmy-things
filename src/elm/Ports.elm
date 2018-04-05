@@ -62,10 +62,11 @@ port fetchFirebaseStims : () -> Cmd msg
 port shareStim : ( Json.Encode.Value, Json.Encode.Value ) -> Cmd msg
 
 
-port changeSkinColour : String -> Cmd msg
+port changeSkinColour : ( String, String ) -> Cmd msg
 
 
-port changeHeadSkinColour : String -> Cmd msg
+
+-- port changeHeadSkinColour : String -> Cmd msg
 
 
 timeSubscription : Model -> Sub Msg
