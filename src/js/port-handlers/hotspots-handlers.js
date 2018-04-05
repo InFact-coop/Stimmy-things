@@ -35,8 +35,6 @@ const initHotspots = () => {
     const container = document.getElementById('container');
     const containerCoords = container.getBoundingClientRect();
     const svgCoords = avatar.getBoundingClientRect();
-    console.log('containerCoords', containerCoords);
-    console.log('svgCoords', svgCoords);
     const svgDoc = avatar.contentDocument;
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
@@ -61,7 +59,6 @@ const initHotspots = () => {
     }, {});
 
     app.ports.receiveHotspotCoords.send(hotspotCoords);
-    console.log('final coords', hotspotCoords.legs.bottom);
   };
 
   getSvgDoc(createHotspotCoords);
