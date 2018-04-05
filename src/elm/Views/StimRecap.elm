@@ -32,7 +32,9 @@ stimRecap model =
             ]
             [ div []
                 [ div [ class "mb3" ]
-                    [ img [ class "mt6 mb0 mh7 w5", src <| avatarHeadSelection model.avatar ] []
+                    [ object
+                        [ id "avatarHead", attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "mt6 mb0 mh7 w5" ]
+                        []
                     , p [ class "b lh-f5 f5 mb3" ] [ text "Time's up!" ]
                     , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                     ]

@@ -25,7 +25,6 @@ app.ports.changeSkinColour.subscribe(hex => {
   const getSvgDoc = cb => {
     const currentAvatar = document.querySelector('.is-selected')
       .firstElementChild;
-    console.log(currentAvatar);
     if (currentAvatar === null) {
       setTimeout(() => getSvgDoc(cb), 300);
     } else {
@@ -44,9 +43,43 @@ app.ports.changeSkinColour.subscribe(hex => {
       .firstElementChild;
     const svgDoc = currentAvatar.contentDocument;
 
-    const skinColours = svgDoc.getElementById('body_change_colour');
-    skinColours.setAttribute('fill', hex);
-    console.log('skin colours', hex);
+    svgDoc.getElementById('body_change_colour').setAttribute('fill', hex);
+
+    if (svgDoc.getElementById('head')) {
+      svgDoc.getElementById('head').setAttribute('fill', hex);
+    }
   };
   getSvgDoc(updateSkinColour);
+});
+
+app.ports.changeHeadSkinColour.subscribe(hex => {
+  const getSvgHead = cb => {
+    const currentAvatarHead = document.getElementById('avatarHead');
+
+    if (currentAvatarHead === null) {
+      setTimeout(() => getSvgHead(cb), 300);
+    } else {
+      const svgDoc = currentAvatarHead.contentDocument;
+
+      const bodyElements = svgDoc.getElementById('body_change_colour');
+
+      if (bodyElements === null) {
+        setTimeout(() => getSvgHead(cb), 300);
+      } else {
+        cb();
+      }
+    }
+  };
+
+  const updateSkinColour = () => {
+    const currentAvatarHead = document.getElementById('avatarHead');
+
+    const svgDoc = currentAvatarHead.contentDocument;
+
+    const skinColours = svgDoc.getElementById('head');
+
+    skinColours.setAttribute('fill', hex);
+  };
+
+  getSvgHead(updateSkinColour);
 });

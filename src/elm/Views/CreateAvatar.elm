@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Components.ChangeSkinColourButton exposing (changeSkinColourButton)
-import Data.SkinColour exposing (avatarSkinColourSelection, logSrc)
+import Data.SkinColour exposing (avatarSkinColourSelection)
 import Types exposing (..)
 
 
@@ -35,7 +35,7 @@ createAvatar model =
             , avatarCaroCell "./assets/CreateAvatar/avatar_6.svg"
             ]
         , div []
-            [ changeSkinColourButton (logSrc model.skinColour)
+            [ changeSkinColourButton (avatarSkinColourSelection model.skinColour)
             ]
         ]
 

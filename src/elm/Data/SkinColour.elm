@@ -33,20 +33,29 @@ stringToSkinColour avatarStr =
         "SkinColour7" ->
             SkinColour7
 
+        "SkinColour8" ->
+            SkinColour8
+
+        "SkinColour9" ->
+            SkinColour9
+
+        "SkinColour10" ->
+            SkinColour10
+
+        "SkinColour11" ->
+            SkinColour11
+
+        "SkinColour12" ->
+            SkinColour12
+
+        "SkinColour13" ->
+            SkinColour13
+
+        "SkinColour14" ->
+            SkinColour14
+
         _ ->
             SkinColour1
-
-
-logSrc : SkinColour -> String
-logSrc skinColour =
-    let
-        log =
-            Debug.log "src" (avatarSkinColourSelection skinColour)
-
-        log2 =
-            Debug.log "skinColour" skinColour
-    in
-        avatarSkinColourSelection skinColour
 
 
 avatarSkinColourSelection : SkinColour -> String

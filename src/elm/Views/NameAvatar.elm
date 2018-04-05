@@ -22,7 +22,9 @@ nameAvatar model =
                 [ img [ src "./assets/CreateAvatar/done_green_small.svg" ] [] ]
             ]
         , div []
-            [ img [ class "mt6 mb7 mh7 w6", src <| avatarHeadSelection model.avatar ] []
+            [ object
+                [ id "avatarHead", attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "mt6 mb7 mh7 w6" ]
+                []
             ]
         , textarea [ classes [ headerFont, "border-box b--silver black w-80 br2 outline-0 pa3 h3" ], placeholder "Name", onInput AddAvatarName ] []
         ]

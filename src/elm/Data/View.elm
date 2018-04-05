@@ -81,14 +81,32 @@ getCurrentView model =
             definition model
 
 
-viewToCmds : View -> List (Cmd Msg)
-viewToCmds view =
+viewToCmds : View -> Model -> List (Cmd Msg)
+viewToCmds view model =
     case view of
         Landing ->
-            [ initHotspots () ]
+            [ initHotspots (skinColourToHexValue model.skinColour) ]
 
         CreateAvatar ->
             [ initCarousel () ]
+
+        NameAvatar ->
+            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+
+        About ->
+            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+
+        Blog ->
+            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+
+        Emergency ->
+            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+
+        StimPreparation ->
+            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
+
+        StimRecap ->
+            [ changeHeadSkinColour (skinColourToHexValue model.skinColour) ]
 
         _ ->
             []

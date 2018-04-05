@@ -18,7 +18,9 @@ about model =
             , div [ onClick <| NavigateTo Emergency, class "h4 w3 flex items-centre" ] [ img [ src "./assets/About/help_btn.svg" ] [] ]
             ]
         , div [ class "mh3" ]
-            [ img [ class "mh5", src <| avatarHeadSelection model.avatar ] []
+            [ object
+                [ id "avatarHead", attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "mh5" ]
+                []
             , p [ classes [ headerFont, "tc" ] ] [ text <| "Hi, I'm " ++ model.avatarName ++ "!" ]
             , p [ classes [ headerFont, "tc mb2" ] ] [ text "I'm your stimmy friend." ]
             , p [ class "mb2 tc" ] [ text "Click the glowing spots on my body to find exercises to try." ]

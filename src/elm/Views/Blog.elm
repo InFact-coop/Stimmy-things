@@ -48,7 +48,9 @@ renderBlogStims model =
                     , backgroundImageCover "./assets/ShareModal/zigzag_modal_bg.svg"
                     ]
                     [ div [ class "flex items-center mb3 mh4 mt4", onClick <| GoToStim firebaseStim.stim ]
-                        [ img [ class "w3", src <| avatarHeadSelection firebaseStim.user.avatar ] []
+                        [ object
+                            [ id "avatarHead", attribute "data" <| avatarHeadSelection firebaseStim.user.avatar, type_ "image/svg+xml", class "w3" ]
+                            []
                         , div [ class "flex-column mv3 ml3" ]
                             [ p [ classes [ headerFont, "black mb1" ] ] [ text firebaseStim.stim.stimName ]
                             , p [ class "self-end w-100" ] [ text ("By " ++ firebaseStim.user.name) ]
