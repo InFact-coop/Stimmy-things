@@ -25,7 +25,7 @@ const initHotspots = () => {
       } else {
         setTimeout(() => {
           cb();
-        }, 500);
+        }, 0);
       }
     }
   };
