@@ -41,7 +41,7 @@ landing model =
         , stimMenu model model.hotspots.feet
         , viewIf (model.hotspots.head.name /= NoBodyPart)
             (button
-                [ classes [ "bn bg-transparent db h4 w4 fixed bottom-0 outline-0 z-2 pa0" ]
+                [ classes [ "bn bg-transparent db h3 w3 fixed bottom-0 outline-0 z-2 pa0" ]
                 , backgroundImageStyle "./assets/Landing/shuffle_stim_btn.svg" 100
                 , onClick <| GoToRandomStim
                 ]
