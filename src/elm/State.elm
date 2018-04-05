@@ -8,7 +8,7 @@ import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, defaultStim, 
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
-import Helpers.Utils exposing (scrollToTop, stringToFloat)
+import Helpers.Utils exposing (ifThenElse, sanitiseAvatarName, scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Random
 import Requests.GetVideos exposing (getVideos)
@@ -98,19 +98,19 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-                { model | timeSelected = interval, counter = interval } ! []
+            { model | timeSelected = interval, counter = interval } ! []
 
         SetTimeFromText time ->
             let
                 interval =
-                    if ((stringToFloat time) > 10) then
+                    if stringToFloat time > 10 then
                         10
-                    else if ((stringToFloat time) < 0) then
+                    else if stringToFloat time < 0 then
                         0
                     else
                         stringToFloat time
             in
-                { model | timeSelected = interval * 60, counter = interval * 60 } ! []
+            { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -212,7 +212,8 @@ update msg model =
                 :> update (NavigateTo StimPreparation)
 
         AddAvatarName name ->
-            { model | avatarName = name } ! []
+            { model | avatarName = sanitiseAvatarName name }
+                ! []
 
         AddStimWithoutBodyPart ->
             { model | newStim = defaultStim }
@@ -237,3 +238,21 @@ update msg model =
             { model | stimInfoDestination = model.view }
                 ! []
                 :> update (NavigateTo StimInfo)
+
+        KeyDown string key ->
+            ifThenElse (key == 13)
+                ({ model | vidSearchString = string }
+                    ! []
+                    :> update CallVideoRequest
+                )
+                (model ! [])
+
+        KeyDownFromName key ->
+            ifThenElse (key == 13)
+                (model
+                    ! []
+                    :> update (NavigateTo Landing)
+                )
+                (model
+                    ! []
+                )

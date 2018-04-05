@@ -277,3 +277,5 @@ type Msg
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo
+    | KeyDown String Int
+    | KeyDownFromName Int

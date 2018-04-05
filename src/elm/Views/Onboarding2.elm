@@ -10,7 +10,7 @@ import Types exposing (..)
 onboarding2 : Model -> Html Msg
 onboarding2 model =
     div [ horizontalTransition model ]
-        [ div [ class "mh6" ]
+        [ div [ class "mh6 flex flex-column items-center" ]
             [ img [ class "mt6 mb3", src "./assets/Onboarding/zigzag_green_onboarding.svg" ] []
             , img [ class "mb3", src "./assets/Onboarding/onboarding_2.svg" ] []
             , p [ classes [ headerFont, "m1 green tc mb1" ] ] [ text "Save anonymously into Stimmy Things" ]
