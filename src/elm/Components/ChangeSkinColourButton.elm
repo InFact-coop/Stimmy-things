@@ -8,6 +8,6 @@ import Types exposing (..)
 
 changeSkinColourButton : String -> Html Msg
 changeSkinColourButton imageSrc =
-    div [ class "mh3" ]
-        [ img [ class "pa4", onClick ChangeSkinColour, src imageSrc ] []
+    div [ class "absolute right-1 bottom-0" ]
+        [ img [ onClick ChangeSkinColour, src imageSrc ] []
         ]
