@@ -8,7 +8,7 @@ import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, 
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
-import Helpers.Utils exposing (scrollToTop, stringToFloat)
+import Helpers.Utils exposing (ifThenElse, scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Random
 import Requests.GetVideos exposing (getVideos)
@@ -243,9 +243,9 @@ update msg model =
                 :> update (NavigateTo StimInfo)
 
         KeyDown string key ->
-            if key == 13 then
-                { model | vidSearchString = string }
+            ifThenElse (key == 13)
+                ({ model | vidSearchString = string }
                     ! []
                     :> update CallVideoRequest
-            else
-                model ! []
+                )
+                (model ! [])

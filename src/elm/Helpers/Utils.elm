@@ -85,6 +85,13 @@ fileNameFromURL url =
         splitLength =
             List.length splitURL
     in
-        List.drop (splitLength - 1) splitURL
-            |> List.head
-            |> Maybe.withDefault ""
+    List.drop (splitLength - 1) splitURL
+        |> List.head
+        |> Maybe.withDefault ""
+
+
+
+-- submitOnEnter : Bool -> Html Msg
+-- submitOnEnter bool =
+--   case bool of
+--     keycode
