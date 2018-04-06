@@ -252,7 +252,7 @@ update msg model =
         NavigateToStimInfo ->
             { model | stimInfoDestination = model.view }
                 ! []
-                :> update (NavigateTo StimInfo)
+                :> update (ifThenElse (model.view == StimTimer) (ChangeViewFromTimer StimInfo) (NavigateTo StimInfo))
 
         ChangeSkinColour ->
             { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( (toggleSkinColour model |> skinColourToHexValue), ".is-selected" ) ]

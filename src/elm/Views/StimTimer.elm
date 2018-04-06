@@ -30,10 +30,12 @@ stimTimer model =
             [ span [] [ text <| (formatTimeFirstDigits (floor <| model.counter / 60)) ++ ":" ]
             , span [] [ text <| formatTimeSecondDigits (rem (round model.counter) 60) ]
             ]
-        , div [ class "mh7 flex justify-between mb5" ]
-            [ img [ onClick <| AdjustTimer Restart, src "./assets/StimTimer/timer_replay_btn.svg" ] []
-            , img [ onClick <| AdjustTimer Start, src "./assets/StimTimer/timer_play_btn.svg" ] []
-            , img [ onClick <| AdjustTimer Pause, src "./assets/StimTimer/timer_pause_btn.svg" ] []
+        , div [ class "mh7 flex justify-around  mb5" ]
+            [ div [ class "h4 flex flex-column justify-between" ]
+                [ img [ onClick <| AdjustTimer Restart, src "./assets/StimTimer/timer_replay_btn.svg" ] []
+                , p [] [ text "Restart" ]
+                ]
+            , displayPlayOrPause model.timerStatus
             ]
         , img [ class "mb4", src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []
         , div []
@@ -56,3 +58,25 @@ formatTimeFirstDigits time =
 formatTimeSecondDigits : Int -> String
 formatTimeSecondDigits time =
     ifThenElse ((String.length <| toString time) == 1) (toString time ++ "0") (toString time)
+
+
+displayPlayOrPause : TimerStatus -> Html Msg
+displayPlayOrPause timerstatus =
+    case timerstatus of
+        Started ->
+            div [ class "h4 flex flex-column justify-between" ]
+                [ img [ onClick <| AdjustTimer Pause, src "./assets/StimTimer/timer_pause_btn.svg" ] []
+                , p [] [ text "Pause" ]
+                ]
+
+        Stopped ->
+            div [ class "h4 flex flex-column justify-between" ]
+                [ img [ onClick <| AdjustTimer Start, src "./assets/StimTimer/timer_play_btn.svg" ] []
+                , p [] [ text "Start" ]
+                ]
+
+        Paused ->
+            div [ class "h4 flex flex-column justify-between" ]
+                [ img [ onClick <| AdjustTimer Start, src "./assets/StimTimer/timer_play_btn.svg" ] []
+                , p [] [ text "Start" ]
+                ]
