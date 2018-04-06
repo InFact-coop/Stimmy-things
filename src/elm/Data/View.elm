@@ -14,7 +14,6 @@ import Views.CreateAvatar exposing (..)
 import Views.Definition exposing (definition)
 import Views.Emergency exposing (..)
 import Views.Landing exposing (..)
-import Views.Moodboard exposing (..)
 import Views.NameAvatar exposing (..)
 import Views.Onboarding1 exposing (..)
 import Views.Onboarding2 exposing (..)
@@ -53,9 +52,6 @@ getCurrentView model =
         StimRecap ->
             stimRecap model
 
-        Moodboard ->
-            moodboard model
-
         About ->
             about model
 
@@ -91,22 +87,22 @@ viewToCmds view model =
             [ initCarousel () ]
 
         NameAvatar ->
-            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         About ->
-            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         Blog ->
-            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         Emergency ->
-            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         StimPreparation ->
-            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         StimRecap ->
-            [ changeSkinColour ( (skinColourToHexValue model.skinColour), ".avatarHead" ) ]
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         _ ->
             []

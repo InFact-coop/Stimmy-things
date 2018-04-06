@@ -17,7 +17,6 @@ type View
     | StimTimer
     | StimRecap
     | AddStim
-    | Moodboard
     | About
     | Splash
     | ShareModal
