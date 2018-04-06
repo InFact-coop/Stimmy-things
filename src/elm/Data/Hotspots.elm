@@ -89,3 +89,37 @@ hotspotsDecoder =
         |> required "hands" hotspotCoordsDecoder
         |> required "legs" hotspotCoordsDecoder
         |> required "feet" hotspotCoordsDecoder
+
+
+hotspotToQuadrant : HotspotCoords -> Quadrant
+hotspotToQuadrant hotspot =
+    case hotspot.name of
+        Head ->
+            TopRight
+
+        Face ->
+            TopRight
+
+        Shoulders ->
+            TopLeft
+
+        Chest ->
+            TopRight
+
+        Belly ->
+            TopRight
+
+        Arms ->
+            TopRight
+
+        Hands ->
+            TopRight
+
+        Legs ->
+            BottomRight
+
+        Feet ->
+            BottomRight
+
+        NoBodyPart ->
+            TopRight

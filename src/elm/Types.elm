@@ -75,6 +75,13 @@ type SkinColour
     | SkinColour5
     | SkinColour6
     | SkinColour7
+    | SkinColour8
+    | SkinColour9
+    | SkinColour10
+    | SkinColour11
+    | SkinColour12
+    | SkinColour13
+    | SkinColour14
 
 
 type Face
@@ -179,6 +186,13 @@ type LogStage
     | Post
 
 
+type Quadrant
+    = TopLeft
+    | TopRight
+    | BottomLeft
+    | BottomRight
+
+
 type alias HotspotCoords =
     { name : BodyPart
     , bottom : Float
@@ -262,6 +276,8 @@ type Msg
     | ReceiveUpdatedLogs (List DBLog)
     | ReceiveStimList (Result String (List Stim))
     | ReceiveChosenAvatar String
+    | ReceiveChosenVideo String
+    | RetrieveChosenVideo
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
@@ -270,6 +286,7 @@ type Msg
     | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
+    | AddVideoSrc String
     | SelectAvatar
     | AddAvatarName String
     | AddStimWithoutBodyPart
@@ -279,3 +296,4 @@ type Msg
     | NavigateToStimInfo
     | KeyDown String Int
     | KeyDownFromName Int
+    | ChangeSkinColour

@@ -1,9 +1,11 @@
 module Views.CreateAvatar exposing (..)
 
-import Helpers.Style exposing (classes, backgroundImageStyle, horizontalTransition)
+import Helpers.Style exposing (backgroundImageStyle, classes, horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Components.ChangeSkinColourButton exposing (changeSkinColourButton)
+import Data.SkinColour exposing (avatarSkinColourSelection)
 import Types exposing (..)
 
 
@@ -32,14 +34,16 @@ createAvatar model =
             , avatarCaroCell "./assets/CreateAvatar/avatar_5.svg"
             , avatarCaroCell "./assets/CreateAvatar/avatar_6.svg"
             ]
+        , div []
+            [ changeSkinColourButton (avatarSkinColourSelection model.skinColour)
+            ]
         ]
 
 
 avatarCaroCell : String -> Html Msg
 avatarCaroCell imgSrc =
-    img
-        [ class "carousel-cell-image vh-75"
-        , attribute "data-flickity-lazyload" imgSrc
-        , src imgSrc
+    div [ class "carousel-cell vh-75" ]
+        [ object
+            [ id "avatar", attribute "data" imgSrc, type_ "image/svg+xml", classes [ "carousel-cell-image", "vh-75" ] ]
+            []
         ]
-        []

@@ -2,8 +2,7 @@ port module Ports exposing (..)
 
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
-import Data.Stim exposing (decodeStimList)
-import Data.Stim exposing (decodeFirebaseData)
+import Data.Stim exposing (decodeFirebaseData, decodeStimList)
 import Json.Decode exposing (..)
 import Json.Encode exposing (..)
 import Time exposing (Time)
@@ -23,13 +22,19 @@ port retrieveChosenAvatar : () -> Cmd msg
 port receiveChosenAvatar : (String -> msg) -> Sub msg
 
 
+port retrieveChosenVideo : () -> Cmd msg
+
+
+port receiveChosenVideo : (String -> msg) -> Sub msg
+
+
 port saveLog : DBLog -> Cmd msg
 
 
 port initDB : () -> Cmd msg
 
 
-port initHotspots : () -> Cmd msg
+port initHotspots : String -> Cmd msg
 
 
 port saveStim : Json.Encode.Value -> Cmd msg
@@ -62,6 +67,9 @@ port fetchFirebaseStims : () -> Cmd msg
 port shareStim : ( Json.Encode.Value, Json.Encode.Value ) -> Cmd msg
 
 
+port changeSkinColour : ( String, String ) -> Cmd msg
+
+
 timeSubscription : Model -> Sub Msg
 timeSubscription model =
     case model.timerStatus of
@@ -87,4 +95,5 @@ subscriptions model =
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
         , receiveFirebaseStims (decodeFirebaseData >> ReceiveFirebaseStims)
+        , receiveChosenVideo ReceiveChosenVideo
         ]
