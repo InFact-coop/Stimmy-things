@@ -84,7 +84,7 @@ update msg model =
             { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav } ! []
+            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim } ! []
 
         NoOp ->
             model ! []
@@ -253,7 +253,7 @@ update msg model =
         NavigateToStimInfo ->
             { model | stimInfoDestination = model.view }
                 ! []
-                :> update (NavigateTo StimInfo)
+                :> update (ifThenElse (model.view == StimTimer) (ChangeViewFromTimer StimInfo) (NavigateTo StimInfo))
 
         ChangeSkinColour ->
             { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( toggleSkinColour model |> skinColourToHexValue, ".is-selected" ) ]
