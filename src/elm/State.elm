@@ -84,7 +84,7 @@ update msg model =
             { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav } ! []
+            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim } ! []
 
         NoOp ->
             model ! []
