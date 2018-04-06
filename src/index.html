@@ -4,9 +4,10 @@
 <head>
   <title>Stimmy Things</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/Onboarding/Splash3.png">
 </head>
 
 <body>
@@ -14,13 +15,13 @@
 </body>
 
 <script>
-  // Check that service workers are registered
-  if ('serviceWorker' in navigator) {
-    // Use the window load event to keep the page load performant
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js');
-    });
-  }
+// Check that service workers are registered
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js');
+  });
+}
 </script>
 
 </html>
