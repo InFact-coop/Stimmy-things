@@ -47,7 +47,7 @@ renderBlogStims model =
                     [ class "fit-content bg-top br2"
                     , backgroundImageCover "./assets/ShareModal/zigzag_modal_bg.svg"
                     ]
-                    [ div [ class "flex items-center mb3 mh4 mt4", onClick <| GoToStim firebaseStim.stim ]
+                    [ div [ class "flex items-center mb3 mh4 mt4", onClick <| ifThenElse (alreadyExistsInIndexedDB firebaseStim.stim model) (GoToStim firebaseStim.stim) (NoOp) ]
                         [ object
                             [ attribute "data" <| avatarHeadSelection firebaseStim.user.avatar, type_ "image/svg+xml", class "avatarHead w3" ]
                             []
@@ -73,7 +73,7 @@ alreadyExistsInIndexedDB blogStim model =
         stimIdList =
             List.map (\stim -> stim.stimId) model.stims
     in
-    List.member blogStim.stimId stimIdList
+        List.member blogStim.stimId stimIdList
 
 
 addOrDoStim : Bool -> Stim -> Html Msg
@@ -87,6 +87,6 @@ videoSection stim =
         [ class "flex flex-column items-center fit-content mb3"
         ]
         [ div []
-            [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ++ "&output=embed" ] []
+            [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ] []
             ]
         ]
