@@ -34,7 +34,7 @@ port saveLog : DBLog -> Cmd msg
 port initDB : () -> Cmd msg
 
 
-port initHotspots : () -> Cmd msg
+port initHotspots : String -> Cmd msg
 
 
 port saveStim : Json.Encode.Value -> Cmd msg
@@ -65,6 +65,9 @@ port fetchFirebaseStims : () -> Cmd msg
 
 
 port shareStim : ( Json.Encode.Value, Json.Encode.Value ) -> Cmd msg
+
+
+port changeSkinColour : ( String, String ) -> Cmd msg
 
 
 timeSubscription : Model -> Sub Msg

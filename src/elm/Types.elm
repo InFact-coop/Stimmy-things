@@ -75,6 +75,13 @@ type SkinColour
     | SkinColour5
     | SkinColour6
     | SkinColour7
+    | SkinColour8
+    | SkinColour9
+    | SkinColour10
+    | SkinColour11
+    | SkinColour12
+    | SkinColour13
+    | SkinColour14
 
 
 type Face
@@ -287,4 +294,5 @@ type Msg
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo
+    | ChangeSkinColour
     | KeyDown String Int

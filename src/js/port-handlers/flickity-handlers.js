@@ -5,10 +5,12 @@ const initCarousel = () => {
   window.requestAnimationFrame(() => {
     const carouselElement = document.querySelector('.makecarousel');
     const flkty = new Flickity(carouselElement, {
-      lazyLoad: true,
       adaptiveHeight: true,
-      wrapAround: false,
+      wrapAround: true,
+      draggable: true,
       prevNextButtons: false,
+      cellSelector: '.carousel-cell',
+      imagesLoaded: true,
       pageDots: true
     });
   });
@@ -29,7 +31,7 @@ const videoCarousel = () => {
 
 const retrieveChosenAvatar = () => {
   const chosenElement = document.querySelector('.is-selected');
-  app.ports.receiveChosenAvatar.send(chosenElement.src);
+  app.ports.receiveChosenAvatar.send(chosenElement.firstChild.data);
 };
 
 const retrieveChosenVideo = () => {

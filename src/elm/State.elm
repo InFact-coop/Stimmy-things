@@ -21,9 +21,9 @@ initModel : Model
 initModel =
     { view = Splash
     , userId = ""
-    , avatar = Avatar1
+    , avatar = Avatar2
     , avatarName = ""
-    , skinColour = SkinColour1
+    , skinColour = SkinColour8
     , stims = []
     , logs = []
     , newStim = defaultStim
@@ -59,7 +59,7 @@ update msg model =
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
             }
-                ! (scrollToTop :: viewToCmds view)
+                ! (scrollToTop :: viewToCmds view model)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
@@ -99,7 +99,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         SetTimeFromText time ->
             let
@@ -212,9 +212,9 @@ update msg model =
                 newModel =
                     { model | newStim = addVideoSrc src model.newStim }
             in
-            newModel
-                ! []
-                :> update (SaveStim <| newModel.newStim)
+                newModel
+                    ! []
+                    :> update (SaveStim <| newModel.newStim)
 
         RetrieveChosenVideo ->
             model ! [ retrieveChosenVideo () ]
@@ -253,6 +253,9 @@ update msg model =
             { model | stimInfoDestination = model.view }
                 ! []
                 :> update (NavigateTo StimInfo)
+
+        ChangeSkinColour ->
+            { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( (toggleSkinColour model |> skinColourToHexValue), ".is-selected" ) ]
 
         KeyDown string key ->
             ifThenElse (key == 13)

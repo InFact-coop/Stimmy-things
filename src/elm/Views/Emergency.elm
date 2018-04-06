@@ -21,7 +21,9 @@ emergency model =
                 ]
             ]
         , div [ class "mh3" ]
-            [ img [ class "mh5", src <| avatarHeadSelection model.avatar ] []
+            [ object
+                [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "avatarHead mh5" ]
+                []
             , p [ classes [ headerFont, "tc mb4" ] ] [ text "Here are some helpful links if you need immediate help." ]
             , div [ class "mb5" ]
                 [ img [ class "mb4", src "./assets/About/white_divider_zigzag_thick.svg" ] []

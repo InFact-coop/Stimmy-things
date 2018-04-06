@@ -12,7 +12,7 @@ const hotspotBodyParts = [
   'feet'
 ];
 
-const initHotspots = () => {
+const initHotspots = skinColour => {
   const getSvgDoc = cb => {
     const avatar = document.getElementById('avatar');
     if (avatar === null) {
@@ -36,6 +36,14 @@ const initHotspots = () => {
     const containerCoords = container.getBoundingClientRect();
     const svgCoords = avatar.getBoundingClientRect();
     const svgDoc = avatar.contentDocument;
+
+    const skinColours = svgDoc.getElementById('body_change_colour');
+    skinColours.setAttribute('fill', skinColour);
+
+    if (svgDoc.getElementById('head')) {
+      const headColour = svgDoc.getElementById('head');
+      headColour.setAttribute('fill', skinColour);
+    }
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
       const bounding = hotspot.getBoundingClientRect();

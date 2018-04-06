@@ -260,9 +260,13 @@ body {
 .carousel-cell.is-selected {
   opacity: 1;
 }
+.carousel-cell-image {
+  pointer-events: none;
+}
 
 .makecarousel {
   -webkit-overflow-scrolling: touch;
+  height: 75vh;
 }
 
 .dot.is-selected {

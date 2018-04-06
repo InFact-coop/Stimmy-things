@@ -42,7 +42,9 @@ stimPreparation model =
             ]
             [ div []
                 [ div []
-                    [ img [ class "mt6 mb0 mh7 w5", src <| avatarHeadSelection model.avatar ] []
+                    [ object
+                        [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "avatarHead mt6 mb0 mh7 w5" ]
+                        []
                     , p [ class "b lh-f5 f5 mb3" ] [ text "Before we start:" ]
                     , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
                     ]
