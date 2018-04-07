@@ -290,7 +290,6 @@ body {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: var(--green);
-  border: none;
   outline: none;
   width: 25px;
   height: 25px;
