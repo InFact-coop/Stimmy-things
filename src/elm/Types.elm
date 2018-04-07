@@ -17,7 +17,6 @@ type View
     | StimTimer
     | StimRecap
     | AddStim
-    | Moodboard
     | About
     | Splash
     | ShareModal
@@ -294,5 +293,6 @@ type Msg
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo
-    | ChangeSkinColour
     | KeyDown String Int
+    | KeyDownFromName Int
+    | ChangeSkinColour
