@@ -12,7 +12,7 @@ onboarding1 model =
     div [ horizontalTransition model, class "vh-100" ]
         [ div [ class "mh6 flex flex-column items-center" ]
             [ img [ class "mv3", src "./assets/Onboarding/zigzag_green_onboarding.svg" ] []
-            , img [ class "mb3 w-5", src "./assets/Onboarding/onboarding_1.svg" ] []
+            , img [ class "mb3 w6", src "./assets/Onboarding/onboarding_1.svg" ] []
             , p [ classes [ headerFont, "m1 green tc mb1" ] ] [ text "Find out what works best for you" ]
             ]
         , p [ classes [ onBoardingFont, "mh3 mb3 black tc" ] ] [ text "Capture helpful exercises to help you deal better with ADHD. Get a clear overview of what works best for you over time." ]

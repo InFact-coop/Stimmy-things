@@ -64,6 +64,7 @@
     "file-loader": "^1.1.11",
     "firebase": "^4.12.0",
     "flickity": "^2.0.11",
+    "npm": "^5.8.0",
     "postcss-clean": "^1.1.0",
     "postcss-cli": "^4.1.1",
     "postcss-custom-media": "^6.0.0",
