@@ -99,7 +99,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         SetTimeFromText time ->
             let
@@ -111,7 +111,7 @@ update msg model =
                     else
                         stringToFloat time
             in
-            { model | timeSelected = interval * 60, counter = interval * 60 } ! []
+                { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -132,15 +132,15 @@ update msg model =
             Transit.start TransitMsg (ChangeView view) ( 200, 200 ) model
 
         StopTimer ->
-            addTimeTaken model
+            model
                 ! []
                 :> update (AdjustTimer Stop)
-                :> update (ChangeView StimRecap)
+                :> update (NavigateTo StimRecap)
 
         RepeatStim ->
             { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
                 ! []
-                :> update (ChangeView StimPreparation)
+                :> update (NavigateTo StimPreparation)
 
         ChangeViewFromTimer view ->
             model
@@ -212,9 +212,9 @@ update msg model =
                 newModel =
                     { model | newStim = addVideoSrc src model.newStim }
             in
-            newModel
-                ! []
-                :> update (SaveStim <| newModel.newStim)
+                newModel
+                    ! []
+                    :> update (SaveStim <| newModel.newStim)
 
         RetrieveChosenVideo ->
             model ! [ retrieveChosenVideo () ]
