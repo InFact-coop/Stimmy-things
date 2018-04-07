@@ -50,6 +50,11 @@ addBodypart bodypart stim =
     { stim | bodyPart = bodypart }
 
 
+toggleSharedStim : Stim -> Stim
+toggleSharedStim stim =
+    { stim | shared = True }
+
+
 addExerciseName : String -> Stim -> Stim
 addExerciseName string stim =
     { stim | stimName = string }
