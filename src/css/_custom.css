@@ -78,6 +78,10 @@ body {
   height: 75vh;
 }
 
+.vh-85 {
+  height: 85vh;
+}
+
 /* Custom Positions */
 
 .top-4 {
@@ -290,7 +294,7 @@ body {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: var(--green);
-  outline: none;
+  border: none;
   width: 25px;
   height: 25px;
   cursor: pointer;
