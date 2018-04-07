@@ -32,8 +32,10 @@ ifStimShared stim =
         (shareStimButton
             "Stim shared!"
             NoOp
+            "bg-light-green"
         )
         (shareStimButton
             "Yes please!"
             (ShareStim stim)
+            "bg-green"
         )
