@@ -7,14 +7,18 @@
     "start": "node ./server/start",
     "test": "NODE_ENV=test mocha ./tests/*  ",
     "test:watch": "NODE_ENV=test mocha ./tests/* --watch",
-    "elm-watch-debug": "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js --debug'",
-    "elm-watch": "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js'",
-    "css-watch": "postcss ./src/css/index.css --output ./public/style.min.css --watch --config ./postcss.config.js",
+    "elm-watch-debug":
+      "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js --debug'",
+    "elm-watch":
+      "chokidar '**/*.elm' -c 'elm make src/elm/Main.elm --output=public/elm.js'",
+    "css-watch":
+      "postcss ./src/css/index.css --output ./public/style.min.css --watch --config ./postcss.config.js",
     "just-frontend": "webpack-dev-server --env.DEV --mode development",
     "dev-frontend": "webpack --env.DEV --watch --mode development",
     "dev-backend": "NODE_ENV=development nodemon ./server/start",
-    "css-build": "postcss ./src/css/index.css --output ./public/style.min.css --config ./postcss.config.js",
-    "heroku-postbuild": "webpack --env.PROD --mode production"
+    "css-build":
+      "postcss ./src/css/index.css --output ./public/style.min.css --config ./postcss.config.js",
+    "heroku-postbuild": "webpack --watch --env.PROD --mode production"
   },
   "repository": {
     "type": "git",

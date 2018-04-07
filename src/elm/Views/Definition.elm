@@ -11,7 +11,7 @@ definition : Model -> Html Msg
 definition model =
     div [ class "flex flex-column justify-center h-100 bg-washed-yellow relative", horizontalTransition model ]
         [ div [ class "absolute top-0 center flex justify-center w-100" ]
-            [ img [ class "mt4", src "./assets/Onboarding/zigzag_green_onboarding.svg" ] []
+            [ img [ class "mv3", src "./assets/Onboarding/zigzag_green_onboarding.svg" ] []
             ]
         , div [ backgroundImageCover "./assets/AddStim/zigzag_stim_how_to_bg.svg", class "pa4 mb5" ]
             [ p [ classes [ headerFont, "green mb1" ] ] [ text "stim" ]
