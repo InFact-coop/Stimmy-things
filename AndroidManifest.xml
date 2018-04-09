@@ -1,5 +1,4 @@
-<!-- <?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <uses-permission />
     <permission />
@@ -12,12 +11,9 @@
     <supports-screens />
     <compatible-screens />
     <supports-gl-texture />
-
     <application>
-
       <activity
           android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
-
     </application>
-</mainfest> -->
+</mainfest>

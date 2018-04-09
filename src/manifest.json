@@ -10,10 +10,5 @@
       "sizes": "192x192",
       "type": "image/png"
     }
-  ],
-  "activty": [
-    {
-      "android:windowSoftInputMode": "stateVisible|adjustResize"
-    }
   ]
 }
