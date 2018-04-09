@@ -88,3 +88,8 @@ fileNameFromURL url =
     List.drop (splitLength - 1) splitURL
         |> List.head
         |> Maybe.withDefault ""
+
+
+sanitiseAvatarName : String -> String
+sanitiseAvatarName string =
+    replace All (regex "[@£$%^&(){0-9}\\n]") (\_ -> "") string

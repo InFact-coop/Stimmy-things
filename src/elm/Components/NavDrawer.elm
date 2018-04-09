@@ -1,7 +1,7 @@
 module Components.NavDrawer exposing (..)
 
-import Html exposing (..)
 import Helpers.Style exposing (..)
+import Html exposing (..)
 import Html.Events exposing (..)
 import Types exposing (..)
 
@@ -10,7 +10,6 @@ navDrawer : Model -> Html Msg
 navDrawer model =
     nav [ classes [ "pa2", "fixed", "z-1", "bg-green-translucent", "top-4", showNavClass model.showNav, "z-5" ] ]
         [ drawerItem "./assets/Landing/menu-drawer/about_btn.svg" About
-        , drawerItem "./assets/Landing/menu-drawer/moodboard_btn.svg" Moodboard
         , drawerItem "./assets/Landing/menu-drawer/blog_btn.svg" Blog
         , drawerItem "./assets/Landing/menu-drawer/user_btn.svg" CreateAvatar
         , drawerItem "./assets/Landing/menu-drawer/emergency_btn.svg" Emergency

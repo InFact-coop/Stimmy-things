@@ -8,7 +8,7 @@ import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, 
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
-import Helpers.Utils exposing (ifThenElse, scrollToTop, stringToFloat)
+import Helpers.Utils exposing (ifThenElse, sanitiseAvatarName, scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Random
 import Requests.GetVideos exposing (getVideos)
@@ -104,9 +104,9 @@ update msg model =
         SetTimeFromText time ->
             let
                 interval =
-                    if ((stringToFloat time) > 10) then
+                    if stringToFloat time > 10 then
                         10
-                    else if ((stringToFloat time) < 0) then
+                    else if stringToFloat time < 0 then
                         0
                     else
                         stringToFloat time
@@ -135,12 +135,12 @@ update msg model =
             addTimeTaken model
                 ! []
                 :> update (AdjustTimer Stop)
-                :> update (ChangeView StimRecap)
+                :> update (NavigateTo StimRecap)
 
         RepeatStim ->
             { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
                 ! []
-                :> update (ChangeView StimPreparation)
+                :> update (NavigateTo StimPreparation)
 
         ChangeViewFromTimer view ->
             model
@@ -228,7 +228,8 @@ update msg model =
                 :> update (NavigateTo StimPreparation)
 
         AddAvatarName name ->
-            { model | avatarName = name } ! []
+            { model | avatarName = sanitiseAvatarName name }
+                ! []
 
         AddStimWithoutBodyPart ->
             { model | newStim = defaultStim }
@@ -255,7 +256,7 @@ update msg model =
                 :> update (ifThenElse (model.view == StimTimer) (ChangeViewFromTimer StimInfo) (NavigateTo StimInfo))
 
         ChangeSkinColour ->
-            { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( (toggleSkinColour model |> skinColourToHexValue), ".is-selected" ) ]
+            { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( toggleSkinColour model |> skinColourToHexValue, ".is-selected" ) ]
 
         KeyDown string key ->
             ifThenElse (key == 13)
@@ -264,3 +265,13 @@ update msg model =
                     :> update CallVideoRequest
                 )
                 (model ! [])
+
+        KeyDownFromName key ->
+            ifThenElse (key == 13)
+                (model
+                    ! []
+                    :> update (NavigateTo Landing)
+                )
+                (model
+                    ! []
+                )

@@ -44,7 +44,7 @@ addStim model =
                     , div [ class "flex flex-wrap justify-center mv4 white" ] (renderBodyparts bodyParts model)
                     ]
                 , label [ for "exercise-name", class "mh3 mb3 b " ] [ text "What would you call this exercise?" ]
-                , textarea [ class "mh3 mb6 bg-transparent bn h-textarea-small outline-0 f5 lh-f5", id "exercise-name", onInput AddExerciseName ]
+                , textarea [ class "mh3 mb6 bg-transparent bn h-textarea-small outline-0 f5 lh-f5", id "exercise-name", maxlength 20, onInput AddExerciseName ]
                     []
                 , div [ backgroundImageCover "./assets/AddStim/zigzag_stim_how_to_bg.svg", class "h-fit-content flex flex-column mb3 pt3" ]
                     [ label [ for "exercise-intstructions", class "b h6 mh3 mt3" ]
@@ -76,7 +76,7 @@ addStim model =
                 , div
                     [ backgroundImageCover "./assets/AddStim/zigzag_add_stim_save.svg"
                     , class "flex flex-column h-fit-content"
-                    , onClick RetrieveChosenVideo
+                    , onClick (ifThenElse (model.vidSearchString /= "") RetrieveChosenVideo (SaveStim model.newStim))
                     ]
                     [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
                     , p [ type_ "submit", class "mt2 mb3 flex justify-center" ] [ text "SAVE" ]
