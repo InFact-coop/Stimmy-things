@@ -4,14 +4,16 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
+import Delay exposing (..)
 import Helpers.Utils exposing (ifThenElse, sanitiseAvatarName, scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Random
 import Requests.GetVideos exposing (getVideos)
+import Time exposing (..)
 import Transit
 import Types exposing (..)
 import Update.Extra.Infix exposing ((:>))
@@ -99,7 +101,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-                { model | timeSelected = interval, counter = interval } ! []
+            { model | timeSelected = interval, counter = interval } ! []
 
         SetTimeFromText time ->
             let
@@ -111,7 +113,7 @@ update msg model =
                     else
                         stringToFloat time
             in
-                { model | timeSelected = interval * 60, counter = interval * 60 } ! []
+            { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -212,9 +214,9 @@ update msg model =
                 newModel =
                     { model | newStim = addVideoSrc src model.newStim }
             in
-                newModel
-                    ! []
-                    :> update (SaveStim <| newModel.newStim)
+            newModel
+                ! []
+                :> update (SaveStim <| newModel.newStim)
 
         RetrieveChosenVideo ->
             model ! [ retrieveChosenVideo () ]
@@ -242,9 +244,8 @@ update msg model =
                   ]
 
         ShareStim stim ->
-            model
-                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ), fetchFirebaseStims () ]
-                :> update (NavigateTo Landing)
+            updateStimInModel model stim
+                ! [ shareStim <| ( normaliseStim stim, normaliseUser model ), fetchFirebaseStims (), Delay.after 1000 millisecond (NavigateTo Landing) ]
 
         ImportStim stim ->
             model

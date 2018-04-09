@@ -4,7 +4,7 @@ import Data.Avatar exposing (avatarHeadSelection)
 import Helpers.Style exposing (classes, headerFont, horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
+import Html.Events exposing (keyCode, on, onClick, onInput, targetValue)
 import Json.Decode as Json
 import Types exposing (..)
 
@@ -18,7 +18,7 @@ nameAvatar model =
                 [ p [ classes [ headerFont, "ma0 left-0 right-0 green" ] ] [ text "What's their name?" ]
                 , p [ class "ma0 left-0 right-0 dark-gray lh-f5 f5" ] [ text "Choose your avatar" ]
                 ]
-            , div [ onClick SaveOrUpdateUser, class "h4 w3 flex items-centre justify-right" ]
+            , div [ onClick SaveOrUpdateUser, class "h4 w3 flex items-centre justify-right outline-0" ]
                 [ img [ src "./assets/CreateAvatar/done_green_small.svg" ] [] ]
             ]
         , div []
