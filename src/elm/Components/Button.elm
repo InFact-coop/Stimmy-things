@@ -10,7 +10,7 @@ rectButton : String -> Msg -> Html Msg
 rectButton buttonText msg =
     button
         [ classes
-            [ "bg-green br2 white pv3 bn w-100"
+            [ "bg-green br2 white pv3 bn w-100 outline-0"
             , bodyFont
             ]
         , onClick msg
@@ -22,7 +22,7 @@ shareStimButton : String -> Msg -> String -> Html Msg
 shareStimButton buttonText msg colour =
     button
         [ classes
-            [ "br2 white pv3 bn w-100"
+            [ "br2 white pv3 bn w-100 outline-0"
             , bodyFont
             , colour
             ]

@@ -1,12 +1,11 @@
 module Views.NameAvatar exposing (..)
 
-import Helpers.Style exposing (horizontalTransition)
+import Data.Avatar exposing (avatarHeadSelection)
+import Helpers.Style exposing (classes, headerFont, horizontalTransition)
 import Html exposing (..)
-import Types exposing (..)
 import Html.Attributes as Attr exposing (..)
 import Html.Events exposing (on, onClick, onInput, targetValue)
-import Helpers.Style exposing (horizontalTransition, classes, headerFont)
-import Data.Avatar exposing (avatarHeadSelection)
+import Types exposing (..)
 
 
 nameAvatar : Model -> Html Msg
@@ -18,7 +17,7 @@ nameAvatar model =
                 [ p [ classes [ headerFont, "ma0 left-0 right-0 green" ] ] [ text "What's their name?" ]
                 , p [ class "ma0 left-0 right-0 dark-gray lh-f5 f5" ] [ text "Choose your avatar" ]
                 ]
-            , div [ onClick SaveOrUpdateUser, class "h4 w3 flex items-centre justify-right" ]
+            , div [ onClick SaveOrUpdateUser, class "h4 w3 flex items-centre justify-right outline-0" ]
                 [ img [ src "./assets/CreateAvatar/done_green_small.svg" ] [] ]
             ]
         , div []

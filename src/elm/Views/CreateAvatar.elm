@@ -1,11 +1,11 @@
 module Views.CreateAvatar exposing (..)
 
+import Components.ChangeSkinColourButton exposing (changeSkinColourButton)
+import Data.SkinColour exposing (avatarSkinColourSelection)
 import Helpers.Style exposing (backgroundImageStyle, classes, horizontalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Components.ChangeSkinColourButton exposing (changeSkinColourButton)
-import Data.SkinColour exposing (avatarSkinColourSelection)
 import Types exposing (..)
 
 
@@ -19,7 +19,7 @@ createAvatar model =
                 , h2 [ class "ma0 avenir fw2 f5 lh-f5 tc" ] [ text "Choose your avatar" ]
                 ]
             , button
-                [ classes [ "bg-transparent bn h3 w3" ]
+                [ classes [ "bg-transparent bn h3 w3 outline-0" ]
                 , backgroundImageStyle "./assets/CreateAvatar/done_green_small.svg" 100
                 , onClick SelectAvatar
                 ]
