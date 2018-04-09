@@ -132,7 +132,7 @@ update msg model =
             Transit.start TransitMsg (ChangeView view) ( 200, 200 ) model
 
         StopTimer ->
-            model
+            addTimeTaken model
                 ! []
                 :> update (AdjustTimer Stop)
                 :> update (NavigateTo StimRecap)

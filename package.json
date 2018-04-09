@@ -18,7 +18,7 @@
     "dev-backend": "NODE_ENV=development nodemon ./server/start",
     "css-build":
       "postcss ./src/css/index.css --output ./public/style.min.css --config ./postcss.config.js",
-    "heroku-postbuild": "webpack --env.PROD --mode production"
+    "heroku-postbuild": "webpack --env.PROD --mode production --watch"
   },
   "repository": {
     "type": "git",
