@@ -94,3 +94,30 @@ retrieveFirstStim listStim =
     listStim
         |> List.head
         |> Maybe.withDefault defaultStim
+
+
+updateStimInModel : Model -> Stim -> Model
+updateStimInModel model selectedStim =
+    let
+        matchingStim =
+            List.head <|
+                List.filter (\stim -> stim.stimId == selectedStim.stimId) model.stims
+    in
+    case matchingStim of
+        Nothing ->
+            { model | selectedStim = toggleSharedStim selectedStim }
+
+        Just a ->
+            { model | selectedStim = toggleSharedStim selectedStim, stims = toggleStimInStimList a model.stims }
+
+
+toggleStimInStimList : Stim -> List Stim -> List Stim
+toggleStimInStimList matchingStim listStims =
+    List.map
+        (\stim ->
+            if stim == matchingStim then
+                { stim | shared = True }
+            else
+                stim
+        )
+        listStims

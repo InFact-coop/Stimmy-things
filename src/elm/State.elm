@@ -4,7 +4,7 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -243,7 +243,7 @@ update msg model =
                   ]
 
         ShareStim stim ->
-            { model | selectedStim = toggleSharedStim model.selectedStim }
+            updateStimInModel model stim
                 ! [ shareStim <| ( normaliseStim stim, normaliseUser model ), fetchFirebaseStims (), Delay.after 1000 millisecond (NavigateTo Landing) ]
 
         ImportStim stim ->
