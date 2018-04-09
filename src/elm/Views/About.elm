@@ -1,13 +1,11 @@
 module Views.About exposing (..)
 
-import Helpers.Style exposing (verticalTransition)
-import Html exposing (..)
-import Types exposing (..)
+import Data.Avatar exposing (avatarHeadSelection)
+import Helpers.Style exposing (bodyFont, classes, headerFont, horizontalTransition, smallFont, verticalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Data.Avatar exposing (avatarHeadSelection)
-import Helpers.Style exposing (horizontalTransition, classes, headerFont, bodyFont, smallFont)
 import Html.Events exposing (onClick)
+import Types exposing (..)
 
 
 about : Model -> Html Msg
@@ -32,10 +30,6 @@ about model =
             , div [ class "flex flex-row items-center mb3 ml3" ]
                 [ img [ class "mr3", src "./assets/About/share_icn_sm.svg" ] []
                 , p [ classes [ smallFont ] ] [ text "'Share' exercises with others" ]
-                ]
-            , div [ class "flex flex-row items-center mb3 ml3" ]
-                [ img [ class "mr3", src "./assets/About/moodboard_icn_sm.svg" ] []
-                , p [ classes [ smallFont ] ] [ text "Check your 'moodboard'" ]
                 ]
             , div [ class "flex flex-row items-center mb3 ml3" ]
                 [ img [ class "mr3", src "./assets/About/more_info_icn_sm.svg" ] []

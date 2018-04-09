@@ -9,7 +9,7 @@ import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
 import Delay exposing (..)
-import Helpers.Utils exposing (ifThenElse, scrollToTop, stringToFloat)
+import Helpers.Utils exposing (ifThenElse, sanitiseAvatarName, scrollToTop, stringToFloat)
 import Ports exposing (..)
 import Random
 import Requests.GetVideos exposing (getVideos)
@@ -137,12 +137,12 @@ update msg model =
             addTimeTaken model
                 ! []
                 :> update (AdjustTimer Stop)
-                :> update (ChangeView StimRecap)
+                :> update (NavigateTo StimRecap)
 
         RepeatStim ->
             { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
                 ! []
-                :> update (ChangeView StimPreparation)
+                :> update (NavigateTo StimPreparation)
 
         ChangeViewFromTimer view ->
             model
@@ -230,7 +230,8 @@ update msg model =
                 :> update (NavigateTo StimPreparation)
 
         AddAvatarName name ->
-            { model | avatarName = name } ! []
+            { model | avatarName = sanitiseAvatarName name }
+                ! []
 
         AddStimWithoutBodyPart ->
             { model | newStim = defaultStim }
@@ -265,3 +266,13 @@ update msg model =
                     :> update CallVideoRequest
                 )
                 (model ! [])
+
+        KeyDownFromName key ->
+            ifThenElse (key == 13)
+                (model
+                    ! []
+                    :> update (NavigateTo Landing)
+                )
+                (model
+                    ! []
+                )

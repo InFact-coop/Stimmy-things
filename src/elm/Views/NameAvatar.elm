@@ -3,8 +3,9 @@ module Views.NameAvatar exposing (..)
 import Data.Avatar exposing (avatarHeadSelection)
 import Helpers.Style exposing (classes, headerFont, horizontalTransition)
 import Html exposing (..)
-import Html.Attributes as Attr exposing (..)
-import Html.Events exposing (on, onClick, onInput, targetValue)
+import Html.Attributes exposing (..)
+import Html.Events exposing (keyCode, on, onClick, onInput, targetValue)
+import Json.Decode as Json
 import Types exposing (..)
 
 
@@ -25,5 +26,10 @@ nameAvatar model =
                 [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "mt6 mb7 mh7 w6 avatarHead" ]
                 []
             ]
-        , textarea [ classes [ headerFont, "border-box b--silver black w-80 br2 outline-0 pa3 h3" ], placeholder "Name", onInput AddAvatarName ] []
+        , input [ classes [ headerFont, "border-box b--silver black w-80 br2 outline-0 pa3 h3" ], maxlength 15, placeholder "Name", onInput AddAvatarName, onKeyDown KeyDownFromName, value model.avatarName ] []
         ]
+
+
+onKeyDown : (Int -> msg) -> Attribute msg
+onKeyDown tagger =
+    on "keydown" (Json.map tagger keyCode)
