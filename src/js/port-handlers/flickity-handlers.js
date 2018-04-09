@@ -36,7 +36,10 @@ const retrieveChosenAvatar = () => {
 
 const retrieveChosenVideo = () => {
   const chosenElement = document.querySelector('.is-selected');
-  const embedSrc = chosenElement.href.replace('watch?v=', 'embed/');
+  if (chosenElement.href.replace('watch?v=', 'embed/')) {
+    const embedSrc = chosenElement.href.replace('watch?v=', 'embed/');
+  }
+  else const embedSrc = ""
   app.ports.receiveChosenVideo.send(embedSrc);
 };
 
