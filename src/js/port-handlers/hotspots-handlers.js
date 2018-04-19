@@ -44,6 +44,7 @@ const initHotspots = skinColour => {
       const headColour = svgDoc.getElementById('head');
       headColour.setAttribute('fill', skinColour);
     }
+
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
       const bounding = hotspot.getBoundingClientRect();
