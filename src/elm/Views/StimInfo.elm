@@ -1,6 +1,6 @@
 module Views.StimInfo exposing (..)
 
-import Helpers.Style exposing (backgroundImageCover, bodyFont, classes, headerFont, horizontalTransition)
+import Helpers.Style exposing (backgroundImageCover, backgroundImageStyle, bodyFont, classes, headerFont, horizontalTransition)
 import Helpers.Utils exposing (unionTypeToString, viewIf)
 import Html exposing (..)
 import Html.Attributes exposing (class, height, src, width)
@@ -11,7 +11,8 @@ import Types exposing (..)
 stimInfo : Model -> Html Msg
 stimInfo model =
     div [ horizontalTransition model, class "bg-washed-yellow black" ]
-        [ div [ class "bg-green center tc" ]
+        [ div [ classes [ "h3 w3 pointer fixed br-100 z-1 right-1 top-2" ], backgroundImageStyle "./assets/StimPreparation/timer_icn.svg" 100, onClick <| NavigateTo StimPreparation ] []
+        , div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative" ]
                 [ div
                     [ class "absolute left-0 ml3 mt1 pointer"
