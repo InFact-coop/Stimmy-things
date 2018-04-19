@@ -82,10 +82,22 @@ body {
   height: 85vh;
 }
 
+.mh-88 {
+  min-height: 88%;
+}
+
+.mvh-100 {
+  min-height: 100vh;
+}
+
 /* Custom Positions */
 
 .top-4 {
   top: 4rem;
+}
+
+.left-10 {
+  left: 10%;
 }
 
 /* Custom Colours */

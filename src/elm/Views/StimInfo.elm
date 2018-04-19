@@ -11,7 +11,7 @@ import Types exposing (..)
 stimInfo : Model -> Html Msg
 stimInfo model =
     div [ horizontalTransition model, class "bg-washed-yellow black" ]
-        [ div [ classes [ "h3 w3 pointer fixed br-100 z-1 right-1 top-2" ], backgroundImageStyle "./assets/StimPreparation/timer_icn.svg" 100, onClick <| NavigateTo StimPreparation ] []
+        [ div [ classes [ "h4 w4 pointer fixed br-100 z-1 right-1 bottom-0" ], backgroundImageStyle "./assets/StimInfo/timer_icn_dark.svg" 100, onClick <| NavigateTo StimPreparation ] []
         , div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative" ]
                 [ div
@@ -38,7 +38,7 @@ stimInfo model =
                 ]
             ]
         , viewIf (model.selectedStim.videoSrc /= Nothing) (videoSection model)
-        , div [ class "h5" ] []
+        , div [ class "h4" ] []
         ]
 
 

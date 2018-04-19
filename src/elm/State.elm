@@ -60,6 +60,7 @@ update msg model =
                 | view = view
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
+                , hotspots = ifThenElse (view == CreateAvatar) defaultHotspots model.hotspots
             }
                 ! (scrollToTop :: viewToCmds view model)
 

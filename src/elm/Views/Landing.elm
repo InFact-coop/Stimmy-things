@@ -12,14 +12,14 @@ import Types exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [ class "flex flex-column items-center", horizontalTransition model ]
+    div [ class "flex flex-column items-center" ]
         [ header [ classes [ "flex relative justify-center items-center ph3 pv4 vw-100" ] ]
             [ button
                 [ classes [ "button absolute left-0 ml3 bn h2 w2 bg-inherit" ]
                 , backgroundImageStyle
                     (ifThenElse (model.showNav == Yes)
                         "./assets/Landing/arrow-left-not-animated.svg"
-                        "./assets/Landing/menu-not-animated.svg"
+                        "./assets/Landing/menu.svg"
                     )
                     100
                 , onClick ToggleNav
