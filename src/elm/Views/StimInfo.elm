@@ -1,6 +1,6 @@
 module Views.StimInfo exposing (..)
 
-import Helpers.Style exposing (backgroundImageCover, bodyFont, classes, headerFont, verticalTransition)
+import Helpers.Style exposing (backgroundImageCover, bodyFont, classes, headerFont, horizontalTransition)
 import Helpers.Utils exposing (unionTypeToString, viewIf)
 import Html exposing (..)
 import Html.Attributes exposing (class, height, src, width)
@@ -10,14 +10,14 @@ import Types exposing (..)
 
 stimInfo : Model -> Html Msg
 stimInfo model =
-    div [ verticalTransition model, class "bg-washed-yellow black" ]
+    div [ horizontalTransition model, class "bg-washed-yellow black" ]
         [ div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative" ]
                 [ div
-                    [ class "absolute left-0 ml3 pointer"
-                    , onClick <| NavigateTo model.stimInfoDestination
+                    [ class "absolute left-0 ml3 mt1 pointer"
+                    , onClick <| NavigateTo Landing
                     ]
-                    [ img [ src "./assets/StimInfo/close_btn_white.svg" ] [] ]
+                    [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
                 , h1 [ classes [ headerFont, "white pt3 mb3" ] ] [ text <| model.selectedStim.stimName ]
                 ]
             , button
