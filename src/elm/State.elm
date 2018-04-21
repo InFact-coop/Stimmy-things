@@ -276,3 +276,11 @@ update msg model =
                 (model
                     ! []
                 )
+
+        NavigateToShareModal stim ->
+            { model | selectedStim = stim }
+                ! []
+                :> update (NavigateTo ShareModal)
+
+        ToggleActionButtons stim ->
+            { model | stims = toggleActionButtons stim model.stims } ! []

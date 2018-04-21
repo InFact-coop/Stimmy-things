@@ -13,7 +13,7 @@ import Types exposing (..)
 
 defaultStim : Stim
 defaultStim =
-    Stim "" NoBodyPart "" "" Nothing False ""
+    Stim "" NoBodyPart "" "" Nothing False "" False
 
 
 decodeStim : Decoder Stim
@@ -26,6 +26,7 @@ decodeStim =
         |> required "videoSrc" (Json.Decode.map stringToMaybe string)
         |> required "shared" bool
         |> required "userId" string
+        |> hardcoded False
 
 
 decodeStimList : Value -> Result String (List Stim)
