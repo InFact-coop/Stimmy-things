@@ -101,7 +101,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         SetTimeFromText time ->
             let
@@ -113,7 +113,7 @@ update msg model =
                     else
                         stringToFloat time
             in
-            { model | timeSelected = interval * 60, counter = interval * 60 } ! []
+                { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -214,9 +214,9 @@ update msg model =
                 newModel =
                     { model | newStim = addVideoSrc src model.newStim }
             in
-            newModel
-                ! []
-                :> update (SaveStim <| newModel.newStim)
+                newModel
+                    ! []
+                    :> update (SaveStim <| newModel.newStim)
 
         RetrieveChosenVideo ->
             model ! [ retrieveChosenVideo () ]
@@ -284,3 +284,9 @@ update msg model =
 
         ToggleActionButtons stim ->
             { model | stims = toggleActionButtons stim model.stims } ! []
+
+        DeleteStim stim ->
+            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId ]
+
+        ReceiveDeleteStimSuccess bool ->
+            model ! []

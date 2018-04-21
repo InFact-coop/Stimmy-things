@@ -299,3 +299,5 @@ type Msg
     | ChangeSkinColour
     | ToggleActionButtons Stim
     | NavigateToShareModal Stim
+    | DeleteStim Stim
+    | ReceiveDeleteStimSuccess Bool
