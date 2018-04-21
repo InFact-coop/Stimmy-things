@@ -239,15 +239,3 @@ skinColourToHexValue skinColour =
 
         SkinColour14 ->
             "#FDA1A2"
-
-
-toggleActionButtons : Stim -> List Stim -> List Stim
-toggleActionButtons stim listStim =
-    List.map
-        (\n -> ifThenElse (n == stim) ({ n | actionsDisplaying = not n.actionsDisplaying }) n)
-        listStim
-
-
-deleteStimFromModel : Stim -> List Stim -> List Stim
-deleteStimFromModel stim listStim =
-    List.filter (\n -> n /= stim) listStim
