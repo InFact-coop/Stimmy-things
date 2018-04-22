@@ -168,10 +168,10 @@ stimToButton model hotspot stim =
             , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "z-0 tc dn"
             ]
         ]
-        [ div [ class "dib h3 flex items-center", onClick <| ifThenElse stim.actionsDisplaying ToggleActionButtons GoToStim <| stim ]
+        [ div [ class "dib h3 flex items-center justify-center w-100", onClick <| ifThenElse stim.actionsDisplaying ToggleActionButtons GoToStim <| stim ]
             [ text stim.stimName
             ]
-        , div [ class "silver f7 ml2 h3 flex items-center", onClick <| ToggleActionButtons stim ] [ text "..." ]
+        , div [ class "silver f7 mh2 h3 flex items-center", onClick <| ToggleActionButtons stim ] [ text "..." ]
         , div [ classes [ "h3 absolute right-0 top-0", ifThenElse stim.actionsDisplaying "flex enterActions" "exitActions dn" ] ]
             [ div
                 [ class "w2d5 h3 bg-light-green o-90 dib", backgroundImageStyle "./assets/Landing/menu_hot-spots/share_icon_green.svg" 50, onClick <| NavigateToShareModal stim ]
