@@ -16,34 +16,26 @@ const initHotspots = skinColour => {
   const getSvgDoc = cb => {
     const avatar = document.getElementById('avatar');
     if (avatar === null) {
-      setTimeout(() => getSvgDoc(cb), 0);
-    } else {
-      const svgDoc = avatar.contentDocument;
-      const hotspot = svgDoc.getElementById('feet-hotspot');
-      if (hotspot === null) {
-        setTimeout(() => getSvgDoc(cb), 0);
-      } else {
-        setTimeout(() => {
-          cb();
-        }, 0);
-      }
+      return setImmediate(() => getSvgDoc(cb));
     }
+    const svgDoc = avatar.contentDocument;
+    const hotspot = svgDoc.getElementById('feet-hotspot');
+    if (hotspot === null) {
+      return setImmediate(() => getSvgDoc(cb));
+    }
+    cb(avatar, svgDoc);
   };
 
-  const createHotspotCoords = () => {
-    const avatar = document.getElementById('avatar');
+  const createHotspotCoords = (avatar, svgDoc) => {
+    svgDoc
+      .getElementById('body_change_colour')
+      .setAttribute('fill', skinColour);
+
+    svgDoc.getElementById('head').setAttribute('fill', skinColour);
+
+    const svgCoords = avatar.getBoundingClientRect();
     const container = document.getElementById('container');
     const containerCoords = container.getBoundingClientRect();
-    const svgCoords = avatar.getBoundingClientRect();
-    const svgDoc = avatar.contentDocument;
-
-    const skinColours = svgDoc.getElementById('body_change_colour');
-    skinColours.setAttribute('fill', skinColour);
-
-    if (svgDoc.getElementById('head')) {
-      const headColour = svgDoc.getElementById('head');
-      headColour.setAttribute('fill', skinColour);
-    }
 
     const hotspotCoords = hotspotBodyParts.reduce((acc, bodypart) => {
       const hotspot = svgDoc.getElementById(bodypart + '-hotspot');
