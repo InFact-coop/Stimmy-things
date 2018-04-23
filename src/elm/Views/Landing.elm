@@ -174,9 +174,9 @@ stimToButton model hotspot stim =
         , div [ class "silver f7 mh2 h3 flex items-center", onClick <| ToggleActionButtons stim ] [ text "..." ]
         , div [ classes [ "h3 absolute right-0 top-0", ifThenElse stim.actionsDisplaying "flex enterActions" "exitActions dn" ] ]
             [ div
-                [ class "w2d5 h3 bg-light-green o-90 dib", backgroundImageStyle "./assets/Landing/menu_hot-spots/share_icon_green.svg" 50, onClick <| NavigateToShareModal stim ]
+                [ class "w2d5 h3 bg-light-green o-90 dib", backgroundImageStyle "/assets/Landing/menu-hotspots/upload_stim_icon_green.svg" 50, onClick <| NavigateToShareModal stim ]
                 []
-            , div [ class "w2d5 h3 bg-green o-90 dib", backgroundImageStyle "./assets/Landing/menu_hot-spots/stim_delete_btn.svg" 50, onClick <| DeleteStim stim ] []
+            , div [ class "w2d5 h3 bg-green o-90 dib", backgroundImageStyle "/assets/Landing/menu-hotspots/stim_delete_btn.svg" 50, onClick <| DeleteStim stim ] []
             ]
         ]
 
