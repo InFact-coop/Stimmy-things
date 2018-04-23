@@ -2,7 +2,7 @@ module Data.Stim exposing (..)
 
 import Data.BodyPart exposing (stringToBodyPart)
 import Data.User exposing (decodeUser, defaultUser)
-import Helpers.Utils exposing (stringToMaybe, unionTypeToString)
+import Helpers.Utils exposing (stringToMaybe, unionTypeToString, ifThenElse)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as Encode
@@ -13,7 +13,7 @@ import Types exposing (..)
 
 defaultStim : Stim
 defaultStim =
-    Stim "" NoBodyPart "" "" Nothing False ""
+    Stim "" NoBodyPart "" "" Nothing False "" False
 
 
 decodeStim : Decoder Stim
@@ -26,6 +26,7 @@ decodeStim =
         |> required "videoSrc" (Json.Decode.map stringToMaybe string)
         |> required "shared" bool
         |> required "userId" string
+        |> hardcoded False
 
 
 decodeStimList : Value -> Result String (List Stim)
@@ -103,12 +104,12 @@ updateStimInModel model selectedStim =
             List.head <|
                 List.filter (\stim -> stim.stimId == selectedStim.stimId) model.stims
     in
-    case matchingStim of
-        Nothing ->
-            { model | selectedStim = toggleSharedStim selectedStim }
+        case matchingStim of
+            Nothing ->
+                { model | selectedStim = toggleSharedStim selectedStim }
 
-        Just a ->
-            { model | selectedStim = toggleSharedStim selectedStim, stims = toggleStimInStimList a model.stims }
+            Just a ->
+                { model | selectedStim = toggleSharedStim selectedStim, stims = toggleStimInStimList a model.stims }
 
 
 toggleStimInStimList : Stim -> List Stim -> List Stim
@@ -121,3 +122,20 @@ toggleStimInStimList matchingStim listStims =
                 stim
         )
         listStims
+
+
+closeActionButtons : List Stim -> List Stim
+closeActionButtons listStim =
+    List.map (\stim -> { stim | actionsDisplaying = False }) listStim
+
+
+toggleActionButtons : Stim -> List Stim -> List Stim
+toggleActionButtons stim listStim =
+    List.map
+        (\n -> ifThenElse (n == stim) ({ n | actionsDisplaying = not n.actionsDisplaying }) ({ n | actionsDisplaying = False }))
+        listStim
+
+
+deleteStimFromModel : Stim -> List Stim -> List Stim
+deleteStimFromModel stim listStim =
+    List.filter (\n -> n /= stim) listStim

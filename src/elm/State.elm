@@ -4,7 +4,7 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim, updateStimInModel)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim, updateStimInModel, deleteStimFromModel, toggleActionButtons, closeActionButtons)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -87,7 +87,7 @@ update msg model =
             { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim } ! []
+            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim, stims = closeActionButtons model.stims } ! []
 
         NoOp ->
             model ! []
@@ -277,3 +277,17 @@ update msg model =
                 (model
                     ! []
                 )
+
+        NavigateToShareModal stim ->
+            { model | selectedStim = stim }
+                ! []
+                :> update (NavigateTo ShareModal)
+
+        ToggleActionButtons stim ->
+            { model | stims = toggleActionButtons stim model.stims } ! []
+
+        DeleteStim stim ->
+            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId ]
+
+        ReceiveDeleteStimSuccess bool ->
+            model ! []
