@@ -1,6 +1,6 @@
 module Views.StimInfo exposing (..)
 
-import Helpers.Style exposing (backgroundImageCover, bodyFont, classes, headerFont, verticalTransition)
+import Helpers.Style exposing (backgroundImageCover, backgroundImageStyle, bodyFont, classes, headerFont, horizontalTransition)
 import Helpers.Utils exposing (unionTypeToString, viewIf)
 import Html exposing (..)
 import Html.Attributes exposing (class, height, src, width)
@@ -10,14 +10,15 @@ import Types exposing (..)
 
 stimInfo : Model -> Html Msg
 stimInfo model =
-    div [ verticalTransition model, class "bg-washed-yellow black" ]
-        [ div [ class "bg-green center tc" ]
+    div [ horizontalTransition model, class "bg-washed-yellow black" ]
+        [ div [ classes [ "h4 w4 pointer fixed br-100 z-1 right-1 bottom-0" ], backgroundImageStyle "./assets/StimInfo/timer_icn_dark.svg" 100, onClick <| NavigateTo StimPreparation ] []
+        , div [ class "bg-green center tc" ]
             [ div [ class "flex flex-row items-center justify-center relative" ]
                 [ div
-                    [ class "absolute left-0 ml3 pointer"
-                    , onClick <| NavigateTo model.stimInfoDestination
+                    [ class "absolute left-0 ml3 mt1 pointer"
+                    , onClick <| NavigateTo Landing
                     ]
-                    [ img [ src "./assets/StimInfo/close_btn_white.svg" ] [] ]
+                    [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
                 , h1 [ classes [ headerFont, "white pt3 mb3" ] ] [ text <| model.selectedStim.stimName ]
                 ]
             , button
@@ -37,7 +38,7 @@ stimInfo model =
                 ]
             ]
         , viewIf (model.selectedStim.videoSrc /= Nothing) (videoSection model)
-        , div [ class "h5" ] []
+        , div [ class "h4" ] []
         ]
 
 

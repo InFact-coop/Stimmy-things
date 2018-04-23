@@ -16,12 +16,12 @@ const initHotspots = skinColour => {
   const getSvgDoc = cb => {
     const avatar = document.getElementById('avatar');
     if (avatar === null) {
-      setTimeout(() => getSvgDoc(cb), 300);
+      setTimeout(() => getSvgDoc(cb), 0);
     } else {
       const svgDoc = avatar.contentDocument;
       const hotspot = svgDoc.getElementById('feet-hotspot');
       if (hotspot === null) {
-        setTimeout(() => getSvgDoc(cb), 300);
+        setTimeout(() => getSvgDoc(cb), 0);
       } else {
         setTimeout(() => {
           cb();

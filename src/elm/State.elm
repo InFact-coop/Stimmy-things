@@ -60,6 +60,7 @@ update msg model =
                 | view = view
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
+                , hotspots = ifThenElse (view == CreateAvatar) defaultHotspots model.hotspots
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -101,7 +102,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         SetTimeFromText time ->
             let
@@ -113,7 +114,7 @@ update msg model =
                     else
                         stringToFloat time
             in
-            { model | timeSelected = interval * 60, counter = interval * 60 } ! []
+                { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -214,9 +215,9 @@ update msg model =
                 newModel =
                     { model | newStim = addVideoSrc src model.newStim }
             in
-            newModel
-                ! []
-                :> update (SaveStim <| newModel.newStim)
+                newModel
+                    ! []
+                    :> update (SaveStim <| newModel.newStim)
 
         RetrieveChosenVideo ->
             model ! [ retrieveChosenVideo () ]
@@ -227,7 +228,7 @@ update msg model =
                 , newLog = updateStimId stim.stimId model.newLog
             }
                 ! []
-                :> update (NavigateTo StimPreparation)
+                :> update (NavigateTo StimInfo)
 
         AddAvatarName name ->
             { model | avatarName = sanitiseAvatarName name }
