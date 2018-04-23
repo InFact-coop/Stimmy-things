@@ -59,10 +59,24 @@ const saveOrUpdateUser = user => {
     });
 };
 
+const deleteStim = stimId => {
+  const db = helpers.createDB();
+  helpers
+    .deleteStim(db, stimId)
+    .then(() => {
+      app.ports.receiveDeleteStimSuccess.send(true);
+    })
+    .catch(err => {
+      console.log('Error deleting stim: ', err);
+      app.ports.receiveDeleteStimSuccess.send(false);
+    });
+};
+
 export default {
   saveLog,
   saveStim,
   saveOrUpdateUser,
   initDB,
-  shareStim
+  shareStim,
+  deleteStim
 };
