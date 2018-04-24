@@ -14,13 +14,13 @@ decodeUser =
     decode User
         |> optional "userId" Decode.string ""
         |> optional "avatar" decodeAvatar Avatar1
-        |> optional "skinColour" decodeSkinColour SkinColour1
+        |> optional "skinColour" decodeSkinColour SkinColour7
         |> optional "name" Decode.string ""
 
 
 defaultUser : User
 defaultUser =
-    User "" Avatar1 SkinColour1 ""
+    User "" Avatar1 SkinColour7 ""
 
 
 normaliseUser : Model -> Encode.Value

@@ -55,7 +55,7 @@ stringToSkinColour avatarStr =
             SkinColour14
 
         _ ->
-            SkinColour1
+            SkinColour7
 
 
 avatarSkinColourSelection : SkinColour -> String
