@@ -104,6 +104,9 @@ viewToCmds view model =
         StimRecap ->
             [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
+        StimTimer ->
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".timerHead" ) ]
+
         _ ->
             []
 

@@ -19,6 +19,23 @@ adjustTime control model =
             { model | counter = model.timeSelected, timerStatus = Stopped }
 
 
+timerStatusToClockStyle : Model -> String
+timerStatusToClockStyle model =
+    case model.timerStatus of
+        Stopped ->
+            ""
+
+        Paused ->
+            "animation: timer "
+                ++ toString model.timeSelected
+                ++ "s linear forwards paused;"
+
+        Started ->
+            "animation: timer "
+                ++ toString model.timeSelected
+                ++ "s linear forwards running;"
+
+
 trackCounter : Model -> Model
 trackCounter model =
     if model.counter > 0 then

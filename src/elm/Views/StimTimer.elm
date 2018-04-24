@@ -15,10 +15,10 @@ stimTimer model =
     div [ class "border-box bg-green flex flex-column tc white fill-screen", horizontalTransition model ]
         [ div [ class "vh-100 flex flex-column justify-between" ]
             [ div [ classes [ headerFont, "flex flex-row mh2 mt2 items-center justify-between" ] ]
-                [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] []
-                , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ]
+                [ div [ class "w3 h3 flex items-center justify-center", onClick <| NavigateTo StimPreparation ] [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
+                , p [ class <| "white lh-f4 f4 mw4" ]
                     [ text <| model.selectedStim.stimName ]
-                , img [ src "./assets/Landing/menu-drawer/about_btn.svg", onClick NavigateToStimInfo ] []
+                , div [ class "w3 h3 items-center justify-center flex", onClick NavigateToStimInfo ] [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
                 ]
             , img [ class "", src "./assets/StimTimer/timer_icn.svg" ] []
             , img [ class "", src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []
@@ -27,8 +27,11 @@ stimTimer model =
                     [ span [] [ text <| (formatTimeFirstDigits (floor <| model.counter / 60)) ++ ":" ]
                     , span [] [ text <| formatTimeSecondDigits (rem (round model.counter) 60) ]
                     ]
-                , div [ class "w-50 center", backgroundImageStyle (avatarHeadSelection model.avatar) 70 ]
-                    [ clock
+                , div [ class "w-60 center" ]
+                    [ clock model
+                    , object
+                        [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "timerHead w-40 absolute absolute-center" ]
+                        []
                     ]
                 , div [ class "mh7 flex justify-around" ]
                     [ div [ class "h4 flex flex-column justify-between" ]
@@ -59,7 +62,7 @@ formatTimeFirstDigits time =
 
 formatTimeSecondDigits : Int -> String
 formatTimeSecondDigits time =
-    ifThenElse ((String.length <| toString time) == 1) (toString time ++ "0") (toString time)
+    ifThenElse ((String.length <| toString time) == 1) ("0" ++ toString time) (toString time)
 
 
 displayPlayOrPause : TimerStatus -> Html Msg

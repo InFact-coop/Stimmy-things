@@ -91,6 +91,11 @@ body {
 }
 
 /* Custom Positions */
+.absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .top-4 {
   top: 4rem;
@@ -119,27 +124,12 @@ body {
 
 /* Animations */
 
-#avatar #clock {
-  visibility: visible;
-  margin-left: -200px;
-  -ms-transform: rotate(-90deg); /* IE 9 */
-  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
-  transform: rotate(-90deg);
-}
-
-#timer {
-  stroke-width: 1rem;
+.clock > .timer {
+  stroke-width: 0.75rem;
+  stroke: #162b74;
   fill: none;
   stroke-dasharray: 596.902604182;
   stroke-dashoffset: 596.902604182;
-  animation: timer 60s linear;
-  -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-  animation-fill-mode: forwards;
-}
-
-#timerbg {
-  stroke-width: 1rem;
-  fill: none;
 }
 
 @keyframes timer {
