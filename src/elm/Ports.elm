@@ -76,6 +76,9 @@ port shareStim : ( Json.Encode.Value, Json.Encode.Value ) -> Cmd msg
 port changeSkinColour : ( String, String ) -> Cmd msg
 
 
+port updateSkinColour : (String -> msg) -> Sub msg
+
+
 timeSubscription : Model -> Sub Msg
 timeSubscription model =
     case model.timerStatus of
@@ -103,4 +106,5 @@ subscriptions model =
         , Transit.subscriptions TransitMsg model
         , receiveFirebaseStims (decodeFirebaseData >> ReceiveFirebaseStims)
         , receiveChosenVideo ReceiveChosenVideo
+        , updateSkinColour UpdateSkinColour
         ]

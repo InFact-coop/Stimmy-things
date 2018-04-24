@@ -239,3 +239,52 @@ skinColourToHexValue skinColour =
 
         SkinColour14 ->
             "#FDA1A2"
+
+
+hexValueToSkinColour : String -> SkinColour
+hexValueToSkinColour hexValue =
+    case hexValue of
+        "#D99877" ->
+            SkinColour1
+
+        "#885B3E" ->
+            SkinColour2
+
+        "#BC8D80" ->
+            SkinColour3
+
+        "#FFEAC2" ->
+            SkinColour4
+
+        "#EDB597" ->
+            SkinColour5
+
+        "#EFDD93" ->
+            SkinColour6
+
+        "#E8E8E8" ->
+            SkinColour7
+
+        "#30A1D2" ->
+            SkinColour8
+
+        "#B1D159" ->
+            SkinColour9
+
+        "#25587C" ->
+            SkinColour10
+
+        "#039645" ->
+            SkinColour11
+
+        "#C79EC7" ->
+            SkinColour12
+
+        "#FFC908" ->
+            SkinColour13
+
+        "#FDA1A2" ->
+            SkinColour14
+
+        _ ->
+            SkinColour8

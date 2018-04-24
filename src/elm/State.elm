@@ -291,3 +291,6 @@ update msg model =
 
         ReceiveDeleteStimSuccess bool ->
             model ! []
+
+        UpdateSkinColour colour ->
+            { model | skinColour = hexValueToSkinColour colour } ! []

@@ -11,7 +11,17 @@ const initCarousel = () => {
       prevNextButtons: false,
       cellSelector: '.carousel-cell',
       imagesLoaded: true,
-      pageDots: true
+      pageDots: true,
+      on: {
+        change: () => {
+          const avatarSkinColour = document
+            .querySelector('.is-selected')
+            .firstChild.contentDocument.getElementById('body_change_colour')
+            .getAttribute('fill');
+
+          app.ports.updateSkinColour.send(avatarSkinColour);
+        }
+      }
     });
   });
 };

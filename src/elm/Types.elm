@@ -301,3 +301,4 @@ type Msg
     | NavigateToShareModal Stim
     | DeleteStim Stim
     | ReceiveDeleteStimSuccess Bool
+    | UpdateSkinColour String
