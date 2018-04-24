@@ -2,7 +2,6 @@ module Views.DeleteModal exposing (..)
 
 import Components.Button exposing (stimButton)
 import Helpers.Style exposing (backgroundImageStyle, classes, headerFont, verticalTransition)
-import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -22,19 +21,3 @@ deleteModal model =
             , a [ class "mb3 green underline", onClick (NavigateTo Landing) ] [ text "No, I changed my mind" ]
             ]
         ]
-
-
-ifStimShared : Stim -> Html Msg
-ifStimShared stim =
-    ifThenElse
-        stim.shared
-        (stimButton
-            "Stim shared!"
-            NoOp
-            "bg-light-green"
-        )
-        (stimButton
-            "Yes please!"
-            (ShareStim stim)
-            "bg-green"
-        )
