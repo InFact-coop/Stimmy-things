@@ -292,7 +292,7 @@ update msg model =
             { model | stims = toggleActionButtons stim model.stims } ! []
 
         DeleteStim stim ->
-            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId ]
+            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId, Delay.after 1000 millisecond (NavigateTo Landing) ]
 
         ReceiveDeleteStimSuccess bool ->
             model ! []

@@ -1,6 +1,6 @@
 module Views.ShareModal exposing (..)
 
-import Components.Button exposing (shareStimButton)
+import Components.Button exposing (stimButton)
 import Data.Stim exposing (toggleSharedStim)
 import Helpers.Style exposing (backgroundImageStyle, classes, headerFont, verticalTransition)
 import Helpers.Utils exposing (ifThenElse)
@@ -29,12 +29,12 @@ ifStimShared : Stim -> Html Msg
 ifStimShared stim =
     ifThenElse
         stim.shared
-        (shareStimButton
+        (stimButton
             "Stim shared!"
             NoOp
             "bg-light-green"
         )
-        (shareStimButton
+        (stimButton
             "Yes please!"
             (ShareStim stim)
             "bg-green"

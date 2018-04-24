@@ -18,8 +18,8 @@ rectButton buttonText msg =
         [ text buttonText ]
 
 
-shareStimButton : String -> Msg -> String -> Html Msg
-shareStimButton buttonText msg colour =
+stimButton : String -> Msg -> String -> Html Msg
+stimButton buttonText msg colour =
     button
         [ classes
             [ "br2 white pv3 bn w-100 outline-0"
