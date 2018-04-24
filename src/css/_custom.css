@@ -333,7 +333,7 @@ body {
   height: 87vh;
   width: 100vw;
 }
-.flickity-page-dots {
+.onboardingCarousel .flickity-page-dots {
   bottom: 0;
 }
 
