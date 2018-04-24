@@ -28,36 +28,22 @@ app.ports.changeSkinColour.subscribe(arrayHexClass => {
     if (arrayHexClass[1] == '.is-selected') {
       currentAvatar = currentAvatar.firstElementChild;
     }
-    if (currentAvatar === null) {
-      setTimeout(() => getSvgDoc(cb), 300);
-    } else {
-      const svgDoc = currentAvatar.contentDocument;
-      const bodyElements = svgDoc.getElementById('body_change_colour');
-      if (bodyElements === null) {
-        setTimeout(() => getSvgDoc(cb), 300);
-      } else {
-        cb();
-      }
-    }
-  };
 
-  const updateSkinColour = () => {
-    let currentAvatar = document.querySelector(arrayHexClass[1]);
-
-    if (arrayHexClass[1] == '.is-selected') {
-      currentAvatar = currentAvatar.firstElementChild;
-    }
+    if (currentAvatar === null) return setImmediate(() => getSvgDoc(cb));
 
     const svgDoc = currentAvatar.contentDocument;
+    const bodyElements = svgDoc.getElementById('body_change_colour');
+    const headElements = svgDoc.getElementById('head');
 
-    if (svgDoc.getElementById('body_change_colour')) {
-      svgDoc
-        .getElementById('body_change_colour')
-        .setAttribute('fill', arrayHexClass[0]);
-    }
-    if (svgDoc.getElementById('head')) {
-      svgDoc.getElementById('head').setAttribute('fill', arrayHexClass[0]);
-    }
+    if (bodyElements === null) return setImmediate(() => getSvgDoc(cb));
+
+    cb(bodyElements, headElements);
   };
+
+  const updateSkinColour = (bodyElements, headElements) => {
+    bodyElements.setAttribute('fill', arrayHexClass[0]);
+    headElements.setAttribute('fill', arrayHexClass[0]);
+  };
+
   getSvgDoc(updateSkinColour);
 });
