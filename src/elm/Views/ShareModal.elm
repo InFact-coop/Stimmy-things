@@ -1,7 +1,6 @@
 module Views.ShareModal exposing (..)
 
 import Components.Button exposing (shareStimButton)
-import Data.Stim exposing (toggleSharedStim)
 import Helpers.Style exposing (backgroundImageStyle, classes, headerFont, verticalTransition)
 import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
