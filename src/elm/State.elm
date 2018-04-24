@@ -283,6 +283,11 @@ update msg model =
                 ! []
                 :> update (NavigateTo ShareModal)
 
+        NavigateToDeleteModal stim ->
+            { model | selectedStim = stim }
+                ! []
+                :> update (NavigateTo DeleteModal)
+
         ToggleActionButtons stim ->
             { model | stims = toggleActionButtons stim model.stims } ! []
 

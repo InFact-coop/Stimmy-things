@@ -20,6 +20,7 @@ type View
     | About
     | Splash
     | ShareModal
+    | DeleteModal
     | Blog
     | Definition
 
@@ -299,5 +300,6 @@ type Msg
     | ChangeSkinColour
     | ToggleActionButtons Stim
     | NavigateToShareModal Stim
+    | NavigateToDeleteModal Stim
     | DeleteStim Stim
     | ReceiveDeleteStimSuccess Bool
