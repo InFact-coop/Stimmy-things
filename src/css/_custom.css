@@ -119,6 +119,95 @@ body {
 
 /* Animations */
 
+#avatar #clock {
+  visibility: visible;
+  margin-left: -200px;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+
+#timer {
+  stroke-width: 1rem;
+  fill: none;
+  stroke-dasharray: 596.902604182;
+  stroke-dashoffset: 596.902604182;
+  animation: timer 60s linear;
+  -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+  animation-fill-mode: forwards;
+}
+
+#timerbg {
+  stroke-width: 1rem;
+  fill: none;
+}
+
+@keyframes timer {
+  0% {
+    stroke: #162b74;
+  }
+  11% {
+    stroke: #305685;
+  }
+  15% {
+    stroke: #3d8396;
+  }
+  20% {
+    stroke: #41b2a6;
+  }
+  25% {
+    stroke: #3ae4b6;
+  }
+  30% {
+    stroke: #89e2a2;
+  }
+  35% {
+    stroke: #b7e08d;
+  }
+  40% {
+    stroke: #dbdd78;
+  }
+  45% {
+    stroke: #fad961;
+  }
+  50% {
+    stroke: #ff8077;
+  }
+  55% {
+    stroke: #e8748c;
+  }
+  60% {
+    stroke: #cf69a0;
+  }
+  65% {
+    stroke: #b35eb4;
+  }
+  70% {
+    stroke: #9155c7;
+  }
+  75% {
+    stroke: #ff8497;
+  }
+  80% {
+    stroke: #c97685;
+  }
+  85% {
+    stroke: #956774;
+  }
+  90% {
+    stroke: #605763;
+  }
+  95% {
+    stroke: #264652;
+  }
+  100% {
+    stroke: #162b74;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @keyframes breatheAnimation {
   0% {
     transform: scale(1);
@@ -302,8 +391,8 @@ body {
 
 .timer-font {
   font-family: 'Wellcome';
-  font-size: 72px;
-  line-height: 96px;
+  font-size: 44px;
+  line-height: 56px;
 }
 
 /* Carousel */
