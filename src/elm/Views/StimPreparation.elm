@@ -1,13 +1,9 @@
 module Views.StimPreparation exposing (..)
 
 import Components.Button exposing (rectButton)
-import Components.Face exposing (face)
 import Components.PillButton exposing (..)
 import Data.Avatar exposing (avatarHeadSelection)
-import Data.Face exposing (faces, urlFromFace)
-import Data.Feelings exposing (feelings)
-import Data.Avatar exposing (avatarHeadSelection)
-import Helpers.Style exposing (horizontalTransition, classes, headerFont, backgroundImageCover)
+import Helpers.Style exposing (verticalTransition, classes, headerFont, backgroundImageCover)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString, ifThenElse)
 import Html exposing (..)
 import Html.Attributes as Attr exposing (..)
@@ -18,19 +14,14 @@ import Types exposing (..)
 
 stimPreparation : Model -> Html Msg
 stimPreparation model =
-    div [ class "border-box bg-green flex-column tc dark-gray h-fit-content", horizontalTransition model ]
-        [ div [ classes [ headerFont, "flex flex-row ma3 mt0 mb0 items-center justify-between h" ] ]
+    div [ class "border-box bg-green flex-column tc dark-gray mvh-100 pa1", verticalTransition model ]
+        [ div [ classes [ headerFont, "flex flex-row mh3 mv0 items-center justify-center h3 pv2" ] ]
             [ div
-                [ onClick <| NavigateTo Landing
-                , class "h4 w3 flex items-centre justify-left"
+                [ onClick <| NavigateTo StimInfo
+                , class "h2 w2 flex items-center left-1 absolute"
                 ]
-                [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
+                [ img [ src "./assets/StimPreparation/close_btn_white.svg" ] [] ]
             , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ] [ text <| model.selectedStim.stimName ]
-            , div
-                [ onClick NavigateToStimInfo
-                , class "h4 w3 flex items-centre justify-right"
-                ]
-                [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
             ]
         , div
             [ style
@@ -38,9 +29,9 @@ stimPreparation model =
                 , ( "backgroundRepeat", "no-repeat" )
                 , ( "backgroundSize", "cover" )
                 ]
-            , class "ma3 mb4 mt0 flex-column work-sans"
+            , class "ma3 mb4 mt0 flex-column work-sans mh-88 absolute"
             ]
-            [ div []
+            [ div [ class "mh-88" ]
                 [ div []
                     [ object
                         [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "avatarHead mt6 mb0 mh7 w5" ]
@@ -74,13 +65,7 @@ stimPreparation model =
                         , p [ class "ma0 pl1" ] [ text <| ifThenElse (model.timeSelected == 60) "min" "mins" ]
                         ]
                     ]
-                , p [ class "lh-f5 f5 mb4" ] [ text "How are you?" ]
-                , div [ class "mh0 mb4 flex flew-row justify-center" ] (List.map (face Pre model) faces)
-                , div [ class "mh4" ]
-                    [ p [ class "lh-f5 f5 mb3" ] [ text "Any specific feelings?" ]
-                    , div [ class "flex flex-wrap items-center justify-between" ] (renderFeelings feelings model)
-                    ]
-                , div [ class "mh4 pb4" ]
+                , div [ class "pb4 absolute bottom-0 w-80 left-10" ]
                     [ rectButton "Next" (NavigateTo StimTimer)
                     ]
                 ]

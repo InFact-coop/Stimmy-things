@@ -61,7 +61,7 @@ const getAllLogs = db => {
   return db.logs.toArray();
 };
 
-const deleteStim = stimId => {
+const deleteStim = (db, stimId) => {
   return db.stims.delete(stimId);
 };
 
@@ -89,6 +89,7 @@ export default {
   createDB,
   getAllStims,
   addStim,
+  deleteStim,
   addLog,
   getAllLogs,
   getAllTheData

@@ -82,10 +82,22 @@ body {
   height: 85vh;
 }
 
+.mh-88 {
+  min-height: 88%;
+}
+
+.mvh-100 {
+  min-height: 100vh;
+}
+
 /* Custom Positions */
 
 .top-4 {
   top: 4rem;
+}
+
+.left-10 {
+  left: 10%;
 }
 
 /* Custom Colours */
@@ -205,6 +217,29 @@ body {
   }
 }
 
+@keyframes exitActionsAnimation {
+  0% {
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(3rem);
+    opacity: 0;
+    display: none;
+  }
+}
+@keyframes enterActionsAnimation {
+  0% {
+    display: flex;
+    transform: translateX(3rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+}
+
 .exitNav {
   animation-name: exitNavAnimation;
   animation-duration: 0.2s;
@@ -220,6 +255,23 @@ body {
   animation-iteration-count: 1;
   animation-timing-function: ease-out;
   transform: translateX(0rem);
+  opacity: 1;
+}
+
+.exitActions {
+  animation-name: exitActionsAnimation;
+  animation-duration: 0.2s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  opacity: 0;
+  transform: translateX(3rem);
+}
+
+.enterActions {
+  animation-name: enterActionsAnimation;
+  animation-duration: 0.25s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
   opacity: 1;
 }
 
@@ -368,6 +420,10 @@ body {
 
 .h-fit-content {
   height: fit-content;
+}
+
+.w2d5 {
+  width: 3rem;
 }
 
 .fill-screen {

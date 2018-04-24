@@ -22,6 +22,9 @@ port videoCarousel : () -> Cmd msg
 port retrieveChosenAvatar : () -> Cmd msg
 
 
+port deleteStim : String -> Cmd msg
+
+
 port receiveChosenAvatar : (String -> msg) -> Sub msg
 
 
@@ -59,6 +62,9 @@ port receiveUpdatedStims : (Json.Decode.Value -> msg) -> Sub msg
 
 
 port receiveUserSaveSuccess : (Bool -> msg) -> Sub msg
+
+
+port receiveDeleteStimSuccess : (Bool -> msg) -> Sub msg
 
 
 port receiveInitialData : (Json.Decode.Value -> msg) -> Sub msg
@@ -99,6 +105,7 @@ subscriptions model =
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
         , receiveChosenAvatar ReceiveChosenAvatar
         , receiveUserSaveSuccess ReceiveUserSaveSuccess
+        , receiveDeleteStimSuccess ReceiveDeleteStimSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
         , receiveFirebaseStims (decodeFirebaseData >> ReceiveFirebaseStims)

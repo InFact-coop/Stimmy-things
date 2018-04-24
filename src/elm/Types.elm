@@ -102,6 +102,7 @@ type alias Stim =
     , videoSrc : Maybe String
     , shared : Bool
     , userId : String
+    , actionsDisplaying : Bool
     }
 
 
@@ -300,3 +301,7 @@ type Msg
     | KeyDownFromName Int
     | ChangeSkinColour
     | ReceiveLastOnboarding Bool
+    | ToggleActionButtons Stim
+    | NavigateToShareModal Stim
+    | DeleteStim Stim
+    | ReceiveDeleteStimSuccess Bool

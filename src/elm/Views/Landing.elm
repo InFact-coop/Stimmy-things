@@ -12,14 +12,14 @@ import Types exposing (..)
 
 landing : Model -> Html Msg
 landing model =
-    div [ class "flex flex-column items-center", horizontalTransition model ]
+    div [ class "flex flex-column items-center" ]
         [ header [ classes [ "flex relative justify-center items-center ph3 pv4 vw-100" ] ]
             [ button
                 [ classes [ "button absolute left-0 ml3 bn h2 w2 bg-inherit" ]
                 , backgroundImageStyle
                     (ifThenElse (model.showNav == Yes)
                         "./assets/Landing/arrow-left-not-animated.svg"
-                        "./assets/Landing/menu-not-animated.svg"
+                        "./assets/Landing/menu.svg"
                     )
                     100
                 , onClick ToggleNav
@@ -163,14 +163,22 @@ stimToButton : Model -> HotspotCoords -> Stim -> Html Msg
 stimToButton model hotspot stim =
     button
         [ classes
-            [ "relative translucent mb1px w-80 link black  pointer bn"
+            [ "relative translucent mb1px w-80 link black h3 pointer bn flex items-center justify-between"
             , bodyFont
             , ifThenElse (model.stimMenuShowing == Just hotspot.name) "z-3" "z-0 tc dn"
             ]
-        , style [ ( "height", toString (hotspot.height + 32) ++ "px" ) ]
-        , onClick (GoToStim stim)
         ]
-        [ text stim.stimName ]
+        [ div [ class "dib h3 flex items-center justify-center w-100", onClick <| ifThenElse stim.actionsDisplaying ToggleActionButtons GoToStim <| stim ]
+            [ text stim.stimName
+            ]
+        , div [ class "silver f7 mh2 h3 flex items-center", onClick <| ToggleActionButtons stim ] [ text "..." ]
+        , div [ classes [ "h3 absolute right-0 top-0", ifThenElse stim.actionsDisplaying "flex enterActions" "exitActions dn" ] ]
+            [ div
+                [ class "w2d5 h3 bg-light-green o-90 dib", backgroundImageStyle "/assets/Landing/menu-hotspots/upload_stim_icon_green.svg" 50, onClick <| NavigateToShareModal stim ]
+                []
+            , div [ class "w2d5 h3 bg-green o-90 dib", backgroundImageStyle "/assets/Landing/menu-hotspots/stim_delete_btn.svg" 50, onClick <| DeleteStim stim ] []
+            ]
+        ]
 
 
 extractStims : BodyPart -> List Stim -> List Stim

@@ -4,7 +4,7 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim, updateStimInModel)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim, updateStimInModel, deleteStimFromModel, toggleActionButtons, closeActionButtons)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -62,6 +62,7 @@ update msg model =
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
                 , lastOnboarding = False
+                , hotspots = ifThenElse (view == CreateAvatar) defaultHotspots model.hotspots
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -88,7 +89,7 @@ update msg model =
             { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim } ! []
+            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim, stims = closeActionButtons model.stims } ! []
 
         NoOp ->
             model ! []
@@ -103,7 +104,7 @@ update msg model =
                 interval =
                     stringToFloat time
             in
-            { model | timeSelected = interval, counter = interval } ! []
+                { model | timeSelected = interval, counter = interval } ! []
 
         SetTimeFromText time ->
             let
@@ -115,7 +116,7 @@ update msg model =
                     else
                         stringToFloat time
             in
-            { model | timeSelected = interval * 60, counter = interval * 60 } ! []
+                { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 
         Tick _ ->
             trackCounter model ! []
@@ -216,9 +217,9 @@ update msg model =
                 newModel =
                     { model | newStim = addVideoSrc src model.newStim }
             in
-            newModel
-                ! []
-                :> update (SaveStim <| newModel.newStim)
+                newModel
+                    ! []
+                    :> update (SaveStim <| newModel.newStim)
 
         RetrieveChosenVideo ->
             model ! [ retrieveChosenVideo () ]
@@ -229,7 +230,7 @@ update msg model =
                 , newLog = updateStimId stim.stimId model.newLog
             }
                 ! []
-                :> update (NavigateTo StimPreparation)
+                :> update (NavigateTo StimInfo)
 
         AddAvatarName name ->
             { model | avatarName = sanitiseAvatarName name }
@@ -281,3 +282,17 @@ update msg model =
 
         ReceiveLastOnboarding bool ->
             { model | lastOnboarding = bool } ! []
+
+        NavigateToShareModal stim ->
+            { model | selectedStim = stim }
+                ! []
+                :> update (NavigateTo ShareModal)
+
+        ToggleActionButtons stim ->
+            { model | stims = toggleActionButtons stim model.stims } ! []
+
+        DeleteStim stim ->
+            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId ]
+
+        ReceiveDeleteStimSuccess bool ->
+            model ! []
