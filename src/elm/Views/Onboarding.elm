@@ -28,7 +28,7 @@ onboarding model =
                 [ img [ class "mv3", src "./assets/Onboarding/zigzag_green_onboarding.svg" ]
                     []
                 , div []
-                    [ img [ class "mb3 w6", src "./assets/Onboarding/onboarding_2.svg" ] []
+                    [ img [ class "mb3 w6", src "./assets/Onboarding/onboarding_3.svg" ] []
                     , div
                         [ class "tc" ]
                         [ p [ classes [ headerFont, "green mb1" ] ] [ text "stim" ]

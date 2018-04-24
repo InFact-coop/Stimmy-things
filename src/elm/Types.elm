@@ -10,9 +10,7 @@ type View
     | NameAvatar
     | Landing
     | Emergency
-    | OnboardingFirst
     | Onboarding
-    | OnboardingSecond
     | StimInfo
     | StimPreparation
     | StimTimer
@@ -22,7 +20,6 @@ type View
     | Splash
     | ShareModal
     | Blog
-    | Definition
 
 
 type Trilean

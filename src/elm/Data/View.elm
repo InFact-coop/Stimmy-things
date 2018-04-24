@@ -11,13 +11,10 @@ import Views.About exposing (..)
 import Views.AddStim exposing (..)
 import Views.Blog exposing (..)
 import Views.CreateAvatar exposing (..)
-import Views.Definition exposing (definition)
 import Views.Emergency exposing (..)
 import Views.Landing exposing (..)
 import Views.NameAvatar exposing (..)
-import Views.Onboarding1 exposing (..)
 import Views.Onboarding exposing (..)
-import Views.Onboarding2 exposing (..)
 import Views.ShareModal exposing (..)
 import Views.Splash exposing (..)
 import Views.StimInfo exposing (..)
@@ -62,23 +59,14 @@ getCurrentView model =
         Blog ->
             blog model
 
-        OnboardingFirst ->
-            onboarding1 model
-
         Onboarding ->
             onboarding model
-
-        OnboardingSecond ->
-            onboarding2 model
 
         Emergency ->
             emergency model
 
         Splash ->
             splash model
-
-        Definition ->
-            definition model
 
 
 viewToCmds : View -> Model -> List (Cmd Msg)
