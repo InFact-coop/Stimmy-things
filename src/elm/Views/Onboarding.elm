@@ -40,18 +40,19 @@ onboarding model =
                     , p [ classes [ smallFont, "tc" ] ] [ text "2. an action done with a specific body part that helps you stay alert, on task, and focused" ]
                     ]
                 ]
-            , div [ class "pa4 bg-green flex justify-between w-100 bottom-0 absolute fixed" ]
-                [ p [ classes [ headerFont, "white", "onboarding--back" ] ] [ text "Back" ]
-                , div [ classes [ ifThenElse model.lastOnboarding "dn" "" ] ]
-                    [ p
-                        [ classes [ headerFont, "white", "onboarding--next" ] ]
-                        [ text <| "Next" ]
-                    ]
-                , div [ classes [ ifThenElse model.lastOnboarding "" "dn" ] ]
-                    [ p
-                        [ classes [ headerFont, "white" ], onClick <| NavigateTo CreateAvatar ]
-                        [ text <| "Finish" ]
-                    ]
+            ]
+        , div
+            [ class "pa4 bg-green flex justify-between w-100 bottom-0 absolute fixed" ]
+            [ p [ classes [ headerFont, "white", "onboarding--back" ] ] [ text "Back" ]
+            , div [ classes [ ifThenElse model.lastOnboarding "dn" "" ] ]
+                [ p
+                    [ classes [ headerFont, "white", "onboarding--next" ] ]
+                    [ text <| "Next" ]
+                ]
+            , div [ classes [ ifThenElse model.lastOnboarding "" "dn" ] ]
+                [ p
+                    [ classes [ headerFont, "white" ], onClick <| NavigateTo CreateAvatar ]
+                    [ text <| "Finish" ]
                 ]
             ]
         ]
