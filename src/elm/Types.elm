@@ -1,7 +1,6 @@
 module Types exposing (..)
 
 import Http exposing (..)
-import Ports exposing (receiveLastOnboarding)
 import Time exposing (..)
 import Transit
 
