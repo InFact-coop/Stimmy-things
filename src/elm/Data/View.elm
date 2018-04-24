@@ -16,6 +16,7 @@ import Views.Emergency exposing (..)
 import Views.Landing exposing (..)
 import Views.NameAvatar exposing (..)
 import Views.Onboarding1 exposing (..)
+import Views.Onboarding exposing (..)
 import Views.Onboarding2 exposing (..)
 import Views.ShareModal exposing (..)
 import Views.Splash exposing (..)
@@ -64,6 +65,9 @@ getCurrentView model =
         OnboardingFirst ->
             onboarding1 model
 
+        Onboarding ->
+            onboarding model
+
         OnboardingSecond ->
             onboarding2 model
 
@@ -103,6 +107,9 @@ viewToCmds view model =
 
         StimRecap ->
             [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
+
+        Onboarding ->
+            [ onboardingCarousel () ]
 
         _ ->
             []
@@ -146,7 +153,7 @@ navigateFromSplash : String -> Cmd Msg
 navigateFromSplash userId =
     Process.sleep (2 * Time.second)
         |> Task.perform
-            (\_ -> NavigateTo <| ifThenElse (userId == "") Definition Landing)
+            (\_ -> NavigateTo <| ifThenElse (userId == "") Onboarding Landing)
 
 
 toggleSkinColour : Model -> SkinColour

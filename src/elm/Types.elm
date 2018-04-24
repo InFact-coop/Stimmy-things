@@ -1,6 +1,7 @@
 module Types exposing (..)
 
 import Http exposing (..)
+import Ports exposing (receiveLastOnboarding)
 import Time exposing (..)
 import Transit
 
@@ -11,6 +12,7 @@ type View
     | Landing
     | Emergency
     | OnboardingFirst
+    | Onboarding
     | OnboardingSecond
     | StimInfo
     | StimPreparation
@@ -54,6 +56,7 @@ type alias Model =
         , selectedStim : Stim
         , blogStims : List FirebaseData
         , stimInfoDestination : View
+        , lastOnboarding : Bool
         }
 
 
@@ -296,3 +299,4 @@ type Msg
     | KeyDown String Int
     | KeyDownFromName Int
     | ChangeSkinColour
+    | ReceiveLastOnboarding Bool

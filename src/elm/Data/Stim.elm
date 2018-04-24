@@ -103,12 +103,12 @@ updateStimInModel model selectedStim =
             List.head <|
                 List.filter (\stim -> stim.stimId == selectedStim.stimId) model.stims
     in
-    case matchingStim of
-        Nothing ->
-            { model | selectedStim = toggleSharedStim selectedStim }
+        case matchingStim of
+            Nothing ->
+                { model | selectedStim = toggleSharedStim selectedStim }
 
-        Just a ->
-            { model | selectedStim = toggleSharedStim selectedStim, stims = toggleStimInStimList a model.stims }
+            Just a ->
+                { model | selectedStim = toggleSharedStim selectedStim, stims = toggleStimInStimList a model.stims }
 
 
 toggleStimInStimList : Stim -> List Stim -> List Stim

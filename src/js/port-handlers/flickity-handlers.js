@@ -1,6 +1,39 @@
 import app from '../elm-init';
 import Flickity from 'flickity';
 
+const onboardingCarousel = () => {
+  setTimeout(() => {
+    window.requestAnimationFrame(() => {
+      const carouselElement = document.querySelector('.onboardingCarousel');
+      const flkty = new Flickity(carouselElement, {
+        adaptiveHeight: true,
+        wrapAround: false,
+        draggable: true,
+        prevNextButtons: false,
+        cellSelector: '.onboarding-carocell',
+        imagesLoaded: true,
+        pageDots: true
+      });
+
+      flkty.on('settle', index => {
+        if (index === 2) {
+          setTimeout(() => {
+            app.ports.receiveLastOnboarding.send(true);
+          }, 100);
+        }
+      });
+      const previousButton = document.querySelector('.onboarding--back');
+      previousButton.addEventListener('click', () => {
+        flkty.previous();
+      });
+      const nextButton = document.querySelector('.onboarding--next');
+      nextButton.addEventListener('click', () => {
+        flkty.next();
+      });
+    });
+  }, 1500);
+};
+
 const initCarousel = () => {
   window.requestAnimationFrame(() => {
     const carouselElement = document.querySelector('.makecarousel');
@@ -42,6 +75,7 @@ const retrieveChosenVideo = () => {
 };
 
 export default {
+  onboardingCarousel,
   initCarousel,
   videoCarousel,
   retrieveChosenAvatar,

@@ -13,6 +13,9 @@ import Types exposing (..)
 port initCarousel : () -> Cmd msg
 
 
+port onboardingCarousel : () -> Cmd msg
+
+
 port videoCarousel : () -> Cmd msg
 
 
@@ -20,6 +23,9 @@ port retrieveChosenAvatar : () -> Cmd msg
 
 
 port receiveChosenAvatar : (String -> msg) -> Sub msg
+
+
+port receiveLastOnboarding : (Bool -> msg) -> Sub msg
 
 
 port retrieveChosenVideo : () -> Cmd msg
@@ -89,6 +95,7 @@ subscriptions model =
         [ receiveHotspotCoords (decodeHotspots >> ReceiveHotspotCoords)
         , timeSubscription model
         , receiveUpdatedLogs ReceiveUpdatedLogs
+        , receiveLastOnboarding ReceiveLastOnboarding
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
         , receiveChosenAvatar ReceiveChosenAvatar
         , receiveUserSaveSuccess ReceiveUserSaveSuccess

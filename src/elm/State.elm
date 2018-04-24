@@ -44,6 +44,7 @@ initModel =
     , transition = Transit.empty
     , blogStims = []
     , stimInfoDestination = StimPreparation
+    , lastOnboarding = False
     }
 
 
@@ -60,6 +61,7 @@ update msg model =
                 | view = view
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
+                , lastOnboarding = False
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -276,3 +278,6 @@ update msg model =
                 (model
                     ! []
                 )
+
+        ReceiveLastOnboarding bool ->
+            { model | lastOnboarding = bool } ! []

@@ -273,6 +273,21 @@ body {
   height: 75vh;
 }
 
+.onboardingCarousel {
+  -webkit-overflow-scrolling: touch;
+}
+
+.onboarding-carocell {
+  height: 87vh;
+  width: 100vw;
+}
+.flickity-page-dots {
+  bottom: 0;
+}
+
+.w6 {
+  width: 13rem;
+}
 .dot.is-selected {
   background: var(--green);
   transform: scale(1.1);
