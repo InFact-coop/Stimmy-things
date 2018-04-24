@@ -2,36 +2,36 @@ import app from '../elm-init';
 import Flickity from 'flickity';
 
 const onboardingCarousel = () => {
-  setTimeout(() => {
-    window.requestAnimationFrame(() => {
-      const carouselElement = document.querySelector('.onboardingCarousel');
-      const flkty = new Flickity(carouselElement, {
-        adaptiveHeight: true,
-        wrapAround: false,
-        draggable: true,
-        prevNextButtons: false,
-        cellSelector: '.onboarding-carocell',
-        imagesLoaded: true,
-        pageDots: true
-      });
-
-      flkty.on('settle', index => {
-        if (index === 2) {
-          setTimeout(() => {
+  window.requestAnimationFrame(() => {
+    const carouselElement = document.querySelector('.onboardingCarousel');
+    const flkty = new Flickity(carouselElement, {
+      adaptiveHeight: true,
+      wrapAround: false,
+      draggable: true,
+      prevNextButtons: false,
+      cellSelector: '.onboarding-carocell',
+      imagesLoaded: true,
+      pageDots: true,
+      on: {
+        change: index => {
+          if (index === 2) {
             app.ports.receiveLastOnboarding.send(true);
-          }, 100);
+          } else {
+            app.ports.receiveLastOnboarding.send(false);
+          }
         }
-      });
-      const previousButton = document.querySelector('.onboarding--back');
-      previousButton.addEventListener('click', () => {
-        flkty.previous();
-      });
-      const nextButton = document.querySelector('.onboarding--next');
-      nextButton.addEventListener('click', () => {
-        flkty.next();
-      });
+      }
     });
-  }, 1500);
+
+    const previousButton = document.querySelector('.onboarding--back');
+    previousButton.addEventListener('click', () => {
+      flkty.previous();
+    });
+    const nextButton = document.querySelector('.onboarding--next');
+    nextButton.addEventListener('click', () => {
+      flkty.next();
+    });
+  });
 };
 
 const initCarousel = () => {
