@@ -44,6 +44,7 @@ initModel =
     , transition = Transit.empty
     , blogStims = []
     , stimInfoDestination = StimPreparation
+    , lastOnboarding = False
     }
 
 
@@ -60,6 +61,7 @@ update msg model =
                 | view = view
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
+                , lastOnboarding = False
                 , hotspots = ifThenElse (view == CreateAvatar) defaultHotspots model.hotspots
             }
                 ! (scrollToTop :: viewToCmds view model)
@@ -277,6 +279,9 @@ update msg model =
                 (model
                     ! []
                 )
+
+        ReceiveLastOnboarding bool ->
+            { model | lastOnboarding = bool } ! []
 
         NavigateToShareModal stim ->
             { model | selectedStim = stim }

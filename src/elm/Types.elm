@@ -10,8 +10,7 @@ type View
     | NameAvatar
     | Landing
     | Emergency
-    | OnboardingFirst
-    | OnboardingSecond
+    | Onboarding
     | StimInfo
     | StimPreparation
     | StimTimer
@@ -22,7 +21,6 @@ type View
     | ShareModal
     | DeleteModal
     | Blog
-    | Definition
 
 
 type Trilean
@@ -55,6 +53,7 @@ type alias Model =
         , selectedStim : Stim
         , blogStims : List FirebaseData
         , stimInfoDestination : View
+        , lastOnboarding : Bool
         }
 
 
@@ -298,6 +297,7 @@ type Msg
     | KeyDown String Int
     | KeyDownFromName Int
     | ChangeSkinColour
+    | ReceiveLastOnboarding Bool
     | ToggleActionButtons Stim
     | NavigateToShareModal Stim
     | NavigateToDeleteModal Stim
