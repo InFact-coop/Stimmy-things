@@ -89,10 +89,10 @@ videoSection stim =
         [ viewIf (not stim.showVideo) <|
             div
                 [ backgroundImageStyle (Maybe.withDefault "" stim.thumbnail) 100
-                , class "videoArea"
+                , class "videoArea white flex justify-center"
                 , onClick <| ShowVideo stim
                 ]
-                []
+                [ span [ class "w-100 mt3 ml2" ] [ text "Click here to play" ] ]
         , viewIf (stim.showVideo) <|
             div []
                 [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ] []

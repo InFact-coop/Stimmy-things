@@ -97,7 +97,7 @@ update msg model =
             model ! []
 
         SaveStim stim ->
-            model
+            { model | videos = initModel.videos }
                 ! [ saveStim <| normaliseStim stim ]
                 :> update (NavigateTo Landing)
 
