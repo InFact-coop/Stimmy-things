@@ -283,11 +283,16 @@ update msg model =
                 ! []
                 :> update (NavigateTo ShareModal)
 
+        NavigateToDeleteModal stim ->
+            { model | selectedStim = stim }
+                ! []
+                :> update (NavigateTo DeleteModal)
+
         ToggleActionButtons stim ->
             { model | stims = toggleActionButtons stim model.stims } ! []
 
         DeleteStim stim ->
-            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId ]
+            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId, Delay.after 1000 millisecond (NavigateTo Landing) ]
 
         ReceiveDeleteStimSuccess bool ->
             model ! []
