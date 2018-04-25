@@ -176,7 +176,7 @@ stimToButton model hotspot stim =
             [ div
                 [ class "w2d5 h3 bg-light-green o-90 dib", backgroundImageStyle "/assets/Landing/menu-hotspots/upload_stim_icon_green.svg" 50, onClick <| NavigateToShareModal stim ]
                 []
-            , div [ class "w2d5 h3 bg-green o-90 dib", backgroundImageStyle "/assets/Landing/menu-hotspots/stim_delete_btn.svg" 50, onClick <| DeleteStim stim ] []
+            , div [ class "w2d5 h3 bg-green o-90 dib", backgroundImageStyle "/assets/Landing/menu-hotspots/stim_delete_btn.svg" 50, onClick <| NavigateToDeleteModal stim ] []
             ]
         ]
 

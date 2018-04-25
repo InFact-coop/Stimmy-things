@@ -19,6 +19,7 @@ type View
     | About
     | Splash
     | ShareModal
+    | DeleteModal
     | Blog
 
 
@@ -299,5 +300,6 @@ type Msg
     | ReceiveLastOnboarding Bool
     | ToggleActionButtons Stim
     | NavigateToShareModal Stim
+    | NavigateToDeleteModal Stim
     | DeleteStim Stim
     | ReceiveDeleteStimSuccess Bool

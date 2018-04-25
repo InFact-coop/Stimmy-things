@@ -16,6 +16,7 @@ import Views.Landing exposing (..)
 import Views.NameAvatar exposing (..)
 import Views.Onboarding exposing (..)
 import Views.ShareModal exposing (..)
+import Views.DeleteModal exposing (..)
 import Views.Splash exposing (..)
 import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
@@ -55,6 +56,9 @@ getCurrentView model =
 
         ShareModal ->
             shareModal model
+
+        DeleteModal ->
+            deleteModal model
 
         Blog ->
             blog model
