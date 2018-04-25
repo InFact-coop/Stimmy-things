@@ -10,7 +10,6 @@ import defaultStims from '../json/defaultStims.json';
 app.ports.initCarousel.subscribe(flickity.initCarousel);
 app.ports.onboardingCarousel.subscribe(flickity.onboardingCarousel);
 app.ports.videoCarousel.subscribe(flickity.videoCarousel);
-app.ports.retrieveChosenAvatar.subscribe(flickity.retrieveChosenAvatar);
 app.ports.retrieveChosenVideo.subscribe(flickity.retrieveChosenVideo);
 
 app.ports.initHotspots.subscribe(hotspots.initHotspots);

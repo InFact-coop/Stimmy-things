@@ -44,7 +44,20 @@ const initCarousel = () => {
       prevNextButtons: false,
       cellSelector: '.carousel-cell',
       imagesLoaded: true,
-      pageDots: true
+      pageDots: true,
+      on: {
+        change: () => {
+          const selectedAvatar = document.querySelector('.is-selected')
+            .firstChild;
+
+          const src = selectedAvatar.data;
+          const skinColour = selectedAvatar.contentDocument
+            .getElementById('body_change_colour')
+            .getAttribute('fill');
+
+          app.ports.updateAvatar.send({ src, skinColour });
+        }
+      }
     });
   });
 };
@@ -62,11 +75,6 @@ const videoCarousel = () => {
   });
 };
 
-const retrieveChosenAvatar = () => {
-  const chosenElement = document.querySelector('.is-selected');
-  app.ports.receiveChosenAvatar.send(chosenElement.firstChild.data);
-};
-
 const retrieveChosenVideo = () => {
   const chosenElement = document.querySelector('.is-selected');
   let embedSrc = chosenElement.href.replace('watch?v=', 'embed/');
@@ -78,6 +86,5 @@ export default {
   onboardingCarousel,
   initCarousel,
   videoCarousel,
-  retrieveChosenAvatar,
   retrieveChosenVideo
 };

@@ -4,7 +4,8 @@ import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, defaultStim, generateRandomStim, normaliseStim, toggleSharedStim, updateStimInModel, deleteStimFromModel, toggleActionButtons, closeActionButtons)
+import Data.SkinColour exposing (hexValueToSkinColour, skinColourToHexValue, toggleSkinColour)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, normaliseStim, toggleActionButtons, toggleSharedStim, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -25,7 +26,7 @@ initModel =
     , userId = ""
     , avatar = Avatar2
     , avatarName = ""
-    , skinColour = SkinColour8
+    , skinColour = SkinColour7
     , stims = []
     , logs = []
     , newStim = defaultStim
@@ -62,7 +63,8 @@ update msg model =
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
                 , lastOnboarding = False
-                , hotspots = ifThenElse (view == CreateAvatar) defaultHotspots model.hotspots
+                , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
+                , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -153,9 +155,6 @@ update msg model =
                 :> update (AdjustTimer Stop)
                 :> update (NavigateTo view)
 
-        SelectAvatar ->
-            model ! [ retrieveChosenAvatar () ]
-
         SaveLog ->
             { model
                 | newLog = defaultLog
@@ -206,11 +205,6 @@ update msg model =
 
         ReceiveFirebaseStims (Err err) ->
             model ! []
-
-        ReceiveChosenAvatar src ->
-            { model | avatar = avatarSrcToAvatar src }
-                ! []
-                :> update (NavigateTo NameAvatar)
 
         ReceiveChosenVideo src ->
             let
@@ -301,3 +295,10 @@ update msg model =
 
         ReceiveDeleteStimSuccess bool ->
             model ! []
+
+        UpdateAvatar { src, skinColour } ->
+            { model
+                | skinColour = hexValueToSkinColour skinColour
+                , avatar = avatarSrcToAvatar src
+            }
+                ! []

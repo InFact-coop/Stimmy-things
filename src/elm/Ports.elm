@@ -19,13 +19,10 @@ port onboardingCarousel : () -> Cmd msg
 port videoCarousel : () -> Cmd msg
 
 
-port retrieveChosenAvatar : () -> Cmd msg
-
-
 port deleteStim : String -> Cmd msg
 
 
-port receiveChosenAvatar : (String -> msg) -> Sub msg
+port updateAvatar : ({ src : String, skinColour : String } -> msg) -> Sub msg
 
 
 port receiveLastOnboarding : (Bool -> msg) -> Sub msg
@@ -103,7 +100,7 @@ subscriptions model =
         , receiveUpdatedLogs ReceiveUpdatedLogs
         , receiveLastOnboarding ReceiveLastOnboarding
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
-        , receiveChosenAvatar ReceiveChosenAvatar
+        , updateAvatar UpdateAvatar
         , receiveUserSaveSuccess ReceiveUserSaveSuccess
         , receiveDeleteStimSuccess ReceiveDeleteStimSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)

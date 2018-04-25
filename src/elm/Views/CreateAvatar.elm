@@ -21,7 +21,7 @@ createAvatar model =
             , button
                 [ classes [ "bg-transparent bn h3 w3 outline-0" ]
                 , backgroundImageStyle "./assets/CreateAvatar/done_green_small.svg" 100
-                , onClick SelectAvatar
+                , onClick <| NavigateTo NameAvatar
                 ]
                 []
             ]

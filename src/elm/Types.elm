@@ -275,7 +275,6 @@ type Msg
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ReceiveStimList (Result String (List Stim))
-    | ReceiveChosenAvatar String
     | ReceiveChosenVideo String
     | RetrieveChosenVideo
     | ToggleStimMenu BodyPart
@@ -287,7 +286,6 @@ type Msg
     | AddExerciseName String
     | AddHowTo String
     | AddVideoSrc String
-    | SelectAvatar
     | AddAvatarName String
     | AddStimWithoutBodyPart
     | ReceiveFirebaseStims (Result String (List FirebaseData))
@@ -303,3 +301,4 @@ type Msg
     | NavigateToDeleteModal Stim
     | DeleteStim Stim
     | ReceiveDeleteStimSuccess Bool
+    | UpdateAvatar { src : String, skinColour : String }

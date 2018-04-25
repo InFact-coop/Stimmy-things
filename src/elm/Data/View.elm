@@ -1,5 +1,6 @@
 module Data.View exposing (..)
 
+import Data.SkinColour exposing (skinColourToHexValue)
 import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Ports exposing (..)
@@ -149,95 +150,3 @@ navigateFromSplash userId =
     Process.sleep (2 * Time.second)
         |> Task.perform
             (\_ -> NavigateTo <| ifThenElse (userId == "") Onboarding Landing)
-
-
-toggleSkinColour : Model -> SkinColour
-toggleSkinColour model =
-    case model.skinColour of
-        SkinColour1 ->
-            SkinColour2
-
-        SkinColour2 ->
-            SkinColour3
-
-        SkinColour3 ->
-            SkinColour4
-
-        SkinColour4 ->
-            SkinColour5
-
-        SkinColour5 ->
-            SkinColour6
-
-        SkinColour6 ->
-            SkinColour7
-
-        SkinColour7 ->
-            SkinColour8
-
-        SkinColour8 ->
-            SkinColour9
-
-        SkinColour9 ->
-            SkinColour10
-
-        SkinColour10 ->
-            SkinColour11
-
-        SkinColour11 ->
-            SkinColour12
-
-        SkinColour12 ->
-            SkinColour13
-
-        SkinColour13 ->
-            SkinColour14
-
-        SkinColour14 ->
-            SkinColour1
-
-
-skinColourToHexValue : SkinColour -> String
-skinColourToHexValue skinColour =
-    case skinColour of
-        SkinColour1 ->
-            "#D99877"
-
-        SkinColour2 ->
-            "#885B3E"
-
-        SkinColour3 ->
-            "#BC8D80"
-
-        SkinColour4 ->
-            "#FFEAC2"
-
-        SkinColour5 ->
-            "#EDB597"
-
-        SkinColour6 ->
-            "#EFDD93"
-
-        SkinColour7 ->
-            "#E8E8E8"
-
-        SkinColour8 ->
-            "#30A1D2"
-
-        SkinColour9 ->
-            "#B1D159"
-
-        SkinColour10 ->
-            "#25587C"
-
-        SkinColour11 ->
-            "#039645"
-
-        SkinColour12 ->
-            "#C79EC7"
-
-        SkinColour13 ->
-            "#FFC908"
-
-        SkinColour14 ->
-            "#FDA1A2"
