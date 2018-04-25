@@ -14,12 +14,15 @@ const initCarousel = () => {
       pageDots: true,
       on: {
         change: () => {
-          const avatarSkinColour = document
-            .querySelector('.is-selected')
-            .firstChild.contentDocument.getElementById('body_change_colour')
+          const selectedAvatar = document.querySelector('.is-selected')
+            .firstChild;
+
+          const src = selectedAvatar.data;
+          const skinColour = selectedAvatar.contentDocument
+            .getElementById('body_change_colour')
             .getAttribute('fill');
 
-          app.ports.updateSkinColour.send(avatarSkinColour);
+          app.ports.updateAvatar.send({ src, skinColour });
         }
       }
     });
@@ -39,11 +42,6 @@ const videoCarousel = () => {
   });
 };
 
-const retrieveChosenAvatar = () => {
-  const chosenElement = document.querySelector('.is-selected');
-  app.ports.receiveChosenAvatar.send(chosenElement.firstChild.data);
-};
-
 const retrieveChosenVideo = () => {
   const chosenElement = document.querySelector('.is-selected');
   let embedSrc = chosenElement.href.replace('watch?v=', 'embed/');
@@ -54,6 +52,5 @@ const retrieveChosenVideo = () => {
 export default {
   initCarousel,
   videoCarousel,
-  retrieveChosenAvatar,
   retrieveChosenVideo
 };

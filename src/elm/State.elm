@@ -61,7 +61,8 @@ update msg model =
                 | view = view
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
-                , hotspots = ifThenElse (view == CreateAvatar) defaultHotspots model.hotspots
+                , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
+                , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -152,9 +153,6 @@ update msg model =
                 :> update (AdjustTimer Stop)
                 :> update (NavigateTo view)
 
-        SelectAvatar ->
-            model ! [ retrieveChosenAvatar () ]
-
         SaveLog ->
             { model
                 | newLog = defaultLog
@@ -205,11 +203,6 @@ update msg model =
 
         ReceiveFirebaseStims (Err err) ->
             model ! []
-
-        ReceiveChosenAvatar src ->
-            { model | avatar = avatarSrcToAvatar src }
-                ! []
-                :> update (NavigateTo NameAvatar)
 
         ReceiveChosenVideo src ->
             let
@@ -293,5 +286,9 @@ update msg model =
         ReceiveDeleteStimSuccess bool ->
             model ! []
 
-        UpdateSkinColour colour ->
-            { model | skinColour = hexValueToSkinColour colour } ! []
+        UpdateAvatar { src, skinColour } ->
+            { model
+                | skinColour = hexValueToSkinColour skinColour
+                , avatar = avatarSrcToAvatar src
+            }
+                ! []

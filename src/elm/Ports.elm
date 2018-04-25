@@ -16,13 +16,10 @@ port initCarousel : () -> Cmd msg
 port videoCarousel : () -> Cmd msg
 
 
-port retrieveChosenAvatar : () -> Cmd msg
-
-
 port deleteStim : String -> Cmd msg
 
 
-port receiveChosenAvatar : (String -> msg) -> Sub msg
+port updateAvatar : ({ src : String, skinColour : String } -> msg) -> Sub msg
 
 
 port retrieveChosenVideo : () -> Cmd msg
@@ -76,9 +73,6 @@ port shareStim : ( Json.Encode.Value, Json.Encode.Value ) -> Cmd msg
 port changeSkinColour : ( String, String ) -> Cmd msg
 
 
-port updateSkinColour : (String -> msg) -> Sub msg
-
-
 timeSubscription : Model -> Sub Msg
 timeSubscription model =
     case model.timerStatus of
@@ -99,12 +93,11 @@ subscriptions model =
         , timeSubscription model
         , receiveUpdatedLogs ReceiveUpdatedLogs
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
-        , receiveChosenAvatar ReceiveChosenAvatar
+        , updateAvatar UpdateAvatar
         , receiveUserSaveSuccess ReceiveUserSaveSuccess
         , receiveDeleteStimSuccess ReceiveDeleteStimSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
         , receiveFirebaseStims (decodeFirebaseData >> ReceiveFirebaseStims)
         , receiveChosenVideo ReceiveChosenVideo
-        , updateSkinColour UpdateSkinColour
         ]
