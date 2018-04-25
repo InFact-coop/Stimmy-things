@@ -2,7 +2,7 @@ port module Ports exposing (..)
 
 import Data.Database exposing (decodeInitialData)
 import Data.Hotspots exposing (decodeHotspots)
-import Data.Stim exposing (decodeFirebaseData, decodeStimList)
+import Data.Stim exposing (decodeStimWithUser, decodeStimList)
 import Json.Decode exposing (..)
 import Json.Encode exposing (..)
 import Time exposing (Time)
@@ -28,10 +28,7 @@ port updateAvatar : ({ src : String, skinColour : String } -> msg) -> Sub msg
 port receiveLastOnboarding : (Bool -> msg) -> Sub msg
 
 
-port retrieveChosenVideo : () -> Cmd msg
-
-
-port receiveChosenVideo : (String -> msg) -> Sub msg
+port updateNewStimVideo : (String -> msg) -> Sub msg
 
 
 port saveLog : DBLog -> Cmd msg
@@ -105,6 +102,6 @@ subscriptions model =
         , receiveDeleteStimSuccess ReceiveDeleteStimSuccess
         , receiveInitialData (decodeInitialData >> ReceiveInitialData)
         , Transit.subscriptions TransitMsg model
-        , receiveFirebaseStims (decodeFirebaseData >> ReceiveFirebaseStims)
-        , receiveChosenVideo ReceiveChosenVideo
+        , receiveFirebaseStims (decodeStimWithUser >> ReceiveFirebaseStims)
+        , updateNewStimVideo UpdateNewStimVideo
         ]

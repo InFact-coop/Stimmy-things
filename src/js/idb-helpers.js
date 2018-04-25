@@ -25,7 +25,16 @@ const getUser = db => {
 
 const addStim = (
   db,
-  { stimId, stimName, bodyPart, instructions, videoSrc, userId, shared }
+  {
+    stimId,
+    stimName,
+    bodyPart,
+    instructions,
+    videoSrc,
+    userId,
+    shared,
+    thumbnail
+  }
 ) => {
   return db.stims.put({
     stimId,
@@ -34,7 +43,8 @@ const addStim = (
     instructions,
     videoSrc,
     userId,
-    shared
+    shared,
+    thumbnail
   });
 };
 

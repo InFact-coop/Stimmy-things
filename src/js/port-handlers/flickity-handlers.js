@@ -63,6 +63,16 @@ const initCarousel = () => {
 };
 
 const videoCarousel = () => {
+  const updateNewStimVideo = () => {
+    const chosenElement = document.querySelector('.is-selected');
+    let videoId = chosenElement.href.replace(
+      'https://www.youtube.com/watch?v=',
+      ''
+    );
+    if (!videoId) videoId = '';
+    app.ports.updateNewStimVideo.send(videoId);
+  };
+
   window.requestAnimationFrame(() => {
     const carouselElement = document.querySelector('.youtubeCarousel');
     const flkty = new Flickity(carouselElement, {
@@ -70,21 +80,17 @@ const videoCarousel = () => {
       adaptiveHeight: false,
       wrapAround: true,
       prevNextButtons: false,
-      pageDots: false
+      pageDots: false,
+      on: {
+        change: updateNewStimVideo,
+        ready: updateNewStimVideo
+      }
     });
   });
-};
-
-const retrieveChosenVideo = () => {
-  const chosenElement = document.querySelector('.is-selected');
-  let embedSrc = chosenElement.href.replace('watch?v=', 'embed/');
-  if (!embedSrc) embedSrc = '';
-  app.ports.receiveChosenVideo.send(embedSrc);
 };
 
 export default {
   onboardingCarousel,
   initCarousel,
-  videoCarousel,
-  retrieveChosenVideo
+  videoCarousel
 };

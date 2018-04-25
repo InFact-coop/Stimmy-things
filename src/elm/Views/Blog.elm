@@ -1,7 +1,7 @@
 module Views.Blog exposing (..)
 
 import Data.Avatar exposing (avatarHeadSelection)
-import Helpers.Style exposing (backgroundImageCover, backgroundImageNoPosition, bodyFont, classes, headerFont, horizontalTransition)
+import Helpers.Style exposing (backgroundImageCover, backgroundImageNoPosition, backgroundImageStyle, bodyFont, classes, headerFont, horizontalTransition)
 import Helpers.Utils exposing (ifThenElse, viewIf)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -30,13 +30,13 @@ blog model =
                 [ text "Blog" ]
             ]
         , div []
-            [ div [] (renderBlogStims model)
+            [ div [] (renderStimWithUsers model)
             ]
         ]
 
 
-renderBlogStims : Model -> List (Html Msg)
-renderBlogStims model =
+renderStimWithUsers : Model -> List (Html Msg)
+renderStimWithUsers model =
     List.map
         (\firebaseStim ->
             div [ class "flex flex-column mh3" ]
@@ -64,16 +64,16 @@ renderBlogStims model =
                     ]
                 ]
         )
-        (List.reverse model.blogStims)
+        (List.reverse model.stimsWithUser)
 
 
 alreadyExistsInIndexedDB : Stim -> Model -> Bool
-alreadyExistsInIndexedDB blogStim model =
+alreadyExistsInIndexedDB stimWithUser model =
     let
         stimIdList =
             List.map (\stim -> stim.stimId) model.stims
     in
-        List.member blogStim.stimId stimIdList
+        List.member stimWithUser.stimId stimIdList
 
 
 addOrDoStim : Bool -> Stim -> Html Msg
@@ -86,7 +86,15 @@ videoSection stim =
     div
         [ class "flex flex-column items-center fit-content mb3"
         ]
-        [ div []
-            [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ] []
-            ]
+        [ viewIf (not stim.showVideo) <|
+            div
+                [ backgroundImageStyle (Maybe.withDefault "" stim.thumbnail) 100
+                , class "videoArea"
+                , onClick <| ShowVideo stim
+                ]
+                []
+        , viewIf (stim.showVideo) <|
+            div []
+                [ iframe [ width 250, height 140, src <| Maybe.withDefault "" stim.videoSrc ] []
+                ]
         ]

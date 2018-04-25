@@ -76,7 +76,7 @@ addStim model =
                 , div
                     [ backgroundImageCover "./assets/AddStim/zigzag_add_stim_save.svg"
                     , class "flex flex-column h-fit-content"
-                    , onClick (ifThenElse (model.vidSearchString /= "") RetrieveChosenVideo (SaveStim model.newStim))
+                    , onClick <| SaveStim model.newStim
                     ]
                     [ img [ class "mt5", src "./assets/AddStim/done_green_medium.svg" ] []
                     , p [ type_ "submit", class "mt2 mb3 flex justify-center" ] [ text "SAVE" ]

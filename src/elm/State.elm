@@ -5,7 +5,7 @@ import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.SkinColour exposing (hexValueToSkinColour, skinColourToHexValue, toggleSkinColour)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, normaliseStim, toggleActionButtons, toggleSharedStim, updateStimInModel)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addNewStimVideo, addVideoSrc, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, normaliseStim, toggleActionButtons, toggleSharedStim, toggleStimVideo, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -24,7 +24,7 @@ initModel : Model
 initModel =
     { view = Splash
     , userId = ""
-    , avatar = Avatar2
+    , avatar = Avatar1
     , avatarName = ""
     , skinColour = SkinColour7
     , stims = []
@@ -43,7 +43,7 @@ initModel =
     , hotspots = defaultHotspots
     , selectedStim = defaultStim
     , transition = Transit.empty
-    , blogStims = []
+    , stimsWithUser = []
     , stimInfoDestination = StimPreparation
     , lastOnboarding = False
     }
@@ -201,22 +201,18 @@ update msg model =
             model ! []
 
         ReceiveFirebaseStims (Ok listStims) ->
-            { model | blogStims = listStims } ! []
+            { model | stimsWithUser = listStims } ! []
 
         ReceiveFirebaseStims (Err err) ->
             model ! []
 
-        ReceiveChosenVideo src ->
+        UpdateNewStimVideo videoId ->
             let
                 newModel =
-                    { model | newStim = addVideoSrc src model.newStim }
+                    { model | newStim = addNewStimVideo videoId model }
             in
                 newModel
                     ! []
-                    :> update (SaveStim <| newModel.newStim)
-
-        RetrieveChosenVideo ->
-            model ! [ retrieveChosenVideo () ]
 
         GoToStim stim ->
             { model
@@ -302,3 +298,6 @@ update msg model =
                 , avatar = avatarSrcToAvatar src
             }
                 ! []
+
+        ShowVideo stim ->
+            { model | stimsWithUser = toggleStimVideo stim model.stimsWithUser } ! []

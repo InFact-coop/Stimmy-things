@@ -13,7 +13,17 @@ import Types exposing (..)
 
 defaultStim : Stim
 defaultStim =
-    Stim "" NoBodyPart "" "" Nothing False "" False
+    { stimId = ""
+    , bodyPart = NoBodyPart
+    , stimName = ""
+    , instructions = ""
+    , videoSrc = Nothing
+    , shared = False
+    , userId = ""
+    , actionsDisplaying = False
+    , thumbnail = Nothing
+    , showVideo = False
+    }
 
 
 decodeStim : Decoder Stim
@@ -27,6 +37,8 @@ decodeStim =
         |> required "shared" bool
         |> required "userId" string
         |> hardcoded False
+        |> required "thumbnail" (Json.Decode.map stringToMaybe string)
+        |> hardcoded False
 
 
 decodeStimList : Value -> Result String (List Stim)
@@ -34,15 +46,15 @@ decodeStimList =
     decodeValue (list decodeStim)
 
 
-firebaseDecoder : Decoder FirebaseData
+firebaseDecoder : Decoder StimWithUser
 firebaseDecoder =
-    decode FirebaseData
+    decode StimWithUser
         |> required "stim" decodeStim
         |> optional "user" decodeUser defaultUser
 
 
-decodeFirebaseData : Value -> Result String (List FirebaseData)
-decodeFirebaseData =
+decodeStimWithUser : Value -> Result String (List StimWithUser)
+decodeStimWithUser =
     decodeValue (list firebaseDecoder)
 
 
@@ -81,6 +93,7 @@ normaliseStim stim =
         , ( "videoSrc", Encode.string <| Maybe.withDefault "" stim.videoSrc )
         , ( "userId", Encode.string stim.userId )
         , ( "shared", Encode.bool stim.shared )
+        , ( "thumbnail", Encode.string <| Maybe.withDefault "" stim.thumbnail )
         ]
 
 
@@ -139,3 +152,39 @@ toggleActionButtons stim listStim =
 deleteStimFromModel : Stim -> List Stim -> List Stim
 deleteStimFromModel stim listStim =
     List.filter (\n -> n /= stim) listStim
+
+
+addNewStimVideo : String -> Model -> Stim
+addNewStimVideo videoId model =
+    let
+        currentVideo =
+            List.filter (\video -> video.id == videoId) model.videos |> List.head
+
+        newStim =
+            model.newStim
+    in
+        case currentVideo of
+            Just video ->
+                { newStim
+                    | videoSrc = Just <| "https://www.youtube.com/embed/" ++ video.id
+                    , thumbnail = Just video.thumbnail
+                }
+
+            Nothing ->
+                newStim
+
+
+toggleStimVideo : Stim -> List StimWithUser -> List StimWithUser
+toggleStimVideo stim stimsWithUser =
+    List.map
+        (\stimWithUser ->
+            ifThenElse (stim == stimWithUser.stim)
+                { stimWithUser | stim = toggleShowVideo stimWithUser.stim }
+                stimWithUser
+        )
+        stimsWithUser
+
+
+toggleShowVideo : Stim -> Stim
+toggleShowVideo stim =
+    { stim | showVideo = not stim.showVideo }
