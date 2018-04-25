@@ -45,6 +45,7 @@ initModel =
     , transition = Transit.empty
     , blogStims = []
     , stimInfoDestination = StimPreparation
+    , lastOnboarding = False
     }
 
 
@@ -61,6 +62,7 @@ update msg model =
                 | view = view
                 , stimMenuShowing = Nothing
                 , showNav = Neutral
+                , lastOnboarding = False
                 , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
                 , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
             }
@@ -272,16 +274,24 @@ update msg model =
                     ! []
                 )
 
+        ReceiveLastOnboarding bool ->
+            { model | lastOnboarding = bool } ! []
+
         NavigateToShareModal stim ->
             { model | selectedStim = stim }
                 ! []
                 :> update (NavigateTo ShareModal)
 
+        NavigateToDeleteModal stim ->
+            { model | selectedStim = stim }
+                ! []
+                :> update (NavigateTo DeleteModal)
+
         ToggleActionButtons stim ->
             { model | stims = toggleActionButtons stim model.stims } ! []
 
         DeleteStim stim ->
-            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId ]
+            { model | stims = deleteStimFromModel stim model.stims } ! [ deleteStim stim.stimId, Delay.after 1000 millisecond (NavigateTo Landing) ]
 
         ReceiveDeleteStimSuccess bool ->
             model ! []
