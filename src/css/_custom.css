@@ -91,6 +91,11 @@ body {
 }
 
 /* Custom Positions */
+.absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .top-4 {
   top: 4rem;
@@ -118,6 +123,80 @@ body {
 }
 
 /* Animations */
+
+.clock > .timer {
+  stroke-width: 0.75rem;
+  stroke: #162b74;
+  fill: none;
+  stroke-dasharray: 596.902604182;
+  stroke-dashoffset: 596.902604182;
+}
+
+@keyframes timer {
+  0% {
+    stroke: #162b74;
+  }
+  11% {
+    stroke: #305685;
+  }
+  15% {
+    stroke: #3d8396;
+  }
+  20% {
+    stroke: #41b2a6;
+  }
+  25% {
+    stroke: #3ae4b6;
+  }
+  30% {
+    stroke: #89e2a2;
+  }
+  35% {
+    stroke: #b7e08d;
+  }
+  40% {
+    stroke: #dbdd78;
+  }
+  45% {
+    stroke: #fad961;
+  }
+  50% {
+    stroke: #ff8077;
+  }
+  55% {
+    stroke: #e8748c;
+  }
+  60% {
+    stroke: #cf69a0;
+  }
+  65% {
+    stroke: #b35eb4;
+  }
+  70% {
+    stroke: #9155c7;
+  }
+  75% {
+    stroke: #ff8497;
+  }
+  80% {
+    stroke: #c97685;
+  }
+  85% {
+    stroke: #956774;
+  }
+  90% {
+    stroke: #605763;
+  }
+  95% {
+    stroke: #264652;
+  }
+  100% {
+    stroke: #162b74;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
 @keyframes breatheAnimation {
   0% {
@@ -302,8 +381,8 @@ body {
 
 .timer-font {
   font-family: 'Wellcome';
-  font-size: 72px;
-  line-height: 96px;
+  font-size: 44px;
+  line-height: 56px;
 }
 
 /* Carousel */
