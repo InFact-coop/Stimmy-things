@@ -539,3 +539,8 @@ body {
 .timer-tag:focus::-webkit-input-placeholder {
   opacity: 0%;
 }
+
+.videoArea {
+  width: 240px;
+  height: 150px;
+}

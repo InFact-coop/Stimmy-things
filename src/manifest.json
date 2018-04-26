@@ -1,4 +1,6 @@
 {
+  "lang": "en",
+  "dir": "ltr",
   "short_name": "Stimmy Things",
   "name": "Stimmy Things",
   "start_url": "/index.html",

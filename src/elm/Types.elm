@@ -51,7 +51,7 @@ type alias Model =
         , stimMenuShowing : Maybe BodyPart
         , hotspots : Hotspots
         , selectedStim : Stim
-        , blogStims : List FirebaseData
+        , stimsWithUser : List StimWithUser
         , stimInfoDestination : View
         , lastOnboarding : Bool
         }
@@ -100,17 +100,8 @@ type alias Stim =
     , shared : Bool
     , userId : String
     , actionsDisplaying : Bool
-    }
-
-
-type alias DBStim =
-    { stimId : String
-    , bodyPart : String
-    , stimName : String
-    , instructions : String
-    , videoSrc : String
-    , shared : Bool
-    , userId : String
+    , thumbnail : Maybe String
+    , showVideo : Bool
     }
 
 
@@ -245,7 +236,7 @@ type alias DBData =
     }
 
 
-type alias FirebaseData =
+type alias StimWithUser =
     { stim : Stim
     , user : User
     }
@@ -275,8 +266,7 @@ type Msg
     | ReceiveHotspotCoords (Result String Hotspots)
     | ReceiveUpdatedLogs (List DBLog)
     | ReceiveStimList (Result String (List Stim))
-    | ReceiveChosenVideo String
-    | RetrieveChosenVideo
+    | UpdateNewStimVideo String
     | ToggleStimMenu BodyPart
     | ToggleBodypart BodyPart
     | ReceiveInitialData (Result String DBData)
@@ -285,10 +275,9 @@ type Msg
     | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
-    | AddVideoSrc String
     | AddAvatarName String
     | AddStimWithoutBodyPart
-    | ReceiveFirebaseStims (Result String (List FirebaseData))
+    | ReceiveFirebaseStims (Result String (List StimWithUser))
     | ShareStim Stim
     | ImportStim Stim
     | NavigateToStimInfo
@@ -302,3 +291,4 @@ type Msg
     | DeleteStim Stim
     | ReceiveDeleteStimSuccess Bool
     | UpdateAvatar { src : String, skinColour : String }
+    | ShowVideo Stim

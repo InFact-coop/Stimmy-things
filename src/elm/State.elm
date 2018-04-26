@@ -5,7 +5,7 @@ import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.SkinColour exposing (hexValueToSkinColour, skinColourToHexValue, toggleSkinColour)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addVideoSrc, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, normaliseStim, toggleActionButtons, toggleSharedStim, updateStimInModel)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addNewStimVideo, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, hideVideos, normaliseStim, toggleActionButtons, toggleSharedStim, toggleStimVideo, updateShowVideo, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -24,7 +24,7 @@ initModel : Model
 initModel =
     { view = Splash
     , userId = ""
-    , avatar = Avatar2
+    , avatar = Avatar1
     , avatarName = ""
     , skinColour = SkinColour7
     , stims = []
@@ -43,7 +43,7 @@ initModel =
     , hotspots = defaultHotspots
     , selectedStim = defaultStim
     , transition = Transit.empty
-    , blogStims = []
+    , stimsWithUser = []
     , stimInfoDestination = StimPreparation
     , lastOnboarding = False
     }
@@ -65,6 +65,7 @@ update msg model =
                 , lastOnboarding = False
                 , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
                 , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
+                , stimsWithUser = ifThenElse (view == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -91,13 +92,19 @@ update msg model =
             { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim, stims = closeActionButtons model.stims } ! []
+            { model
+                | stimMenuShowing = updateStimMenu model bodyPart
+                , showNav = hideNav model.showNav
+                , newStim = addBodypart bodyPart model.newStim
+                , stims = closeActionButtons model.stims
+            }
+                ! []
 
         NoOp ->
             model ! []
 
         SaveStim stim ->
-            model
+            { model | videos = initModel.videos }
                 ! [ saveStim <| normaliseStim stim ]
                 :> update (NavigateTo Landing)
 
@@ -177,9 +184,6 @@ update msg model =
         AddExerciseName string ->
             { model | newStim = addExerciseName string model.newStim } ! []
 
-        AddVideoSrc string ->
-            { model | newStim = addVideoSrc string model.newStim } ! []
-
         AddHowTo string ->
             { model | newStim = addHowTo string model.newStim } ! []
 
@@ -201,22 +205,18 @@ update msg model =
             model ! []
 
         ReceiveFirebaseStims (Ok listStims) ->
-            { model | blogStims = listStims } ! []
+            { model | stimsWithUser = listStims } ! []
 
         ReceiveFirebaseStims (Err err) ->
             model ! []
 
-        ReceiveChosenVideo src ->
+        UpdateNewStimVideo videoId ->
             let
                 newModel =
-                    { model | newStim = addVideoSrc src model.newStim }
+                    { model | newStim = addNewStimVideo videoId model }
             in
                 newModel
                     ! []
-                    :> update (SaveStim <| newModel.newStim)
-
-        RetrieveChosenVideo ->
-            model ! [ retrieveChosenVideo () ]
 
         GoToStim stim ->
             { model
@@ -302,3 +302,6 @@ update msg model =
                 , avatar = avatarSrcToAvatar src
             }
                 ! []
+
+        ShowVideo stim ->
+            { model | stimsWithUser = toggleStimVideo stim model.stimsWithUser } ! []
