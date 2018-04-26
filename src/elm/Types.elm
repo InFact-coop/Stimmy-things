@@ -286,7 +286,6 @@ type Msg
     | GoToRandomStim
     | AddExerciseName String
     | AddHowTo String
-    | AddVideoSrc String
     | AddAvatarName String
     | AddStimWithoutBodyPart
     | ReceiveFirebaseStims (Result String (List StimWithUser))

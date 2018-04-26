@@ -5,7 +5,7 @@ import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.SkinColour exposing (hexValueToSkinColour, skinColourToHexValue, toggleSkinColour)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addNewStimVideo, addVideoSrc, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, normaliseStim, toggleActionButtons, toggleSharedStim, toggleStimVideo, updateStimInModel)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addNewStimVideo, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, normaliseStim, toggleActionButtons, toggleSharedStim, toggleStimVideo, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -176,9 +176,6 @@ update msg model =
 
         AddExerciseName string ->
             { model | newStim = addExerciseName string model.newStim } ! []
-
-        AddVideoSrc string ->
-            { model | newStim = addVideoSrc string model.newStim } ! []
 
         AddHowTo string ->
             { model | newStim = addHowTo string model.newStim } ! []
