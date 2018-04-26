@@ -8,7 +8,7 @@
     "videoSrc": "https://www.youtube.com/embed/WwWbO2JDYaA",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/WwWbO2JDYaA/mqdefault.jpg"
   },
   {
     "stimId": "6789103",
@@ -19,7 +19,7 @@
     "videoSrc": "https://www.youtube.com/embed/Qm846KdZN_c",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/Qm846KdZN_c/mqdefault.jpg"
   },
   {
     "stimId": "6789102",
@@ -30,7 +30,7 @@
     "videoSrc": "https://www.youtube.com/embed/nv4yruWX7HI",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/MVWrfHSYTHk/mqdefault.jpg"
   },
   {
     "stimId": "678910dkskldj",
@@ -41,7 +41,7 @@
     "videoSrc": "https://www.youtube.com/embed/5DqTuWve9t8",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/5DqTuWve9t8/mqdefault.jpg"
   },
   {
     "stimId": "678910sadjflas",
@@ -52,7 +52,7 @@
     "videoSrc": "https://www.youtube.com/embed/DFzF6EzXHes",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/DFzF6EzXHes/mqdefault.jpg"
   },
   {
     "stimId": "678910asldjf",
@@ -63,7 +63,7 @@
     "videoSrc": "https://www.youtube.com/embed/fpD9kRyBn8o",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/fpD9kRyBn8o/mqdefault.jpg"
   },
   {
     "stimId": "678910asldjfe",
@@ -85,7 +85,7 @@
     "videoSrc": "https://www.youtube.com/embed/CvF9AEe-ozc",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/CvF9AEe-ozc/mqdefault.jpg"
   },
   {
     "stimId": "678910asdljk",
@@ -93,10 +93,10 @@
     "bodyPart": "Hands",
     "instructions":
       "Put your palms together and push and hold for ten seconds. When you are feeling fidgety and emotional about something, this exercise can help you feel your body and awakes your mind.",
-    "videoSrc": "https://www.youtube.com/embed/LG1mKrmvjWY&t=4s",
+    "videoSrc": "https://www.youtube.com/embed/LG1mKrmvjWY",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/LG1mKrmvjWY/mqdefault.jpg"
   },
   {
     "stimId": "678910asdlfj",
@@ -107,7 +107,7 @@
     "videoSrc": "https://www.youtube.com/embed/XJ5IW-lu3eg",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/XJ5IW-lu3eg/mqdefault.jpg"
   },
   {
     "stimId": "678910asdljf",
@@ -118,6 +118,6 @@
     "videoSrc": "https://www.youtube.com/embed/pQHatuScA_E",
     "userId": "1356889538475",
     "shared": true,
-    "thumbnail": ""
+    "thumbnail": "https://i.ytimg.com/vi/pQHatuScA_E/mqdefault.jpg"
   }
 ]
