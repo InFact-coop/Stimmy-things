@@ -105,17 +105,6 @@ type alias Stim =
     }
 
 
-type alias DBStim =
-    { stimId : String
-    , bodyPart : String
-    , stimName : String
-    , instructions : String
-    , videoSrc : String
-    , shared : Bool
-    , userId : String
-    }
-
-
 type BodyPart
     = Head
     | Face

@@ -5,7 +5,7 @@ import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
 import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.SkinColour exposing (hexValueToSkinColour, skinColourToHexValue, toggleSkinColour)
-import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addNewStimVideo, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, normaliseStim, toggleActionButtons, toggleSharedStim, toggleStimVideo, updateStimInModel)
+import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addNewStimVideo, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, hideVideos, normaliseStim, toggleActionButtons, toggleSharedStim, toggleStimVideo, updateShowVideo, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
 import Data.User exposing (normaliseUser)
 import Data.View exposing (..)
@@ -65,6 +65,7 @@ update msg model =
                 , lastOnboarding = False
                 , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
                 , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
+                , stimsWithUser = ifThenElse (view == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -91,7 +92,13 @@ update msg model =
             { model | showNav = updateNav model.showNav, stimMenuShowing = Nothing } ! []
 
         ToggleStimMenu bodyPart ->
-            { model | stimMenuShowing = updateStimMenu model bodyPart, showNav = hideNav model.showNav, newStim = addBodypart bodyPart model.newStim, stims = closeActionButtons model.stims } ! []
+            { model
+                | stimMenuShowing = updateStimMenu model bodyPart
+                , showNav = hideNav model.showNav
+                , newStim = addBodypart bodyPart model.newStim
+                , stims = closeActionButtons model.stims
+            }
+                ! []
 
         NoOp ->
             model ! []

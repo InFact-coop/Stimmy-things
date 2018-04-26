@@ -179,12 +179,19 @@ toggleStimVideo stim stimsWithUser =
     List.map
         (\stimWithUser ->
             ifThenElse (stim == stimWithUser.stim)
-                { stimWithUser | stim = toggleShowVideo stimWithUser.stim }
+                { stimWithUser | stim = (updateShowVideo True) stimWithUser.stim }
                 stimWithUser
         )
         stimsWithUser
 
 
-toggleShowVideo : Stim -> Stim
-toggleShowVideo stim =
-    { stim | showVideo = not stim.showVideo }
+updateShowVideo : Bool -> Stim -> Stim
+updateShowVideo bool stim =
+    { stim | showVideo = bool }
+
+
+hideVideos : List StimWithUser -> List StimWithUser
+hideVideos stimsWithUser =
+    List.map
+        (\stimWithUser -> { stimWithUser | stim = (updateShowVideo False) stimWithUser.stim })
+        stimsWithUser
