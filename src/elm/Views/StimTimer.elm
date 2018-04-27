@@ -13,7 +13,7 @@ import Types exposing (..)
 stimTimer : Model -> Html Msg
 stimTimer model =
     div [ class "border-box bg-green flex flex-column tc white fill-screen", horizontalTransition model ]
-        [ div [ class "vh-100 flex flex-column justify-between" ]
+        [ div [ class "mvh-100 flex flex-column justify-between" ]
             [ div [ classes [ headerFont, "flex flex-row mh2 mt2 items-center justify-between" ] ]
                 [ div
                     [ class "w3 h3 flex items-center justify-center"
@@ -28,19 +28,18 @@ stimTimer model =
                     ]
                     [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
                 ]
-            , img [ class "", src "./assets/StimTimer/timer_icn.svg" ] []
             , img [ class "", src "./assets/StimTimer/white_divider_zigzag_thin.svg" ] []
             , div []
                 [ div [ class "timer-font" ]
                     [ span [] [ text <| (formatTimeFirstDigits (floor <| model.counter / 60)) ++ ":" ]
                     , span [] [ text <| formatTimeSecondDigits (rem (round model.counter) 60) ]
                     ]
-                , div [ class "w-60 center" ]
+                , div [ class "w-60 center relative" ]
                     [ clock model
                     , object
                         [ attribute "data" <| avatarHeadSelection model.avatar
                         , type_ "image/svg+xml"
-                        , class "timerHead w-40 absolute absolute-center"
+                        , class "timerHead w-70 absolute absolute-center"
                         ]
                         []
                     ]

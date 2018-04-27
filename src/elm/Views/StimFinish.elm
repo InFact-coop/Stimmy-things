@@ -10,7 +10,7 @@ import Types exposing (..)
 
 stimFinish : Model -> Html Msg
 stimFinish model =
-    div [ class "border-box bg-green flex-column items-center justify-between flex tc dark-gray mvh-100 minvh84" ]
+    div [ class "border-box bg-green flex-column items-center justify-between flex tc dark-gray mvh-100 minvh84", horizontalTransition model ]
         [ div [ classes [ headerFont, "flex white mh3 mv0 items-center justify-center h4" ] ]
             [ p
                 []
