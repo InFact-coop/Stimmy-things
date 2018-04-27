@@ -1,4 +1,24 @@
 <svg viewBox="0 0 361 549" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+    @keyframes blink {
+      0% {
+        transform: scaleX(1) scaleY(1);
+      }
+      1% {
+        transform: scaleX(1) scaleY(0);
+      }
+      10% {
+        transform: scaleX(1) scaleY(1);
+      }
+      100% {
+        transform: scaleX(1) scaleY(1);
+      }
+    }
+
+    .eye {
+      animation: blink 5s ease infinite;
+    }
+  </style>
   <defs>
     <linearGradient x1="43.045%" y1="0%" x2="55.5648%" y2="100%" id="linearGradient-1">
       <stop stop-color="#C43561" offset="0%"/>
@@ -27,7 +47,7 @@
         <g id="top_body" transform="translate(44)">
           <g id="eye-whole" transform="translate(43 70)">
             <ellipse id="Oval" fill="#FFF" cx="23.5156" cy="23.3795" rx="23.2031" ry="23.2159"/>
-            <ellipse id="eye" fill="#27221B" cx="24.5469" cy="22.8636" rx="5.6719" ry="6.1909"/>
+            <ellipse class="eye" fill="#27221B" cx="24.5469" cy="22.8636" rx="5.6719" ry="6.1909"/>
           </g>
           <path d="M132 66v94.571C132 197.2586 102.4508 227 66 227S0 197.2587 0 160.571V66C0 29.5492 29.5492 0 66 0s66 29.5492 66 66z" id="head_bubble" fill="#DCEBF0" opacity=".4558"/>
           <path d="M69.0938 133.1196c14.123 6.6722 21.2172-4.0374 21.6562-16.5241" id="mouth" stroke="#CC5C61" stroke-width="2"/>

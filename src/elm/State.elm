@@ -128,7 +128,13 @@ update msg model =
                 { model | timeSelected = interval * 60, counter = interval * 60 } ! []
 
         Tick _ ->
-            trackCounter model ! []
+            trackCounter model
+                ! []
+                :> update
+                    (ifThenElse (model.counter == 0 && model.view == StimTimer)
+                        (NavigateTo StimFinish)
+                        (NoOp)
+                    )
 
         AdjustTimer timerControl ->
             adjustTime timerControl model ! []
@@ -149,7 +155,7 @@ update msg model =
             addTimeTaken model
                 ! []
                 :> update (AdjustTimer Stop)
-                :> update (NavigateTo StimRecap)
+                :> update (NavigateTo StimFinish)
 
         RepeatStim ->
             { model | newLog = defaultLog, timeSelected = 0, counter = 0 }

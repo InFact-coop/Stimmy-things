@@ -10,6 +10,7 @@ import Time exposing (Time)
 import Types exposing (..)
 import Views.About exposing (..)
 import Views.AddStim exposing (..)
+import Views.StimFinish exposing (..)
 import Views.Blog exposing (..)
 import Views.CreateAvatar exposing (..)
 import Views.Emergency exposing (..)
@@ -23,6 +24,8 @@ import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
 import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
+import Delay exposing (..)
+import Time exposing (..)
 
 
 getCurrentView : Model -> Html Msg
@@ -48,6 +51,9 @@ getCurrentView model =
 
         StimTimer ->
             stimTimer model
+
+        StimFinish ->
+            stimFinish model
 
         StimRecap ->
             stimRecap model
@@ -106,6 +112,9 @@ viewToCmds view model =
 
         Onboarding ->
             [ onboardingCarousel () ]
+
+        StimFinish ->
+            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".timerFinishHead" ), Delay.after 5000 millisecond (NavigateTo Landing) ]
 
         _ ->
             []

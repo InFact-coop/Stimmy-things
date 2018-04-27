@@ -1,4 +1,24 @@
 <svg viewBox="0 0 361 549" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+    @keyframes blink {
+      0% {
+        transform: scaleX(1) scaleY(1);
+      }
+      1% {
+        transform: scaleX(1) scaleY(0);
+      }
+      10% {
+        transform: scaleX(1) scaleY(1);
+      }
+      100% {
+        transform: scaleX(1) scaleY(1);
+      }
+    }
+
+    .eye {
+      animation: blink 5s ease infinite;
+    }
+  </style>
   <defs>
     <linearGradient x1="0%" y1="0%" y2="100%" id="linearGradient-1">
       <stop stop-color="#264652" offset="0%"/>
@@ -69,9 +89,9 @@
           <g id="face" transform="translate(66 46)">
             <path d="M16.971 4c2.42 12.174 6.975 16.44-3.971 15.965" id="Path-9" stroke="#55383C"/>
             <path d="M6 25c8.463 3.741 4.443 3.738 12 1.341" id="Path-8" stroke="#CC5C61"/>
-            <g id="eyes" fill="#55383C">
-              <circle id="eye" cx="23" cy="2" r="2"/>
-              <circle id="eye" cx="2" cy="2" r="2"/>
+            <g class="eyes" fill="#55383C">
+              <circle class="eye" cx="23" cy="2" r="2"/>
+              <circle class="eye" cx="2" cy="2" r="2"/>
             </g>
           </g>
           <g id="hair" transform="translate(36)">

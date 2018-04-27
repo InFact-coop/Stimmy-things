@@ -14,8 +14,18 @@ view model =
     let
         view =
             getCurrentView model
+
+        bgColour =
+            ifThenElse
+                (model.view
+                    == StimPreparation
+                    || model.view
+                    == StimFinish
+                )
+                "bg-green"
+                "bg-washed-yellow"
     in
-        div [ classes [ "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", ifThenElse (model.view == StimPreparation) "bg-green" "bg-washed-yellow" ], id "container" ]
+        div [ classes [ "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", bgColour ], id "container" ]
             [ navDrawer model
             , view
             ]

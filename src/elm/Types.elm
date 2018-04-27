@@ -13,6 +13,7 @@ type View
     | Onboarding
     | StimInfo
     | StimPreparation
+    | StimFinish
     | StimTimer
     | StimRecap
     | AddStim
