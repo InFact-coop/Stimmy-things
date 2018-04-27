@@ -38,6 +38,14 @@ about model =
             ]
         , div [ class "mh3 mb5" ]
             [ img [ class "mb4", src "./assets/About/white_divider_zigzag_thick.svg" ] []
+            , p [ classes [ headerFont, "mb2" ] ] [ text "Download Stimmy Things" ]
+            , p [ class "mb2" ] [ text "For optimum use, we recommend downloading Stimmy Things as an app rather than viewing it through your browser." ]
+            , p [ class "mb4" ] [ text "You can achieve this with a few simple steps:" ]
+            , p [ class "b" ] [ text "Android: " ]
+            , androidInstructions
+            , p [ class "b" ] [ text "iPhone: " ]
+            , iPhoneInstructions
+            , p [ class "mb4" ] [ text "Congrats! After the initial download, you will be able to use Stimmy Things offline: anytime, anywhere." ]
             , p [ classes [ headerFont, "mb2" ] ] [ text "What is Stimmy Things?" ]
             , p [ class "mb4" ] [ text "Stimmy Things is a webapp for young people affected by ADHD. It allows you to record different exercises that you find useful so you can find and follow them when you need to. It also allows you to share what works for you and see what others in the Stimmy Things network try." ]
             , p [ classes [ headerFont, "mv2" ] ] [ text "Why is it called Stimmy Things?" ]
@@ -53,5 +61,49 @@ about model =
             , p [ class "mb3" ] [ text "hello@slam.com" ]
             , p [] [ text "CYPI-APT" ]
             , p [ class "mb2" ] [ text "hello@cypiapt.com" ]
+            ]
+        ]
+
+
+androidInstructions : Html Msg
+androidInstructions =
+    div [ class "mb3" ]
+        [ p [] [ span [ class "mr3" ] [ text "1." ], span [] [ text "Launch Chrome for Android" ] ]
+        , p []
+            [ span [ class "mr3" ] [ text "2." ]
+            , span []
+                [ text
+                    "Navigate to the Stimmy Things website"
+                ]
+            ]
+        , p [] [ span [ class "mr3" ] [ text "3." ], span [] [ text "Tap the menu button and tap ‘Add to homescreen’" ] ]
+        , p []
+            [ span [ class "mr3" ] [ text "4." ]
+            , span []
+                [ text "You'll be able to enter a name for the shortcut and then Chrome will add it to your home screen." ]
+            ]
+        ]
+
+
+iPhoneInstructions : Html Msg
+iPhoneInstructions =
+    div [ class "mb3" ]
+        [ p [] [ span [ class "mr3" ] [ text "1." ], span [] [ text "Open Safari" ] ]
+        , p []
+            [ span [ class "mr3" ] [ text "2." ]
+            , span []
+                [ text
+                    "Navigate to the Stimmy Things website"
+                ]
+            ]
+        , p [] [ span [ class "mr3" ] [ text "3." ], span [] [ text "Tap the 'Go To' icon" ] ]
+        , p []
+            [ span [ class "mr3" ] [ text "4." ]
+            , span []
+                [ text "Then select 'Add to Homescreen'" ]
+            ]
+        , p []
+            [ span [ class "mr3" ] [ text "5." ]
+            , span [] [ text "The shortcut to the website will now appear as an icon on your home screen. " ]
             ]
         ]
