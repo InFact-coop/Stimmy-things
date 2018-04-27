@@ -78,12 +78,28 @@ body {
   height: 75vh;
 }
 
-.vh-85 {
-  height: 85vh;
+.vh-82 {
+  height: 82vh;
 }
 
 .mh-88 {
   min-height: 88%;
+}
+
+.mvh-80 {
+  min-height: 80vw;
+}
+
+.vh-83 {
+  height: 83vh;
+}
+
+.mh-10pc {
+  margin: auto 5% auto 5%;
+}
+
+.minvh-84 {
+  min-height: 84vh;
 }
 
 .mvh-100 {
@@ -130,6 +146,52 @@ body {
   fill: none;
   stroke-dasharray: 596.902604182;
   stroke-dashoffset: 596.902604182;
+}
+
+.confetti .confetti-1 {
+  animation: scaleUp 0.2s ease forwards running;
+}
+.confetti .confetti-2 {
+  animation: scaleUp 0.4s ease forwards running;
+}
+.confetti .confetti-3 {
+  animation: scaleUp 0.6s ease forwards running;
+}
+.confetti .confetti-4 {
+  animation: scaleUp 1s ease forwards running;
+}
+.confetti .confetti-5 {
+  animation: scaleUp 1.5s ease forwards running;
+}
+.fromAboveWithDelay {
+  animation: fromAboveWithDelay 3s ease running;
+}
+.fromBelowWithDelay {
+  animation: fromBelowWithDelay 1.5s ease running;
+}
+.fromBelowWithMuchDelay {
+  animation: fromBelowWithDelay 2.2s ease running;
+}
+
+@keyframes fromBelowWithDelay {
+  0% {
+    transform: translateY(300%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fromAboveWithDelay {
+  0% {
+    transform: translateY(-300%);
+  }
+  50% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes timer {
@@ -195,6 +257,15 @@ body {
   }
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.3);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -370,9 +441,7 @@ body {
 }
 
 .eye {
-  animation-name: blink;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
+  animation: blink 5s ease infinite;
 }
 
 .background-avatar {

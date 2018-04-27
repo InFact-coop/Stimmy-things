@@ -1,4 +1,24 @@
 <svg viewBox="0 0 190 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+    @keyframes blink {
+      0% {
+        transform: scaleX(1) scaleY(1);
+      }
+      1% {
+        transform: scaleX(1) scaleY(0);
+      }
+      10% {
+        transform: scaleX(1) scaleY(1);
+      }
+      100% {
+        transform: scaleX(1) scaleY(1);
+      }
+    }
+
+    .eye {
+      animation: blink 5s ease infinite;
+    }
+  </style>
   <defs>
     <filter x="-13.1%" y="-7.9%" width="126.2%" height="124.9%" filterUnits="objectBoundingBox" id="filter-1">
       <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
@@ -39,7 +59,7 @@
             <g id="top_body" transform="translate(37)">
               <g id="eye-whole" transform="translate(35.833 58.59)">
                 <ellipse id="Oval" fill="#FFF" cx="19.596" cy="19.569" rx="19.336" ry="19.432"/>
-                <ellipse id="eye" fill="#27221B" cx="20.456" cy="19.137" rx="4.727" ry="5.182"/>
+                <ellipse class="eye" fill="#27221B" cx="20.456" cy="19.137" rx="4.727" ry="5.182"/>
               </g>
               <g id="right_ear" transform="matrix(-1 0 0 1 38.672 24.182)">
                 <path id="Path-10" fill="#B1D159" d="M.35 17.068l7.353-7.028 3.85 2.008-3.85 14.39z"/>

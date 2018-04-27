@@ -1,4 +1,24 @@
 <svg viewBox="0 0 190 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+    @keyframes blink {
+      0% {
+        transform: scaleX(1) scaleY(1);
+      }
+      1% {
+        transform: scaleX(1) scaleY(0);
+      }
+      10% {
+        transform: scaleX(1) scaleY(1);
+      }
+      100% {
+        transform: scaleX(1) scaleY(1);
+      }
+    }
+
+    .eye {
+      animation: blink 5s ease infinite;
+    }
+  </style>
   <defs>
     <filter x="-13.1%" y="-7.9%" width="126.2%" height="124.9%" filterUnits="objectBoundingBox" id="filter-1">
       <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
@@ -68,9 +88,9 @@
             <g id="face" transform="translate(68 47)">
               <path d="M17.65 4.143c2.517 12.608 7.253 17.027-4.13 16.535" id="Path-9" stroke="#55383C"/>
               <path d="M6.24 25.893c8.801 3.875 4.621 3.872 12.48 1.389" id="Path-8" stroke="#CC5C61"/>
-              <g id="eyes" fill="#55383C">
-                <ellipse id="eye" cx="23.92" cy="2.071" rx="2.08" ry="2.071"/>
-                <ellipse id="eye" cx="2.08" cy="2.071" rx="2.08" ry="2.071"/>
+              <g class="eyes" fill="#55383C">
+                <ellipse class="eye" cx="23.92" cy="2.071" rx="2.08" ry="2.071"/>
+                <ellipse class="eye" cx="2.08" cy="2.071" rx="2.08" ry="2.071"/>
               </g>
             </g>
             <g id="hair" transform="translate(37)">

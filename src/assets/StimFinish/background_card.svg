@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="345px" height="574px" viewBox="0 0 345 574" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>Mask</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1226,67 L1226,638.407398 C1226,639.797732 1224.20914,640.92482 1222,640.92482 L885,640.92482 C882.790861,640.92482 881,639.797732 881,638.407398 L881,67.5690902 L897.640488,81.4682462 L911.648999,67.725202 L925.09717,80.6002669 L937.424661,67.725202 L949.752151,80.6002669 L962.095496,67.5690902 L974.967472,80.6002669 L987.73676,67.725202 L999.622452,80.6303987 L1011.94994,67.725202 L1024.27743,80.6002669 L1035.48424,67.725202 L1048.37207,80.6303987 L1060.69956,67.725202 L1073.02705,80.6303987 L1087.03556,67.725202 L1100.13736,81.2569764 L1113.93661,67.0048582 L1127.95163,81.4798192 L1141.96014,67.0115692 L1155.95745,81.4682415 L1169.96595,67 L1183.97447,81.4682462 L1197.98298,67 L1211.99149,81.4682462 L1226,67 Z" id="path-1"></path>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-10" transform="translate(-881.000000, -67.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#FFFFFF" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

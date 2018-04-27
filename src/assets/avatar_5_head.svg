@@ -1,4 +1,30 @@
 <svg viewBox="0 0 190 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+    @keyframes blink {
+      0% {
+        transform: scaleX(1) scaleY(1);
+      }
+      1% {
+        transform: scaleX(1) scaleY(0);
+      }
+      10% {
+        transform: scaleX(1) scaleY(1);
+      }
+      100% {
+        transform: scaleX(1) scaleY(1);
+      }
+    }
+
+    .eyeFast {
+      animation: blink 5s ease infinite;
+    }
+    .eyeMedium {
+      animation: blink 5.25s linear infinite;
+    }
+    .eyeSlow {
+      animation: blink 5.5s ease infinite;
+    }
+  </style>
   <defs>
     <filter x="-13.1%" y="-7.9%" width="126.2%" height="124.9%" filterUnits="objectBoundingBox" id="filter-1">
       <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
@@ -46,18 +72,18 @@
             </g>
             <g id="head-whole" transform="translate(65 52)">
               <path d="M31.956 44.318c-9.61 4.718-16.897 6.542-25.315-.586" id="mouth" stroke="#CC5C61" stroke-width="2"/>
-              <g id="eyes">
-                <g id="left_eye" transform="translate(18.14 15.183)">
+              <g class="eyes">
+                <g class="left_eye" transform="translate(18.14 15.183)">
                   <ellipse id="Oval-11" fill="#FFF" cx="8.023" cy="7.937" rx="8.023" ry="7.937"/>
-                  <ellipse id="eye" fill="#27221B" cx="8.233" cy="7.841" rx="3.14" ry="3.39"/>
+                  <ellipse class="eyeMedium" fill="#27221B" cx="8.233" cy="7.841" rx="3.14" ry="3.39"/>
                 </g>
-                <g id="right_eye" transform="translate(0 12.423)">
+                <g class="right_eye" transform="translate(0 12.423)">
                   <ellipse id="Oval-11" fill="#FFF" cx="5.93" cy="5.866" rx="5.93" ry="5.866"/>
-                  <ellipse id="eye" fill="#27221B" cx="5.837" cy="5.397" rx="2.442" ry="2.637"/>
+                  <ellipse class="eyeSlow" fill="#27221B" cx="5.837" cy="5.397" rx="2.442" ry="2.637"/>
                 </g>
                 <g id="top-eye" transform="translate(13.953)">
                   <ellipse id="Oval-11" fill="#FFF" cx="4.535" cy="4.486" rx="4.535" ry="4.486"/>
-                  <ellipse id="eye" fill="#27221B" cx="4.33" cy="4.796" rx="2.237" ry="2.415"/>
+                  <ellipse class="eyeFast" fill="#27221B" cx="4.33" cy="4.796" rx="2.237" ry="2.415"/>
                 </g>
               </g>
             </g>
