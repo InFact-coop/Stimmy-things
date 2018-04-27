@@ -41,7 +41,7 @@ initModel =
     , selectedStim = defaultStim
     , transition = Transit.empty
     , stimsWithUser = []
-    , stimInfoDestination = StimPreparation
+    , stimInfoDestination = Landing
     , lastOnboarding = False
     }
 
@@ -62,7 +62,12 @@ update msg model =
                 , lastOnboarding = False
                 , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
                 , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
+                , avatar = ifThenElse (view == CreateAvatar) initModel.avatar model.avatar
                 , stimsWithUser = ifThenElse (view == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
+                , counter = ifThenElse (view == StimPreparation) (initModel.counter) model.counter
+                , timeSelected = ifThenElse (view == StimPreparation) (initModel.timeSelected) model.timeSelected
+                , timerStatus = ifThenElse (view == StimPreparation) (initModel.timerStatus) model.timerStatus
+                , stimInfoDestination = ifThenElse (view == StimPreparation) (initModel.stimInfoDestination) model.stimInfoDestination
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -200,16 +205,11 @@ update msg model =
         GoToStim stim ->
             { model | selectedStim = stim }
                 ! []
-                :> update (NavigateTo StimInfo)
+                :> update (NavigateToStimInfo)
 
         AddAvatarName name ->
             { model | avatarName = sanitiseAvatarName name }
                 ! []
-
-        AddStimWithoutBodyPart ->
-            { model | newStim = defaultStim }
-                ! []
-                :> update (NavigateTo AddStim)
 
         GoToRandomStim ->
             model

@@ -218,7 +218,6 @@ type Msg
     | AddExerciseName String
     | AddHowTo String
     | AddAvatarName String
-    | AddStimWithoutBodyPart
     | ReceiveFirebaseStims (Result String (List StimWithUser))
     | ShareStim Stim
     | ImportStim Stim

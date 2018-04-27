@@ -47,7 +47,10 @@ renderStimWithUsers model =
                     [ class "fit-content bg-top br2"
                     , backgroundImageCover "./assets/ShareModal/zigzag_modal_bg.svg"
                     ]
-                    [ div [ class "flex items-center mb3 mh4 mt4", onClick <| ifThenElse (alreadyExistsInIndexedDB firebaseStim.stim model) (GoToStim firebaseStim.stim) (NoOp) ]
+                    [ div
+                        [ class "flex items-center mb3 mh4 mt4"
+                        , onClick <| ifThenElse (alreadyExistsInIndexedDB firebaseStim.stim model) (GoToStim firebaseStim.stim) (NoOp)
+                        ]
                         [ object
                             [ attribute "data" <| avatarHeadSelection firebaseStim.user.avatar, type_ "image/svg+xml", class "avatarHead w3" ]
                             []
@@ -78,7 +81,15 @@ alreadyExistsInIndexedDB stimWithUser model =
 
 addOrDoStim : Bool -> Stim -> Html Msg
 addOrDoStim bool stim =
-    ifThenElse bool (div [ class "bg-right h2 mr4 mb3 tr f7 green" ] [ text "Already in your stims!" ]) (div [ class "bg-right h2 mr4 mb3", backgroundImageNoPosition "./assets/Blog/upload_stim_icn.svg" 7, onClick <| ImportStim stim ] [])
+    ifThenElse bool
+        (div [ class "bg-right h2 mr4 mb3 tr f7 green" ] [ text "Added!" ])
+        (div
+            [ class "bg-right h2 mr4 mb3"
+            , backgroundImageNoPosition "./assets/Blog/upload_stim_icn.svg" 7
+            , onClick <| ImportStim stim
+            ]
+            []
+        )
 
 
 videoSection : Stim -> Html Msg
