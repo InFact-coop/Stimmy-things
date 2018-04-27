@@ -44,10 +44,9 @@ onboarding model =
         , div
             [ class "pa4 bg-green flex justify-between w-100 bottom-0 absolute fixed" ]
             [ p [ classes [ headerFont, "white", "onboarding--back" ] ] [ text "Back" ]
-            , viewIf (not model.lastOnboarding) <|
-                p
-                    [ classes [ headerFont, "white", "onboarding--next" ] ]
-                    [ text <| "Next" ]
+            , p
+                [ classes [ headerFont, "white", "onboarding--next", ifThenElse model.lastOnboarding "dn" "" ] ]
+                [ text <| "Next" ]
             , viewIf model.lastOnboarding <|
                 p
                     [ classes [ headerFont, "white" ], onClick <| NavigateTo CreateAvatar ]
