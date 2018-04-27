@@ -13,17 +13,6 @@ const initDB = defaultStims => {
     .catch(err => console.log('Failure', err));
 };
 
-const saveLog = log => {
-  const db = helpers.createDB();
-
-  log.dateTime = Date.now();
-  helpers
-    .addLog(db, log)
-    .then(() => helpers.getAllLogs(db))
-    .then(logs => app.ports.receiveUpdatedLogs.send(logs))
-    .catch(err => console.log('Error saving log: ', err));
-};
-
 const saveStim = stim => {
   const db = helpers.createDB();
   if (stim.stimId === '') stim.stimId = helpers.generateId('_stim-');
@@ -73,7 +62,6 @@ const deleteStim = stimId => {
 };
 
 export default {
-  saveLog,
   saveStim,
   saveOrUpdateUser,
   initDB,

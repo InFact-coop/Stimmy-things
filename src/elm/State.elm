@@ -3,7 +3,6 @@ module State exposing (..)
 import Data.Avatar exposing (avatarSrcToAvatar)
 import Data.Database exposing (dbDataToModel)
 import Data.Hotspots exposing (..)
-import Data.Log exposing (addFace, addFeeling, addTimeTaken, defaultLog, normaliseDBLog, normaliseLog, updateStimId)
 import Data.SkinColour exposing (hexValueToSkinColour, skinColourToHexValue, toggleSkinColour)
 import Data.Stim exposing (addBodypart, addExerciseName, addHowTo, addNewStimVideo, closeActionButtons, defaultStim, deleteStimFromModel, generateRandomStim, hideVideos, normaliseStim, toggleActionButtons, toggleSharedStim, toggleStimVideo, updateShowVideo, updateStimInModel)
 import Data.Time exposing (adjustTime, trackCounter)
@@ -28,9 +27,7 @@ initModel =
     , avatarName = ""
     , skinColour = SkinColour7
     , stims = []
-    , logs = []
     , newStim = defaultStim
-    , newLog = defaultLog
     , counter = 0
     , timeSelected = 0
     , timerStatus = Stopped
@@ -139,12 +136,6 @@ update msg model =
         AdjustTimer timerControl ->
             adjustTime timerControl model ! []
 
-        ToggleFeeling logStage feeling ->
-            { model | newLog = addFeeling logStage feeling model.newLog } ! []
-
-        ToggleFace logStage face ->
-            { model | newLog = addFace logStage face model.newLog } ! []
-
         TransitMsg a ->
             Transit.tick TransitMsg a model
 
@@ -152,15 +143,10 @@ update msg model =
             Transit.start TransitMsg (ChangeView view) ( 200, 200 ) model
 
         StopTimer ->
-            addTimeTaken model
+            model
                 ! []
                 :> update (AdjustTimer Stop)
                 :> update (NavigateTo StimFinish)
-
-        RepeatStim ->
-            { model | newLog = defaultLog, timeSelected = 0, counter = 0 }
-                ! []
-                :> update (NavigateTo StimPreparation)
 
         ChangeViewFromTimer view ->
             model
@@ -168,21 +154,8 @@ update msg model =
                 :> update (AdjustTimer Stop)
                 :> update (NavigateTo view)
 
-        SaveLog ->
-            { model
-                | newLog = defaultLog
-                , timeSelected = 0
-                , counter = 0
-                , selectedStim = defaultStim
-            }
-                ! [ saveLog (normaliseDBLog model.newLog) ]
-                :> update (NavigateTo Landing)
-
         SaveOrUpdateUser ->
             model ! [ saveOrUpdateUser <| normaliseUser model ]
-
-        ReceiveUpdatedLogs dbLogs ->
-            { model | logs = List.map normaliseLog dbLogs } ! []
 
         ToggleBodypart bodypart ->
             { model | newStim = addBodypart bodypart model.newStim } ! []
@@ -225,10 +198,7 @@ update msg model =
                     ! []
 
         GoToStim stim ->
-            { model
-                | selectedStim = stim
-                , newLog = updateStimId stim.stimId model.newLog
-            }
+            { model | selectedStim = stim }
                 ! []
                 :> update (NavigateTo StimInfo)
 

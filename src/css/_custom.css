@@ -562,10 +562,6 @@ body {
   flex-shrink: 0;
 }
 
-.feeling-button {
-  width: 45%;
-}
-
 .h-fit-content {
   height: fit-content;
 }

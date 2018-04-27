@@ -22,7 +22,6 @@ import Views.DeleteModal exposing (..)
 import Views.Splash exposing (..)
 import Views.StimInfo exposing (..)
 import Views.StimPreparation exposing (..)
-import Views.StimRecap exposing (..)
 import Views.StimTimer exposing (..)
 import Delay exposing (..)
 import Time exposing (..)
@@ -54,9 +53,6 @@ getCurrentView model =
 
         StimFinish ->
             stimFinish model
-
-        StimRecap ->
-            stimRecap model
 
         About ->
             about model
@@ -102,9 +98,6 @@ viewToCmds view model =
             [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         StimPreparation ->
-            [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
-
-        StimRecap ->
             [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
         StimTimer ->

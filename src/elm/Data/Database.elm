@@ -1,6 +1,5 @@
 module Data.Database exposing (..)
 
-import Data.Log exposing (decodeLog, defaultLog)
 import Data.Stim exposing (decodeStim)
 import Data.User exposing (decodeUser, defaultUser)
 import Json.Decode exposing (..)
@@ -18,14 +17,12 @@ databaseDecoder =
     decode DBData
         |> optional "user" decodeUser defaultUser
         |> required "stims" (list decodeStim)
-        |> optional "logs" (list decodeLog) []
 
 
 dbDataToModel : DBData -> Model -> Model
-dbDataToModel { stims, logs, user } model =
+dbDataToModel { stims, user } model =
     { model
         | stims = stims
-        , logs = logs
         , avatarName = user.name
         , avatar = user.avatar
         , skinColour = user.skinColour

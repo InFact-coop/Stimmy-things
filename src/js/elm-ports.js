@@ -14,7 +14,6 @@ app.ports.videoCarousel.subscribe(flickity.videoCarousel);
 app.ports.initHotspots.subscribe(hotspots.initHotspots);
 app.ports.initDB.subscribe(() => idb.initDB(defaultStims));
 
-app.ports.saveLog.subscribe(idb.saveLog);
 app.ports.saveStim.subscribe(idb.saveStim);
 app.ports.saveOrUpdateUser.subscribe(idb.saveOrUpdateUser);
 app.ports.deleteStim.subscribe(idb.deleteStim);

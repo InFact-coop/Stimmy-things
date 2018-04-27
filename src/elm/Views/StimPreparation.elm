@@ -1,7 +1,6 @@
 module Views.StimPreparation exposing (..)
 
 import Components.Button exposing (rectButton)
-import Components.PillButton exposing (..)
 import Data.Avatar exposing (avatarHeadSelection)
 import Helpers.Style exposing (verticalTransition, classes, headerFont, backgroundImageCover)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString, ifThenElse)
@@ -71,11 +70,6 @@ stimPreparation model =
                 ]
             ]
         ]
-
-
-renderFeelings : List Feeling -> Model -> List (Html Msg)
-renderFeelings feelings model =
-    List.map (feelingButton Pre model) feelings
 
 
 onInputValue : (String -> msg) -> Attribute msg
