@@ -29,7 +29,7 @@ addStim model =
             ]
         , div
             [ classes [ bodyFont, "black ma0" ] ]
-            [ Html.div [ class "flex flex-column" ]
+            [ div [ class "flex flex-column" ]
                 [ div
                     [ backgroundImageCover "./assets/AddStim/zigzag_choose_part_tags_bg.svg"
                     , class "flex flex-column mb3 pb3 h-fit-content"
