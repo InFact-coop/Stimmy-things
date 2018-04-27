@@ -65,6 +65,7 @@ update msg model =
                 , lastOnboarding = False
                 , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
                 , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
+                , avatar = ifThenElse (view == CreateAvatar) initModel.avatar model.avatar
                 , stimsWithUser = ifThenElse (view == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
             }
                 ! (scrollToTop :: viewToCmds view model)
