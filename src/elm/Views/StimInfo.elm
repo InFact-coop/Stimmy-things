@@ -18,7 +18,7 @@ stimInfo model =
             div
                 [ classes [ "h4 w4 pointer fixed br-100 z-1 right-1 bottom-0" ]
                 , backgroundImageStyle "./assets/StimInfo/timer_icn_dark.svg" 100
-                , onClick <| NavigateTo StimPreparation
+                , onClick <| NavigateTo TimerPreparation
                 ]
                 []
         , div [ class "bg-green center tc" ]
@@ -30,7 +30,7 @@ stimInfo model =
                     [ img
                         [ src <|
                             ifThenElse (model.stimInfoDestination == Landing)
-                                "./assets/StimPreparation/back_btn_white.svg"
+                                "./assets/TimerPreparation/back_btn_white.svg"
                                 "./assets/stimInfo/close_btn_white.svg"
                         ]
                         []

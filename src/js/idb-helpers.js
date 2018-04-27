@@ -3,9 +3,7 @@ import Dexie from 'dexie';
 const createTables = db => {
   return db.version(1).stores({
     user: 'userId, avatar, skinColour, name',
-    stims: 'stimId, stimName, bodyPart, instructions, videoSrc, userId, shared',
-    logs:
-      '++id, stimId, timeTaken, preFace, postFace, preFeelings, postFeelings, dateTime'
+    stims: 'stimId, stimName, bodyPart, instructions, videoSrc, userId, shared'
   });
 };
 
@@ -48,27 +46,8 @@ const addStim = (
   });
 };
 
-const addLog = (
-  db,
-  { stimId, timeTaken, preFace, postFace, preFeelings, postFeelings, dateTime }
-) => {
-  return db.logs.put({
-    stimId,
-    timeTaken,
-    preFace,
-    postFace,
-    preFeelings,
-    postFeelings,
-    dateTime
-  });
-};
-
 const getAllStims = db => {
   return db.stims.toArray();
-};
-
-const getAllLogs = db => {
-  return db.logs.toArray();
 };
 
 const deleteStim = (db, stimId) => {
@@ -76,12 +55,11 @@ const deleteStim = (db, stimId) => {
 };
 
 const getAllTheData = db => {
-  return db.transaction('r', [db.user, db.stims, db.logs], async () => {
+  return db.transaction('r', [db.user, db.stims], async () => {
     const user = await getUser(db);
     const stims = await getAllStims(db);
-    const logs = await getAllLogs(db);
 
-    return { user, stims, logs };
+    return { user, stims };
   });
 };
 
@@ -100,7 +78,5 @@ export default {
   getAllStims,
   addStim,
   deleteStim,
-  addLog,
-  getAllLogs,
   getAllTheData
 };

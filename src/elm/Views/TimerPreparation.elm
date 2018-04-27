@@ -1,7 +1,6 @@
-module Views.StimPreparation exposing (..)
+module Views.TimerPreparation exposing (..)
 
 import Components.Button exposing (rectButton)
-import Components.PillButton exposing (..)
 import Data.Avatar exposing (avatarHeadSelection)
 import Helpers.Style exposing (verticalTransition, classes, headerFont, backgroundImageCover)
 import Helpers.Utils exposing (stringToFloat, unionTypeToString, ifThenElse)
@@ -20,12 +19,12 @@ stimPreparation model =
                 [ onClick <| NavigateTo StimInfo
                 , class "h2 w2 flex items-center left-1 absolute"
                 ]
-                [ img [ src "./assets/StimPreparation/close_btn_white.svg" ] [] ]
+                [ img [ src "./assets/TimerPreparation/close_btn_white.svg" ] [] ]
             , p [ class <| "ma0 left-0 right-0 white lh-f4 f4 mw4" ] [ text <| model.selectedStim.stimName ]
             ]
         , div
             [ style
-                [ ( "backgroundImage", "url(./assets/StimPreparation/zigzag_how_you_feel_before_bg.svg)" )
+                [ ( "backgroundImage", "url(./assets/TimerPreparation/zigzag_how_you_feel_before_bg.svg)" )
                 , ( "backgroundRepeat", "no-repeat" )
                 , ( "backgroundSize", "cover" )
                 ]
@@ -37,7 +36,7 @@ stimPreparation model =
                         [ attribute "data" <| avatarHeadSelection model.avatar, type_ "image/svg+xml", class "avatarHead mt6 mb0 mh7 w5" ]
                         []
                     , p [ class "b lh-f5 f5 mb3" ] [ text "Before we start:" ]
-                    , img [ src "./assets/StimPreparation/divider_zigzag_grey_small.svg" ] []
+                    , img [ src "./assets/TimerPreparation/divider_zigzag_grey_small.svg" ] []
                     ]
                 , p [ class "mh7 mv3 f6 lh-f6" ] [ text "How long do you want to do the exercise for?" ]
                 , div [ class "w-80 items-center justify-between tc inline-flex center mb4" ]
@@ -66,16 +65,11 @@ stimPreparation model =
                         ]
                     ]
                 , div [ class "pb4 absolute bottom-0 w-80 left-10" ]
-                    [ rectButton "Next" (NavigateTo StimTimer)
+                    [ rectButton "Next" (NavigateTo Timer)
                     ]
                 ]
             ]
         ]
-
-
-renderFeelings : List Feeling -> Model -> List (Html Msg)
-renderFeelings feelings model =
-    List.map (feelingButton Pre model) feelings
 
 
 onInputValue : (String -> msg) -> Attribute msg

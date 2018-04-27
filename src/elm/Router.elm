@@ -18,7 +18,7 @@ view model =
         bgColour =
             ifThenElse
                 (model.view
-                    == StimPreparation
+                    == TimerPreparation
                     || model.view
                     == StimFinish
                 )

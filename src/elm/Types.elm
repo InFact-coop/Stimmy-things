@@ -12,10 +12,9 @@ type View
     | Emergency
     | Onboarding
     | StimInfo
-    | StimPreparation
+    | TimerPreparation
     | StimFinish
-    | StimTimer
-    | StimRecap
+    | Timer
     | AddStim
     | About
     | Splash
@@ -38,9 +37,7 @@ type alias Model =
         , avatarName : String
         , skinColour : SkinColour
         , stims : List Stim
-        , logs : List Log
         , newStim : Stim
-        , newLog : Log
         , counter : Time
         , timeSelected : Time
         , timerStatus : TimerStatus
@@ -84,14 +81,6 @@ type SkinColour
     | SkinColour14
 
 
-type Face
-    = Face1
-    | Face2
-    | Face3
-    | Face4
-    | Face5
-
-
 type alias Stim =
     { stimId : String
     , bodyPart : BodyPart
@@ -117,32 +106,6 @@ type BodyPart
     | Legs
     | Feet
     | NoBodyPart
-
-
-type alias Log =
-    { timeTaken : Time
-    , stimId : String
-    , preFace : Int
-    , postFace : Int
-    , preFeelings : List Feeling
-    , postFeelings : List Feeling
-    , dateTime : Time
-    }
-
-
-type Feeling
-    = Happy
-    | Hyper
-    | Motivated
-    | Anxious
-    | Cheerful
-    | Angry
-    | Excited
-    | Bored
-    | Sad
-    | Annoyed
-    | Relaxed
-    | Frustrated
 
 
 type RemoteData
@@ -171,11 +134,6 @@ type TimerStatus
     = Started
     | Stopped
     | Paused
-
-
-type LogStage
-    = Pre
-    | Post
 
 
 type Quadrant
@@ -211,17 +169,6 @@ type alias Hotspots =
     }
 
 
-type alias DBLog =
-    { timeTaken : Time
-    , stimId : String
-    , preFace : Int
-    , postFace : Int
-    , preFeelings : List String
-    , postFeelings : List String
-    , dateTime : Time
-    }
-
-
 type alias User =
     { userId : String
     , avatar : Avatar
@@ -233,7 +180,6 @@ type alias User =
 type alias DBData =
     { user : User
     , stims : List Stim
-    , logs : List Log
     }
 
 
@@ -253,19 +199,14 @@ type Msg
     | ChangeView View
     | Tick Time
     | AdjustTimer TimerControl
-    | ToggleFeeling LogStage Feeling
-    | ToggleFace LogStage Face
     | StopTimer
-    | RepeatStim
     | ChangeViewFromTimer View
-    | SaveLog
     | SaveOrUpdateUser
     | SaveStim Stim
     | ToggleNav
     | TransitMsg (Transit.Msg Msg)
     | NavigateTo View
     | ReceiveHotspotCoords (Result String Hotspots)
-    | ReceiveUpdatedLogs (List DBLog)
     | ReceiveStimList (Result String (List Stim))
     | UpdateNewStimVideo String
     | ToggleStimMenu BodyPart

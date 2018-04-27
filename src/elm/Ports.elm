@@ -31,9 +31,6 @@ port receiveLastOnboarding : (Bool -> msg) -> Sub msg
 port updateNewStimVideo : (String -> msg) -> Sub msg
 
 
-port saveLog : DBLog -> Cmd msg
-
-
 port initDB : () -> Cmd msg
 
 
@@ -47,9 +44,6 @@ port saveOrUpdateUser : Json.Encode.Value -> Cmd msg
 
 
 port receiveHotspotCoords : (Json.Decode.Value -> msg) -> Sub msg
-
-
-port receiveUpdatedLogs : (List DBLog -> msg) -> Sub msg
 
 
 port receiveUpdatedStims : (Json.Decode.Value -> msg) -> Sub msg
@@ -94,7 +88,6 @@ subscriptions model =
     Sub.batch
         [ receiveHotspotCoords (decodeHotspots >> ReceiveHotspotCoords)
         , timeSubscription model
-        , receiveUpdatedLogs ReceiveUpdatedLogs
         , receiveLastOnboarding ReceiveLastOnboarding
         , receiveUpdatedStims (decodeStimList >> ReceiveStimList)
         , updateAvatar UpdateAvatar

@@ -562,10 +562,6 @@ body {
   flex-shrink: 0;
 }
 
-.feeling-button {
-  width: 45%;
-}
-
 .h-fit-content {
   height: fit-content;
 }
@@ -595,7 +591,7 @@ body {
 }
 
 .timer-tag {
-  background-image: url('/assets/StimPreparation/slider_counter_tag.svg');
+  background-image: url('/assets/TimerPreparation/slider_counter_tag.svg');
   background-repeat: no-repeat;
   background-position: center;
   outline: none;
