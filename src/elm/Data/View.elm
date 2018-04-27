@@ -21,8 +21,8 @@ import Views.ShareModal exposing (..)
 import Views.DeleteModal exposing (..)
 import Views.Splash exposing (..)
 import Views.StimInfo exposing (..)
-import Views.StimPreparation exposing (..)
-import Views.StimTimer exposing (..)
+import Views.TimerPreparation exposing (..)
+import Views.Timer exposing (..)
 import Delay exposing (..)
 import Time exposing (..)
 
@@ -45,11 +45,11 @@ getCurrentView model =
         StimInfo ->
             stimInfo model
 
-        StimPreparation ->
+        TimerPreparation ->
             stimPreparation model
 
-        StimTimer ->
-            stimTimer model
+        Timer ->
+            timer model
 
         StimFinish ->
             stimFinish model
@@ -97,10 +97,10 @@ viewToCmds view model =
         Emergency ->
             [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
-        StimPreparation ->
+        TimerPreparation ->
             [ changeSkinColour ( skinColourToHexValue model.skinColour, ".avatarHead" ) ]
 
-        StimTimer ->
+        Timer ->
             [ changeSkinColour ( skinColourToHexValue model.skinColour, ".timerHead" ) ]
 
         Onboarding ->

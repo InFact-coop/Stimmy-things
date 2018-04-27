@@ -18,7 +18,7 @@ blog model =
                     [ class "absolute left-0 ml3 pointer mt3"
                     , onClick <| NavigateTo Landing
                     ]
-                    [ img [ src "./assets/StimPreparation/back_btn_white.svg" ] [] ]
+                    [ img [ src "./assets/TimerPreparation/back_btn_white.svg" ] [] ]
                 , h1 [ classes [ headerFont, "white mb3 mt4" ] ] [ text "Stimmy Stuff" ]
                 ]
             , button

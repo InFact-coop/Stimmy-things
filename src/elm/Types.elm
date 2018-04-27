@@ -12,9 +12,9 @@ type View
     | Emergency
     | Onboarding
     | StimInfo
-    | StimPreparation
+    | TimerPreparation
     | StimFinish
-    | StimTimer
+    | Timer
     | AddStim
     | About
     | Splash

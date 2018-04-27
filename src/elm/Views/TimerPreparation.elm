@@ -65,7 +65,7 @@ stimPreparation model =
                         ]
                     ]
                 , div [ class "pb4 absolute bottom-0 w-80 left-10" ]
-                    [ rectButton "Next" (NavigateTo StimTimer)
+                    [ rectButton "Next" (NavigateTo Timer)
                     ]
                 ]
             ]

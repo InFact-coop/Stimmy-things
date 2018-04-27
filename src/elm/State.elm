@@ -64,10 +64,10 @@ update msg model =
                 , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
                 , avatar = ifThenElse (view == CreateAvatar) initModel.avatar model.avatar
                 , stimsWithUser = ifThenElse (view == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
-                , counter = ifThenElse (view == StimPreparation) (initModel.counter) model.counter
-                , timeSelected = ifThenElse (view == StimPreparation) (initModel.timeSelected) model.timeSelected
-                , timerStatus = ifThenElse (view == StimPreparation) (initModel.timerStatus) model.timerStatus
-                , stimInfoDestination = ifThenElse (view == StimPreparation) (initModel.stimInfoDestination) model.stimInfoDestination
+                , counter = ifThenElse (view == TimerPreparation) (initModel.counter) model.counter
+                , timeSelected = ifThenElse (view == TimerPreparation) (initModel.timeSelected) model.timeSelected
+                , timerStatus = ifThenElse (view == TimerPreparation) (initModel.timerStatus) model.timerStatus
+                , stimInfoDestination = ifThenElse (view == TimerPreparation) (initModel.stimInfoDestination) model.stimInfoDestination
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -133,7 +133,7 @@ update msg model =
             trackCounter model
                 ! []
                 :> update
-                    (ifThenElse (model.counter == 0 && model.view == StimTimer)
+                    (ifThenElse (model.counter == 0 && model.view == Timer)
                         (NavigateTo StimFinish)
                         (NoOp)
                     )
@@ -227,7 +227,7 @@ update msg model =
         NavigateToStimInfo ->
             { model | stimInfoDestination = model.view }
                 ! []
-                :> update (ifThenElse (model.view == StimTimer) (ChangeViewFromTimer StimInfo) (NavigateTo StimInfo))
+                :> update (ifThenElse (model.view == Timer) (ChangeViewFromTimer StimInfo) (NavigateTo StimInfo))
 
         ChangeSkinColour ->
             { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( toggleSkinColour model |> skinColourToHexValue, ".is-selected" ) ]
