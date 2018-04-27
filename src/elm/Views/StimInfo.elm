@@ -1,6 +1,6 @@
 module Views.StimInfo exposing (..)
 
-import Helpers.Style exposing (backgroundImageCover, backgroundImageStyle, bodyFont, classes, headerFont, horizontalTransition)
+import Helpers.Style exposing (backgroundImageCover, backgroundImageStyle, bodyFont, classes, headerFont, horizontalTransition, verticalTransition)
 import Helpers.Utils exposing (ifThenElse, unionTypeToString, viewIf)
 import Html exposing (..)
 import Html.Attributes exposing (class, height, src, width)
@@ -10,7 +10,10 @@ import Types exposing (..)
 
 stimInfo : Model -> Html Msg
 stimInfo model =
-    div [ horizontalTransition model, class "bg-washed-yellow black" ]
+    div
+        [ ifThenElse (model.stimInfoDestination == Landing) (horizontalTransition model) (verticalTransition model)
+        , class "bg-washed-yellow black"
+        ]
         [ viewIf (model.stimInfoDestination == Landing) <|
             div
                 [ classes [ "h4 w4 pointer fixed br-100 z-1 right-1 bottom-0" ]
