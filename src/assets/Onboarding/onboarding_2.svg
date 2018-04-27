@@ -49,9 +49,9 @@
                   <g id="face" transform="translate(41.337 22.34)">
                     <path d="M14.064 9.165c1.872 10.145 2.707 5.484-1.758 6.787-.317.093.399.518.598.777" id="Path-2" stroke="#55383C" stroke-width=".5"/>
                     <path d="M15.429 19.057c-4.547 2.455-2.163 1.993-7.132 1.495" id="Path-3" stroke="#CC5C61" stroke-width=".5"/>
-                    <g id="eyes" fill="#55383C">
-                      <ellipse id="eye" cx="19.504" cy="1.746" rx="1.747" ry="1.746"/>
-                      <ellipse id="eye" cx="1.747" cy="6.255" rx="1.747" ry="1.746"/>
+                    <g class="eyes" fill="#55383C">
+                      <ellipse class="eye" cx="19.504" cy="1.746" rx="1.747" ry="1.746"/>
+                      <ellipse class="eye" cx="1.747" cy="6.255" rx="1.747" ry="1.746"/>
                     </g>
                   </g>
                 </g>
@@ -76,18 +76,18 @@
                 </g>
                 <g id="head-whole" transform="translate(52.595 42.076)">
                   <path d="M25.858 35.86c-7.777 3.818-13.673 5.294-20.484-.474" id="mouth" stroke="#CC5C61" stroke-width="2"/>
-                  <g id="eyes">
-                    <g id="left_eye" transform="translate(14.678 12.286)">
+                  <g class="eyes">
+                    <g class="left_eye" transform="translate(14.678 12.286)">
                       <ellipse id="Oval-11" fill="#FFF" cx="6.492" cy="6.422" rx="6.492" ry="6.422"/>
-                      <ellipse id="eye" fill="#27221B" cx="6.54" cy="6.743" rx="2.54" ry="2.743"/>
+                      <ellipse class="eye" fill="#27221B" cx="6.54" cy="6.743" rx="2.54" ry="2.743"/>
                     </g>
-                    <g id="right_eye" transform="translate(0 10.052)">
+                    <g class="right_eye" transform="translate(0 10.052)">
                       <ellipse id="Oval-11" fill="#FFF" cx="4.799" cy="4.747" rx="4.799" ry="4.747"/>
-                      <ellipse id="eye" fill="#27221B" cx="4.976" cy="5.133" rx="1.976" ry="2.133"/>
+                      <ellipse class="eye" fill="#27221B" cx="4.976" cy="5.133" rx="1.976" ry="2.133"/>
                     </g>
                     <g id="top-eye" transform="translate(11.29)">
                       <ellipse id="Oval-11" fill="#FFF" cx="3.669" cy="3.63" rx="3.669" ry="3.63"/>
-                      <ellipse id="eye" fill="#27221B" cx="3.81" cy="3.955" rx="1.81" ry="1.955"/>
+                      <ellipse class="eye" fill="#27221B" cx="3.81" cy="3.955" rx="1.81" ry="1.955"/>
                     </g>
                   </g>
                 </g>
@@ -117,9 +117,9 @@
                 </g>
                 <g id="face+hair" transform="translate(119.756 52.595)">
                   <g id="face" transform="translate(.291 .01)">
-                    <g id="eyes" fill="#4C2F1C">
-                      <ellipse id="eye" cx="1.585" cy="2.968" rx="1.585" ry="2.968"/>
-                      <ellipse id="eye" cx="20.186" cy="2.968" rx="1.585" ry="2.968"/>
+                    <g class="eyes" fill="#4C2F1C">
+                      <ellipse class="eye" cx="1.585" cy="2.968" rx="1.585" ry="2.968"/>
+                      <ellipse class="eye" cx="20.186" cy="2.968" rx="1.585" ry="2.968"/>
                     </g>
                     <path d="M8.18 2.808c.96 5.485-.28 6.688-.507 12.442-.011.284.433.434.71.442.993.03 1.97-.389 2.963-.332 1.537.087 3.024.643 4.56.76.938.073.376-1.81-1.03-2.856" id="Path-29" stroke="#979797"/>
                     <path d="M6.063 22.614c2.675 3.195 10.044 5.351 11.945.043" id="Path-2" stroke="#CC5C61"/>

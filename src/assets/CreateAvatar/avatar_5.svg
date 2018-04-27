@@ -1,4 +1,30 @@
 <svg viewBox="0 0 361 549" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+    @keyframes blink {
+      0% {
+        transform: scaleX(1) scaleY(1);
+      }
+      1% {
+        transform: scaleX(1) scaleY(0);
+      }
+      10% {
+        transform: scaleX(1) scaleY(1);
+      }
+      100% {
+        transform: scaleX(1) scaleY(1);
+      }
+    }
+
+    .eyeFast {
+      animation: blink 5s ease infinite;
+    }
+    .eyeMedium {
+      animation: blink 5.25s linear infinite;
+    }
+    .eyeSlow {
+      animation: blink 5.5s ease infinite;
+    }
+  </style>
   <defs>
     <linearGradient x1="0%" y1="0%" y2="100%" id="linearGradient-1">
       <stop stop-color="#45AFD7" offset="0%"/>
@@ -35,18 +61,18 @@
         </g>
         <g id="head-whole" transform="translate(92 74)">
           <path d="M45.804 64.215c-13.776 6.838-24.219 9.48-36.285-.849" id="mouth" stroke="#CC5C61" stroke-width="2"/>
-          <g id="eyes">
-            <g id="left_eye" transform="translate(26 22)">
+          <g class="eyes">
+            <g class="left_eye" transform="translate(26 22)">
               <circle id="Oval-11" fill="#FFF" cx="11.5" cy="11.5" r="11.5"/>
-              <ellipse id="eye" fill="#27221B" cx="11.5" cy="11.912" rx="4.5" ry="4.912"/>
+              <ellipse class="eyeMedium" fill="#27221B" cx="11.5" cy="11.912" rx="4.5" ry="4.912"/>
             </g>
-            <g id="right_eye" transform="translate(0 18)">
+            <g class="right_eye" transform="translate(0 18)">
               <circle id="Oval-11" fill="#FFF" cx="8.5" cy="8.5" r="8.5"/>
-              <ellipse id="eye" fill="#27221B" cx="8.5" cy="8.82" rx="3.5" ry="3.82"/>
+              <ellipse class="eyeSlow" fill="#27221B" cx="8.5" cy="8.82" rx="3.5" ry="3.82"/>
             </g>
             <g id="top-eye" transform="translate(20)">
               <circle id="Oval-11" fill="#FFF" cx="6.5" cy="6.5" r="6.5"/>
-              <ellipse id="eye" fill="#27221B" cx="6.207" cy="6.5" rx="3.207" ry="3.5"/>
+              <ellipse class="eyeFast" fill="#27221B" cx="6.207" cy="6.5" rx="3.207" ry="3.5"/>
             </g>
           </g>
         </g>
