@@ -8,7 +8,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "./assets/Onboarding/Splash3.png",
+      "src": "./assets/Icons/phone_icn_round.png",
       "sizes": "192x192",
       "type": "image/png"
     }
