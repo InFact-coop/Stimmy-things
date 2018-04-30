@@ -54,23 +54,27 @@ init =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        ChangeView view ->
-            { model
-                | view = view
-                , stimMenuShowing = Nothing
-                , showNav = Neutral
-                , lastOnboarding = False
-                , hotspots = ifThenElse (view == CreateAvatar) initModel.hotspots model.hotspots
-                , skinColour = ifThenElse (view == CreateAvatar) initModel.skinColour model.skinColour
-                , avatar = ifThenElse (view == CreateAvatar) initModel.avatar model.avatar
-                , stimsWithUser = ifThenElse (view == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
-                , counter = ifThenElse (view == TimerPreparation) (initModel.counter) model.counter
-                , timeSelected = ifThenElse (view == TimerPreparation) (initModel.timeSelected) model.timeSelected
-                , timerStatus = ifThenElse (model.view == Timer) (initModel.timerStatus) model.timerStatus
-                , stimInfoDestination = ifThenElse (model.view == Timer) Timer (initModel.stimInfoDestination)
-                , svgClockTime = model.counter
-            }
-                ! (scrollToTop :: viewToCmds view model)
+        ChangeView nextView ->
+            let
+                previousView =
+                    model.view
+            in
+                { model
+                    | view = nextView
+                    , stimMenuShowing = Nothing
+                    , showNav = Neutral
+                    , lastOnboarding = False
+                    , hotspots = ifThenElse (nextView == CreateAvatar) initModel.hotspots model.hotspots
+                    , skinColour = ifThenElse (nextView == CreateAvatar) initModel.skinColour model.skinColour
+                    , avatar = ifThenElse (nextView == CreateAvatar) initModel.avatar model.avatar
+                    , stimsWithUser = ifThenElse (nextView == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
+                    , counter = ifThenElse (nextView == TimerPreparation) (initModel.counter) model.counter
+                    , timeSelected = ifThenElse (nextView == TimerPreparation) (initModel.timeSelected) model.timeSelected
+                    , timerStatus = ifThenElse (previousView == Timer) (initModel.timerStatus) model.timerStatus
+                    , stimInfoDestination = ifThenElse (previousView == Timer) Timer (initModel.stimInfoDestination)
+                    , svgClockTime = model.counter
+                }
+                    ! (scrollToTop :: viewToCmds nextView model)
 
         ReceiveHotspotCoords (Ok coords) ->
             { model | hotspots = coords } ! []
