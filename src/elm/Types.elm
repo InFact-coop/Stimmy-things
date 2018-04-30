@@ -40,6 +40,7 @@ type alias Model =
         , newStim : Stim
         , counter : Time
         , timeSelected : Time
+        , svgClockTime : Time
         , timerStatus : TimerStatus
         , vidSearchString : String
         , videos : List Video

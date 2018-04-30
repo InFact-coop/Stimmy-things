@@ -13,10 +13,14 @@ adjustTime control model =
             { model | timerStatus = Paused }
 
         Start ->
-            { model | timerStatus = Started }
+            { model | timerStatus = Started, counter = model.counter - 1 }
 
         Restart ->
-            { model | counter = model.timeSelected, timerStatus = Stopped }
+            { model
+                | counter = model.timeSelected
+                , svgClockTime = model.timeSelected
+                , timerStatus = Stopped
+            }
 
 
 timerStatusToClockStyle : Model -> String
@@ -27,12 +31,12 @@ timerStatusToClockStyle model =
 
         Paused ->
             "animation: timer "
-                ++ toString model.timeSelected
+                ++ toString model.svgClockTime
                 ++ "s linear forwards paused;"
 
         Started ->
             "animation: timer "
-                ++ toString model.timeSelected
+                ++ toString model.svgClockTime
                 ++ "s linear forwards running;"
 
 

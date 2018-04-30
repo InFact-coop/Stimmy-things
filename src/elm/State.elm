@@ -30,6 +30,7 @@ initModel =
     , newStim = defaultStim
     , counter = 0
     , timeSelected = 0
+    , svgClockTime = 0
     , timerStatus = Stopped
     , vidSearchString = ""
     , videos = []
@@ -67,6 +68,7 @@ update msg model =
                 , timeSelected = ifThenElse (view == TimerPreparation) (initModel.timeSelected) model.timeSelected
                 , timerStatus = ifThenElse (model.view == Timer) (initModel.timerStatus) model.timerStatus
                 , stimInfoDestination = ifThenElse (model.view == Timer) Timer (initModel.stimInfoDestination)
+                , svgClockTime = model.counter
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -132,7 +134,7 @@ update msg model =
             trackCounter model
                 ! []
                 :> update
-                    (ifThenElse (model.counter == 0 && model.view == Timer)
+                    (ifThenElse (model.counter <= 0 && model.view == Timer)
                         (NavigateTo StimFinish)
                         (NoOp)
                     )
