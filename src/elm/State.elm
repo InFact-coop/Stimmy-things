@@ -31,7 +31,6 @@ initModel =
     , counter = 0
     , timeSelected = 0
     , timerStatus = Stopped
-    , paused = False
     , vidSearchString = ""
     , videos = []
     , videoStatus = NotAsked
@@ -66,8 +65,8 @@ update msg model =
                 , stimsWithUser = ifThenElse (view == Blog) (hideVideos model.stimsWithUser) model.stimsWithUser
                 , counter = ifThenElse (view == TimerPreparation) (initModel.counter) model.counter
                 , timeSelected = ifThenElse (view == TimerPreparation) (initModel.timeSelected) model.timeSelected
-                , timerStatus = ifThenElse (view == TimerPreparation) (initModel.timerStatus) model.timerStatus
-                , stimInfoDestination = ifThenElse (view == TimerPreparation) (initModel.stimInfoDestination) model.stimInfoDestination
+                , timerStatus = ifThenElse (model.view == Timer) (initModel.timerStatus) model.timerStatus
+                , stimInfoDestination = ifThenElse (model.view == Timer) Timer (initModel.stimInfoDestination)
             }
                 ! (scrollToTop :: viewToCmds view model)
 
@@ -153,12 +152,6 @@ update msg model =
                 :> update (AdjustTimer Stop)
                 :> update (NavigateTo StimFinish)
 
-        ChangeViewFromTimer view ->
-            model
-                ! []
-                :> update (AdjustTimer Stop)
-                :> update (NavigateTo view)
-
         SaveOrUpdateUser ->
             model ! [ saveOrUpdateUser <| normaliseUser model ]
 
@@ -205,7 +198,7 @@ update msg model =
         GoToStim stim ->
             { model | selectedStim = stim }
                 ! []
-                :> update (NavigateToStimInfo)
+                :> update (NavigateTo StimInfo)
 
         AddAvatarName name ->
             { model | avatarName = sanitiseAvatarName name }
@@ -223,11 +216,6 @@ update msg model =
         ImportStim stim ->
             model
                 ! [ saveStim <| normaliseStim stim ]
-
-        NavigateToStimInfo ->
-            { model | stimInfoDestination = model.view }
-                ! []
-                :> update (ifThenElse (model.view == Timer) (ChangeViewFromTimer StimInfo) (NavigateTo StimInfo))
 
         ChangeSkinColour ->
             { model | skinColour = toggleSkinColour model } ! [ changeSkinColour ( toggleSkinColour model |> skinColourToHexValue, ".is-selected" ) ]

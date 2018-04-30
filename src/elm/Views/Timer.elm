@@ -24,7 +24,7 @@ timer model =
                     [ text <| model.selectedStim.stimName ]
                 , div
                     [ class "w3 h3 items-center justify-center flex"
-                    , onClick NavigateToStimInfo
+                    , onClick <| NavigateTo StimInfo
                     ]
                     [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
                 ]
