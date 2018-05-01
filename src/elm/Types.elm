@@ -40,8 +40,8 @@ type alias Model =
         , newStim : Stim
         , counter : Time
         , timeSelected : Time
+        , svgClockTime : Time
         , timerStatus : TimerStatus
-        , paused : Bool
         , vidSearchString : String
         , videos : List Video
         , videoStatus : RemoteData
@@ -200,7 +200,6 @@ type Msg
     | Tick Time
     | AdjustTimer TimerControl
     | StopTimer
-    | ChangeViewFromTimer View
     | SaveOrUpdateUser
     | SaveStim Stim
     | ToggleNav
@@ -221,7 +220,6 @@ type Msg
     | ReceiveFirebaseStims (Result String (List StimWithUser))
     | ShareStim Stim
     | ImportStim Stim
-    | NavigateToStimInfo
     | KeyDown String Int
     | KeyDownFromName Int
     | ChangeSkinColour

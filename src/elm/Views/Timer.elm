@@ -3,7 +3,6 @@ module Views.Timer exposing (..)
 import Components.Clock exposing (clock)
 import Data.Avatar exposing (avatarHeadSelection)
 import Helpers.Style exposing (backgroundImageStyle, classes, headerFont, horizontalTransition)
-import Helpers.Utils exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
@@ -24,15 +23,15 @@ timer model =
                     [ text <| model.selectedStim.stimName ]
                 , div
                     [ class "w3 h3 items-center justify-center flex"
-                    , onClick NavigateToStimInfo
+                    , onClick <| NavigateTo StimInfo
                     ]
                     [ img [ src "./assets/Landing/menu-drawer/about_btn.svg" ] [] ]
                 ]
             , img [ class "", src "./assets/Timer/white_divider_zigzag_thin.svg" ] []
             , div []
                 [ div [ class "timer-font" ]
-                    [ span [] [ text <| (formatTimeFirstDigits (floor <| model.counter / 60)) ++ ":" ]
-                    , span [] [ text <| formatTimeSecondDigits (rem (round model.counter) 60) ]
+                    [ span [] [ text <| (formatTime (floor <| model.counter / 60)) ++ ":" ]
+                    , span [] [ text <| formatTime (rem (round model.counter) 60) ]
                     ]
                 , div [ class "w-60 center relative" ]
                     [ clock model
@@ -60,19 +59,14 @@ timer model =
         ]
 
 
-formatTimeFirstDigits : Int -> String
-formatTimeFirstDigits time =
-    case (String.length <| toString time) == 1 of
-        True ->
-            "0" ++ toString time
-
-        False ->
-            toString time
-
-
-formatTimeSecondDigits : Int -> String
-formatTimeSecondDigits time =
-    ifThenElse ((String.length <| toString time) == 1) ("0" ++ toString time) (toString time)
+formatTime : Int -> String
+formatTime time =
+    if time < 0 then
+        "00"
+    else if (String.length <| toString time) == 1 then
+        "0" ++ toString time
+    else
+        toString time
 
 
 displayPlayOrPause : TimerStatus -> Html Msg
