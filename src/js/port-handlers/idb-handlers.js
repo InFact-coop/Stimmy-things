@@ -2,8 +2,17 @@ import firebase from './firebase-handlers';
 import app from '../elm-init';
 import helpers from '../idb-helpers';
 
-const initDB = defaultStims => {
+const initDB = async defaultStims => {
   const db = helpers.createDB();
+
+  const existingStims = await helpers.getAllStims(db);
+
+  if (existingStims.length > 0) {
+    return helpers
+      .getAllTheData(db)
+      .then(data => app.ports.receiveInitialData.send(data))
+      .catch(err => console.log('Failure', err));
+  }
 
   const stimPromises = defaultStims.map(stim => helpers.addStim(db, stim));
 
