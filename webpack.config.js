@@ -105,7 +105,8 @@ const prodConfig = {
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin([
       { from: 'src/assets', to: 'assets' },
-      { from: 'src/manifest.json' }
+      { from: 'src/manifest.json' },
+      { from: 'src/favicon.ico' }
     ]),
     new GenerateSW({
       clientsClaim: true,
