@@ -1,7 +1,7 @@
 module Views.About exposing (..)
 
 import Data.Avatar exposing (avatarHeadSelection)
-import Helpers.Style exposing (bodyFont, classes, headerFont, horizontalTransition, smallFont, verticalTransition)
+import Helpers.Style exposing (bodyFont, classes, headerFont, horizontalTransition, smallFont, extraSmallFont, verticalTransition)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
@@ -52,11 +52,13 @@ about model =
             , p [ class "mb2" ] [ text "The name came from a young person who attended our workshop." ]
             , p [ class "mb4" ] [ text "Stimming, or self-stimulation, is a repetitive action we can use to refocus and gain a sense of calm" ]
             , p [ classes [ headerFont, "mv2" ] ] [ text "Who made Stimmy Things?" ]
-            , p [ class "mb2" ] [ text "Stimmy Things is the result of close collaboration between SLaM, the CYPI-APT London and inFact Coop (as part of Founders and Coders). It was co-created with young people and clinicians from SLaM. Most, if not all, of the ideas in Stimmy Things were ideated by and tested with young people with ADHD." ]
-            , p [ class "mb4" ] [ text "We would like to thank all of those from SLaM, CYPI-APT and the young people and their families who participated in our workshops and helped us with user testing. This couldn't have happened without their support and general awesomeness!" ]
+            , p [ class "mb2" ] [ text "Stimmy Things is the result of close collaboration between SLaM CAMHS*, the CYPI-APT* London and inFact Coop (as part of Founders and Coders). It was co-created with young people and clinicians from SLaM CAMHS. Most, if not all, of the ideas in Stimmy Things were ideated by and tested with young people with ADHD." ]
+            , p [ classes [ extraSmallFont, "i mb1" ] ] [ text "*South London and Maudsley Child and Adolescent Mental Health Services" ]
+            , p [ classes [ extraSmallFont, "i mb2" ] ] [ text "*Children and Young People's Improving Access to Psychological Therapies" ]
+            , p [ class "mb4" ] [ text "We would like to thank all of those from SLaM, CYPI-APT, the Maudsley Charity and the young people and their families who participated in our workshops and helped us with user testing. This couldn't have happened without their support and general awesomeness!" ]
             , p [ classes [ headerFont, "mv2" ] ] [ text "Contact us if you have any questions!" ]
             , p [] [ text "inFact Coop" ]
-            , p [ class "mb3" ] [ text "hello@infact.coop.com" ]
+            , p [ class "mb3" ] [ text "hello@infactcoop.com" ]
             , p [] [ text "SLaM" ]
             , p [ class "mb3" ] [ text "hello@slam.com" ]
             , p [] [ text "CYPI-APT" ]
