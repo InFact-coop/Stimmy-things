@@ -13,7 +13,7 @@ import Types exposing (..)
 landing : Model -> Html Msg
 landing model =
     div [ class "flex flex-column items-center" ]
-        [ header [ classes [ "flex relative justify-center items-center ph3 pv4 vw-100" ] ]
+        [ header [ classes [ "flex relative justify-center items-center ph3 pv4 w-100" ] ]
             [ button
                 [ classes [ "button absolute left-0 ml3 bn h2 w2 bg-inherit" ]
                 , backgroundImageStyle

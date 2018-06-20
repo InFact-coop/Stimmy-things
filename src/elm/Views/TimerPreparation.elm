@@ -54,7 +54,7 @@ stimPreparation model =
                         []
                     , div []
                         [ input
-                            [ class <| "outline-0 mt3 tc w3 f6 lh-f7 pl1 pa0 pb1 flex justify-center items-center timer-tag"
+                            [ class <| "outline-0 mt3 tc w3 f6 lh-f7 pl1 pl2-m pl2-5-l flex items-center pa0 pb1 timer-tag"
                             , type_ "number"
                             , onInputValue SetTimeFromText
                             , placeholder "0"

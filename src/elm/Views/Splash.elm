@@ -11,8 +11,9 @@ splash model =
     div
         [ class "fill-screen"
         , style
-            [ ( "backgroundImage", "url(./assets/Splash/Stimmy-splash-GIF.gif)" )
-            , ( "backgroundSize", "cover" )
+            [ ( "background-image", "url(./assets/Splash/Stimmy-splash-GIF.gif)" )
+            , ( "background-size", "cover" )
+            , ( "background-position", "center center" )
             ]
         , horizontalTransition model
         ]

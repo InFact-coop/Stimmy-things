@@ -25,7 +25,13 @@ view model =
                 "bg-green"
                 "bg-washed-yellow"
     in
-        div [ classes [ "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", bgColour ], id "container" ]
+        div
+            [ classes
+                [ "w-100 fixed overflow-y-scroll top-0 bottom-0 cover max-phone-width relative"
+                , bgColour
+                ]
+            , id "container"
+            ]
             [ navDrawer model
             , view
             ]

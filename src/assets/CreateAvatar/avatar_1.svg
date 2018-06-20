@@ -69,9 +69,9 @@
           <g id="face" transform="translate(51.087 27.608)">
             <path d="M17.381 11.326c2.314 12.538 3.345 6.778-2.172 8.389-.392.114.492.64.739.96" id="Path-2" stroke="#55383C" stroke-width=".5"/>
             <path d="M19.068 23.551c-5.62 3.034-2.673 2.464-8.815 1.849" id="Path-3" stroke="#CC5C61" stroke-width=".5"/>
-            <g class="eyes" fill="#55383C">
-              <ellipse class="eye" cx="24.104" cy="2.157" rx="2.159" ry="2.157"/>
-              <ellipse class="eye" cx="2.159" cy="7.731" rx="2.159" ry="2.157"/>
+            <g class="eyes" fill="#55383C" transform="rotate(-15)">
+              <ellipse class="eye" cx="22.104" cy="8.731" rx="2.159" ry="2.157"/>
+              <ellipse class="eye" cx="0.159" cy="8.731" rx="2.159" ry="2.157"/>
             </g>
           </g>
         </g>

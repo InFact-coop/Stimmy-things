@@ -140,6 +140,10 @@ body {
 
 /* Animations */
 
+.clock {
+  transform: rotate(-90deg);
+}
+
 .clock > .timer {
   stroke-width: 0.75rem;
   stroke: #162b74;
@@ -445,7 +449,7 @@ body {
 }
 
 .background-avatar {
-  width: 95vw;
+  width: 95%;
 }
 
 .timer-font {
@@ -479,7 +483,7 @@ body {
 
 .onboarding-carocell {
   height: 87vh;
-  width: 100vw;
+  width: 100%;
 }
 .onboardingCarousel .flickity-page-dots {
   bottom: 0;
@@ -572,6 +576,7 @@ body {
 
 .fill-screen {
   min-height: 100vh;
+  width: 100%;
 }
 
 .video-height {
@@ -608,4 +613,14 @@ body {
 .videoArea {
   width: 240px;
   height: 150px;
+}
+
+.max-phone-width {
+  max-width: 420px;
+}
+
+@media (--breakpoint-large) {
+  .pl2-5-l {
+    padding-left: 0.85rem;
+  }
 }
