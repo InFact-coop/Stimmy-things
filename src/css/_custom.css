@@ -619,8 +619,22 @@ body {
   max-width: 420px;
 }
 
+.left-inherit {
+  left: inherit;
+}
+
 @media (--breakpoint-large) {
   .pl2-5-l {
     padding-left: 0.85rem;
+  }
+}
+
+@media (--breakpoint-not-small) {
+  .left-19-ns {
+    left: 19rem;
+  }
+
+  .right-inherit-ns {
+    right: inherit;
   }
 }
