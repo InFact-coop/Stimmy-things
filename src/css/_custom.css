@@ -140,6 +140,10 @@ body {
 
 /* Animations */
 
+.clock {
+  transform: rotate(-90deg);
+}
+
 .clock > .timer {
   stroke-width: 0.75rem;
   stroke: #162b74;
@@ -572,6 +576,7 @@ body {
 
 .fill-screen {
   min-height: 100vh;
+  width: 100%;
 }
 
 .video-height {
@@ -612,4 +617,10 @@ body {
 
 .max-phone-width {
   max-width: 420px;
+}
+
+@media (--breakpoint-large) {
+  .pl2-5-l {
+    padding-left: 0.85rem;
+  }
 }

@@ -27,7 +27,7 @@ view model =
     in
         div
             [ classes
-                [ "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover max-phone-width center relative"
+                [ "w-100 fixed overflow-y-scroll top-0 bottom-0 cover max-phone-width relative"
                 , bgColour
                 ]
             , id "container"
