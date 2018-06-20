@@ -445,7 +445,7 @@ body {
 }
 
 .background-avatar {
-  width: 95vw;
+  width: 95%;
 }
 
 .timer-font {
@@ -608,4 +608,8 @@ body {
 .videoArea {
   width: 240px;
   height: 150px;
+}
+
+.max-phone-width {
+  max-width: 420px;
 }

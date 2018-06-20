@@ -42,7 +42,7 @@ onboarding model =
                 ]
             ]
         , div
-            [ class "pa4 bg-green flex justify-between w-100 bottom-0 absolute fixed" ]
+            [ class "pa4 bg-green flex justify-between w-100 bottom-0 absolute" ]
             [ p [ classes [ headerFont, "white", "onboarding--back" ] ] [ text "Back" ]
             , p
                 [ classes [ headerFont, "white", "onboarding--next", ifThenElse model.lastOnboarding "dn" "" ] ]

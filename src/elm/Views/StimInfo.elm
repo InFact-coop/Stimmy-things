@@ -16,7 +16,7 @@ stimInfo model =
         ]
         [ viewIf (model.stimInfoDestination == Landing) <|
             div
-                [ classes [ "h4 w4 pointer fixed br-100 z-1 right-1 bottom-0" ]
+                [ classes [ "h4 w4 pointer absolute br-100 z-1 right-1 bottom-0" ]
                 , backgroundImageStyle "./assets/StimInfo/timer_icn_dark.svg" 100
                 , onClick <| NavigateTo TimerPreparation
                 ]

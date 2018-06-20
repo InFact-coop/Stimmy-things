@@ -42,7 +42,7 @@ createAvatar model =
 
 avatarCaroCell : String -> Html Msg
 avatarCaroCell imgSrc =
-    div [ class "carousel-cell vh-75" ]
+    div [ class "carousel-cell vh-75 w-100" ]
         [ object
             [ id "avatar", attribute "data" imgSrc, type_ "image/svg+xml", classes [ "carousel-cell-image", "vh-75" ] ]
             []
