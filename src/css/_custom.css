@@ -479,7 +479,7 @@ body {
 
 .onboarding-carocell {
   height: 87vh;
-  width: 100vw;
+  width: 100%;
 }
 .onboardingCarousel .flickity-page-dots {
   bottom: 0;
