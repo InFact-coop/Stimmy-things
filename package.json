@@ -54,7 +54,7 @@
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
     "dexie": "^2.0.4",
-    "elm": "^0.18.0",
+    "elm": "^1.2.0",
     "elm-webpack-loader": "^4.5.0",
     "env2": "^2.2.2",
     "express": "^4.16.3",
