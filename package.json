@@ -62,13 +62,13 @@
     "firebase": "^4.13.1",
     "flickity": "^2.1.2",
     "postcss-clean": "^1.1.0",
-    "postcss-cli": "^4.1.1",
+    "postcss-cli": "^6.0.0",
     "postcss-custom-media": "^6.0.0",
     "postcss-custom-properties": "^6.3.1",
     "postcss-import": "^11.1.0",
     "request": "^2.87.0",
     "tachyons-custom": "^4.9.5",
     "webpack": "^4.12.0",
-    "webpack-cli": "^2.1.5"
+    "webpack-cli": "^3.1.0"
   }
 }
